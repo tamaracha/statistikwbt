@@ -1,0 +1,19 @@
+<h3>\(t\)-Test</h3>
+<p>
+Wir führen jetzt einen \(t\)-Test an unseren Stichprobendaten durch. Der \(t\)-Test ist ein sehr häufig eingesetzter Signifikanztest, der zwei Stichproben bzw. deren Mittelwertunterschied auf Signifikanz hin untersuchen kann. Wir möchten wissen, ob Einzel- und Gruppentraining unterschiedlich stark auf die Intelligenz gewirkt haben. Wir brauchen also die Variable Intelligenz_nachher, die Werte für Einzel- und Gruppentraining. Die Intelligenz der drei Trainingsformgruppen wurde vor dem Experiment gematcht, also für jeden Teilnehmer im Einzeltraining wurden für Paar- und Gruppentraining gleich intelligente Teilnehmer ausgesucht, damit keine unfairen Vergleichsbedingungen entstehen. Für kleine Stichproben ist das eine gute Alternative zur reinen Zufallsstichprobe. Wir können uns also einfach die IQ-Werte nach dem Experiment anschauen und vergleichen.
+</p>
+<p>
+Auch für den \(t\)-Test und für andere Signifikanztests wird eine Art Kennwert berechnet, in diesem Fall der \(t\)-Wert. Die Formel lautet:
+\[t = \frac{\overline{x}_1 - \overline{x}_2}{\mathit{SEM}_D}\]
+Wir teilen also den Mittelwertunterschied durch den Standardfehler des Mittelwertunterschieds. Denken Sie an die Standardnormalverteilung und die \(z\)-Transformation zurück. Dort wird auch durch die Standardabweichung geteilt um die Standardnormalverteilung zu erhalten. Hier beim \(t\)-Test müssen wir nicht mehr den Mittelwert der Mittelwertunterschiede von unserem Mittelwertunterschied subtrahieren, weil der ohnehin schon 0 ist. Es bleibt also nur noch das Teilen durch den Standardfehler des Mittelwertunterschieds übrig, der ja nichts anderes ist als die Standardabweichung der Mittelwertunterschiedeverteilung. Wie dem auch sei, der Zweck ist auch wieder wie bei der Standardnormalverteilung, dass man unterschiedliche \(t\)-Werte direkt vergleichen kann und mit etwas Übung leicht einschätzen kann, ob man einen signifikanten \(t\)-Wert erhalten hat. Das liegt auch wieder daran, dass sozusagen in Standardfehlern gezählt wird.
+</p>
+<p>
+Das Berechnen des Standardfehlers ist etwas aufwändiger. Dort muss nämlich die Varianz beider Stichproben integriert werden. Nachdem Sie den ausgerechnet haben, können Sie oben die Formel lösen um den \(t\)-Wert zu erhalten.
+Wenn die Varianzen der Stichproben klein sind, die beiden Häufigkeitsverteilungen also schmal und hoch sind, wird der Standardfehler und damit auch der \(t\)-Wert eher größer sein als wenn die Varianzen groß sind. Zunächst beginnen Sie, als würden sie für beide Stichproben die Varianz berechnen.
+</p>
+<ol>
+<li>Bilden Sie für beide Stichproben die quadrierten Abweichungen zu ihrem jeweiligen Mittelwert und bilden sie daraus eine Summe. Bei der einfachen Varianz würden Sie die quadrierten Differenzen zum Mittelwert summieren, hier summieren sie die beider Stichproben. Excel: Sumquadabw</li>
+<li>Diese Summe teilen Sie durch \((n_1 - 1)+(n_2 - 1)\). Das ist die Summe der beiden Stichprobengrößen, von denen sie jeweils 1 subtrahieren. Jetzt ist das Ganze eine Art Doppelvarianz geworden. Wenn Sie sich an den Schätzer der Populationsvarianz erinnern, dort wird ebenfalls durch \(n - 1\) geteilt statt durch \(n\).</li>
+<li>Multiplizieren Sie die bisher ausgerechnete „Doppelvarianz“ mit \(\frac{1}{n_1} + \frac{1}{n_2}\).</li>
+<li>Ziehen Sie die Wurzel dieses Produkts, auch dies ist eine Parallele zur Standardabweichungsberechnung. Nun haben Sie den Standardfehler des Mittelwertunterschieds berechnet. Excel: Wurzel.</li>
+</ol>

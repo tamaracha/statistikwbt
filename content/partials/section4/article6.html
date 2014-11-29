@@ -1,0 +1,21 @@
+<h3>Kennwerte schätzen</h3>
+<p>
+Jetzt wissen Sie über die Vorzüge der Normalverteilung Bescheid und dass man nur \(μ\) und \(σ\) braucht um diese Häufigkeitsverteilung rekonstruieren zu können. Hier erfahren sie, wie Sie den Mittelwert und die Standardabweichung der Population mit einer Stichprobe statistisch schätzen können. 
+</p>
+<div class="akkordeon">
+<h4>Mittelwert</h4>
+<div>
+<p>
+Für den Mittelwert berechnen wir keinen direkten Schätzer, sondern eine Art Vertrauensintervall, also einen Ausprägungsbereich, in dem \(μ\) mit hoher Wahrscheinlichkeit liegt. Je größer und repräsentativer die Stichprobe, desto enger wird dieser Bereich, desto besser haben wir \(μ\) eingegrenzt. Etwas ähnliches haben Sie ja schon bei der Normalverteilung und den Integralen kennengelernt. Je kleiner die Standardabweichung ist, desto enger wird auch der Bereich, in dem ein Messwert wahrscheinlich liegen wird. Um das Vertrauensintervall des Mittelwertes zu bestimmen benutzen wir jetzt aber keine Standardabweichung mehr, sondern führen einen neuen Stichprobenkennwert ein: den Standardfehler des Mittelwerts (\(\mathit{SEM}\)). Er verkörpert die Standardabweichung aller Stichprobenmittelwerte. Auch die Verteilung aller Stichprobenmittelwerte einer Population ist normalverteilt mit dem wahren Populationsmittelwert als Mittelwert. Die meisten Stichprobenmittelwerte liegen nah beim wahren Mittelwert, je extremer die Stichprobenmittelwerte, desto seltener treten sie auf. Und je kleiner die gezogenen Stichproben sind, desto breiter Streuen sie. Sie können also auch mal eine Stichprobe erwischen, die einen ganz untypischen Mittelwert hat. Daher braucht es auch nicht gleich das ganze Weltbild zu erschüttern, wenn einmal eine Studie etwas ganz unerwartetes findet. Berechnet wird der Standardfehler, indem die Standardabweichung durch die Wurzel des Stichprobenumfangs geteilt wird: \(\mathit{SEM} = s/\sqrt{n}\). Dabei geht die Stichprobengröße in den Kennwert mit ein und je größer die Stichprobe, desto kleiner wird der Standardfehler. Excel: Stabw.s, Wurzel.
+</p>
+<p>
+Nun können Sie sich um den Stichprobenmittelwert eine imaginäre Normalverteilung vorstellen, deren Standardabweichung dem eben berechneten Standardfehler entspricht. Das ist die Verteilung aller potentiellen Stichprobenmittelwerte mit der aktuellen Stichprobengröße. Wenn die Stichprobenmittelwerte normalverteilt um \(μ\) herumstreuen, muss \(μ\) in dieser imaginären Verteilung liegen. Im Intervall \(\overline{x} ± \mathit{SEM}\) liegen 68% der Verteilung, es besteht also eine Wahrscheinlichkeit von 68%, dass der wahre Populationsmittelwert in diesem Bereich liegt. Wenn Sie mehr Gewissheit wollen, müssen Sie das Intervall breiter spannen, z.B. um \(2\mathit{SEM}\). Damit erwischen Sie den Populationsmittelwert zu 95% Wahrscheinlichkeit, haben aber auch eine gröbere Schätzung. Sie können also mit dem Standardfehler sowohl den wahren Mittelwert eingrenzen, aber der Standardfehler ist auch ein Indikator für die Genauigkeit der Messung. Deswegen wird er in Publikationen auch kommuniziert, weil man sich daran einen Eindruck der Messgenauigkeit verschaffen kann.
+</p>
+</div>
+<h4>Standardabweichung</h4>
+<div>
+<p>
+Die Standardabweichung wird direkt als Kennwert geschätzt. Der Vorgang der Berechnung ist fast genau wie bei der Stichprobenstandardabweichung, nur teilen Sie Summe der quadrierten Abweichungen nicht durch \(n\), sondern durch \(n - 1\). Die Idee dabei ist, dass die Varianz der Population tendenziell etwas größer ist als die einer Stichprobe. Indem durch \(n - 1\) geteilt wird, ist die berechnete Varianz ein wenig größer als wenn man durch \(n\) teilt. Excel: Stabw.s (s wie Schätzer).
+</p>
+</div>
+</div>

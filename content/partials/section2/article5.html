@@ -1,0 +1,38 @@
+<h3>Streuung</h3>
+<p>
+Die zentrale Tendenz allein sagt uns noch nicht, wie die Werte einer Stichprobe um den Mittelwert gelagert sind. Das heißt, der Mittelwert könnte z.B. dadurch zustandekommen, dass die meisten Werte dem Mittelwert entsprechen oder knapp darüber/darunter liegen. Aber es kann auch sein, dass sehr verschiedene Werte auftreten, die teilweise weit vom Mittelwert entfernt liegen. Dieses Merkmal einer Stichprobe wird Streuung genannt. Je größer die Streuung, desto breiter variieren die Werte um den Mittelwert herum. Gäbe es keine Streuung, wären alle Messwerte gleich dem Mittelwert. Auch hierfür gibt es einige verschiedene Kennwerte, die die Streuung ausdrücken.
+</p>
+<h4>Extrema und Spannweite</h4>
+<p>
+Sie können den größten und den kleinsten auftretenden wert ermitteln. Dazu muss man auch wieder, wie beim Median, die Werte in eine Rangreihe bringen. Zusätzlich können Sie das Minimum vom Maximum subtrahieren, um den Range (Spannweite) zu bestimmen. Der Range gibt schon einen ersten Eindruck von der Breite, mit der die Werte um das Mittel herumstreuen. Dieser Eindruck ist aber noch eher undifferenziert, weil nicht die Abweichung jedes Wertes zum Mittelwert in diesen Kennwert eingeht. Der Range wird z.B. durch <span class="glos">Ausreißer</span> sehr „aufgeplustert“, wenn die übrigen werte viel enger um den Mittelwert streuen. Excel: Min, Max.
+</p>
+<h4>Interquartilsabstand</h4>
+<p>
+Dies ist sozusagen ein Range ohne Ausreißer. Um zu verstehen, was ein Quartil ist, verfahren Sie zunächst wie bei der Berechnung des median: die Werte einer Stichprobe der Größe nach in eine Rangreihe bringen. Nun bestimmen Sie aber nicht nur den Median, sondern „vierteln“ die Reihe sozusagen. Sie müssen dabei die (Sollbruch)-Stellen in der Reihe (Ränge) ermitteln, an denen die reihe geteilt werden soll. Beim vierteln entstehen drei Stellen, an denen die Reihe in vier etwa gleich große Teile zerlegt wird. Wenn Sie die Ränge wissen, können Sie einfach in der reihe nachschauen, welcher Messwert sich dahinter verbirgt. Also verwechseln Sie nicht Ränge und Messwerte. Die Ränge können Sie folgendermaßen bestimmen, wobei \(n\) für die Anzahl der Messwerte steht, \(x\) für den Rang und \(q\) für den zugehörigen Wert, der an \(x\)'ter Stelle steht.:
+</p>
+<dl>
+<dt>erstes Quartil (\(q_1\))</dt>
+<dd>¼ der Werte ist kleiner oder gleich. \[x_1 = 0.25*(n + 1)\]</dd>
+<dt>Median oder zweites Quartil (\(q_2\))</dt>
+<dd>½ der Werte ist kleiner oder gleich. Bei ungeradem \(n\) gilt: \[x = 0.5*(n+1)\], bei geradem \(n\) ist \(q_2\) der Mittelwert der beiden rangmittleren Werte.</dd>
+<dt>drittes Quartil (\(q_3\))</dt>
+<dd>¾ der Werte sind kleiner oder gleich. \[x_3 = 0.75*(n+1)\]</dd>
+</dl>
+<p>
+Zwischen dem ersten und dritten Quartil liegen also nur etwa 50% der Messwerte. Es können auch mehr sein, aber die Ausreißer sind nicht mehr dabei, sondern liegen in den äußeren Vierteln. Den Interquartilsabstand berechnen sie, indem Sie das erste vom dritten Quartil subtrahieren. Je größer die Streuung, desto größer wird er sein. Es gibt unterschiedliche Ansätze, die Ränge zu bestimmen, daher wundern Sie sich nicht, falls Sie auf Quartile stoßen sollten, die nicht dieser Methode entsprechen.
+</p>
+<h4>Varianz und Standardabweichung</h4>
+<p>
+Ein differenzierteres Maß der Streuung ist die Varianz und die Standardabweichung. In ihre Berechnung gehen die Abweichungen aller Werte zum Mittelwert ein. Die verbale Formel könnte so lauten: Die Varianz ist die durchschnittliche quadrierte Abweichung der Messwerte zum Mittelwert. Die mathematische Formel lautet: \[s^2 = (\sum _{i=1} ^n {(x_i - \overline{x})^2})/n\] Diese komprimierte Formulierung soll hier kurz aufgeschlüsselt werden.
+</p>
+<dl>
+<dt>Abweichungen bilden</dt>
+<dd>Zuerst wird der Mittelwert berechnet und der reihe nach von jedem Wert subtrahiert um die Abweichungen zu bilden: \(x_i - \overline{x}\). Excel: Mittelwert</dd>
+<dt>quadrieren</dt>
+<dd>Diese Differenzen sind teilweise positiv und teilweise negativ. Im nächsten schritt wäre das ein Problem, weil beim Bilden der Summe für die mittlere Abweichung eine Streuung von 0 herauskäme. Sie wissen vielleicht noch über rationale Zahlen, dass die Addition einer negativen Zahl im Grunde der Subtraktion einer positiven zahl entspricht. Wir möchten aber, dass die Information der Streuung erhalten bleibt und nicht bei der Rechnung herausgemittelt wird. Bei der Varianz wird dieses Problem durch Quadrierung der Differenzen gelöst, wodurch sie alle positiv werden: \((x_i - \overline{x})^2\)</dd>
+<dt>Mittlere Abweichung berechnen</dt>
+<dd>Diese quadrierten Abweichungen werden summiert und durch die Anzahl eingegangener Messwerte geteilt, also eine Art Mittelwert der quadrierten Abweichungen bestimmt: \((\sum _{i=1} ^n {(x_i - \overline{x})^2})/n\). Excel: Sumquadabw, Var.p.</dd>
+</dl>
+<p>
+Der so berechnete Kennwert heißt Varianz und wird normalerweise in Formeln mit \(s^2\) gekennzeichnet. Diese Buchstabenkennung macht noch deutlich, dass in diesem Wert noch die Quadrierung steckt, die bei der Berechnung der Varianz vorgenommen wurde. Dadurch ist die Varianz eine quadrierte mittlere Abweichung vom Mittelwert. Die ist schwierig zu interpretieren und deswegen möchten wir eine „normale“, von der Quadrierung bereinigte mittlere Abweichung. Die erhalten wir, indem wir die Wurzel aus der Varianz ziehen: \(s = \sqrt{s^2}\). Diese Wurzel der Varianz heißt Standardabweichung und wird einfach mit \(s\) gekennzeichnet. Sie ist leichter zu interpretieren und wird häufiger als Streuungsmaß verwendet, weil sie technisch gesehen einer durchschnittlichen Abweichung der Werte vom Mittelwert entspricht. Generell wird die Standardabweichung extrem häufig verwendet, weshalb es sich für Sie auf jeden Fall lohnt, sie zu kennen und interpretieren zu können. Außerdem bauen sehr viele statistische Verfahren darauf auf. Excel: Wurzel, Stabw.p.
+</p>

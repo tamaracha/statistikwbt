@@ -1,0 +1,48 @@
+<h3>Fehler erster und zweiter Art</h3>
+<p>
+Sie haben wahrscheinlich schon herausgefunden, dass unser \(t\)-Wert nicht signifikant ist. Er setzt sich folgendermaßen zusammen:
+</p>
+<ul>
+<li>Der Mittelwertunterschied der beiden Gruppen beträgt einen iQ-Punkt (\(107 - 106 = 1\)). </li>
+<li>Der Standardfehler des Mittelwertunterschieds beträgt \(\mathit{SeM}_D = 6.21289\).</li>
+<li>\(t(8) = 1/\mathit{SEM}_D = 0.161\)
+</ul>
+<p>
+Dieser \(t\)-Wert ist deutlich kleiner als der kritische und damit nicht signifikant. Das heißt, es gibt keinen bedeutsamen Gruppenunterschied zwischen Einzel- und Gruppentraining. Das ist inhaltlich erfreulich, weil Gruppentrainings ökonomischer sind und gut in den Unterricht integriert werden können. Man will somit nicht bei jeder Signifikanzuntersuchung auch ein signifikantes Ergebnis. Wie wird aber das Signifikanzniveau festgelegt und welche Kriterien spielen dabei eine Rolle? Dieses Thema kann als Spannungsfeld charakterisiert werden. Sie können das Niveau entweder erhöhen oder verringern, und beides hat seine Vor- und Nachteile hinsichtlich der Inferenzen.
+</p>
+<h4>Fehler erster Art („falscher Alarm“)</h4>
+<p>
+Der Fehler erster Art unterläuft Ihnen dann, wenn Sie aus einem signifikanten Ergebnis schließen, dass die beiden Mittelwerte aus unterschiedlichen Populationen kommen, obwohl das tatsächlich nicht der Fall ist. Laut Zahlen scheint ein Bedeutsamer Unterschied zwischen den verglichenen Gruppen zu bestehen, obwohl das im Allgemeinen tatsächlich nicht zutrifft. Sie erinnern sich, der 5%-Flächenanteil ist ja eigentlich noch ein Anteil der Mittelwertunterschiede, die aus der selben Population kommen. Dass diese extremen Unterschiede dennoch auftreten, ist nur so unwahrscheinlich (5%), dass wir dann eher einen signifikanten Mittelwertunterschied annehmen. Diese 5% sind nun auch die Wahrscheinlichkeit für einen Fehler erster Art. Das heißt, mit einer Wahrscheinlichkeit von 5% ist ein statistisch (zahlenmäßig) signifikantes Ergebnis nicht inhaltlich signifikant und die beiden verglichenen Mittelwerte stammen aus der selben Population.
+</p>
+<div class="quiz multiplechoice">
+<p>
+Was könnten Sie mit dem Signifikanzniveau machen, damit das Risiko für den Fehler erster Art geringer wird?
+</p>
+<ol>
+<li>
+<input type="radio" name="mc" value="1" id="Alpha_1">
+<label for="Alpha_1">verringern, kritische \(t\)-Werte nach außen verschieben</label>
+</li>
+<li>
+<input type="radio" name="mc" value="0" id="Alpha_2">
+<label for="Alpha_2">erhöhen, kritische Werte nach innen verschieben</label>
+</li>
+</ol>
+<p>
+	<input type="button" name="aufloesungMC" value="Überprüfen">
+</p>
+	<div class="feedback" id="DialogAlpha_1">
+	<p>Das ist genau Richtig, denn durch die Reduktion des Niveaus reduzieren wir auch den Flächenanteil, in dem wir einen Mittelwertunterschied als signifikant annehmen. Je geringer das Niveau, desto extremer müssen die Werte sein um als signifikant zu gelten, desto unwahrscheinlicher wird es, dass solche Gruppenunterschiede statistisch auftreten und inhaltlich nicht signifikant sind.</p>
+	</div>
+	<div class="feedback" id="DialogAlpha_2">
+	<p>Richtig wäre Antwort 1, verringern, gewesen. Je geringer das Niveau, desto extremer müssen die Werte sein um als signifikant zu gelten, desto unwahrscheinlicher wird es, dass solche Gruppenunterschiede statistisch auftreten und inhaltlich nicht signifikant sind.</p>
+	</div>
+	</div>
+<h4>Fehler zweiter Art („übersehen“)</h4>
+<p>
+Das Gegenstück ist der Fehler zweiter art. Dabei besteht ein tatsächlicher signifikanter Unterschied, drückt sich aber nicht in der Statistik aus und wird deswegen zunächst als nicht signifikant betrachtet. Die Mittelwerte kommen zwar tatsächlich aus verschiedenen Populationen, der Unterschied der Stichproben ist aber nicht extrem genug für unser angelegtes Signifikanzniveau. Das Problem ist, dass die Wahrscheinlichkeit für diesen Fehler besonders erhöht wird, wenn wir versuchen, die Wahrscheinlichkeit für den Fehler erster art zu reduzieren. Wenn wir das tun, bspw. das Signifikanzniveau auf 1% verringern, passiert uns zwar nur noch in einem von 100 Fällen ein Fehler erster Art, aber der Fehler zweiter Art wird wahrscheinlicher. Das liegt daran, dass die \(t\)-Werte extremer werden müssen um im äußeren 1%-Flächenanteil zu landen und als statistisch signifikant zu gelten. Die Wahrscheinlichkeit für den Fehler zweiter art ist leider schwieriger zu quantifizieren.
+</p>
+<h4>Der Kompromiss</h4>
+<p>
+Das Spannungsfeld ist hier, dass sich das Risiko für den einen Fehler erhöht, wenn wir versuchen, das Risiko für den anderen Fehler zu reduzieren. Jedes Signifikanzniveau ist daher ein Kompromiss aus beidem und das Signifikanzniveau von 5% haben sich in den Sozialwissenschaften als guter, schneller Kompromiss etabliert. Die Entscheidung, welchen Fehler Sie eher riskieren möchten, ist jedoch mehr eine inhaltliche als eine rein statistische Frage. Rauchmelder oder HIV-Schnelltests neigen mehr zum Fehler erster Art, weil sie lieber manchmal falschen Alarm schlagen als tatsächlich signifikante Fälle übersehen sollen. Diese Art von Tests wird als sensitiv bezeichnet. Das Gegenstück dazu wären Tests mit sehr geringem Signifikanzniveau, das die Wahrscheinlichkeit des Fehlers erster Art reduziert, aber die für den Fehler zweiter Art erhöht. Solche Tests werden als spezifisch bezeichnet. Wenn die Diagnose einer bestimmten psychischen Krankheit große Konsequenzen für den Patienten hat, sind die Diagnoseinstrumente auch eher spezifisch als sensitiv ausgelegt um keine Fehldiagnosen zu stellen für den preis einiger nicht erkannter Erkrankungen. An dieser Stelle soll Ihnen wieder bewusst gemacht werden, dass Statistik erst dann einen Sinn erhält, wenn sie auf den Inhalt bezogen eingesetzt wird.
+</p>

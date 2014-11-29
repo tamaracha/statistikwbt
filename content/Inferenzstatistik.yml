@@ -1,0 +1,8 @@
+_id: Inferenzstatistik
+title: Inferenzstatistik
+subtitle: von der Messung auf die Gesamtheit schließen
+description: |
+  Es gibt <dfn title="Stichprobe">Stichproben</dfn>, konkrete Messungen, und <dfn title="Population">Populationen</dfn>, die Gesamtheit, aus der die Stichprobe gezogen wird. Stichproben sollen ihre Gesamtheit repräsentieren. Oft ist die Analyse der Stichprobe nur ein Zwischenziel statistischer Bemühungen, während das Hauptziel darin besteht, durch die Stichprobe mehr über die Population zu erfahren. Diese Art der Statistik fällt in den Bereich der Inferenzstatistik. Sie eröffnet neue Möglichkeiten, bringt aber auch einige Fallstricke mit sich. Wenn du regelmäßig Forschungsergebnisse interpretieren oder verwenden musst, ist die praktische Relevanz des Themas für dich besonders hoch, weil Forschung vor allem an Erkenntnissen über die Gesamtheit interessiert ist und daher immer mit Methoden aus der Inferenzstatistik arbeitet.
+requires:
+  - DeskriptiveStatistik
+  - Haeufigkeitsverteilungen

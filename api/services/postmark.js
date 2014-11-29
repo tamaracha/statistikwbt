@@ -1,0 +1,1 @@
+module.exports=require("postmark")(sails.config.POSTMARK_API_KEY);

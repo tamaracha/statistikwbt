@@ -1,0 +1,7 @@
+_id: KorrelationUndRegression
+title: Korrelation und Regression
+subtitle: Zusammenhänge
+description: |
+  Der Zusammenhang zwischen zwei metrischen Merkmalen (nicht kategorial) kann statistisch untersucht werden. Bei einer Stichprobe von Personen misst man nicht mehr einen Wert pro Person, sondern ein Wertepaar (beide Merkmale für jede Person). Ist der eine Messwert umso größer, je größer der andere Messwert ist? Wie genau kann man den einen Messwert aufgrund des anderen bestimmen? Solche Fragestellungen ergänzen sich mit jenen nach dem Gruppenunterschied. Sie können außerdem auch gut grafisch untersucht werden.
+requires:
+	  - DeskriptiveStatistik

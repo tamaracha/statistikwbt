@@ -1,0 +1,54 @@
+<h3>Zentrale Tendenz</h3>
+<p>
+Das erste Merkmal ist die zentrale Tendenz. Wenn wir ein bestimmtes Merkmal wie Schuhgrößen oder die Endsumme der Preise bei einem Großeinkauf mehrfach messen, stellt sich oft heraus, dass die Werte zu einer gewissen Mitte hin tendieren. Das entspricht im Prinzip dem, was im Alltag als Durchschnitt bezeichnet wird. Manche Einkäufe sind sehr günstig, manche ziemlich teuer, aber die meisten liegen irgendwo in der Mitte. Besonders kleine oder große Füße sind eher selten, die meisten sind mittelmäßig. Wenn es uns gelingt, diesen Mittelwert eines Datensatzes als Zahl auszudrücken, sagt uns das schon etwas über den Datensatz. Tendiert die Schuhgröße um die 50, ist das schon ziemlich groß und wir haben wahrscheinlich große Menschen erfasst. Es gibt in dieser Gruppe wahrscheinlich einige mit noch größeren, manche mit kleineren und ein paar mit wesentlich kleineren oder größeren Füßen. Nun kennen wir ein paar verschiedene Möglichkeiten, diese zentrale Tendenz als Zahl auszudrücken; Ihre ersten Kennwerte.
+</p>
+<div class="akkordeon">
+<h4>Arithmetisches Mittel</h4>
+<div>
+<p>
+Der klassische Durchschnitt oder Mittelwert. Berechnet wird er, indem Sie alle Werte des Datensatzes zusammenzählen und diese Summe durch die Anzahl der Werte teilen. Dieser Kennwert enthält sehr viel Information über den Datensatz (jeder Wert geht als Zahl in den Kennwert ein), ist aber anfällig für Verzerrungen, schon wenn es einen einzigen, stark abweichenden Extremwert gibt. Ein einziger sehr teurer Einkauf kann den Mittelwert in die Höhe treiben, auch wenn die anderen Einkäufe eher günstig waren. Solche Werte, die so aus der Reihe tanzen, nennen wir <span class="glos">Ausreißer</span>. Deswegen ist es sehr sinnvoll, noch ein paar alternative Ausdrucksformen der zentralen Tendenz zu kennen um jeweils die zu wählen, die für die konkreten Daten am geeignetsten ist. Die Formel für das arithmetische Mittel lautet:
+\[\overline{x} = \frac{\sum _{i=1} ^n {x_i}}{n}\]
+Solche Mittelwerte haben per Konvention einen Querstrich, man sagt auch „X-quer“.
+</p>
+<p>
+Lesen Sie unbedingt den folgenden Einschub über Variablen und Summenzeichen um diese Art der Formel zu verstehen. Der Mittelwert ist noch sehr einfach konstruiert, so dass Sie sich ganz auf die Verwendung des Summenzeichens konzentrieren können. Später werden die Formeln etwas komplexer und lassen sich nur noch sinnvoll mit Summenzeichen und Variablen ausdrücken.
+</p>
+</div>
+<h4>Variablen und Summenzeichen</h4>
+<div>
+<p>
+Statistische Kennwerte bzw. deren Formeln sollen allgemein auf jede Messung anwendbar sein. Konkrete Messwerte in Formeln zu schreiben ist damit absolut nicht möglich. Wir brauchen einen allgemeineren Weg um auszudrücken, welche Werte in die Formeln eingesetzt werden und was mit ihnen gemacht werden soll.
+</p>
+<h5>Variablen</h5>
+<p>
+Variablen werden mit Buchstaben bezeichnet und <em>definieren</em>, welche Werte/Zahlen in die Formel eingesetzt werden. Sehr häufig anzutreffen ist z.B. die Stichprobengröße \(n\). Wenn wir wissen, dass \(n\) die Anzahl der Messwerte in der jeweiligen Stichprobe ist, können wir den Zahlenwert von \(n\) jederzeit für jede unserer Stichproben selbst korrekt bestimmen. Ein so definiertes \(n\) in einer Formel stellt sicher, dass wir mit dem aktuell richtigen Zahlenwert arbeiten. Abgesehen von \(n\) werden auch Variablen definiert, die jeweils Messwerte eines bestimmten gemessenen Merkmals enthalten. \(x\) könnte z.B. einen Wert für Schuhgröße enthalten, \(y\) einen für Körpergewicht. Zu einem Zeitpunkt kann man verschiedene Merkmale messen, dadurch erhalten wir zu jedem Messzeitpunkt einen \(x\) und einen \(y\)-Wert. Damit die verschiedenen Messwerte nicht alle einfach nur \(x\) oder \(y\) heißen und damit gar nicht unterscheidbar wären, müssen sie mittels eines Subscripts durchnummeriert werden, also \(x_1\), \(x_2\), \(x_3\), … \(x_n\). Mit Hilfe von \(n\) wird völlig allgemein definiert, dass \(x_n\) der letzte durchnummerierte Messwert des Merkmals ist. Haben Sie z.B. 23 Schuhgrößen gemessen, ist \(n = 23\) und Sie können vom ersten bis zum dreiundzwanzigsten bzw. letzten Wert durchnummerieren. Auch die Zahl im Subscript darf als Variable definiert werden und heißt meistens \(i\). Man spricht von einer Laufvariable, weil sie während eines Zähl- oder Nummerierungsvorganges die Anzahl der bereits gezählten Werte enthält. Versuchen Sie selbst einmal Gegenstände wie z.B. Stifte zu zählen oder zu messen und beobachten dabei, wie Ihr „mentales \(i\)“ hochzählt. Für jeden Stift könnten Sie seine Länge als Messwert nehmen und das jeweils aktuelle \(i\) als Subscript.
+</p>
+<h5>Summenschreibweise</h5>
+<p>
+Laufvariablen sind nützlich um auszudrücken, wenn man mit jedem Wert der Reihe nach etwas machen möchte, z.b. ihn zu einer anderen Zahl addieren. Hier noch einmal der Mittelwert:
+\[\overline{x} = \frac{\sum _{i=1} ^n {x_i}}{n}\]
+Dabei läuft \(i\) vom ersten bis zum letzten Wert, während der Wert mit dem jeweiligen \(i\) zur Summe addiert wird, die anfangs natürlich 0 ist. Es ist aber auch möglich, von dritten bis zum vorletzten wert zu lauen oder vom zweiten bis zum letzten. Die Summenschreibweise gibt nur den Anfang und das Ende der Laufvariable an.
+</p>
+<ol>
+<li>ersten Wert nehmen, zur Summe (noch 0) addieren, Anzahl bisher addierter Summanden im Sinn</li>
+<li>nächsten Wert zur Summe addieren, Anzahl bisher addierter Summanden im Sinn</li>
+<li>…</li>
+<li>letzten Wert zur Summe addieren, Anzahl bisher addierter Summanden entspricht Gesamtanzahl der Werte</li>
+</ol>
+</div>
+<h4>Median</h4>
+<div>
+<p>
+Der median lässt sich folgendermaßen charakterisieren: 50% der werte sind kleiner oder gleich dem Median und die anderen 50% der Werte sind größer oder gleich dem Median. Für seine Berechnung sind also nicht mehr die konkreten Messwerte entscheidend, sondern die Größer/Kleiner-Beziehungen zwischen den Werten, also ihre Rangfolge. Der Median ist in diesem Zusammenhang der rangmittlere Wert. Das ist umständlicher zu berechnen, weil man dafür die Werte erst nach ihrer Größe sortieren muss, aber dafür ist der Median robuster gegenüber Ausreißern. Außerdem kommt es auch vor, dass die Messwerte keine „richtigen“ Zahlen sind, sondern nur die Ränge der Messwerte enthalten sind, also die Kleiner/Größer-Beziehungen. So fällt es oft schwer, die Intensität von Sinneseindrücken in Zahlen auszudrücken, aber Sie können sie trotzdem nach der Intensität sortieren. Um die zentrale Tendenz zu bestimmen, können Sie hier kein arithmetisches Mittel verwenden, aber den Median.
+</p>
+<p>
+Von der Vorstellung her würden Sie also zuerst alle Messwerte aufsteigend nach ihrer Größe sortieren und sich denjenigen wert heraussuchen, der genau in der Mitte dieser Rangreihe steht. Dieser Wert ist dann der median. Bei einer geraden Anzahl an Messwerten haben Sie zwei rangmittlere Werte. Dann ist der median das arithmetische Mittel dieser beiden Werte. Es wird offenbar nicht gerechnet, sondern ausgezählt. Deswegen sind Ausreißer auch kein Problem, weil der Rang eines Ausreißers immer gleich bleibt, wie extrem er auch sein mag. Als Formel ausgedrückt lautet dieser Vorgang: \((n+1)/2\). Das ergibt den Rang des \(x\)-Wertes, der auch der Median ist.
+</p>
+</div>
+<h4>Modalwert</h4>
+<div>
+<p>
+Der modalwert oder Modus ist derjenige wert, der in der Stichprobe am häufigsten auftritt. Hierzu wird nicht gerechnet und keine Rangreihe gebildet, sondern die Werte werden gruppiert. Beim Messen der Präferenz für unterschiedliche Schokolade könnten Sie die Personen z.B. bitten, sich in Gruppen mit gemeinsamer Schokoladenpräferenz zusammenzufinden. Die präferierte Schokolade der größten Gruppe wäre dann der Modalwert. Diese Form der zentralen Tendenz stellt besonders niedrige Anforderungen an die Daten, verliert aber auch viel Information.
+</p>
+</div>
+</div>

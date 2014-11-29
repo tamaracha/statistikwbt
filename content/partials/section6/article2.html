@@ -1,0 +1,53 @@
+<h3>Lineare Korrelation</h3>
+<p>
+Korrelation ist der statistische Begriff für Zusammenhang. Zwei Merkmale korrelieren, heißt, zwei Merkmale hängen zusammen. Statistisch variiert Korrelation zwischen perfekt positiv und perfekt negativ, sie kann also nicht noch stärker werden als diese beiden Extrema. Bei perfekten zusammenhängen kann man abhängig vom einen Merkmal genau bestimmen, welchen Wert das andere Merkmal annimmt, und das bei jeder Person der betreffenden Stichprobe. Personen mit einem gemeinsamen Wert auf dem Merkmal \(x\) haben dann auch einen gemeinsamen Wert auf Merkmal \(x\). Je schwächer der Zusammenhang, desto unterschiedlicher sind auch die \(y\)-Werte der Personen mit dem gleichen \(x\)-Wert. So können manche Lebensmittel aus streng ökologischem Anbau sehr gut bei der Bewertung abschneiden, andere aber auch sehr schlecht. Genauso hoch kann die Diversität auch bei weniger streng produzierten Lebensmitteln sein. Lineare Korrelation im Speziellen betrifft nur metrische Merkmale.
+</p>
+<p>
+Der Kennwert der Korrelation oder der Korrelationskoeffizient wird mit \(r\) gekennzeichnet und variiert zwischen \(1\) (perfekt positiv) und \(-1\) (perfekt negativ). Ist \(r = 0\), besteht kein Zusammenhang. Wir berechnen jetzt die Korrelation für unser Beispielexperiment, ob neben dem Mittelwertunterschied auch ein Zusammenhang zwischen der Intelligenz vorher und nachher besteht.
+</p>
+<div class="akkordeon">
+<h4>Kovarianz</h4>
+<div>
+<p>
+Die Kovarianz ist ein Zwischenprodukt der Korrelationsberechnung. Sie gibt die Art des Zusammenhangs an (positiv oder negativ), aber man kann ihr nicht ansehen, wie stark der Zusammenhang ist, weil sie noch nicht auf den Bereich zwischen \(1\) und \(-1\) festgelegt ist. Die Formel lautet:
+\[
+\mathit{kov} = \Big(\sum _{i=1} ^n {(x_i-\overline{x})(y_i-\overline{y})}\Big)/n
+\]
+Zum Vergleich die Formel für die Varianz:
+\[
+s^2 = \Big(\sum _{i=1} ^n {(x_i-\overline{x})^2}\Big)/n
+\]
+Hier wird wieder durch \(n\) geteilt, weil es deskriptive Statistik ist und kein inferenzstatistischer Schätzer.
+</p>
+<ul>
+<li>Berechnen sie die Mittelwerte der Variablen Intelligenz_vorher und Intelligenz_nachher aus dem Beispieldatensatz. Intelligenz_vorher könnte hier \(X\) entsprechen und Intelligenz_nachher \(Y\). Auf die Formel bezogen wird in diesem Schritt also \(\overline{x}\) und \(\overline{y}\) berechnet.</li>
+<li>Bilden Sie die Abweichungen zum jeweiligen Mittelwert für jede Variable: \(x_i-\overline{x}\) und \(y_i-\overline{y}\). Bisher ähnelt das Vorgehen der Varianzberechnung.</li>
+<li>Multiplizieren Sie die korrespondierenden Abweichungen zum Mittelwert miteinander: \((x_i-\overline{x})(y_i-\overline{y})\). Korrespondierend heißt, jeweils die beiden \(x\)- und \(y\)-Abweichungen, die zu einer Person gehören. Bei der Varianz wurde einfach jede Abweichung quadriert, also mit sich selbst multipliziert, bei der Kovarianz werden die korrespondierenden Abweichungen miteinander multipliziert. demnach besteht eine enge Verwandtschaft zwischen diesen Kennwerten.</li>
+<li>Summieren Sie die aus der Multiplikation entstandenen Produkte: \(\sum _{i=1} ^n {(x_i-\overline{x})(y_i-\overline{y})}\). Dies stimmt wieder mit der Varianz überein.</li>
+<li>Teilen Sie die Summe durch \(n\).</li>
+</ul>
+<p>
+Nun haben Sie die Kovarianz berechnet. Wenn \(x\) und \(y\) oder zumindest die korrespondierenden Abweichungen absolut gleich wären, würde die Kovarianz der Varianz einer dieser Variablen entsprechen. Man könnte auch sagen, die Varianz einer Variable ist die Kovarianz einer Variable mit sich selbst.
+</p>
+</div>
+<h4>Korrelation</h4>
+<div>
+<p>
+Nun ist die Kovarianz noch nicht standardisiert. Man sieht der zahl noch nicht die Stärke des Zusammenhangs an. Diesmal funktioniert das Standardisieren nicht über die \(z\)-Transformation, sondern etwas anders. Eine Verwandtschaft ist aber auch hier vorhanden. Wenn Sie sich einen perfekten Zusammenhang vorstellen, entspricht die Kovarianz der Varianz der beiden Variablen. Demnach könnte man die Kovarianz durch die Varianz einer dieser Variablen teilen um als Ergebnis \(1\) zu erhalten:
+\[
+\frac{\mathit{kov}_{xy}}{s^2_x} = 1
+\]
+Wenn die beiden Variablen die gleiche Varianz haben, sind auch die Standardabweichungen gleich. Die Varianz ist auch die quadrierte Standardabweichung. Somit entspricht \(s^2_x\) auch \(s_x \cdot s_y\). Daher:
+\[
+\frac{\mathit{kov}_{xy}}{s_x \cdot s_y} = 1
+\]
+Je schwächer der Zusammenhang, desto kleiner wird die Kovarianz, weil sich in der Summe positive und negative Produkte gegenseitig aufheben. Bei perfekten Zusammenhängen gibt es entweder nur positive oder nur negative Produkte. Bei einem perfekten negativen Zusammenhang würden die obigen Quotienten \(-1\) ergeben. Besteht praktisch kein Zusammenhang, geht die kovarianz gegen \(0\) und somit auch der Quotient. Die Formel für die standardisierte Korrelation lautet:
+\[
+r = \frac{\mathit{kov}_{xy}}{s_x \cdot s_y}
+\]
+</p>
+<p>
+Die Beziehung zur \(z\)-Transformation besteht darin, dass auch hier die Abweichungen zum Mittelwert bestimmt und durch die Standardabweichung geteilt wird. Im Prinzip werden die beiden korrespondierenden \(z\)-Werte miteinander multipliziert und zum Schluss ein mittlerer Kreuz-\(z\)-wert berechnet, indem durch die Anzahl der Datenpunkte dividiert wird.
+</p>
+</div>
+</div>

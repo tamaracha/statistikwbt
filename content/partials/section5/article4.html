@@ -1,0 +1,44 @@
+<h3>\(t\)-Test: die \(t\)-Verteilung</h3>
+<p>
+Wenn der \(t\)-Wert berechnet ist, muss er mit der Verteilung der Mittelwertunterschiede abgeglichen werden, ob er weit genug außen liegt, also im Signifikanzbereich. Da der \(t\)-Wert eine Art \(z\)-transformierter Wert ist, läge die Annahme nahe, dass wir ihn nun mit einer Standardnormalverteilung abgleichen. Im Grunde tun wir das auch, aber für den \(t\)-Test hat sie noch ein mathematisches Extra-Feature bekommen und heißt mit diesem speziellen Feature \(t\)-Verteilung. Es besteht darin, dass diese Verteilung zwar immer einen Mittelwert von 0 und eine Standardabweichung von 1 annimmt, aber zusätzlich noch den so genannten Freiheitsgrad als dritten Parameter aufnimmt, der die Verteilung leicht mit verändert. Der Freiheitsgrad wird berechnet mit der Formel \(\mathit{df} = (n_1-1)+(n_2-1)\). Er ist also unmittelbar von beiden Stichprobengrößen abhängig. Je nach dem, wie groß unsere Stichproben und unser Freiheitsgrad sind, müssen wir unseren \(t\)-Wert mit der entsprechenden \(t\)-Verteilung abgleichen. Unten auf dieser Seite finden Sie eine Anwendung, die Sie den gewünschten Freiheitsgrad auswählen lässt und ihnen die entsprechende \(t\)-Verteilung plottet. Die Verteilung ist mit einer Normalverteilung hinterlegt um zu verdeutlichen, dass sich die \(t\)-Verteilung immer mehr der Normalverteilung annähert, je größer der Freiheitsgrad ist.
+</p>
+<div class="quiz multiplechoice">
+<p>Welcher Freiheitsgrad trifft in unserem Beispiel zu, in dem wir Einzel- und Gruppentraining nach der Intervention vergleichen?</p>
+<ol>
+<li>
+<input type="radio" name="mc" value="0" id="df_1">
+<label for="df_1">\(\mathit{df} = 7\)</label>
+</li>
+<li>
+<input type="radio" name="mc" value="1" id="df_2">
+<label for="df_2">\(\mathit{df} = 8\)</label>
+</li>
+<li>
+<input type="radio" name="mc" value="0" id="df_3">
+<label for="df_3">\(\mathit{df} = 9\)</label>
+</li>
+<li>
+<input type="radio" name="mc" value="0" id="df_4">
+<label for="df_4">\(\mathit{df} = 10\)</label>
+</li>
+</ol>
+<p>
+	<input type="button" name="aufloesungMC" value="Überprüfen">
+</p>
+	<div class="feedback" id="Dialogdf_1">
+	<p>Richtig wäre Antwort 2 gewesen. Beide Stichproben haben eine Größe von 5. Dadurch erhalten Sie die Formel \(\mathit{df} = (5-1)+(5-1) = 8\).</p>
+	</div>
+	<div class="feedback" id="Dialogdf_2">
+	<p>Sie haben den Freiheitsgrad richtig berechnet.</p>
+	</div>
+	<div class="feedback" id="Dialogdf_3">
+	<p>Richtig wäre Antwort 2 gewesen. Richtig wäre Antwort 2 gewesen. Beide Stichproben haben eine Größe von 5. Dadurch erhalten Sie die Formel \(\mathit{df} = (5-1)+(5-1) = 8\).</p>
+	</div>
+	<div class="feedback" id="Dialogdf_4">
+	<p>Richtig wäre Antwort 2 gewesen. Sie haben vielleicht die Stichprobengrößen direkt addiert. Richtig wäre Antwort 2 gewesen. Beide Stichproben haben eine Größe von 5. Dadurch erhalten Sie die Formel \(\mathit{df} = (5-1)+(5-1) = 8\).</p>
+	</div>
+	</div>
+<p>
+Stellen Sie unten den Freiheitsgrad unseres Beispiels ein und vergleichen Sie den unter der Grafik angezeigten \(t\)-Wert mit ihrem errechneten \(t\)-Wert. Der angezeigte Wert wird als kritischer \(t\)-Wert bezeichnet und kennzeichnet die Stelle der Verteilung, ab der nach außen hin der 5%-Anteil beginnt. Der berechnete Wert ist der empirische \(t\)-Wert und muss mindestens so groß sein wie der kritische, also in diesem 5%-Flächenanteil liegen, damit das Ergebnis als signifikant bezeichnet werden kann. Wenn der berechnete Wert negativ ist, können Sie auch einfach seinen Betrag verwenden, also das Minuszeichen ignorieren. Die \(t\)-Verteilung ist symmetrisch und hat einen Mittelwert von 0.
+</p>
+<iframe id="t-Verteilungen" data-src="http://88.198.224.218:3838/tamaracha/t-Verteilungen/"  height=800></iframe>

@@ -1,0 +1,31 @@
+_id: Skalenniveaus
+title: Skalenniveaus
+subtitle: Was kann man mit welchen Daten machen?
+description: |
+  Wenn man etwas misst, beobachtet man etwas in der physischen Welt und drückt diese Beobachtung als Messwert aus. Die Messung ist eine abstrakte Repräsentation dessen, wie sich die Beobachtungen voneinander unterscheiden, in welcher Beziehung sie also zueinander stehen. Sind zwei Messwerte gleich/ungleich, oder ist einer größer als der andere, kann man den Größenunterschied als Zahl ausdrücken? Es gibt insgesamt fünf solcher Beziehungsarten, die Skalenniveaus. In der Statistik hängt es vom Skalenniveau ab, welche statistischen Verfahren man auf Messdaten anwenden kann. Wenn man versucht, etwas zu errechnen, was die Daten von ihrem Niveau aus eigentlich nicht hergeben, entsteht Unsinn; wenn man bei der grafischen Aufbereitung nicht die ganze Information des Niveaus nutzt, kann das ggf. zu einem täuschenden Eindruck führen. Dieses Thema ist der Schlüssel zu den geschönten Statistiken und suggestiven Grafiken. Es ist wohl etwas theoretisch, aber sehr fundamental. Was macht man z.B., wenn die Daten keine Zahlen sind, sondern Kategorien?
+requires:
+  - DeskriptiveStatistik
+  - Haeufigkeitsverteilungen
+topics:
+  - _id: Nominalskala
+    title: Nominalskala
+    subtitle: Gleich-Ungleich-Beziehungen
+    body: |
+      Die Nominalskala ist das niedrigste Skalenniveau. Nominalskalierte Messwerte können entweder gleich oder ungleich sein. Deshalb sind es keine Zahlen, sondern trennscharfe Kategorien. Ein Messwert gehört genau in eine Kategorie, nicht in mehrere gleichzeitig. Als Maß der Zentralen Tendenz ist nur der Modalwert zulässig und Aufschluss über die Streuung geben Häufigkeitsverteilungen und Häufigkeitstabellen. Mögliche grafische Darstellungsformen sind Stapel und Balkendiagramme mit waagerechten Balken.
+  - _id: Ordinalskala
+    title: Ordinalskala
+    subtitle: Größer-Kleiner-Beziehungen
+    body: |
+      Die Ordinalskala ist wie die Nominalskala kategorial, aber die Kategorien haben zusätzlich eine Rangordnung. Ordinalskalierte Messwerte sind nicht nur gleich oder ungleich, sondern auch unterschiedlich groß. Dieser Größenunterschied lässt sich nicht als Zahl ausdrücken, weil die Werte selbst keine Zahlen sind, sondern angehörige von Kategorien. Die zentrale Tendenz kann mit dem Modalwert oder dem Median bestimmt werden. Die Streuung kann als AD-Streuung berechnet werden. Außerdem können nun Extrema und Quartile als Streuungsinformation herangezogen werden. Häufige grafische Darstellungsformen sind Balken- oder Säulendiagramme. Säulen müssen in der Reihenfolge erscheinen, die der Rangordnung der Kategorien entspricht.
+  - _id: Intervallskala
+    title: Intervallskala
+    body: |
+      Die Intervallskala ist nicht mehr kategorial, sondern metrisch. Das heißt, intervallskalierte Messwerte gehören nicht mehr in trennscharfe Kategorien, sondern sind zahlen. Der Größenunterschied (Differenz) zweier Messwerte kann jetzt ebenfalls als Zahl ausgedrückt werden. Es wird ein Intervall definiert. Das heißt, ein bestimmter Größenunterschied in Zahlen entspricht immer dem selben empirisch beobachtbaren Größenunterschied. Das ist die Idee der Maßeinheiten. Es gibt keinen natürlichen Nullpunkt, die Zahlen können also auch beliebig negativ sein. Deshalb kann man zwar die Größendifferenz bestimmen, nicht aber das Größenverhältnis. Ab der Intervallskala kann das arithmetische Mittel und die Varianz berechnet werden. Eine häufige grafische Darstellungsform ist das Histogramm und das Liniendiagramm. Handelt es sich insgesamt um  große Zahlen, bietet es sich an, das Diagramm auch bei einer größeren Zahl als 0 beginnen zu lassen. So werden große freie Flächen vermieden, die größer sind als der relevante Wertebereich. Es sollten natürlich alle Messwerte ins Diagramm eingehen.
+  - _id: Verhältnisskala
+    title: Verhältnisskala
+    body: |
+      Die Verhältnisskala ist metrisch und verfügt zusätzlich über einen natürlichen Nullpunkt. Kleinere Werte als 0 gibt es nicht. Hierdurch kann auch das Größenverhältnis zweier Messwerte bestimmt werden. Diagramme „abzuschneiden“, ist hier eher kritisch, weil dabei falsche Größenverhältnisse suggeriert werden.
+  - _id: Absolutskala
+    title: Absolutskala
+    body: |
+      Die Absolutskala hat kein künstlich definiertes Intervall mehr, sondern ein natürliches. Die empirischen Größenunterschiede entsprechen genau denen der Zahlen. Als Faustregel gesagt ist alles absolutskaliert, was sich einfach zählen lässt, ohne dass dabei eine Maßeinheit von belang wäre. Das Interessante an der Absolutskala ist, dass man Messwerte aus unterschiedlichen Merkmalen miteinander vergleichen kann. Ein ähnlicher Effekt wird auch bei der Z-Transformation und der Standardnormalverteilung ausgenutzt.

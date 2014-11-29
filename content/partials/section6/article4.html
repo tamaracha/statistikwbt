@@ -1,0 +1,204 @@
+<h3>Zusammenhangsmaße: Test</h3>
+<div class="tabs">
+<ul>
+<li><a href="#kor_test">Korrelation</a></li>
+<li><a href="#reg_test">Regression</a></li>
+<li><a href="#kor_Daten">Denktrainingsdaten</a></li>
+</ul>
+<div id="kor_test">
+<h4>Korrelation</h4>
+<div class="quiz multiplechoice">
+<p>
+Wie lautet die Kovarianz der Intelligenz vorher und nachher?
+</p>
+<ol>
+<li>
+<input type="radio" name="mc" id="kov_1" value="0">
+<label for="kov_1">\(\mathit{kov} = 106,5\)</label>
+</li>
+<li>
+<input type="radio" name="mc" id="kov_2" value="1">
+<label for="kov_2">\(\mathit{kov} = 77,2\)</label>
+</li>
+<li>
+<input type="radio" name="mc" id="kov_3" value="0">
+<label for="kov_3">\(\mathit{kov} = 0\)</label>
+</li>
+<li>
+<input type="radio" name="mc" id="kov_4" value="0">
+<label for="kov_4">\(\mathit{kov} = 82,3\)</label>
+</li>
+</ol>
+<p>
+<input type="button" name="aufloesungMC" value="Überprüfen">
+</p>
+<div class="feedback" id="Dialogkov_1">
+<p>
+Das ist leider nicht die richtige Antwort. Richtig wäre \(\mathit{kov} = 77,2\).
+</p>
+</div>
+<div class="feedback" id="Dialogkov_2">
+<p>
+Sehr gut. Sie haben die Kovarianz richtig berechnet.
+</p>
+</div>
+<div class="feedback" id="Dialogkov_3">
+<p>
+Das ist leider nicht die richtige Antwort. Richtig wäre \(\mathit{kov} = 77,2\).
+</p>
+</div>
+<div class="feedback" id="Dialogkov_4">
+<p>
+Das ist leider nicht die richtige Antwort. Richtig wäre \(\mathit{kov} = 77,2\).
+</p>
+</div>
+</div>
+<div class="quiz multiplechoice">
+<p>
+Wie lautet die Korrelation?
+</p>
+<ol>
+<li>
+<input type="radio" name="mc" value="1" id="kor_1">
+<label for="kor_1">\(r = 0,99\)</label>
+</li>
+<li>
+<input type="radio" name="mc" value="0" id="kor_2">
+<label for="kor_2">\(r = - 0,99\)</label>
+</li>
+<li>
+<input type="radio" name="mc" value="0" id="kor_3">
+<label for="kor_3">\(r = 0,82\)</label>
+</li>
+<li>
+<input type="radio" name="mc" value="0" id="kor_4">
+<label for="kor_4">\(r = 0,5\)</label>
+</li>
+</ol>
+<p>
+<input type="button" name="aufloesungMC" value="Überprüfen">
+</p>
+<div class="feedback" id="Dialogkor_1">
+<p>
+Sehr gut. Sie haben die Korrelation richtig berechnet.
+</p>
+</div>
+<div class="feedback" id="Dialogkor_2">
+<p>
+Das ist leider falsch. Richtig wäre \(r = 0,99\).
+</p>
+</div>
+<div class="feedback" id="Dialogkor_3">
+<p>
+Das ist leider falsch. Richtig wäre \(r = 0,99\).
+</p>
+</div>
+<div class="feedback" id="Dialogkor_4">
+<p>
+Das ist leider falsch. Richtig wäre \(r = 0,99\).
+</p>
+</div>
+</div>
+<p>
+Die Korrelation ist also sehr hoch, fast perfekt, und positiv. Je höher die Intelligenz vor dem Training ist, desto höher wird sie auch nach dem Training. Diese Aussage mag hier etwas trivial anmuten, aber der Nutzen eines Korrelationskoeffizienten wird besonders bei großen Stichproben mit sehr unterschiedlichen Werten deutlich, wo der Zusammenhang nicht mehr intuitiv zu erkennen ist.
+</p>
+</div>
+<div id="reg_test">
+<h4>Regression</h4>
+<div class="quiz multiplechoice">
+<p>Wie lautet die Steigung der Regressionsgerade?</p>
+<ol>
+<li>
+<input type="radio" name="mc" value="0" id="steigung_1">
+<label for="steigung_1">\(m = -1\)</label>
+</li>
+<li>
+<input type="radio" name="mc" value="0" id="steigung_2">
+<label for="steigung_2">\(m = -0,5\)</label>
+</li>
+<li>
+<input type="radio" name="mc" value="0" id="steigung_3">
+<label for="steigung_3">\(m = 0,5\)</label>
+</li>
+<li>
+<input type="radio" name="mc" value="1" id="steigung_4">
+<label for="steigung_4">\(m = 1\)</label>
+</li>
+</ol>
+<p>
+<input type="button" name="aufloesungMC" value="überprüfen">
+</p>
+<div class="feedback" id="Dialogsteigung_1">
+<p>Das ist leider falsch. Richtig wäre \(m = 1\). Außerdem ist die von Ihnen gewählte Antwort eine negative Steigung, der Zusammenhang ist aber positiv.</p>
+</div>
+<div class="feedback" id="Dialogsteigung_2">
+<p>Das ist leider falsch. Richtig wäre \(m = 1\). Außerdem ist die von Ihnen gewählte Antwort eine negative Steigung, der Zusammenhang ist aber positiv.</p>
+</div>
+<div class="feedback" id="Dialogsteigung_3">
+<p>Das ist leider falsch. Richtig wäre \(m = 1\).
+</div>
+<div class="feedback" id="Dialogsteigung_4">
+<p>Sehr gut. Sie haben die Steigung richtig berechnet.</p>
+</div>
+</div>
+<div class="quiz multiplechoice">
+<p>Wie lautet der Achsenabschnitt?</p>
+<ol>
+<li>
+<input type="radio" name="mc" value="0" id="intercept_1">
+<label for="intercept_1">\(b = 2\)</label>
+</li>
+<li>
+<input type="radio" name="mc" value="0" id="intercept_2">
+<label for="intercept_2">\(b = 4\)</label>
+</li>
+<li>
+<input type="radio" name="mc" value="1" id="intercept_3">
+<label for="intercept_3">\(b = 6\)</label>
+</li>
+<li>
+<input type="radio" name="mc" value="0" id="intercept_4">
+<label for="intercept_4">\(b = 8\)</label>
+</li>
+</ol>
+<p>
+<input type="button" name="aufloesungMC" value="überprüfen">
+</p>
+<div class="feedback" id="Dialogintercept_1">
+<p>Das ist leider falsch. richtig wäre \(b = 6\).</p>
+</div>
+<div class="feedback" id="Dialogintercept_2">
+<p>Das ist leider falsch. richtig wäre \(b = 6\).</p>
+</div>
+<div class="feedback" id="Dialogintercept_3">
+<p>Sehr gut. Sie haben auch den Achsenabschnitt richtig berechnet.</p>
+</div>
+<div class="feedback" id="Dialogintercept_4">
+<p>Das ist leider falsch. richtig wäre \(b = 6\).</p>
+</div>
+</div>
+<p>
+Übersetzt bedeuten diese Regressionsparameter folgendes:
+</p>
+<dl>
+<dt>Steigung</dt>
+<dd>
+Wenn \(x\) um 1 erhöht wird, wächst auch \(y\) um \(m\cdot1\), also 1. Sie können \(x\) um jeden beliebigen Wert verändern, \(y\) verändert sich mit um diesen Wert multipliziert mit der Steigung.
+</dd>
+<dt>Achsenabschnitt</dt>
+<dd>
+zwischen den korrespondierenden Werten liegt ein durchschnittlicher Abstand von 6. Bei einem Achsenabschnitt \(b = 0\) wären \(x_i\) und \(y_i\) jeweils gleich.
+</dd>
+</dl>
+</div>
+<div id="kor_Daten">
+<h4>Denktrainingsdaten als Scatterplot</h4>
+<p>
+Hier sehen Sie noch unsere Beispieldaten als scatterplot mit der Regressionsgerade. 
+</p>
+<p>
+An dieser Stelle sei Ihnen noch ausdrücklich für die beständige Mitarbeit gedankt. Sie haben nun eine Vorstellung davon gewonnen, wie die Psychologie und andere empirisch ausgerichtete Wissenschaften vorgehen und insbesondere von grundlegenden statistischen Konzepten wie der deskriptiven und Inferenzstatistik. Sie können einige Kennwerte berechnen und entscheiden, wann welcher Kennwert am angemessensten ist. Das ist schon ein ganz gutes Fundament für einen selbstsichereren Zugang zur Statistik und Sie haben gerade sehr viel in komprimierter Form gelernt. Weiterhin viel Erfolg und vielen Dank für Ihre Aufmerksamkeit.
+</p>
+<iframe id="Daten_Regression" data-src="http://88.198.224.218:3838/tamaracha/Daten_Regression/"></iframe>
+</div>
+</div>

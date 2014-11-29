@@ -1,0 +1,18 @@
+_id: DeskriptiveStatistik
+title: Deskriptive Statistik
+subtitle: Daten beschreiben und zusammenfassen
+description: |
+  Ein Wust an frisch gemessenen Daten liegt vor dir. Auf den ersten Blick sagen sie uns nicht viel. Hier greift aber die deskriptive Statistik, mit deren Hilfe wir Messdaten auf ihre zentralen Eigenschaften reduzieren können. Es geht hier darum, sich einen Überblick über die Daten zu verschaffen. Falls du das bereits gut kannst, wirst du mit den anderen Lerneinheiten wahrscheinlich wenig Probleme haben, auch wenn du diese hier nicht bearbeitest. Deskriptive Statistik ist nicht allzu schwierig, legt aber die Basis für die übrige Statistik. Falls dir das Thema nicht so recht geläufig ist, beginne am besten mit dieser Einheit.
+topics:
+  - _id: ZentraleTendenz
+    title: Zentrale Tendenz
+  - _id: VariablenSummenzeichen
+    title: Variablen und Summenzeichen
+    body: |
+      hallo
+      eins
+      zwei
+  - _id: Streuung
+    title: Streuung
+  - _id: Boxplot
+    title: Boxplot

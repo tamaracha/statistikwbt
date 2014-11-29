@@ -1,0 +1,39 @@
+<h3>Lineare Regression</h3>
+<p>
+Die Korrelation beschreibt einen Zusammenhang, aber wir können auch ein Merkmal aufgrund des anderen vorhersagen. Wenn wir Merkmal \(x\) kennen, können wir auch Merkmal \(y\) vorhersagen oder schätzen. Dies gelingt umso genauer, je stärker der Zusammenhang ist. Diese Technik heißt Regression (Rückführung). Das vorhergesagte Merkmal (Kriterium) wird auf das vorhersagende Merkmal (Prädiktor) zurückgeführt. In unserem Beispiel könnten wir mit Hilfe linearer Regression für jede Ausgangsintelligenz vorhersagen, wie intelligent diese Person nach dem Training sein wird. Offenbar gehört dies wieder in die Inferenzstatistik und wir arbeiten wieder mit Schätzwerten. Korrelation ist deskriptiv, beschreibt nur den Zusammenhang, Regression ist inferent.
+</p>
+<div class="akkordeon">
+<h4>Scatterplot</h4>
+<div>
+<p>
+Dass immer ein \(x\)- und ein \(y\)-Wert zusammengehören, legt die Darstellungsform als Punkte in einem rechtwinkligen Koordinatensystem nahe. Jeder Punkt repräsentiert ein Wertepaar, eine Person, einen Trainingsteilnehmer. Diese Darstellung der Rohwerte als Punkte ist sehr üblich und heißt Scatterplot. Je stärker der lineare Zusammenhang zwischen den Merkmalen ist, desto klarer ordnen sich die Punkte in einer imaginären Gerade an, der Regressionsgerade. Die Regressionsgerade ist diejenige Gerade, die die Punktewolke und ihren linearen Zusammenhang am besten repräsentiert. Unten in der Anwendung können Sie die Korrelation des Scatterplots einstellen, woraufhin eine neue Stichprobe erzeugt wird, die die eingestellte Korrelation aufweist. Außerdem können Sie die Regressionsgerade ein- und ausblenden. Anhand dieser Gerade kann man sozusagen für einen bestimmten \(x\)-Wert den jeweiligen \(y\)-Schätzwert ablesen. Dies veranschaulicht schon im wesentlichen die Vorgehensweise bei der Regression.
+</p>
+</div>
+<h4>Regressionsgerade</h4>
+<div>
+<p>
+Anscheinend brauchen wir diese Regressionsgerade um Werte vorherzusagen. Eine Gerade kann mit Hilfe einer Geradengleichung beschrieben werden:
+\[\hat{y} = mx + b\]
+\(m\) ist die Steigung und \(b\) ist der Achsenabschnitt. Mit diesen beiden Parametern kann man jede beliebige Gerade beschreiben und durch einsetzen eines beliebigen \(x\)-Wertes den zugehörigen \(y\)-Wert errechnen. Da diese errechneten Werte keine gemessenen Werte sind, sondern Schätzer, bekommen sie einen Hut. Bei starken Zusammenhängen drängt sich diese Gerade fast optisch auf, die Messwerte liegen eng um die Gerade herum, aber auch für schwächere Zusammenhänge gibt es eine solche Gerade. Da wir uns aber nicht auf das Augenmaß verlassen können, müssen wir die Parameter der Gleichung auch aus den Rohwerten berechnen. Mathematisch ausgedrückt suchen wir diejenige Gerade, bei der die Quadrierten Abweichungen der tatsächlichen gemessenen \(y\)-Werte \(y_i\) zu den mittels Gerade vorhergesagten \(\hat{y}_i\) möglichst klein sind (kleinste-Quadrate-Kriterium). Das heißt, diese Gerade muss so liegen, dass die rohwerte möglichst eng um die Gerade liegen. Wir berechnen jetzt die Steigung und den Achsenabschnitt für unsere Beispieldaten, wieder die Intelligenz vorher und nachher.
+</p>
+<dl>
+<dt>Steigung</dt>
+<dd>
+Die Formel um die Steigung der Regressionsgerade zu berechnen lautet:
+\[
+m = \frac{\sum _{i = 1} ^n {x_i \cdot y_i} - n \cdot \overline{x} \cdot \overline{y}}{\sum _{i = 1} ^n {{x_i}^2} - n \cdot \overline{x}^2}
+\]
+</dd>
+<dt>Achsenabschnitt</dt>
+<dd>
+Die Formel für den Achsenabschnitt lautet:
+\[
+b = \overline{y} - m \cdot \overline{x}
+\]
+</dd>
+</dl>
+<p>Nachdem Sie schon einige Formeln mit Gebrauchsanweisung gerechnet haben, berechnen Sie bitte die Steigung und den Achsenabschnitt ohne Anleitung.
+</p>
+</div>
+</div>
+<iframe id="Regression" data-src="http://88.198.224.218:3838/tamaracha/Korrelation/"></iframe>

@@ -1,0 +1,8 @@
+_id: Haeufigkeitsverteilungen
+position: 2
+title: Häufigkeitsverteilungen
+subtitle: Grafische Datenaufbereitung und ihr Nutzen
+description:
+  Eine Häufigkeitsverteilung beschreibt, wie oft ein bestimmter Wert innerhalb eines <dfn title="Merkmal">Merkmals</dfn>, einer gemessenen Eigenschaft wie Masse oder Neugier, auftritt. Die Werte können sich um den Mittelwert herum häufen, aber auch z.B. um das Minimum. Viele Eigenschaften nähern sich einer Verteilungsform an, die sich als mathematische Funktion ausdrücken lässt, ähnlich wie die Geradengleichung eine Gerade beschreibt. In der Statistik machen wir uns diese Gesetzmäßigkeiten zunutze um mehr über die Eigenschaft zu erfahren. Es geht in dieser Lerneinheit vor allem darum, die Verteilung an der grafischen Aufbereitung zu erkennen und daraus weitere Schlüsse über das Merkmal zu ziehen.
+requires:
+  - DeskriptiveStatistik
