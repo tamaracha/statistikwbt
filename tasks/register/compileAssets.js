@@ -5,6 +5,7 @@ module.exports = function (gulp, plugins) {
 			//'jst:dev',
 			//'less:dev',
 			'copy:dev',
+			"jade:dev",
 			//'coffee:dev',
 			cb
 		);

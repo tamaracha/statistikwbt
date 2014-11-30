@@ -37,7 +37,7 @@ html(lang="de" data-ng-app="wbt" data-ng-csp)
 				p.navbar-text.navbar-right(data-ng-if="wbt.authService.loggedIn()") Hallo 
 					a.navbar-link(ui-sref="user.profile({id: wbt.authService.user()._id})")
 						span.glyphicon(ng-class="wbt.$state.get('user.profile').data.icon" aria-hidden="true")
-						span(data-ng-bind="wbt.authService.user()._id"), 
+						span {{wbt.authService.user()._id}}, 
 					button.btn.btn-default.navbar-btn(type="button" data-ng-click="::wbt.authService.logout()")
 						span.glyphicon.glyphicon-log-out(aria-hidden="true")
 						span Abmelden
