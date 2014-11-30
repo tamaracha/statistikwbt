@@ -1,9 +1,8 @@
-var gulp,pandoc,template,find;
+var gulp,pandoc,template,through,find;
 gulp=require("gulp");
 pandoc=require("gulp-pandoc");
 template=require("gulp-template");
-var through = require('through');
-var debug=require("gulp-debug");
+through = require('through');
 var sendTo=function(res,format){
 	return through(
         function write(data) {    // this will be called once for each file
@@ -21,11 +20,7 @@ find=function(req,res){
 	return query.exec(function(err,result){
 		if(err){return console.log(err);}
 		gulp.src("templates/doc.md")
-		.pipe(debug({
-			verbose: true
-		}))
 		.pipe(template({units: result}))
-		.pipe(debug({verbose: true}))
 		.pipe(gulp.dest("content/"))
 		.pipe(pandoc({
 			from: "markdown",
@@ -33,7 +28,6 @@ find=function(req,res){
 			ext: ".docx",
 			args: ["-s","-o doc.docx"]
 		}))
-		.pipe(debug({verbose: true}))
 		.pipe(gulp.dest("content/"))
 		.pipe(sendTo(res,format));
 	});
