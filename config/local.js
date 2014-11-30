@@ -1,12 +1,12 @@
 /*
 iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
 iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 3000
+*/
 var fs, key, crt, ca;
 fs=require("fs");
 ca=fs.readFileSync("./config/ssl/t-cook_de.ca-bundle");
 key=fs.readFileSync("./config/ssl/t-cook_de.key");
 crt=fs.readFileSync("./config/ssl/t-cook_de.crt");
-*/
 
 module.exports = {
   /***************************************************************************
