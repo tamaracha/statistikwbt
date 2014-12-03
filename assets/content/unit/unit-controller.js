@@ -1,8 +1,5 @@
-(function(){
 "use strict";
-angular.module("wbt")
-.controller("unitCtrl",["unit",function(unit){
+module.exports=/*@ngInject*/function(unit){
 	this.unit=unit;
 	this.rating={};
-}]);
-}());
+};

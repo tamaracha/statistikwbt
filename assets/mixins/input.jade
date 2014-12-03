@@ -1,0 +1,6 @@
+mixin input(name,label)
+	.form-group(data-ng-class!="{'has-success': #{form}.#{name}.$valid, 'has-error': #{form}.#{name}.$invalid\&\&#{form}.#{name}.$touched}")
+		label.col-xs-2.form-label=label
+		.col-xs-10
+			input.form-control(type="text" name=name)&attributes(attributes)
+			block

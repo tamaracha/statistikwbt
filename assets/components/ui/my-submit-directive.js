@@ -1,5 +1,4 @@
-angular.module("ui")
-.directive("mySubmit",function(){return {
+module.exports=function(){return {
 	transclude: true,
 	require: "^form",
 	scope: {value: "@"},
@@ -13,4 +12,4 @@ angular.module("ui")
 			scope.danger=value;
 		});
 	}
-};});
+};};

@@ -1,17 +1,18 @@
+include ../../mixins/input.jade
+include ../../mixins/submit.jade
+- var form="registerForm"
 h2 Registrieren
 p Suchen Sie sich einen Benutzernamen und ein Passwort aus. Das Passwort sollte mindestens acht Zeichen lang sein. Außerdem können Sie auch eine E-Mail-Adresse hinterlegen. Mit Hilfe dieser Adresse können Sie ein neues Passwort setzen, falls Sie Ihr Passwort vergessen sollten.
-form.form-horizontal(novalidate name="registerForm" ng-submit="wbt.authService.register(register.registerData)" role="form")
+form.form-horizontal(novalidate name=form ng-submit="wbt.authService.register(register.registerData)" role="form")
 	fieldset(name="login")
 		legend Logindaten
-		my-input(label="Username")
-			input(type="text" name="_id" required maxlength="20" user-available ng-model="register.registerData._id" placeholder="Username" ng-model-options="{debounce: 500}")
+		+input("_id","Username")(required maxlength="20" user-available data-ng-model="register.registerData._id" placeholder="Username" data-ng-model-options="{debounce: 500}")
 			span.help-block(ng-if="registerForm._id.$pending") Prüfe Verfügbarkeit
 			span.help-block(ng-if="registerForm._id.$valid") Der Name ist noch verfügbar.
 			span.help-block(ng-messages="registerForm._id.$error" ng-if="registerForm._id.$touched")
 				span(ng-message="required") Sie müssen einen Usernamen angeben.
 				span(ng-message="userAvailable") Der Name ist nicht mehr verfügbar.
-		my-input(label="Passwort")
-			input(type="{{register.showPassword ? 'text' : 'password'}}" name="password" required minlength="8" ng-model="register.registerData.password"  placeholder="Passwort")
+		+input("password","Passwort")(type="{{register.showPassword ? 'text' : 'password'}}" required minlength="8" data-ng-model="register.registerData.password"  placeholder="Passwort")
 			span.help-block(ng-messages="registerForm.password.$error")
 				span(ng-message="minlength") Das Passwort sollte mindestens acht Zeichen lang sein.
 		.form-group: .col-xs-offset-2.col-xs-10: .checkbox: label
@@ -19,9 +20,8 @@ form.form-horizontal(novalidate name="registerForm" ng-submit="wbt.authService.r
 			span Eingegebenes Passwort einblenden
 	fieldset(name="contact")
 		legend Kontakt-Daten (freiwillige Angabe)
-		my-input(label="E-Mail-Adresse")
-			input(type="email" name="email" id="email" data-ng-model="register.registerData.email" placeholder="user@provider.com" required)
+		+input("email","E-Mail-Adresse")(type="email" data-ng-model="register.registerData.email" placeholder="user@provider.com" required)
 		.form-group: .col-xs-offset-2.col-xs-10: .checkbox: label
 			input(type="checkbox" name="agree" ng-model="register.registerData.agree")
 			span Das Forschungsteam hinter dieser Webseite darf mich bei Rückfragen zu Nutzererfahrung oder Folgeprojekten kontaktieren.
-	my-submit(value="Registrieren")
+	+submit("Registrieren")

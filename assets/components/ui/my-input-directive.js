@@ -1,5 +1,4 @@
-angular.module("ui")
-.directive("myInput",function(){
+module.exports=function(){
 var uniqueId=0;
 return {
 	restrict: "AE",
@@ -29,4 +28,4 @@ return {
 		});
 		scope.$parent.$on("destroy",hasSuccess());
 	}
-};});
+};};

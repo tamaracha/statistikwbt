@@ -1,0 +1,7 @@
+mixin select(name,label,options)
+	.form-group
+		label.col-xs-2.form-label=label
+		.col-xs-10
+			select.form-control(name=name data-ng-model="download.format" required)
+				each option, ext in options
+					option(value=ext)=option

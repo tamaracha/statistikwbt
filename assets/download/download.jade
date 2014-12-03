@@ -1,0 +1,11 @@
+include ../mixins/select.jade
+include ../mixins/radio-inline.jade
+include ../mixins/checkbox-inline.jade
+- var filetypes={rtf: "RTF-Format",docx: "MS Word",epub: "EPub-Format",markdown: "Markdown",latex: "LaTex"};
+- var contents={body: "Kerntexte",examples: "Beispiele", extras: "Zusatzinfos"}
+h2 Download
+p Falls du die Inhalte dieser Webseite gern als Textdokument archivieren willst, kannst du hier ein Dokument mit den von dir bearbeiteten Einheiten bekommen. Du kannst zwischen ein paar Formaten wählen und einstellen, welche Bestandteile du haben möchtest.
+- var form="downloadForm"
+form.form-horizontal(name=form novalidate data-ng-submit="download.get(download.data)")
+	+radio-inline("radioformat","Dateiformat",filetypes)(data-ng-model="download.format")
+	+checkbox-inline("contents","Inhalte",contents)

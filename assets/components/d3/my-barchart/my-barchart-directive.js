@@ -1,6 +1,4 @@
-(function(){
 "use strict";
-angular.module("d3")
 .controller("myBarchartCtrl",["$scope","$element",function($scope,$element){
 	var self, scale;
 	self=this;
@@ -118,7 +116,6 @@ angular.module("d3")
 			};
 		}]);
 
-}());
 					// on window resize, re-render d3 canvas
 					window.onresize = function() {
 						return scope.$apply();

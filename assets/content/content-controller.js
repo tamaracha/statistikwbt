@@ -1,7 +1,4 @@
-(function(){
 "use strict";
-angular.module("wbt")
-.controller("contentCtrl",["units",function(units){
+module.exports=/*@ngInject*/function(units){
 	this.units=_.sortBy(units,"requires");
-}]);
-}());
+};

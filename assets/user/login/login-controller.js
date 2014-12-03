@@ -1,8 +1,5 @@
-(function(){
 "use strict";
-angular.module("wbt")
-.controller("loginCtrl",function(){
+module.exports=function(){
 	this.loginData={};
 	this.forgot=false;
-});
-}());
+};

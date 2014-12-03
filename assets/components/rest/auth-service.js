@@ -1,5 +1,5 @@
-angular.module("rest")
-.factory("authService",["$window","$q","Users","Tokens",function($window,$q,Users,Tokens){
+"use strict";
+module.exports=/*@ngInject*/function($window,$q,Users,Tokens){
 	var user,loggedIn,getToken,setToken,removeToken,init,logout,basicAuth,getUser,postUser,login,register,check,forgot;
 	user={};
 	loggedIn=false;
@@ -83,4 +83,4 @@ angular.module("rest")
 		check: check,
 		forgot: forgot
 	};
-}]);
+};

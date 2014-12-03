@@ -1,5 +1,5 @@
-angular.module("rest")
-.directive("userAvailable",["authService","$q",function(authService,$q){return{
+"use strict";
+module.exports=/*@ngInject*/function(authService,$q){return{
 	require: "ngModel",
 	restrict: "A",
 	link: function(scope,el,attrs,c){
@@ -11,4 +11,4 @@ angular.module("rest")
 			});
 		};
 	}
-};}]);
+};};

@@ -1,23 +1,5 @@
-/*
-@codekit-prepend "components/ui/ui-module-ck.js"
-@codekit-prepend "components/rest/rest-module-ck.js"
-@codekit-prepend "components/d3/d3-ck.js"
-*/
-
-(function(){
 "use strict";
-angular.module("wbt",[
-	"ui.router",
-	"ui.bootstrap",
-	"ngMessages",
-	"ngSanitize",
-	"ngAria",
-	"rest",
-	"ui",
-	"d3"
-])
-
-.config(["$stateProvider","$urlRouterProvider","$locationProvider",function($stateProvider,$urlRouterProvider,$locationProvider){
+module.exports=/*@ngInject*/function($stateProvider,$urlRouterProvider,$locationProvider){
 	$locationProvider.html5Mode(true);
 $stateProvider.state("home",{
 	url: "/home",
@@ -62,6 +44,14 @@ $stateProvider.state("home",{
 		menuText: "Statistiksoftware"
 	}
 })
+.state("download",{
+	url: "/download",
+	templateUrl: "download/download.html",
+	controller: "downloadCtrl as download",
+	data: {
+		menuText: "Download"
+	}
+})
 .state("contact",{
 	url: "/contact",
 	templateUrl: "contact/contact.html",
@@ -101,23 +91,4 @@ $stateProvider.state("home",{
 	}
 });
 	$urlRouterProvider.otherwise("/home");
-}]);
-
-/*
-.run(["$rootScope",function($rootScope){
-	$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
-		console.log(error);
-	});
-}]);
-*/
-}());
-
-/*
-@codekit-append "wbt-controller.js"
-@codekit-append "content/content-controller.js"
-@codekit-append "content/unit/unit-controller.js"
-@codekit-append "content/unit/topic/topic-controller.js"
-@codekit-append "user/user-controller.js"
-@codekit-append "user/login/login-controller.js"
-@codekit-append "user/register/register-controller.js"
-*/
+};

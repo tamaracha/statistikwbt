@@ -1,7 +1,4 @@
-(function(){
 "use strict";
-angular.module("wbt")
-.controller("registerCtrl",function(){
+module.exports=function(){
 	this.registerData={};
-});
-}());
+};

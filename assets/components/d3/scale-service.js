@@ -1,7 +1,5 @@
-(function(){
 "use strict";
-angular.module("d3")
-.factory("scale",function(){
+module.exports=/*@ngInject*/function(){
 	return {
 		linear: function(domain,range){
 			if(!domain){domain=[0,1];}
@@ -12,5 +10,4 @@ angular.module("d3")
 			};
 		}
 	};
-});
-}());
+};

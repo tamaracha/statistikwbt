@@ -1,7 +1,5 @@
-(function(){
 "use strict";
-angular.module("ui")
-.filter("unitStatus",function(){
+module.exports=function(){
 	return function(id,user,units){
 		var unit,deps;
 		if(!id){return;}
@@ -36,5 +34,4 @@ angular.module("ui")
 		// unerledigte Abhängigkeiten
 		return "unready";
 	};
-});
-}());
+};

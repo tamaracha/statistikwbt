@@ -1,0 +1,4 @@
+mixin submit(value)
+	.form-group
+		.col-xs-2-offset.col-xs-10
+			input.btn(type="submit" value=value data-ng-class="{'btn-primary': #{form}.$valid,'btn-danger': #{form}.$invalid}")

@@ -1,7 +1,4 @@
-(function(){
-"use strict";
-angular.module("ui")
-.directive("myMenuItem",["$state",function($state){
+module.exports=/*@ngInject*/function($state){
 	return {
 		restrict: "A",
 		scope: {
@@ -20,5 +17,4 @@ angular.module("ui")
 			el.attr("data-ui-sref-active","active");
 		}
 	};
-}]);
-}());
+};
