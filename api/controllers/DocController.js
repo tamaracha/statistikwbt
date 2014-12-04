@@ -1,4 +1,4 @@
-var Q,pdc,pandoc,fs,template,compiled,find,mime;
+var Q,pdc,pandoc,fs,template,compiled,find,mime,binary,text;
 Q=require("q");
 fs=require("fs");
 pdc=require("pdc");
@@ -6,18 +6,23 @@ mime=require("mime");
 pandoc=Q.nfbind(pdc);
 template=fs.readFileSync("./templates/doc.md","utf8");
 compiled=_.template(template);
+binary=["docx","epub"];
+text=["markdown","rtf","html","latex"];
 
 find=function(req,res){
-	var format,md,pandocArgs,binary;
+	var query,format,md,pandocArgs,isBin,isText;
 	format=req.query.format;
 	pandocArgs=["-s"];
-	var query=db.Unit.find();
-	if(req.query.units){query.in("_id",req.query.units);}
+	query=db.Unit.find();
+	if(req.units){query.in("_id",req.units);}
+	query.sort({position: 1});
+	query.lean();
 	return query.exec().then(function(result){
-		md=compiled({units: result});
+		md=compiled({
+			units: result,
+			query: req.query
+		});
 		if(format==="markdown"){return md;}
-		binary=["docx","epub"];
-		text=["rtf","html","latex"];
 		isBin=_.contains(binary,format);
 		isText=_.contains(text,format);
 		if(!isBin&&!isText){return Q.reject("unsupported format");}
@@ -39,7 +44,7 @@ find=function(req,res){
 			return res.send(doc);
 		}
 	},function(err){
-		res.serverError(err);
+		return res.serverError(err);
 	});
 };
 

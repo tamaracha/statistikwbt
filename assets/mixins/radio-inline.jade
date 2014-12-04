@@ -1,6 +1,7 @@
 mixin radio-inline(name,label,options)
 	.form-group
-		.col-xs-2.control-label=label
-		.col-xs-10: each option, ext in options
-			input(type="radio" id="#{name}-#{ext}" value=ext name=name)&attributes(attributes)
-			label(for="#{name}-#{ext}")=option
+		.col-xs-2=label
+		.col-xs-10: each option, key in options
+			.radio-inline
+				input(type="radio" name=name value=key id="#{name}-#{key}")&attributes(attributes)
+				label(for="#{name}-#{key}")=option

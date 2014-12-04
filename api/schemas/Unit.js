@@ -4,6 +4,7 @@ module.exports = {
 			type: String,
 			required: true
 		},
+		position: Number,
 		title: {
 			type: String,
 			required: true,

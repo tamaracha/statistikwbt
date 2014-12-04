@@ -1,19 +1,24 @@
 var create=function(req,res){
-	db.User.create(req.body,function(err,user){
-		if(err){return res.serverError(err);}
-		res.json(user);
+	var query=db.User.create(req.body);
+	query.lean();
+	return query.exec().then(function(user){
+		return res.json(user);
+	},function(err){
+		return res.serverError(err);
 	});
 };
 
 var find=function(req,res){
-	res.end();
+	return res.ok();
 };
 
 var findOne=function(req,res){
-	db.User.findOne({_id: req.params.id},function(err,user){
-		if(err){return res.serverError(err);}
-		if(!user){return res.notFound();}
-		res.json(user);
+	var query=db.User.findOne({_id: req.params.id});
+	query.lean();
+	query.exec().then(function(user){
+		return user ? res.notFound() : res.json(user);
+	},function(err){
+		return res.serverError(err);
 	});
 };
 

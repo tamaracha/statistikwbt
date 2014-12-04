@@ -1,3 +1,3 @@
-module.exports=function(){
+module.exports=/*@ngInject*/function(){
 	this.format="rtf";
 };
