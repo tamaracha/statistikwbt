@@ -5,7 +5,7 @@ include ../mixins/submit.jade
 - var contents={body: "Kerntexte",examples: "Beispiele", extras: "Zusatzinfos"}
 h2 Download
 p Falls du die Inhalte dieser Webseite gern als Textdokument archivieren willst, kannst du hier ein Dokument mit den von dir bearbeiteten Einheiten bekommen. Du kannst zwischen ein paar Formaten wählen und einstellen, welche Bestandteile du haben möchtest.
-form.form-horizontal(name="downloadForm" novalidate action="/api/docs" method="get" target="'self'")
+form.form-horizontal(name="downloadForm" novalidate action="/api/docs" method="get" target="_self")
 	+radio-inline("format","Dateiformat",filetypes)(data-ng-model="download.format")
 	+checkbox-inline("contents","Inhalte",contents)
 	+submit("Download")
