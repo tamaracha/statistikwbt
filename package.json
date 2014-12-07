@@ -45,6 +45,7 @@
     "jade": "^1.7.0",
     "js-yaml": "^3.2.3",
     "jsonwebtoken": "^1.2.0",
+    "marked": "^0.3.2",
     "mime": "^1.2.11",
     "mongoose": "^3.8.19",
     "mongoose-unique-validator": "^0.4.1",
@@ -83,7 +84,8 @@
   "browser": {
     "app.js": "assets/index.js",
     "angular-ui-router": "./assets/bower_components/angular-ui-router/release/angular-ui-router.js",
-    "angular-bootstrap": "./assets/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
+    "angular-bootstrap": "./assets/bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
+    "angular-marked": "./assets/bower_components/angular-marked/angular-marked.js"
   },
   "browserify": {
     "transform": [
@@ -95,6 +97,10 @@
     "angular": "global:angular",
     "angular-bootstrap": {
       "exports": "angular.module('ui.bootstrap').name"
+    },
+    "angular-marked": {
+      "exports": "angular.module('hc.marked').name",
+"depends": ["marked:marked"]
     }
   },
   "repository": {

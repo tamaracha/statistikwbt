@@ -9,6 +9,7 @@ http=express();
 */
 
 module.exports.bootstrap = function(cb) {
+/*
 db.Unit.collection.remove(function(err,docs){
 	if(err){return sails.log.debug(err);}
 	if(docs){sails.log.debug("removed");}
@@ -25,6 +26,7 @@ glob("content/*.yml",{},function(err,files){
 	});
 });
 });
+*/
 
 /*
 http.use(require("morgan")("combined"));

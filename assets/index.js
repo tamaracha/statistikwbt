@@ -2,6 +2,7 @@
 module.exports=require("angular").module("wbt",[
 	require("angular-ui-router"),
 	require("angular-bootstrap"),
+	require("angular-marked"),
 	"ngMessages",
 	"ngSanitize",
 	"ngAria",

@@ -1,6 +1,6 @@
 var find=function(req,res){
 	var query=db.Unit.find(req.query);
-	query.select("_id title subtitle description requires");
+	query.select("_id position title subtitle description requires");
 	query.lean();
 	return query.exec()
 	.then(function(units){

@@ -5,7 +5,7 @@ header.col-sm-3
 main.col-sm-9.col-md-6(data-ui-view="")
 	section
 		h3 Beschreibung
-		p(data-ng-bind-html="unit.unit.description")
+		div(marked="unit.unit.description")
 	section
 		h3 Voraussetzungen
 		p(data-ng-if="!unit.unit.requires") Es gibt keine Voraussetzungen.

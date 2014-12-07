@@ -1,4 +1,4 @@
-var Q,pdc,pandoc,fs,template,compiled,find,mime,binary,text;
+var Q,pdc,pandoc,fs,template,compiled,findOne,mime,binary,text;
 Q=require("q");
 fs=require("fs");
 pdc=require("pdc");
@@ -9,9 +9,9 @@ compiled=_.template(template);
 binary=["docx","epub"];
 text=["markdown","rtf","html","latex"];
 
-find=function(req,res){
+findOne=function(req,res){
 	var query,format,md,pandocArgs,isBin,isText;
-	format=req.query.format;
+	format=req.params.id;
 	pandocArgs=["-s"];
 	query=db.Unit.find();
 	if(req.units){query.in("_id",req.units);}
@@ -49,5 +49,5 @@ find=function(req,res){
 };
 
 module.exports = {
-	find: find
+	findOne: findOne
 };
