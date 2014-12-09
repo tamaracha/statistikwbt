@@ -1,5 +1,9 @@
-var mongoose, uniqueValidator, glob, path, connection, db, models, createMongooseModel, iterateModels;
+var Promise,mongoose, uniqueValidator, glob, path, connection, db, models, createMongooseModel, iterateModels;
+Promise=require("bluebird");
 mongoose = require('mongoose');
+Promise.promisifyAll(mongoose.Model);
+Promise.promisifyAll(mongoose.Model.prototype);
+Promise.promisifyAll(mongoose.Query.prototype);
 uniqueValidator=require("mongoose-unique-validator");
 glob = require("glob");
 path = require('path');

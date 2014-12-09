@@ -1,46 +1,23 @@
-var fs, path, glob, yaml;
+var Promise,fs,glob,yaml;
+Promise=require("bluebird");
 fs=require("fs");
-path=require("path");
-glob=require("glob");
+Promise.promisifyAll(fs);
+glob=Promise.promisify(require("glob"));
 yaml=require("js-yaml");
-/*
-express=require("express");
-http=express();
-*/
+Promise.promisifyAll(yaml);
 
 module.exports.bootstrap = function(cb) {
-/*
-db.Unit.collection.remove(function(err,docs){
-	if(err){return sails.log.debug(err);}
-	if(docs){sails.log.debug("removed");}
-glob("content/*.yml",{},function(err,files){
-	files.forEach(function(file){
-		try{
-			var doc=yaml.load(fs.readFileSync(file,"utf8"));
-		}
-		catch(e){sails.log.error(e);}
-		db.Unit.create(doc,function(err,unit){
-			if(err){return sails.log.error(err);}
-			if(unit){return sails.log.debug("%s wurde aktualisiert.",unit.title);}
-		});
-	});
+glob("./content/*.yml")
+.map(function(filename){
+  return fs.readFileAsync(filename,"utf8")
+  .then(yaml.load)
+  .then(function(doc){
+    return db.Unit.updateAsync({_id: doc._id},doc,{upset: true});
+  })
+  .catch(function(e){
+    console.log(e);
+  });
 });
-});
-*/
-
-/*
-http.use(require("morgan")("combined"));
-http.get("/statistik_span",function(req,res){
-	res.redirect("http://134.176.76.100:8080");
-});
-http.all("*.cgi",function(req,res){
-	res.status(404).end();
-});
-http.all("*",function(req,res){
-	res.redirect('https://t-cook.de'+req.url);
-});
-http.listen(8080);
-*/
 
 cb();
 };

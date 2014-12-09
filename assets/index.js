@@ -1,14 +1,14 @@
 "use strict";
 module.exports=require("angular").module("wbt",[
-	require("angular-ui-router"),
-	require("angular-bootstrap"),
-	require("angular-marked"),
-	"ngMessages",
-	"ngSanitize",
-	"ngAria",
-	require("./components/rest"),
-	require("./components/ui")
-	//require("./components/d3")
+  require("angular-ui-router"),
+  require("angular-bootstrap"),
+  require("./components/remarkable"),
+  "ngMessages",
+  "ngSanitize",
+  "ngAria",
+  require("./components/rest"),
+  require("./components/ui")
+  //require("./components/d3")
 ])
 .config(require("./wbt-config"))
 .controller("wbtCtrl",require("./wbt-controller"))
@@ -22,8 +22,8 @@ module.exports=require("angular").module("wbt",[
 .name;
 /*
 .run(["$rootScope",function($rootScope){
-	$rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
-		console.log(error);
-	});
+  $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
+    console.log(error);
+  });
 }]);
 */

@@ -6,7 +6,9 @@ include ../mixins/submit.jade
 h2 Download
 p Falls du die Inhalte dieser Webseite gern als Textdokument archivieren willst, kannst du hier ein Dokument mit den von dir bearbeiteten Einheiten bekommen. Du kannst zwischen ein paar Formaten wählen und einstellen, welche Bestandteile du haben möchtest.
 - var form="downloadForm"
-form.form-horizontal(name=form novalidate data-ng-submit="download.submit()")
+form.form-horizontal(name=form novalidate method="get" action="{{'/api/docs/'+download.format}}")
+	.form-group
+		input(type="hidden" name="token" data-ng-model="download.token")
 	+radio-inline("format","Dateiformat",filetypes)(data-ng-model="download.format")
 	+checkbox-inline("contents","Inhalte",contents)
 	+submit("Download")

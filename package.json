@@ -11,6 +11,7 @@
   "dependencies": {
     "atob": "^1.1.2",
     "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^2.3.11",
     "browserify": "^6.3.3",
     "browserify-ngannotate": "^0.4.0",
     "browserify-shim": "^3.8.0",
@@ -45,7 +46,6 @@
     "jade": "^1.7.0",
     "js-yaml": "^3.2.3",
     "jsonwebtoken": "^1.2.0",
-    "marked": "^0.3.2",
     "mime": "^1.2.11",
     "mongoose": "^3.8.19",
     "mongoose-unique-validator": "^0.4.1",
@@ -53,8 +53,8 @@
     "morgan": "^1.5.0",
     "pdc": "^0.2.1",
     "postmark": "^0.2.6",
-    "q": "^1.1.2",
     "rc": "~0.5.0",
+    "remarkable": "^1.4.2",
     "rimraf": "*",
     "run-sequence": "1.0.0",
     "sails": "~0.10.5",
@@ -84,8 +84,7 @@
   "browser": {
     "app.js": "assets/index.js",
     "angular-ui-router": "./assets/bower_components/angular-ui-router/release/angular-ui-router.js",
-    "angular-bootstrap": "./assets/bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
-    "angular-marked": "./assets/bower_components/angular-marked/angular-marked.js"
+    "angular-bootstrap": "./assets/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
   },
   "browserify": {
     "transform": [
@@ -97,10 +96,6 @@
     "angular": "global:angular",
     "angular-bootstrap": {
       "exports": "angular.module('ui.bootstrap').name"
-    },
-    "angular-marked": {
-      "exports": "angular.module('hc.marked').name",
-"depends": ["marked:marked"]
     }
   },
   "repository": {

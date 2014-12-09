@@ -1,9 +1,9 @@
-var Q,pdc,pandoc,fs,template,compiled,findOne,mime,binary,text;
-Q=require("q");
+var Promise,pdc,pandoc,fs,template,compiled,findOne,mime,binary,text;
+Promise=require("bluebird");
 fs=require("fs");
-pdc=require("pdc");
+Promise.promisifyAll(fs);
+pdc=Promise.promisify(require("pdc"));
 mime=require("mime");
-pandoc=Q.nfbind(pdc);
 template=fs.readFileSync("./templates/doc.md","utf8");
 compiled=_.template(template);
 binary=["docx","epub"];
@@ -17,7 +17,7 @@ findOne=function(req,res){
 	if(req.units){query.in("_id",req.units);}
 	query.sort({position: 1});
 	query.lean();
-	return query.exec().then(function(result){
+	return query.execAsync().then(function(result){
 		md=compiled({
 			units: result,
 			query: req.query
@@ -30,7 +30,7 @@ findOne=function(req,res){
 			pandocArgs.push("-o");
 			pandocArgs.push(".tmp/fileCache/Statistik."+format);
 		}
-		return pandoc(
+		return pdc(
 			md,
 			"markdown",
 			format,
