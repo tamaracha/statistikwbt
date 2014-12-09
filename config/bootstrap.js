@@ -15,7 +15,7 @@ glob("./content/*.yml")
     return db.Unit.updateAsync({_id: doc._id},doc,{upset: true});
   })
   .catch(function(e){
-    console.log(e);
+    sails.log.error(e.message);
   });
 });
 
