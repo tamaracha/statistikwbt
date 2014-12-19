@@ -1,24 +1,34 @@
 h3(data-ng-bind="topic.topic|title")
 div(md="topic.topic.body")
-.btn-group(aria-label="weiterlesen")
-  .btn-group(dropdown is-open="status.examples")
-    button.btn.btn-default.dropdown-toggle(type="button" dropdown-toggle)
-      | Beispiele
-      span.caret
-    ul.dropdown-menu(role="menu")
-      li(role="menuitem" data-ng-repeat="example in topic.topic.examples"): button.btn.btn-default(type="button" data-ng-click="topic.current={type: 'example',content: example}" data-ng-bind="example.title")
-  .btn-group(dropdown is-open="status.extras")
-    button.btn.btn-default.dropdown-toggle(type="button" dropdown-toggle)
-      | Extras
-      span.caret
-    ul.dropdown-menu(role="menu")
-      li(role="menuitem" data-ng-repeat="extra in topic.topic.extras"): button.btn.btn-default(type="button" data-ng-click="topic.current={type: 'extra',content: extra}" data-ng-bind="extra.title")
-  .btn-group(dropdown is-open="status.tests" data-ng-if="topic.topic.tests")
-    button.btn.btn-default.dropdown-toggle(type="button" dropdown-toggle)
-      | Testaufgaben
-      span.caret
-    ul.dropdown-menu(role="menu")
-      li(role="menuitem" data-ng-repeat="test in topic.topic.tests"): button.btn.btn-default(type="button" data-ng-click="topic.current={type: 'test',content: test}" data-ng-bind="test.title")
+.btn-toolbar(role="toolbar")
+  .btn-group(role="group" aria-label="weiterlesen")
+    .btn-group(dropdown is-open="status.examples")
+      button.btn.btn-default.dropdown-toggle(type="button" dropdown-toggle)
+        | Beispiele
+        span.caret
+      ul.dropdown-menu(role="menu")
+        li(role="menuitem" data-ng-repeat="example in topic.topic.examples"): button.btn.btn-default(type="button" data-ng-click="topic.current={type: 'example',content: example}" data-ng-bind="example.title")
+    .btn-group(dropdown is-open="status.extras")
+      button.btn.btn-default.dropdown-toggle(type="button" dropdown-toggle)
+        | Extras
+        span.caret
+      ul.dropdown-menu(role="menu")
+        li(role="menuitem" data-ng-repeat="extra in topic.topic.extras"): button.btn.btn-default(type="button" data-ng-click="topic.current={type: 'extra',content: extra}" data-ng-bind="extra.title")
+    .btn-group(dropdown is-open="status.tests" data-ng-if="topic.topic.tests")
+      button.btn.btn-default.dropdown-toggle(type="button" dropdown-toggle)
+        | Testaufgaben
+        span.caret
+      ul.dropdown-menu(role="menu")
+        li(role="menuitem" data-ng-repeat="test in topic.topic.tests"): button.btn.btn-default(type="button" data-ng-click="topic.current={type: 'test',content: test}" data-ng-bind="test.title")
+  .btn-group
+    button.btn.btn-default(type="button" ng-click="unit.rating=!unit.rating") Lerneinheit bewerten
 section(ng-if="topic.current")
   h3(ng-bind="topic.current.content|title")
   div(ng-if="topic.current.type!=='test'" md="topic.current.content.body")
+section(ng-if="unit.rating")
+  h3 Lerneinheit bewerten?
+  dl.dl-horizontal
+    dt Lernerfolg
+    dd: rating(data-ng-model="unit.rating.success")
+    dt User Experience
+    dd: rating(data-ng-model="unit.rating.usibility")

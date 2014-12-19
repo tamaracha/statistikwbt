@@ -14711,7 +14711,6 @@ module.exports = function($scope, $stateParams) {
 "use strict";
 module.exports = function(unit) {
   this.unit = unit;
-  this.rating = {};
 };
 
 
