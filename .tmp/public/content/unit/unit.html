@@ -1,0 +1,35 @@
+
+<header class="col-sm-3">
+  <h2 data-ng-bind="unit.unit|title"></h2>
+  <nav>
+    <ul class="nav nav-pills nav-stacked">
+      <li data-ng-repeat="topic in unit.unit.topics" data-ui-sref-active="active"><a data-ui-sref=".topic({topic: topic._id})" data-ng-bind="topic.title"></a></li>
+    </ul>
+  </nav>
+</header>
+<main data-ui-view="" class="col-sm-9 col-md-6">
+  <section>
+    <h3>Beschreibung</h3>
+    <div md="unit.unit.description"></div>
+  </section>
+  <section>
+    <h3>Voraussetzungen</h3>
+    <p data-ng-if="!unit.unit.requires">Es gibt keine Voraussetzungen.</p>
+    <ul data-ng-if="unit.unit.requires" class="list-unstyled">
+      <li data-ng-repeat="required in unit.unit.requires"><a data-ng-bind="required.title" data-ui-sref=".({unit: required._id})" data-ng-class="required._id|unitStatus:wbt.authService.user():content.units" class="btn"></a></li>
+    </ul>
+  </section>
+</main>
+<footer>
+  <h3>Möchtest du diese Einheit bewerten?</h3>
+  <dl class="dl-horizontal">
+    <dt>Lernerfolg</dt>
+    <dd>
+      <rating data-ng-model="unit.rating.success"></rating>
+    </dd>
+    <dt>User Experience</dt>
+    <dd>
+      <rating data-ng-model="unit.rating.usibility"></rating>
+    </dd>
+  </dl>
+</footer>

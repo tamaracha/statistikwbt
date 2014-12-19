@@ -1,0 +1,5 @@
+mixin radio(name,options)
+  .form-group: each option, key in options
+    .radio
+      input(type="radio" name=name id="#{name}-#{key}" value="key")&attributes(attributes)
+      label(for="#{name}-#{key}")=option

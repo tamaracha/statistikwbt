@@ -1,0 +1,20 @@
+include ../mixins/input.jade
+include ../mixins/submit.jade
+- var form="registerForm"
+h2 Registrieren
+form.form-horizontal(novalidate name=form ng-submit="register.register()" role="form")
+	fieldset(name="login")
+		legend Logindaten
+		+input("email","E-Mail-Adresse")(type="email" required maxlength="20" user-available data-ng-model="register.registerData.email" placeholder="name@domain.com" data-ng-model-options="{debounce: 500}")
+			span.help-block(ng-if="registerForm.email.$pending") Prüfe Verfügbarkeit
+			span.help-block(ng-if="registerForm.email.$valid") Der Benutzer ist noch verfügbar.
+			span.help-block(ng-messages="registerForm.email.$error" ng-if="registerForm.email.$touched")
+				span(ng-message="required") Sie müssen eine E-Mail-Adresse angeben.
+				span(ng-message="userAvailable") Diese E-Mail ist schon registriert
+		+input("password","Passwort")(type="{{register.showPassword ? 'text' : 'password'}}" required minlength="8" data-ng-model="register.registerData.password"  placeholder="Passwort")
+			span.help-block(ng-messages="registerForm.password.$error")
+				span(ng-message="minlength") Das Passwort sollte mindestens acht Zeichen lang sein.
+		.form-group: .col-xs-offset-2.col-xs-10: .checkbox: label
+			input(type="checkbox" name="showpassword" ng-model="register.showPassword")
+			span Eingegebenes Passwort einblenden
+	+submit("Registrieren")

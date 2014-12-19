@@ -1,0 +1,8 @@
+mixin text-input(name,label,multi)
+  .form-group
+    label.control-label(for=name)=label
+    if multi
+      textarea.form-control(id=name name=name)&attributes(attributes)
+    else
+      input.form-control(type="text" id=name name=name)&attributes(attributes)
+      block
