@@ -1,17 +1,17 @@
 nav(role="navigation"): ul.nav.nav-pills
-	li(data-ng-repeat="unit in ::content.units" data-ui-sref-active="active"): a.btn(
-		data-ui-sref=".unit({unit: unit._id})"
-		data-ng-bind="::unit.title"
-		data-ng-class="{done: 'btn-success',ready: 'btn-info',unready: 'btn-warning'}[(unit._id|unitStatus:wbt.authService.user():content.units)]"
-	)
+  li(data-ng-repeat="unit in ::content.units" data-ui-sref-active="active"): a.btn(
+    data-ui-sref=".unit.description({unit: unit._id})"
+    data-ng-bind="::unit.title"
+    data-ng-class="{done: 'btn-success',ready: 'btn-info',unready: 'btn-warning'}[(unit._id|unitStatus:wbt.authService.user():content.units)]"
+  )
 section.row(ui-view=""): .col-md-offset-3.col-md-6
-	header
-		h2 So funktioniertt's
-	p Es gibt hier {{content.units.length}} Lerneinheiten. Jede von ihnen beschäftigt sich mit einem bestimmten statistischen Thema. Es gibt keine festgelegte Reihenfolge bei der Bearbeitung und du brauchst nicht alles von Anfang bis Ende durchzulesen, was hier zu finden ist. Eine Lerneinheit besteht aus den Kernartikeln, die jeweils durch Zusatzkomponenten ergänzt sind . Du kannst relativ flexibel entscheiden, welche Zusätze du lesen möchtest.
-	dl.dl-horizontal
-		dt Aufgaben
-		dd Die Einheit ist abgeschlossen, wenn du alle Aufgaben bearbeitet hast.
-		dt Beispiele
-		dd Wenn du mehr Hilfestellung oder Veranschaulichung brauchst, kannst du dir die Beispiele ansehen.
-		dt Extras
-		dd theoretischere Hintergrundinformationen, für den Fall, dass du noch Luft hast und es genauer wissen möchtest
+  header
+    h2 So funktioniertt's
+  p Es gibt hier {{content.units.length}} Lerneinheiten. Jede von ihnen beschäftigt sich mit einem bestimmten statistischen Thema. Es gibt keine festgelegte Reihenfolge bei der Bearbeitung und du brauchst nicht alles von Anfang bis Ende durchzulesen, was hier zu finden ist. Eine Lerneinheit besteht aus den Kernartikeln, die jeweils durch Zusatzkomponenten ergänzt sind . Du kannst relativ flexibel entscheiden, welche Zusätze du lesen möchtest.
+  dl.dl-horizontal
+    dt Aufgaben
+    dd Die Einheit ist abgeschlossen, wenn du alle Aufgaben bearbeitet hast.
+    dt Beispiele
+    dd Wenn du mehr Hilfestellung oder Veranschaulichung brauchst, kannst du dir die Beispiele ansehen.
+    dt Extras
+    dd theoretischere Hintergrundinformationen, für den Fall, dass du noch Luft hast und es genauer wissen möchtest

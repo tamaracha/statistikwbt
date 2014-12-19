@@ -30,9 +30,15 @@ $stateProvider.state("home",{
     }]
   },
   controller: "unitCtrl as unit",
+  abstract: true,
   data: {
     access: "user"
   }
+})
+.state("content.unit.description",{
+  url: "/description",
+  templateUrl: "content/unit/description/description.html",
+  controller: "descriptionCtrl"
 })
 .state("content.unit.topic",{
   url: "/:topic",

@@ -14693,6 +14693,12 @@ module.exports = function(units) {
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/content/content-controller.js
 },{}],77:[function(require,module,exports){
 "use strict";
+module.exports = function() {};
+
+
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/content/unit/description/description-controller.js
+},{}],78:[function(require,module,exports){
+"use strict";
 "use strict";
 module.exports = function($scope, $stateParams) {
   this.topic = _.find($scope.unit.unit.topics, {_id: $stateParams.topic});
@@ -14700,7 +14706,7 @@ module.exports = function($scope, $stateParams) {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/content/unit/topic/topic-controller.js
-},{}],78:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function(unit) {
@@ -14710,7 +14716,7 @@ module.exports = function(unit) {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/content/unit/unit-controller.js
-},{}],79:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 "use strict";
 module.exports = function() {
   this.format = "rtf";
@@ -14718,12 +14724,12 @@ module.exports = function() {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/download/download-controller.js
-},{}],80:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 (function (global){
 "use strict";
 "use strict";
 var angular = (typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null);
-module.exports = angular.module("wbt", [require("angular-ui-router"), require("angular-bootstrap"), require("./components/remarkable"), "ngMessages", "ngSanitize", "ngAria", require("./components/rest"), require("./components/ui")]).config(require("./wbt-config")).controller("contentCtrl", require("./content/content-controller")).controller("unitCtrl", require("./content/unit/unit-controller")).controller("topicCtrl", require("./content/unit/topic/topic-controller")).controller("downloadCtrl", require("./download/download-controller")).controller("userCtrl", require("./user/user-controller")).controller("loginCtrl", require("./login/login-controller")).controller("registerCtrl", require("./register/register-controller")).run(["$rootScope", "$state", "$stateParams", "authService", function($rootScope, $state, $stateParams, authService) {
+module.exports = angular.module("wbt", [require("angular-ui-router"), require("angular-bootstrap"), require("./components/remarkable"), "ngMessages", "ngSanitize", "ngAria", require("./components/rest"), require("./components/ui")]).config(require("./wbt-config")).controller("contentCtrl", require("./content/content-controller")).controller("unitCtrl", require("./content/unit/unit-controller")).controller("descriptionCtrl", require("./content/unit/description/description-controller")).controller("topicCtrl", require("./content/unit/topic/topic-controller")).controller("downloadCtrl", require("./download/download-controller")).controller("userCtrl", require("./user/user-controller")).controller("loginCtrl", require("./login/login-controller")).controller("registerCtrl", require("./register/register-controller")).run(["$rootScope", "$state", "$stateParams", "authService", function($rootScope, $state, $stateParams, authService) {
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
   $rootScope.authService = authService;
@@ -14739,7 +14745,7 @@ module.exports = angular.module("wbt", [require("angular-ui-router"), require("a
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/index.js
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./components/remarkable":63,"./components/rest":68,"./components/ui":72,"./content/content-controller":76,"./content/unit/topic/topic-controller":77,"./content/unit/unit-controller":78,"./download/download-controller":79,"./login/login-controller":81,"./register/register-controller":82,"./user/user-controller":83,"./wbt-config":84,"angular-bootstrap":61,"angular-ui-router":62}],81:[function(require,module,exports){
+},{"./components/remarkable":63,"./components/rest":68,"./components/ui":72,"./content/content-controller":76,"./content/unit/description/description-controller":77,"./content/unit/topic/topic-controller":78,"./content/unit/unit-controller":79,"./download/download-controller":80,"./login/login-controller":82,"./register/register-controller":83,"./user/user-controller":84,"./wbt-config":85,"angular-bootstrap":61,"angular-ui-router":62}],82:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function($window, authService, Tokens) {
@@ -14763,7 +14769,7 @@ module.exports = function($window, authService, Tokens) {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/login/login-controller.js
-},{}],82:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function(Users, Tokens, authService) {
@@ -14787,14 +14793,14 @@ module.exports = function(Users, Tokens, authService) {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/register/register-controller.js
-},{}],83:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function() {};
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/user/user-controller.js
-},{}],84:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -14818,7 +14824,12 @@ module.exports = function($stateProvider, $urlRouterProvider, $locationProvider)
         return Units.one($stateParams.unit).get();
       }]},
     controller: "unitCtrl as unit",
+    abstract: true,
     data: {access: "user"}
+  }).state("content.unit.description", {
+    url: "/description",
+    templateUrl: "content/unit/description/description.html",
+    controller: "descriptionCtrl"
   }).state("content.unit.topic", {
     url: "/:topic",
     templateUrl: "content/unit/topic/topic.html",
@@ -14857,4 +14868,4 @@ module.exports = function($stateProvider, $urlRouterProvider, $locationProvider)
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/wbt-config.js
-},{}]},{},[80]);
+},{}]},{},[81]);

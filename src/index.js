@@ -14,6 +14,7 @@ module.exports=angular.module("wbt",[
 .config(require("./wbt-config"))
 .controller("contentCtrl",require("./content/content-controller"))
 .controller("unitCtrl",require("./content/unit/unit-controller"))
+.controller("descriptionCtrl",require("./content/unit/description/description-controller"))
 .controller("topicCtrl",require("./content/unit/topic/topic-controller"))
 .controller("downloadCtrl",require("./download/download-controller"))
 .controller("userCtrl",require("./user/user-controller"))
