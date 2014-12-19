@@ -19,5 +19,4 @@ module.exports=angular.module("rest",["restangular"])
 .factory("unitService",require("./unit-service"))
 .directive("userAvailable",require("./user-available-validator"))
 .directive("userExists",require("./user-exists-validator"))
-.controller("loginModalCtrl",require("./login-modal-controller"))
 .name;

@@ -1,87 +1,10 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"./src/index.js":[function(require,module,exports){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-(function (global){
-"use strict";
-"use strict";
-var angular = (typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null);
-module.exports = angular.module("wbt", [require("angular-ui-router"), require("angular-bootstrap"), require("./components/remarkable"), "ngMessages", "ngSanitize", "ngAria", require("./components/rest"), require("./components/ui")]).config(require("./wbt-config")).controller("contentCtrl", require("./content/content-controller")).controller("unitCtrl", require("./content/unit/unit-controller")).controller("topicCtrl", require("./content/unit/topic/topic-controller")).controller("downloadCtrl", require("./download/download-controller")).controller("userCtrl", require("./user/user-controller")).controller("loginCtrl", require("./login/login-controller")).controller("registerCtrl", require("./register/register-controller")).run(["$rootScope", "$state", "$stateParams", "authService", function($rootScope, $state, $stateParams, authService) {
-  $rootScope.$state = $state;
-  $rootScope.$stateParams = $stateParams;
-  $rootScope.authService = authService;
-  var handleStateError = function(event, toState, toParams, fromState, fromParams, error) {
-    console.log(error);
-  };
-  $rootScope.$on('$stateChangeError', handleStateError);
-  authService.identity().then(function(data) {
-    $rootScope.identity = data;
-  });
-}]).name;
-
-
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/index.js
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./components/remarkable":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/remarkable/index.js","./components/rest":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/index.js","./components/ui":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/ui/index.js","./content/content-controller":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/content/content-controller.js","./content/unit/topic/topic-controller":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/content/unit/topic/topic-controller.js","./content/unit/unit-controller":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/content/unit/unit-controller.js","./download/download-controller":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/download/download-controller.js","./login/login-controller":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/login/login-controller.js","./register/register-controller":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/register/register-controller.js","./user/user-controller":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/user/user-controller.js","./wbt-config":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/wbt-config.js","angular-bootstrap":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/bower_components/angular-bootstrap/ui-bootstrap-tpls.js","angular-ui-router":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/bower_components/angular-ui-router/release/angular-ui-router.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/index.js":[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
 
 module.exports = require('./lib/');
 
-},{"./lib/":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/index.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/entities.js":[function(require,module,exports){
+},{"./lib/":15}],2:[function(require,module,exports){
 // List of valid entities
 //
 // Generate with ./support/entities.js script
@@ -2217,7 +2140,7 @@ module.exports = {
   "zwnj":"\u200C"
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/html_blocks.js":[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 // List of valid html blocks names, accorting to commonmark spec
 // http://jgm.github.io/CommonMark/spec.html#html-blocks
 
@@ -2281,7 +2204,7 @@ var html_blocks = {};
 
 module.exports = html_blocks;
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/html_re.js":[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 // Regexps to match html elements
 
 'use strict';
@@ -2342,7 +2265,7 @@ var HTML_TAG_RE = replace(/^(?:open_tag|close_tag|comment|processing|declaration
 
 module.exports.HTML_TAG_RE = HTML_TAG_RE;
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/url_schemas.js":[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 // List of valid url schemas, accorting to commonmark spec
 // http://jgm.github.io/CommonMark/spec.html#autolinks
 
@@ -2516,7 +2439,7 @@ module.exports = [
   'ymsgr'
 ];
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/utils.js":[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 // Utilities
 //
 'use strict';
@@ -2652,7 +2575,7 @@ exports.fromCodePoint     = fromCodePoint;
 exports.replaceEntities   = replaceEntities;
 exports.escapeHtml        = escapeHtml;
 
-},{"./entities":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/entities.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/configs/commonmark.js":[function(require,module,exports){
+},{"./entities":2}],7:[function(require,module,exports){
 // Commonmark default options
 
 'use strict';
@@ -2724,7 +2647,7 @@ module.exports = {
   }
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/configs/default.js":[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 // Remarkable default options
 
 'use strict';
@@ -2804,7 +2727,7 @@ module.exports = {
   }
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/configs/full.js":[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 // Remarkable default options
 
 'use strict';
@@ -2844,7 +2767,7 @@ module.exports = {
   }
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/normalize_link.js":[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 
@@ -2863,14 +2786,17 @@ module.exports = function normalizeLink(url) {
   return encodeURI(normalized);
 };
 
-},{"../common/utils":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/utils.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/normalize_reference.js":[function(require,module,exports){
+},{"../common/utils":6}],11:[function(require,module,exports){
 'use strict';
 
 module.exports = function normalizeReference(str) {
-  return str.trim().replace(/\s+/g, ' ').toLowerCase();
+  // use .toUpperCase() instead of .toLowerCase()
+  // here to avoid a conflict with Object.prototype
+  // members (most notably, `__proto__`)
+  return str.trim().replace(/\s+/g, ' ').toUpperCase();
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/parse_link_destination.js":[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 // Parse link destination
 //
 // on success it returns a string and updates state.pos;
@@ -2951,7 +2877,7 @@ module.exports = function parseLinkDestination(state, pos) {
   return true;
 };
 
-},{"../common/utils":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/utils.js","./normalize_link":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/normalize_link.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/parse_link_label.js":[function(require,module,exports){
+},{"../common/utils":6,"./normalize_link":10}],13:[function(require,module,exports){
 // Parse link label
 //
 // this function assumes that first character ("[") already matches;
@@ -3006,7 +2932,7 @@ module.exports = function parseLinkLabel(state, start) {
   return labelEnd;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/parse_link_title.js":[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 // Parse link title
 //
 // on success it returns a string and updates state.pos;
@@ -3049,7 +2975,7 @@ module.exports = function parseLinkTitle(state, pos) {
   return false;
 };
 
-},{"../common/utils":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/utils.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/index.js":[function(require,module,exports){
+},{"../common/utils":6}],15:[function(require,module,exports){
 // Main perser class
 
 'use strict';
@@ -3191,7 +3117,7 @@ module.exports = Remarkable;
 // Expose helpers, useful for custom renderer functions
 module.exports.utils = require('./common/utils');
 
-},{"./common/utils":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/utils.js","./configs/commonmark":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/configs/commonmark.js","./configs/default":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/configs/default.js","./configs/full":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/configs/full.js","./parser_block":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/parser_block.js","./parser_core":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/parser_core.js","./parser_inline":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/parser_inline.js","./renderer":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/renderer.js","./ruler":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/ruler.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/parser_block.js":[function(require,module,exports){
+},{"./common/utils":6,"./configs/commonmark":7,"./configs/default":8,"./configs/full":9,"./parser_block":16,"./parser_core":17,"./parser_inline":18,"./renderer":19,"./ruler":20}],16:[function(require,module,exports){
 // Block parser
 
 
@@ -3324,7 +3250,7 @@ ParserBlock.prototype.parse = function (src, options, env, outTokens) {
 
 module.exports = ParserBlock;
 
-},{"./ruler":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/ruler.js","./rules_block/blockquote":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/blockquote.js","./rules_block/code":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/code.js","./rules_block/deflist":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/deflist.js","./rules_block/fences":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/fences.js","./rules_block/footnote":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/footnote.js","./rules_block/heading":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/heading.js","./rules_block/hr":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/hr.js","./rules_block/htmlblock":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/htmlblock.js","./rules_block/lheading":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/lheading.js","./rules_block/list":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/list.js","./rules_block/paragraph":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/paragraph.js","./rules_block/state_block":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/state_block.js","./rules_block/table":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/table.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/parser_core.js":[function(require,module,exports){
+},{"./ruler":20,"./rules_block/blockquote":21,"./rules_block/code":22,"./rules_block/deflist":23,"./rules_block/fences":24,"./rules_block/footnote":25,"./rules_block/heading":26,"./rules_block/hr":27,"./rules_block/htmlblock":28,"./rules_block/lheading":29,"./rules_block/list":30,"./rules_block/paragraph":31,"./rules_block/state_block":32,"./rules_block/table":33}],17:[function(require,module,exports){
 // Class of top level (`core`)  rules
 //
 'use strict';
@@ -3370,7 +3296,7 @@ Core.prototype.process = function (state) {
 
 module.exports = Core;
 
-},{"./ruler":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/ruler.js","./rules_core/abbr":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/abbr.js","./rules_core/abbr2":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/abbr2.js","./rules_core/block":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/block.js","./rules_core/footnote_tail":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/footnote_tail.js","./rules_core/inline":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/inline.js","./rules_core/linkify":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/linkify.js","./rules_core/references":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/references.js","./rules_core/replacements":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/replacements.js","./rules_core/smartquotes":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/smartquotes.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/parser_inline.js":[function(require,module,exports){
+},{"./ruler":20,"./rules_core/abbr":34,"./rules_core/abbr2":35,"./rules_core/block":36,"./rules_core/footnote_tail":37,"./rules_core/inline":38,"./rules_core/linkify":39,"./rules_core/references":40,"./rules_core/replacements":41,"./rules_core/smartquotes":42}],18:[function(require,module,exports){
 // Inline parser
 
 'use strict';
@@ -3504,7 +3430,7 @@ ParserInline.prototype.parse = function (str, options, env, outTokens) {
 
 module.exports = ParserInline;
 
-},{"./common/utils":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/utils.js","./ruler":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/ruler.js","./rules_inline/autolink":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/autolink.js","./rules_inline/backticks":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/backticks.js","./rules_inline/del":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/del.js","./rules_inline/emphasis":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/emphasis.js","./rules_inline/entity":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/entity.js","./rules_inline/escape":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/escape.js","./rules_inline/footnote_inline":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/footnote_inline.js","./rules_inline/footnote_ref":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/footnote_ref.js","./rules_inline/htmltag":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/htmltag.js","./rules_inline/ins":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/ins.js","./rules_inline/links":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/links.js","./rules_inline/mark":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/mark.js","./rules_inline/newline":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/newline.js","./rules_inline/state_inline":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/state_inline.js","./rules_inline/sub":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/sub.js","./rules_inline/sup":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/sup.js","./rules_inline/text":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/text.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/renderer.js":[function(require,module,exports){
+},{"./common/utils":6,"./ruler":20,"./rules_inline/autolink":43,"./rules_inline/backticks":44,"./rules_inline/del":45,"./rules_inline/emphasis":46,"./rules_inline/entity":47,"./rules_inline/escape":48,"./rules_inline/footnote_inline":49,"./rules_inline/footnote_ref":50,"./rules_inline/htmltag":51,"./rules_inline/ins":52,"./rules_inline/links":53,"./rules_inline/mark":54,"./rules_inline/newline":55,"./rules_inline/state_inline":56,"./rules_inline/sub":57,"./rules_inline/sup":58,"./rules_inline/text":59}],19:[function(require,module,exports){
 'use strict';
 
 
@@ -3877,7 +3803,7 @@ Renderer.prototype.render = function (tokens, options, env) {
 
 module.exports = Renderer;
 
-},{"./common/utils":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/utils.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/ruler.js":[function(require,module,exports){
+},{"./common/utils":6}],20:[function(require,module,exports){
 // Ruler is helper class to build responsibility chains from parse rules.
 // It allows:
 //
@@ -3899,22 +3825,25 @@ function Ruler() {
   //   alt: [ name2, name3 ]
   // }
   //
-  this.rules = [];
+  this.__rules__ = [];
 
   // Cached rule chains.
   //
   // First level - chain name, '' for default.
   // Second level - diginal anchor for fast filtering by charcodes.
   //
-  this.cache = null;
+  this.__cache__ = null;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// Helper methods, should not be used directly
 
 
 // Find rule index by name
 //
-Ruler.prototype.find = function (name) {
-  for (var i = 0; i < this.rules.length; i++) {
-    if (this.rules[i].name === name) {
+Ruler.prototype.__find__ = function (name) {
+  for (var i = 0; i < this.__rules__.length; i++) {
+    if (this.__rules__[i].name === name) {
       return i;
     }
   }
@@ -3922,55 +3851,91 @@ Ruler.prototype.find = function (name) {
 };
 
 
+// Build rules lookup cache
+//
+Ruler.prototype.__compile__ = function () {
+  var self = this;
+  var chains = [ '' ];
+
+  // collect unique names
+  self.__rules__.forEach(function (rule) {
+    if (!rule.enabled) { return; }
+
+    rule.alt.forEach(function (altName) {
+      if (chains.indexOf(altName) < 0) {
+        chains.push(altName);
+      }
+    });
+  });
+
+  self.__cache__ = {};
+
+  chains.forEach(function (chain) {
+    self.__cache__[chain] = [];
+    self.__rules__.forEach(function (rule) {
+      if (!rule.enabled) { return; }
+
+      if (chain && rule.alt.indexOf(chain) < 0) { return; }
+
+      self.__cache__[chain].push(rule.fn);
+    });
+  });
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Public methods
+
+
 // Replace rule function
 //
 Ruler.prototype.at = function (name, fn, options) {
-  var index = this.find(name);
+  var index = this.__find__(name);
   var opt = options || {};
 
   if (index === -1) { throw new Error('Parser rule not found: ' + name); }
 
-  this.rules[index].fn = fn;
-  this.rules[index].alt = opt.alt || [];
-  this.cache = null;
+  this.__rules__[index].fn = fn;
+  this.__rules__[index].alt = opt.alt || [];
+  this.__cache__ = null;
 };
 
 
 // Add rule to chain before one with given name.
 //
 Ruler.prototype.before = function (beforeName, ruleName, fn, options) {
-  var index = this.find(beforeName);
+  var index = this.__find__(beforeName);
   var opt = options || {};
 
   if (index === -1) { throw new Error('Parser rule not found: ' + beforeName); }
 
-  this.rules.splice(index, 0, {
+  this.__rules__.splice(index, 0, {
     name: ruleName,
     enabled: true,
     fn: fn,
     alt: opt.alt || []
   });
 
-  this.cache = null;
+  this.__cache__ = null;
 };
 
 
 // Add rule to chain after one with given name.
 //
 Ruler.prototype.after = function (afterName, ruleName, fn, options) {
-  var index = this.find(afterName);
+  var index = this.__find__(afterName);
   var opt = options || {};
 
   if (index === -1) { throw new Error('Parser rule not found: ' + afterName); }
 
-  this.rules.splice(index + 1, 0, {
+  this.__rules__.splice(index + 1, 0, {
     name: ruleName,
     enabled: true,
     fn: fn,
     alt: opt.alt || []
   });
 
-  this.cache = null;
+  this.__cache__ = null;
 };
 
 // Add rule to the end of chain.
@@ -3978,14 +3943,14 @@ Ruler.prototype.after = function (afterName, ruleName, fn, options) {
 Ruler.prototype.push = function (ruleName, fn, options) {
   var opt = options || {};
 
-  this.rules.push({
+  this.__rules__.push({
     name: ruleName,
     enabled: true,
     fn: fn,
     alt: opt.alt || []
   });
 
-  this.cache = null;
+  this.__cache__ = null;
 };
 
 
@@ -3999,21 +3964,21 @@ Ruler.prototype.enable = function (list, strict) {
 
   // In strict mode disable all existing rules first
   if (strict) {
-    this.rules.forEach(function (rule) {
+    this.__rules__.forEach(function (rule) {
       rule.enabled = false;
     });
   }
 
   // Search by name and enable
   list.forEach(function (name) {
-    var idx = this.find(name);
+    var idx = this.__find__(name);
 
     if (idx < 0) { throw new Error('Rules manager: invalid rule name ' + name); }
-    this.rules[idx].enabled = true;
+    this.__rules__[idx].enabled = true;
 
   }, this);
 
-  this.cache = null;
+  this.__cache__ = null;
 };
 
 
@@ -4026,62 +3991,30 @@ Ruler.prototype.disable = function (list) {
 
   // Search by name and disable
   list.forEach(function (name) {
-    var idx = this.find(name);
+    var idx = this.__find__(name);
 
     if (idx < 0) { throw new Error('Rules manager: invalid rule name ' + name); }
-    this.rules[idx].enabled = false;
+    this.__rules__[idx].enabled = false;
 
   }, this);
 
-  this.cache = null;
-};
-
-
-// Build rules lookup cache
-//
-Ruler.prototype.compile = function () {
-  var self = this;
-  var chains = [ '' ];
-
-  // collect unique names
-  self.rules.forEach(function (rule) {
-    if (!rule.enabled) { return; }
-
-    rule.alt.forEach(function (altName) {
-      if (chains.indexOf(altName) < 0) {
-        chains.push(altName);
-      }
-    });
-  });
-
-  self.cache = {};
-
-  chains.forEach(function (chain) {
-    self.cache[chain] = [];
-    self.rules.forEach(function (rule) {
-      if (!rule.enabled) { return; }
-
-      if (chain && rule.alt.indexOf(chain) < 0) { return; }
-
-      self.cache[chain].push(rule.fn);
-    });
-  });
+  this.__cache__ = null;
 };
 
 
 // Get rules list as array of functions.
 //
 Ruler.prototype.getRules = function (chainName) {
-  if (this.cache === null) {
-    this.compile();
+  if (this.__cache__ === null) {
+    this.__compile__();
   }
 
-  return this.cache[chainName];
+  return this.__cache__[chainName];
 };
 
 module.exports = Ruler;
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/blockquote.js":[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 // Block quotes
 
 'use strict';
@@ -4216,7 +4149,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/code.js":[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 // Code block (4 spaces padded)
 
 'use strict';
@@ -4254,7 +4187,7 @@ module.exports = function code(state, startLine, endLine/*, silent*/) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/deflist.js":[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 // Definition lists
 
 'use strict';
@@ -4463,7 +4396,7 @@ module.exports = function deflist(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/fences.js":[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 // fences (``` lang, ~~~ lang)
 
 'use strict';
@@ -4556,7 +4489,7 @@ module.exports = function fences(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/footnote.js":[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 // Process footnote reference list
 
 'use strict';
@@ -4587,9 +4520,9 @@ module.exports = function footnote(state, startLine, endLine, silent) {
   pos++;
 
   if (!state.env.footnotes) { state.env.footnotes = {}; }
-  if (!state.env.footnotes.refs) { state.env.footnotes.refs = Object.create(null); }
+  if (!state.env.footnotes.refs) { state.env.footnotes.refs = {}; }
   label = state.src.slice(start + 2, pos - 2);
-  state.env.footnotes.refs[label] = -1;
+  state.env.footnotes.refs[':' + label] = -1;
 
   state.tokens.push({
     type: 'footnote_reference_open',
@@ -4625,7 +4558,7 @@ module.exports = function footnote(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/heading.js":[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 // heading (#, ##, ...)
 
 'use strict';
@@ -4656,8 +4589,8 @@ module.exports = function heading(state, startLine, endLine, silent) {
 
   // Let's cut tails like '    ###  ' from the end of string
 
-  max = state.skipCharsBack(max, 0x20/* space */, pos);
-  tmp = state.skipCharsBack(max, 0x23/* # */, pos);
+  max = state.skipCharsBack(max, 0x20, pos); // space
+  tmp = state.skipCharsBack(max, 0x23, pos); // #
   if (tmp > pos && state.src.charCodeAt(tmp - 1) === 0x20/* space */) {
     max = tmp;
   }
@@ -4685,7 +4618,7 @@ module.exports = function heading(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/hr.js":[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 // Horizontal rule
 
 'use strict';
@@ -4732,7 +4665,7 @@ module.exports = function hr(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/htmlblock.js":[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 // HTML block
 
 'use strict';
@@ -4808,7 +4741,7 @@ module.exports = function htmlblock(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/html_blocks":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/html_blocks.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/lheading.js":[function(require,module,exports){
+},{"../common/html_blocks":3}],29:[function(require,module,exports){
 // lheading (---, ===)
 
 'use strict';
@@ -4865,7 +4798,7 @@ module.exports = function lheading(state, startLine, endLine/*, silent*/) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/list.js":[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 // Lists
 
 'use strict';
@@ -5050,8 +4983,6 @@ module.exports = function list(state, startLine, endLine, silent) {
       level: state.level++
     });
 
-    //nextLine++;
-
     oldIndent = state.blkIndent;
     oldTight = state.tight;
     oldTShift = state.tShift[startLine];
@@ -5135,7 +5066,7 @@ module.exports = function list(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/paragraph.js":[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 // Paragraph
 
 'use strict';
@@ -5196,7 +5127,7 @@ module.exports = function paragraph(state, startLine/*, endLine*/) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/state_block.js":[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 // Parser state class
 
 'use strict';
@@ -5356,7 +5287,7 @@ StateBlock.prototype.getLines = function getLines(begin, end, indent, keepLastLF
 
 module.exports = StateBlock;
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_block/table.js":[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 // GFM table, non-standard
 
 'use strict';
@@ -5492,7 +5423,7 @@ module.exports = function table(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/abbr.js":[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 // Parse abbreviation definitions, i.e. `*[abbr]: description`
 //
 
@@ -5527,7 +5458,10 @@ function parseAbbr(str, parserInline, options, env) {
   title = str.slice(labelEnd + 2, pos).trim();
   if (title.length === 0) { return -1; }
   if (!env.abbreviations) { env.abbreviations = {}; }
-  env.abbreviations[label] = env.abbreviations[label] || title;
+  // prepend ':' to avoid conflict with Object.prototype members
+  if (typeof env.abbreviations[':' + label] === 'undefined') {
+    env.abbreviations[':' + label] = title;
+  }
 
   return pos;
 }
@@ -5561,7 +5495,7 @@ module.exports = function abbr(state) {
   }
 };
 
-},{"../helpers/parse_link_label":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/parse_link_label.js","../rules_inline/state_inline":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/state_inline.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/abbr2.js":[function(require,module,exports){
+},{"../helpers/parse_link_label":13,"../rules_inline/state_inline":56}],35:[function(require,module,exports){
 // Enclose abbreviations in <abbr> tags
 //
 'use strict';
@@ -5584,7 +5518,9 @@ module.exports = function abbr2(state) {
   if (!state.env.abbreviations) { return; }
   if (!state.env.abbrRegExp) {
     regText = '(^|[' + PUNCT_CHARS.split('').map(regEscape).join('') + '])'
-            + '(' + Object.keys(state.env.abbreviations).sort(function (a, b) {
+            + '(' + Object.keys(state.env.abbreviations).map(function (x) {
+                      return x.substr(1);
+                    }).sort(function (a, b) {
                       return b.length - a.length;
                     }).map(regEscape).join('|') + ')'
             + '($|[' + PUNCT_CHARS.split('').map(regEscape).join('') + '])';
@@ -5618,7 +5554,7 @@ module.exports = function abbr2(state) {
 
         nodes.push({
           type: 'abbr_open',
-          title: state.env.abbreviations[m[2]],
+          title: state.env.abbreviations[':' + m[2]],
           level: level++
         });
         nodes.push({
@@ -5649,7 +5585,7 @@ module.exports = function abbr2(state) {
   }
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/block.js":[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 'use strict';
 
 module.exports = function block(state) {
@@ -5668,7 +5604,7 @@ module.exports = function block(state) {
   }
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/footnote_tail.js":[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 'use strict';
 
 
@@ -5676,7 +5612,7 @@ module.exports = function footnote_block(state) {
   var i, l, j, t, lastParagraph, list, tokens, current, currentLabel,
       level = 0,
       insideRef = false,
-      refTokens = Object.create(null);
+      refTokens = {};
 
   if (!state.env.footnotes) { return; }
 
@@ -5689,7 +5625,8 @@ module.exports = function footnote_block(state) {
     }
     if (tok.type === 'footnote_reference_close') {
       insideRef = false;
-      refTokens[currentLabel] = current;
+      // prepend ':' to avoid conflict with Object.prototype members
+      refTokens[':' + currentLabel] = current;
       return false;
     }
     if (insideRef) { current.push(tok); }
@@ -5729,7 +5666,7 @@ module.exports = function footnote_block(state) {
         level: --level
       });
     } else if (list[i].label) {
-      tokens = refTokens[list[i].label];
+      tokens = refTokens[':' + list[i].label];
     }
 
     state.tokens = state.tokens.concat(tokens);
@@ -5764,7 +5701,7 @@ module.exports = function footnote_block(state) {
   });
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/inline.js":[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 'use strict';
 
 module.exports = function inline(state) {
@@ -5779,7 +5716,7 @@ module.exports = function inline(state) {
   }
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/linkify.js":[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 // Replace link-like texts with link nodes.
 //
 // Currently restricted by `inline.validateLink()` to http/https/ftp
@@ -5942,7 +5879,7 @@ module.exports = function linkify(state) {
   }
 };
 
-},{"autolinker":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/node_modules/autolinker/dist/Autolinker.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/references.js":[function(require,module,exports){
+},{"autolinker":60}],40:[function(require,module,exports){
 'use strict';
 
 
@@ -6003,7 +5940,9 @@ function parseReference(str, parser, options, env) {
   if (pos < max && state.src.charCodeAt(pos) !== 0x0A) { return -1; }
 
   label = normalizeReference(str.slice(1, labelEnd));
-  env.references[label] = env.references[label] || { title: title, href: href };
+  if (typeof env.references[label] === 'undefined') {
+    env.references[label] = { title: title, href: href };
+  }
 
   return pos;
 }
@@ -6040,7 +5979,7 @@ module.exports = function references(state) {
   }
 };
 
-},{"../helpers/normalize_reference":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/normalize_reference.js","../helpers/parse_link_destination":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/parse_link_destination.js","../helpers/parse_link_label":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/parse_link_label.js","../helpers/parse_link_title":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/parse_link_title.js","../rules_inline/state_inline":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/state_inline.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/replacements.js":[function(require,module,exports){
+},{"../helpers/normalize_reference":11,"../helpers/parse_link_destination":12,"../helpers/parse_link_label":13,"../helpers/parse_link_title":14,"../rules_inline/state_inline":56}],41:[function(require,module,exports){
 // Simple typographyc replacements
 //
 'use strict';
@@ -6105,7 +6044,7 @@ module.exports = function replace(state) {
   }
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_core/smartquotes.js":[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 // Convert straight quotation marks to typographic ones
 //
 'use strict';
@@ -6220,7 +6159,7 @@ module.exports = function smartquotes(state) {
   }
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/autolink.js":[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 // Process autolinks '<protocol:...>'
 
 'use strict';
@@ -6300,7 +6239,7 @@ module.exports = function autolink(state, silent) {
   return false;
 };
 
-},{"../common/url_schemas":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/url_schemas.js","../helpers/normalize_link":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/normalize_link.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/backticks.js":[function(require,module,exports){
+},{"../common/url_schemas":5,"../helpers/normalize_link":10}],44:[function(require,module,exports){
 // Parse backticks
 
 'use strict';
@@ -6332,7 +6271,7 @@ module.exports = function backticks(state, silent) {
         state.push({
           type: 'code',
           content: state.src.slice(pos, matchStart)
-                              .replace(/[ \n]+/g,' ')
+                              .replace(/[ \n]+/g, ' ')
                               .trim(),
           block: false,
           level: state.level
@@ -6348,7 +6287,7 @@ module.exports = function backticks(state, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/del.js":[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 // Process ~~deleted text~~
 
 'use strict';
@@ -6401,7 +6340,7 @@ module.exports = function del(state, silent) {
             stack++;
           } // else {
             //  // standalone ' ~~ ' indented with spaces
-            //}
+            // }
           if (stack <= 0) {
             found = true;
             break;
@@ -6434,7 +6373,7 @@ module.exports = function del(state, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/emphasis.js":[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 // Process *this* and _that_
 
 'use strict';
@@ -6585,7 +6524,7 @@ module.exports = function emphasis(state, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/entity.js":[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 // Process html entity - &#123;, &#xAF;, &quot;, ...
 
 'use strict';
@@ -6635,7 +6574,7 @@ module.exports = function entity(state, silent) {
   return true;
 };
 
-},{"../common/entities":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/entities.js","../common/utils":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/utils.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/escape.js":[function(require,module,exports){
+},{"../common/entities":2,"../common/utils":6}],48:[function(require,module,exports){
 // Proceess escaped chars and hardbreaks
 
 'use strict';
@@ -6686,7 +6625,7 @@ module.exports = function escape(state, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/footnote_inline.js":[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 // Process inline footnotes (^[...])
 
 'use strict';
@@ -6741,7 +6680,7 @@ module.exports = function footnote_inline(state, silent) {
   return true;
 };
 
-},{"../helpers/parse_link_label":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/parse_link_label.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/footnote_ref.js":[function(require,module,exports){
+},{"../helpers/parse_link_label":13}],50:[function(require,module,exports){
 // Process footnote references ([^...])
 
 'use strict';
@@ -6776,17 +6715,17 @@ module.exports = function footnote_ref(state, silent) {
   pos++;
 
   label = state.src.slice(start + 2, pos - 1);
-  if (state.env.footnotes.refs[label] === undefined) { return false; }
+  if (typeof state.env.footnotes.refs[':' + label] === 'undefined') { return false; }
 
   if (!silent) {
     if (!state.env.footnotes.list) { state.env.footnotes.list = []; }
 
-    if (state.env.footnotes.refs[label] < 0) {
+    if (state.env.footnotes.refs[':' + label] < 0) {
       footnoteId = state.env.footnotes.list.length;
       state.env.footnotes.list[footnoteId] = { label: label, count: 0 };
-      state.env.footnotes.refs[label] = footnoteId;
+      state.env.footnotes.refs[':' + label] = footnoteId;
     } else {
-      footnoteId = state.env.footnotes.refs[label];
+      footnoteId = state.env.footnotes.refs[':' + label];
     }
 
     footnoteSubId = state.env.footnotes.list[footnoteId].count;
@@ -6805,7 +6744,7 @@ module.exports = function footnote_ref(state, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/htmltag.js":[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 // Process html tags
 
 'use strict';
@@ -6856,7 +6795,7 @@ module.exports = function htmltag(state, silent) {
   return true;
 };
 
-},{"../common/html_re":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/common/html_re.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/ins.js":[function(require,module,exports){
+},{"../common/html_re":4}],52:[function(require,module,exports){
 // Process ++inserted text++
 
 'use strict';
@@ -6909,7 +6848,7 @@ module.exports = function ins(state, silent) {
             stack++;
           } // else {
             //  // standalone ' ++ ' indented with spaces
-            //}
+            // }
           if (stack <= 0) {
             found = true;
             break;
@@ -6942,7 +6881,7 @@ module.exports = function ins(state, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/links.js":[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 // Process [links](<to> "stuff")
 
 'use strict';
@@ -7109,7 +7048,7 @@ module.exports = function links(state, silent) {
   return true;
 };
 
-},{"../helpers/normalize_reference":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/normalize_reference.js","../helpers/parse_link_destination":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/parse_link_destination.js","../helpers/parse_link_label":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/parse_link_label.js","../helpers/parse_link_title":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/helpers/parse_link_title.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/mark.js":[function(require,module,exports){
+},{"../helpers/normalize_reference":11,"../helpers/parse_link_destination":12,"../helpers/parse_link_label":13,"../helpers/parse_link_title":14}],54:[function(require,module,exports){
 // Process ==highlighted text==
 
 'use strict';
@@ -7162,7 +7101,7 @@ module.exports = function del(state, silent) {
             stack++;
           } // else {
             //  // standalone ' == ' indented with spaces
-            //}
+            // }
           if (stack <= 0) {
             found = true;
             break;
@@ -7195,7 +7134,7 @@ module.exports = function del(state, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/newline.js":[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 // Proceess '\n'
 
 'use strict';
@@ -7245,7 +7184,7 @@ module.exports = function newline(state, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/state_inline.js":[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 // Inline parser state
 
 'use strict';
@@ -7329,7 +7268,7 @@ StateInline.prototype.cacheGet = function (key) {
 
 module.exports = StateInline;
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/sub.js":[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 // Process ~subscript~
 
 'use strict';
@@ -7389,7 +7328,7 @@ module.exports = function sub(state, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/sup.js":[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 // Process ^superscript^
 
 'use strict';
@@ -7449,7 +7388,7 @@ module.exports = function sup(state, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/lib/rules_inline/text.js":[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 // Skip text characters for text token, place those to pending buffer
 // and increment current pos
 
@@ -7504,7 +7443,7 @@ module.exports = function text(state, silent) {
   return true;
 };
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/node_modules/autolinker/dist/Autolinker.js":[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
@@ -9501,7 +9440,7 @@ module.exports = function text(state, silent) {
 
 }));
 
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/bower_components/angular-bootstrap/ui-bootstrap-tpls.js":[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 (function (global){
 ;__browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 "use strict";
@@ -12452,13 +12391,13 @@ angular.module("template/typeahead/typeahead-popup.html", []).run(["$templateCac
 }]);
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/bower_components/angular-bootstrap/ui-bootstrap-tpls.js
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/bower_components/angular-bootstrap/ui-bootstrap-tpls.js
 ; browserify_shim__define__module__export__(typeof angular.module('ui.bootstrap').name != "undefined" ? angular.module('ui.bootstrap').name : window.angular.module('ui.bootstrap').name);
 
 }).call(global, undefined, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/bower_components/angular-ui-router/release/angular-ui-router.js":[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 "use strict";
 if (typeof module !== "undefined" && typeof exports !== "undefined" && module.exports === exports) {
   module.exports = 'ui.router';
@@ -14438,8 +14377,8 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
 })(window, window.angular);
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/bower_components/angular-ui-router/release/angular-ui-router.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/remarkable/index.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/bower_components/angular-ui-router/release/angular-ui-router.js
+},{}],63:[function(require,module,exports){
 (function (global){
 "use strict";
 "use strict";
@@ -14449,9 +14388,9 @@ module.exports = angular.module("remarkable", []).constant("Remarkable", require
 }]).directive("md", require("./remarkable-directive")).name;
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/remarkable/index.js
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/remarkable/index.js
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./remarkable-directive":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/remarkable/remarkable-directive.js","./remarkable-provider":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/remarkable/remarkable-provider.js","remarkable":"/Users/Shared/Dropbox/Entwicklung/testwbt/node_modules/remarkable/index.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/remarkable/remarkable-directive.js":[function(require,module,exports){
+},{"./remarkable-directive":64,"./remarkable-provider":65,"remarkable":1}],64:[function(require,module,exports){
 "use strict";
 module.exports = function(md) {
   return {
@@ -14469,8 +14408,8 @@ module.exports = function(md) {
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/remarkable/remarkable-directive.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/remarkable/remarkable-provider.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/remarkable/remarkable-directive.js
+},{}],65:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function remarkableProvider() {
@@ -14494,8 +14433,8 @@ module.exports = function remarkableProvider() {
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/remarkable/remarkable-provider.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/auth-interceptor.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/remarkable/remarkable-provider.js
+},{}],66:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function(Restangular, $window) {
@@ -14513,8 +14452,8 @@ module.exports = function(Restangular, $window) {
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/auth-interceptor.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/auth-service.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/rest/auth-interceptor.js
+},{}],67:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function($window, $q, Users) {
@@ -14563,8 +14502,8 @@ module.exports = function($window, $q, Users) {
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/auth-service.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/index.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/rest/auth-service.js
+},{}],68:[function(require,module,exports){
 (function (global){
 "use strict";
 var angular = (typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null);
@@ -14578,27 +14517,12 @@ module.exports = angular.module("rest", ["restangular"]).config(["RestangularPro
   return Restangular.service("tokens");
 }]).factory("Units", ["Restangular", function(Restangular) {
   return Restangular.service("units");
-}]).factory("authService", require("./auth-service")).factory("unitService", require("./unit-service")).directive("userAvailable", require("./user-available-validator")).directive("userExists", require("./user-exists-validator")).controller("loginModalCtrl", require("./login-modal-controller")).name;
+}]).factory("authService", require("./auth-service")).factory("unitService", require("./unit-service")).directive("userAvailable", require("./user-available-validator")).directive("userExists", require("./user-exists-validator")).name;
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/index.js
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/rest/index.js
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./auth-interceptor":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/auth-interceptor.js","./auth-service":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/auth-service.js","./login-modal-controller":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/login-modal-controller.js","./unit-service":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/unit-service.js","./user-available-validator":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/user-available-validator.js","./user-exists-validator":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/user-exists-validator.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/login-modal-controller.js":[function(require,module,exports){
-"use strict";
-module.exports = function($scope, $modalInstance, authService) {
-  $scope.user = {};
-  $scope.$close = function() {
-    return authService.login($scope.user).then(function(userData) {
-      return $modalInstance.close();
-    }, function(err) {
-      console.log(err);
-    });
-  };
-};
-
-
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/login-modal-controller.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/unit-service.js":[function(require,module,exports){
+},{"./auth-interceptor":66,"./auth-service":67,"./unit-service":69,"./user-available-validator":70,"./user-exists-validator":71}],69:[function(require,module,exports){
 "use strict";
 module.exports = function(Units) {
   this.setRequires = function() {
@@ -14620,8 +14544,8 @@ module.exports = function(Units) {
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/unit-service.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/user-available-validator.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/rest/unit-service.js
+},{}],70:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function($q, Restangular) {
@@ -14643,8 +14567,8 @@ module.exports = function($q, Restangular) {
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/user-available-validator.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/user-exists-validator.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/rest/user-available-validator.js
+},{}],71:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function($q, Restangular) {
@@ -14666,16 +14590,16 @@ module.exports = function($q, Restangular) {
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/rest/user-exists-validator.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/ui/index.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/rest/user-exists-validator.js
+},{}],72:[function(require,module,exports){
 (function (global){
 "use strict";
 module.exports = (typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null).module("ui", ["ui.router"]).filter("unitStatus", require("./unit-status-filter.js")).filter("title", require("./title-filter.js")).filter("titleCase", require("./title-case-filter")).name;
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/ui/index.js
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/ui/index.js
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./title-case-filter":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/ui/title-case-filter.js","./title-filter.js":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/ui/title-filter.js","./unit-status-filter.js":"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/ui/unit-status-filter.js"}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/ui/title-case-filter.js":[function(require,module,exports){
+},{"./title-case-filter":73,"./title-filter.js":74,"./unit-status-filter.js":75}],73:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function() {
@@ -14698,12 +14622,15 @@ module.exports = function() {
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/ui/title-case-filter.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/ui/title-filter.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/ui/title-case-filter.js
+},{}],74:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function() {
   return function(unit) {
+    if (!unit) {
+      return;
+    }
     if (!unit.title) {
       return;
     }
@@ -14715,8 +14642,8 @@ module.exports = function() {
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/ui/title-filter.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/ui/unit-status-filter.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/ui/title-filter.js
+},{}],75:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function() {
@@ -14754,8 +14681,8 @@ module.exports = function() {
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/components/ui/unit-status-filter.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/content/content-controller.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/ui/unit-status-filter.js
+},{}],76:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function(units) {
@@ -14763,8 +14690,8 @@ module.exports = function(units) {
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/content/content-controller.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/content/unit/topic/topic-controller.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/content/content-controller.js
+},{}],77:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function($scope, $stateParams) {
@@ -14772,8 +14699,8 @@ module.exports = function($scope, $stateParams) {
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/content/unit/topic/topic-controller.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/content/unit/unit-controller.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/content/unit/topic/topic-controller.js
+},{}],78:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function(unit) {
@@ -14782,16 +14709,37 @@ module.exports = function(unit) {
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/content/unit/unit-controller.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/download/download-controller.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/content/unit/unit-controller.js
+},{}],79:[function(require,module,exports){
 "use strict";
 module.exports = function() {
   this.format = "rtf";
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/download/download-controller.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/login/login-controller.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/download/download-controller.js
+},{}],80:[function(require,module,exports){
+(function (global){
+"use strict";
+"use strict";
+var angular = (typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null);
+module.exports = angular.module("wbt", [require("angular-ui-router"), require("angular-bootstrap"), require("./components/remarkable"), "ngMessages", "ngSanitize", "ngAria", require("./components/rest"), require("./components/ui")]).config(require("./wbt-config")).controller("contentCtrl", require("./content/content-controller")).controller("unitCtrl", require("./content/unit/unit-controller")).controller("topicCtrl", require("./content/unit/topic/topic-controller")).controller("downloadCtrl", require("./download/download-controller")).controller("userCtrl", require("./user/user-controller")).controller("loginCtrl", require("./login/login-controller")).controller("registerCtrl", require("./register/register-controller")).run(["$rootScope", "$state", "$stateParams", "authService", function($rootScope, $state, $stateParams, authService) {
+  $rootScope.$state = $state;
+  $rootScope.$stateParams = $stateParams;
+  $rootScope.authService = authService;
+  var handleStateError = function(event, toState, toParams, fromState, fromParams, error) {
+    console.log(error);
+  };
+  $rootScope.$on('$stateChangeError', handleStateError);
+  authService.identity().then(function(data) {
+    $rootScope.identity = data;
+  });
+}]).name;
+
+
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/index.js
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./components/remarkable":63,"./components/rest":68,"./components/ui":72,"./content/content-controller":76,"./content/unit/topic/topic-controller":77,"./content/unit/unit-controller":78,"./download/download-controller":79,"./login/login-controller":81,"./register/register-controller":82,"./user/user-controller":83,"./wbt-config":84,"angular-bootstrap":61,"angular-ui-router":62}],81:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function($window, authService, Tokens) {
@@ -14814,8 +14762,8 @@ module.exports = function($window, authService, Tokens) {
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/login/login-controller.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/register/register-controller.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/login/login-controller.js
+},{}],82:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function(Users, Tokens, authService) {
@@ -14838,15 +14786,15 @@ module.exports = function(Users, Tokens, authService) {
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/register/register-controller.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/user/user-controller.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/register/register-controller.js
+},{}],83:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function() {};
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/user/user-controller.js
-},{}],"/Users/Shared/Dropbox/Entwicklung/testwbt/src/wbt-config.js":[function(require,module,exports){
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/user/user-controller.js
+},{}],84:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -14908,5 +14856,5 @@ module.exports = function($stateProvider, $urlRouterProvider, $locationProvider)
 };
 
 
-//# sourceURL=/Users/Shared/Dropbox/Entwicklung/testwbt/src/wbt-config.js
-},{}]},{},["./src/index.js"]);
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/wbt-config.js
+},{}]},{},[80]);
