@@ -1,7 +1,0 @@
-mixin checkbox-inline(name,label,options)
-	.form-group
-		.col-xs-2=label
-		.col-xs-10: each option, key in options
-			.checkbox-inline
-				input(type="checkbox" name=name value=key id="#{name}-#{key}")&attributes(attributes)
-				label(for="#{name}-#{key}")=option

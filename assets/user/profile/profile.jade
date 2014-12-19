@@ -1,8 +1,0 @@
-h2 Neues Passwort festlegen
-p Hier können Sie ein neues Passwort für den Account vergeben, der mit der E-Mail-Adresse {{$stateParams.email}} verknüpft ist.
-form.form-horizontal(name="resetForm" role="form" ng-submit="reset()")
-	div.form-group
-		label.form-label.col-xs-2(for="password")
-		div.col-xs-10: input.form-control(type="password" name="password" min-length="8" ng-model="userData.password" required)
-	div.form-group
-		div.col-xs-2-offset.col-xs-10: input.btn.btn-primary(type="submit" value="speichern")
