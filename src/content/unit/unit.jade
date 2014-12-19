@@ -2,16 +2,15 @@ header.col-sm-3
 	h2(data-ng-bind="unit.unit|title")
 	nav: ul.nav.nav-pills.nav-stacked
 		li(data-ng-repeat="topic in unit.unit.topics" data-ui-sref-active="active"): a(data-ui-sref=".topic({topic: topic._id})" data-ng-bind="topic.title")
-main.col-sm-9.col-md-6(data-ui-view="")
-	section
-		h3 Beschreibung
-		div(md="unit.unit.description")
-	section
-		h3 Voraussetzungen
-		p(data-ng-if="!unit.unit.requires") Es gibt keine Voraussetzungen.
-		ul.list-unstyled(data-ng-if="unit.unit.requires")
-			li(data-ng-repeat="required in unit.unit.requires")
+section
+	h3 Beschreibung
+	div(md="unit.unit.description")
+	h3 Voraussetzungen
+	p(data-ng-if="!unit.unit.requires") Es gibt keine Voraussetzungen.
+	ul.list-unstyled(data-ng-if="unit.unit.requires")
+		li(data-ng-repeat="required in unit.unit.requires")
 				a.btn(data-ng-bind="required.title" data-ui-sref=".({unit: required._id})" data-ng-class="required._id|unitStatus:wbt.authService.user():content.units")
+main.col-sm-9.col-md-6(data-ui-view="")
 footer
 	h3 Möchtest du diese Einheit bewerten?
 	dl.dl-horizontal
