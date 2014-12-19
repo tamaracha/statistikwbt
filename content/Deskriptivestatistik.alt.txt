@@ -1,20 +1,17 @@
-position: 1
-title: Deskriptive Statistik
-subtitle: Daten beschreiben und zusammenfassen
-description: |
-  Ein Wust an frisch gemessenen Daten liegt vor dir. Auf den ersten Blick sagen sie uns nicht viel. Hier greift aber die deskriptive Statistik, mit deren Hilfe wir Messdaten auf ihre zentralen Eigenschaften reduzieren können. Es geht hier darum, sich einen Überblick über die Daten zu verschaffen. Falls du das bereits gut kannst, wirst du mit den anderen Lerneinheiten wahrscheinlich wenig Probleme haben. Deskriptive Statistik ist nicht allzu schwierig, legt aber die Basis für die übrige Statistik. Falls dir das Thema nicht so recht geläufig ist, bist du in dieser Einheit genau richtig.
+_id: DeskriptiveStatistik
 topics:
+  - _id: ZentraleTendenz
     title: Zentrale Tendenz
-    description: |
-      Wenn wir ein bestimmtes Merkmal wie Schuhgrößen oder die Endsumme der Preise bei einem Großeinkauf mehrfach messen, stellt sich oft heraus, dass die Werte zu einer gewissen Mitte hin tendieren. Das entspricht im Prinzip dem, was im Alltag als Durchschnitt bezeichnet wird. Manche Einkäufe sind sehr günstig, manche ziemlich teuer, aber die meisten liegen irgendwo in der Mitte. Besonders kleine oder große Füße sind eher selten, die meisten sind mittelmäßig. Wenn es uns gelingt, diesen Mittelwert eines Datensatzes als Zahl auszudrücken, sagt uns das schon etwas über den Datensatz. Tendiert die Schuhgröße um die 50, ist das schon ziemlich groß und wir haben wahrscheinlich große Menschen erfasst. Es gibt in dieser Gruppe wahrscheinlich einige mit noch größeren, manche mit kleineren und ein paar mit wesentlich kleineren oder größeren Füßen. Nun lernen wir ein paar verschiedene Möglichkeiten kennen, diese zentrale Tendenz als Zahl auszudrücken. |
-      
-      ## Das Arithmetische Mittel
-      Der klassische Durchschnitt oder Mittelwert. Berechnet wird er, indem du alle Werte des Datensatzes zusammenaddierst und diese Summe durch die Anzahl der Werte teilst. Dieser Kennwert enthält sehr viel Information über den Datensatz, denn jeder Wert geht als Zahl in den Mittelwert ein. Der Mittelwert ist aber auch anfällig für Verzerrungen, schon wenn es einen einzigen, stark abweichenden Extremwert gibt. Ein einziger sehr teurer Einkauf kann den Mittelwert in die Höhe treiben, auch wenn die anderen Einkäufe eher günstig waren. Solche Werte, die so aus der Reihe tanzen, nennen wir Ausreißer. Die Formel für das arithmetische Mittel lautet:
-      
-      \[\overline{x} = \frac{\sum _{i=1} ^n {x_i}}{n}\]
-      Der Mittelwert (x-quer) ist gleich die Summe aller Werte (\(\sum _{i=1} ^n {x_i}\)) geteilt durch die Anzahl aller Werte (\(n\)).
-      
-      Solche Mittelwerte haben per Konvention einen Querstrich, man sagt auch „X-quer“. |
+	description: |
+	  Wenn wir ein bestimmtes Merkmal wie Schuhgrößen oder die Endsumme der Preise bei einem Großeinkauf mehrfach messen, stellt sich oft heraus, dass die Werte zu einer gewissen Mitte hin tendieren. Das entspricht im Prinzip dem, was im Alltag als Durchschnitt bezeichnet wird. Manche Einkäufe sind sehr günstig, manche ziemlich teuer, aber die meisten liegen irgendwo in der Mitte. Besonders kleine oder große Füße sind eher selten, die meisten sind mittelmäßig. Wenn es uns gelingt, diesen Mittelwert eines Datensatzes als Zahl auszudrücken, sagt uns das schon etwas über den Datensatz. Tendiert die Schuhgröße um die 50, ist das schon ziemlich groß und wir haben wahrscheinlich große Menschen erfasst. Es gibt in dieser Gruppe wahrscheinlich einige mit noch größeren, manche mit kleineren und ein paar mit wesentlich kleineren oder größeren Füßen. Nun lernen wir ein paar verschiedene Möglichkeiten kennen, diese zentrale Tendenz als Zahl auszudrücken. |
+	  
+	  ## Das Arithmetische Mittel |
+	  |
+	  Der klassische Durchschnitt oder Mittelwert. Berechnet wird er, indem du alle Werte des Datensatzes zusammenaddierst und diese Summe durch die Anzahl der Werte teilst. Dieser Kennwert enthält sehr viel Information über den Datensatz, denn jeder Wert geht als Zahl in den Mittelwert ein. Der Mittelwert ist aber auch anfällig für Verzerrungen, schon wenn es einen einzigen, stark abweichenden Extremwert gibt. Ein einziger sehr teurer Einkauf kann den Mittelwert in die Höhe treiben, auch wenn die anderen Einkäufe eher günstig waren. Solche Werte, die so aus der Reihe tanzen, nennen wir Ausreißer. Die Formel für das arithmetische Mittel lautet:
+	  
+	  > x¯=∑ni=1xin --> Der Mittelwert (x-quer) ist gleich die Summe aller Werte (∑ni=1xi) geteilt durch die Anzahl aller Werte (n) |
+	   |
+	  Solche Mittelwerte haben per Konvention einen Querstrich, man sagt auch „X-quer“. |
 	  Lies den folgenden Einschub über Variablen und Summenzeichen, um Formeln besser zu verstehen.
   - _id: VariablenSummenzeichen
     title: Variablen, Summenzeichen und Kennwerte
