@@ -1,9 +1,20 @@
 "use strict";
+var MathJax=require("mathjax");
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [
+      ['$','$'],
+      ['\\(','\\)']
+    ]
+  }
+});
+
 var angular=require("angular");
 module.exports=angular.module("wbt",[
   require("angular-ui-router"),
   require("angular-bootstrap"),
   require("./components/remarkable"),
+  require("./components/mathjax"),
   "ngMessages",
   "ngSanitize",
   "ngAria",

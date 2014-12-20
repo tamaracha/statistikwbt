@@ -73,6 +73,7 @@
   },
   "browserify-shim": {
     "angular": "global:angular",
+    "mathjax": "global:MathJax",
     "angular-bootstrap": {
       "exports": "angular.module('ui.bootstrap').name"
     }

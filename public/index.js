@@ -14381,6 +14381,29 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
 },{}],63:[function(require,module,exports){
 (function (global){
 "use strict";
+var angular = (typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null);
+module.exports = angular.module("mathjax", []).directive("mathjax", require("./mathjax-directive")).name;
+
+
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/mathjax/index.js
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./mathjax-directive":64}],64:[function(require,module,exports){
+"use strict";
+module.exports = function() {
+  return {
+    restrict: "A",
+    scope: false,
+    link: function($scope, $element) {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub, $element[0]]);
+    }
+  };
+};
+
+
+//# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/mathjax/mathjax-directive.js
+},{}],65:[function(require,module,exports){
+(function (global){
+"use strict";
 "use strict";
 var angular = (typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null);
 module.exports = angular.module("remarkable", []).constant("Remarkable", require("remarkable")).provider("md", require("./remarkable-provider")).filter("md", ["md", function(md) {
@@ -14390,7 +14413,7 @@ module.exports = angular.module("remarkable", []).constant("Remarkable", require
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/remarkable/index.js
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./remarkable-directive":64,"./remarkable-provider":65,"remarkable":1}],64:[function(require,module,exports){
+},{"./remarkable-directive":66,"./remarkable-provider":67,"remarkable":1}],66:[function(require,module,exports){
 "use strict";
 module.exports = function(md) {
   return {
@@ -14409,7 +14432,7 @@ module.exports = function(md) {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/remarkable/remarkable-directive.js
-},{}],65:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function remarkableProvider() {
@@ -14434,7 +14457,7 @@ module.exports = function remarkableProvider() {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/remarkable/remarkable-provider.js
-},{}],66:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function(Restangular, $window) {
@@ -14453,7 +14476,7 @@ module.exports = function(Restangular, $window) {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/rest/auth-interceptor.js
-},{}],67:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function($window, $q, Users) {
@@ -14503,7 +14526,7 @@ module.exports = function($window, $q, Users) {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/rest/auth-service.js
-},{}],68:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 (function (global){
 "use strict";
 var angular = (typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null);
@@ -14522,7 +14545,7 @@ module.exports = angular.module("rest", ["restangular"]).config(["RestangularPro
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/rest/index.js
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./auth-interceptor":66,"./auth-service":67,"./unit-service":69,"./user-available-validator":70,"./user-exists-validator":71}],69:[function(require,module,exports){
+},{"./auth-interceptor":68,"./auth-service":69,"./unit-service":71,"./user-available-validator":72,"./user-exists-validator":73}],71:[function(require,module,exports){
 "use strict";
 module.exports = function(Units) {
   this.setRequires = function() {
@@ -14545,7 +14568,7 @@ module.exports = function(Units) {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/rest/unit-service.js
-},{}],70:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function($q, Restangular) {
@@ -14568,7 +14591,7 @@ module.exports = function($q, Restangular) {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/rest/user-available-validator.js
-},{}],71:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function($q, Restangular) {
@@ -14591,7 +14614,7 @@ module.exports = function($q, Restangular) {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/rest/user-exists-validator.js
-},{}],72:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 (function (global){
 "use strict";
 module.exports = (typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null).module("ui", ["ui.router"]).filter("unitStatus", require("./unit-status-filter.js")).filter("title", require("./title-filter.js")).filter("titleCase", require("./title-case-filter")).name;
@@ -14599,7 +14622,7 @@ module.exports = (typeof window !== "undefined" ? window.angular : typeof global
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/ui/index.js
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./title-case-filter":73,"./title-filter.js":74,"./unit-status-filter.js":75}],73:[function(require,module,exports){
+},{"./title-case-filter":75,"./title-filter.js":76,"./unit-status-filter.js":77}],75:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function() {
@@ -14623,7 +14646,7 @@ module.exports = function() {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/ui/title-case-filter.js
-},{}],74:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function() {
@@ -14643,7 +14666,7 @@ module.exports = function() {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/ui/title-filter.js
-},{}],75:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function() {
@@ -14682,7 +14705,7 @@ module.exports = function() {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/components/ui/unit-status-filter.js
-},{}],76:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function(units) {
@@ -14691,13 +14714,13 @@ module.exports = function(units) {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/content/content-controller.js
-},{}],77:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 "use strict";
 module.exports = function() {};
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/content/unit/description/description-controller.js
-},{}],78:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function($scope, $stateParams) {
@@ -14706,7 +14729,7 @@ module.exports = function($scope, $stateParams) {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/content/unit/topic/topic-controller.js
-},{}],79:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function(unit) {
@@ -14715,7 +14738,7 @@ module.exports = function(unit) {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/content/unit/unit-controller.js
-},{}],80:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 "use strict";
 module.exports = function() {
   this.format = "rtf";
@@ -14723,12 +14746,14 @@ module.exports = function() {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/download/download-controller.js
-},{}],81:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 (function (global){
 "use strict";
 "use strict";
+var MathJax = (typeof window !== "undefined" ? window.MathJax : typeof global !== "undefined" ? global.MathJax : null);
+MathJax.Hub.Config({tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}});
 var angular = (typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null);
-module.exports = angular.module("wbt", [require("angular-ui-router"), require("angular-bootstrap"), require("./components/remarkable"), "ngMessages", "ngSanitize", "ngAria", require("./components/rest"), require("./components/ui")]).config(require("./wbt-config")).controller("contentCtrl", require("./content/content-controller")).controller("unitCtrl", require("./content/unit/unit-controller")).controller("descriptionCtrl", require("./content/unit/description/description-controller")).controller("topicCtrl", require("./content/unit/topic/topic-controller")).controller("downloadCtrl", require("./download/download-controller")).controller("userCtrl", require("./user/user-controller")).controller("loginCtrl", require("./login/login-controller")).controller("registerCtrl", require("./register/register-controller")).run(["$rootScope", "$state", "$stateParams", "authService", function($rootScope, $state, $stateParams, authService) {
+module.exports = angular.module("wbt", [require("angular-ui-router"), require("angular-bootstrap"), require("./components/remarkable"), require("./components/mathjax"), "ngMessages", "ngSanitize", "ngAria", require("./components/rest"), require("./components/ui")]).config(require("./wbt-config")).controller("contentCtrl", require("./content/content-controller")).controller("unitCtrl", require("./content/unit/unit-controller")).controller("descriptionCtrl", require("./content/unit/description/description-controller")).controller("topicCtrl", require("./content/unit/topic/topic-controller")).controller("downloadCtrl", require("./download/download-controller")).controller("userCtrl", require("./user/user-controller")).controller("loginCtrl", require("./login/login-controller")).controller("registerCtrl", require("./register/register-controller")).run(["$rootScope", "$state", "$stateParams", "authService", function($rootScope, $state, $stateParams, authService) {
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
   $rootScope.authService = authService;
@@ -14744,7 +14769,7 @@ module.exports = angular.module("wbt", [require("angular-ui-router"), require("a
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/index.js
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./components/remarkable":63,"./components/rest":68,"./components/ui":72,"./content/content-controller":76,"./content/unit/description/description-controller":77,"./content/unit/topic/topic-controller":78,"./content/unit/unit-controller":79,"./download/download-controller":80,"./login/login-controller":82,"./register/register-controller":83,"./user/user-controller":84,"./wbt-config":85,"angular-bootstrap":61,"angular-ui-router":62}],82:[function(require,module,exports){
+},{"./components/mathjax":63,"./components/remarkable":65,"./components/rest":70,"./components/ui":74,"./content/content-controller":78,"./content/unit/description/description-controller":79,"./content/unit/topic/topic-controller":80,"./content/unit/unit-controller":81,"./download/download-controller":82,"./login/login-controller":84,"./register/register-controller":85,"./user/user-controller":86,"./wbt-config":87,"angular-bootstrap":61,"angular-ui-router":62}],84:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function($window, authService, Tokens) {
@@ -14768,7 +14793,7 @@ module.exports = function($window, authService, Tokens) {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/login/login-controller.js
-},{}],83:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function(Users, Tokens, authService) {
@@ -14792,14 +14817,14 @@ module.exports = function(Users, Tokens, authService) {
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/register/register-controller.js
-},{}],84:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function() {};
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/user/user-controller.js
-},{}],85:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 "use strict";
 "use strict";
 module.exports = function($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -14867,4 +14892,4 @@ module.exports = function($stateProvider, $urlRouterProvider, $locationProvider)
 
 
 //# sourceURL=/Users/Shared/Dropbox/Entwicklung/statistikwbt/src/wbt-config.js
-},{}]},{},[81]);
+},{}]},{},[83]);

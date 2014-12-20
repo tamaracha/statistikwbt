@@ -30,7 +30,8 @@ app.use(helmet.csp({
   ],
   fontSrc: [
     "'self'",
-    "https://maxcdn.bootstrapcdn.com"
+    "https://maxcdn.bootstrapcdn.com",
+    "https://cdn.mathjax.org"
   ]
 }));
 app.use(helmet.frameguard("deny"));
