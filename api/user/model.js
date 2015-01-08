@@ -47,7 +47,10 @@ UserSchema=new mongoose.Schema({
       ref: "comment"
     }]
   },
-    views: [ViewSchema]
+  views: [{
+    type: ObjectId,
+    ref: "view"
+  }]
 },{
   toJSON: {
     transform: function(doc,ret,options){

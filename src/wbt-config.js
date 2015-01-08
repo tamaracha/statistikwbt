@@ -1,4 +1,3 @@
-"use strict";
 module.exports=/*@ngInject*/function($stateProvider,$urlRouterProvider,$locationProvider,$compileProvider){
   $locationProvider.html5Mode(true);
   $compileProvider.debugInfoEnabled(false);
@@ -30,6 +29,12 @@ $stateProvider.state("home",{
       return Restangular.one("units",$stateParams.unit).get();
     }]
   },
+  onEnter: ["Restangular","identity","unit",function(Restangular,identity,unit){
+    return Restangular.all("views").post({
+      unit: unit._id,
+      user: identity.data()._id
+    });
+  }],
   controller: "unitCtrl as unit",
   abstract: true,
   data: {
@@ -52,7 +57,14 @@ $stateProvider.state("home",{
     topic: ["unit","$stateParams",function(unit,$stateParams){
       return _.find(unit.topics,{_id: $stateParams.topic});
     }]
-  }
+  },
+  onEnter: ["unit","topic","Restangular","identity",function(unit,topic,Restangular,identity){
+    return Restangular.all("views").post({
+      unit: unit._id,
+      topic: topic._id,
+      user: identity.data()._id
+    });
+  }]
 })
 .state("content.unit.topic.example",{
   url: "/example/:example",

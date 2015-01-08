@@ -69,7 +69,11 @@ UnitSchema=new mongoose.Schema({
       type: ObjectId,
       ref: "comment"
     }]
-  }
+  },
+  views: [{
+    type: ObjectId,
+    ref: "view"
+  }]
 });
 
 module.exports=mongoose.model("Unit",UnitSchema);

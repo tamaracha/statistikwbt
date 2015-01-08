@@ -18612,40 +18612,11 @@ module.exports=angular.module("rest",["restangular"])
 .run(require("./auth-interceptor"))
 .factory("identity",require("./identity-service"))
 .factory("akzeptanz",require("./akzeptanz-service"))
-.factory("unitService",require("./unit-service"))
 .directive("userAvailable",require("./user-available-validator"))
 .directive("userExists",require("./user-exists-validator"))
 .name;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./akzeptanz-service":73,"./auth-interceptor":74,"./identity-service":75,"./unit-service":77,"./user-available-validator":78,"./user-exists-validator":79}],77:[function(require,module,exports){
-module.exports=/*@ngInject*/["Units", function(Units){
-this.setRequires=function(){
-  this.status.requires=_.map(this.units,function(unit){
-    return _.pick(unit,"_id","title");
-  });
-};
-
-this.updateRequires=function(){
-  this.status.requires=_.chain(this.units)
-  .reject({title: this.unit.title})
-  .map(function(unit){
-    var temp=_.pick(unit,"_id","title")
-    temp.checked=_.contains(this.unit.requires,unit._id);
-    return temp;
-  },this)
-  .value();
-};
-
-this.saveRequires=function(){
-  this.unit.requires=_.chain(this.status.requires)
-  .filter("checked")
-  .map("_id")
-  .value();
-};
-
-return this;
-}];
-},{}],78:[function(require,module,exports){
+},{"./akzeptanz-service":73,"./auth-interceptor":74,"./identity-service":75,"./user-available-validator":77,"./user-exists-validator":78}],77:[function(require,module,exports){
 "use strict";
 module.exports=/*@ngInject*/["$q", "Restangular", function($q,Restangular){return{
   require: "ngModel",
@@ -18663,7 +18634,7 @@ module.exports=/*@ngInject*/["$q", "Restangular", function($q,Restangular){retur
     };
   }
 };}];
-},{}],79:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 "use strict";
 module.exports=/*@ngInject*/["$q", "Restangular", function($q,Restangular){return{
   require: "ngModel",
@@ -18680,7 +18651,7 @@ module.exports=/*@ngInject*/["$q", "Restangular", function($q,Restangular){retur
     };
   }
 };}];
-},{}],80:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 (function (global){
 module.exports=(typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null).module("ui",["ui.router"])
 .filter("unitStatus",require("./unit-status-filter.js"))
@@ -18688,7 +18659,7 @@ module.exports=(typeof window !== "undefined" ? window.angular : typeof global !
 .filter("titleCase",require("./title-case-filter"))
 .name;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./title-case-filter":81,"./title-filter.js":82,"./unit-status-filter.js":83}],81:[function(require,module,exports){
+},{"./title-case-filter":80,"./title-filter.js":81,"./unit-status-filter.js":82}],80:[function(require,module,exports){
 "use strict";
 module.exports=/*@ngInject*/function(){
   return function(title){
@@ -18704,7 +18675,7 @@ module.exports=/*@ngInject*/function(){
     return out;
   };
 };
-},{}],82:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 "use strict";
 module.exports=function(){
   return function(unit){
@@ -18714,7 +18685,7 @@ module.exports=function(){
     return unit.title;
   };
 };
-},{}],83:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 "use strict";
 module.exports=function(){
 	return function(id,user,units){
@@ -18752,20 +18723,20 @@ module.exports=function(){
 		return "unready";
 	};
 };
-},{}],84:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 "use strict";
 module.exports=/*@ngInject*/["units", function(units){
 	this.units=units;
 }];
-},{}],85:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 module.exports=function(){
 
 };
-},{}],86:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 module.exports=/*@ngInject*/["topic", function(topic){
   this.topic=topic;
 }];
-},{}],87:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 module.exports=/*@ngInject*/["unit", "akzeptanz", function(unit,akzeptanz){
   this.unit=unit;
   this.akzeptanz=akzeptanz;
@@ -18779,11 +18750,11 @@ module.exports=/*@ngInject*/["unit", "akzeptanz", function(unit,akzeptanz){
   ];
   akzeptanz.get();
 }];
-},{}],88:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 module.exports=/*@ngInject*/function(){
 	this.format="rtf";
 };
-},{}],89:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 (function (global){
 /*jshint browserify: true, devel: true */
 "use strict";
@@ -18817,7 +18788,7 @@ module.exports=angular.module("wbt",[
 }])
 .name;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./components/d3":66,"./components/mathjax":67,"./components/remarkable":70,"./components/rest":76,"./components/ui":80,"./content/content-controller":84,"./content/unit/description/description-controller":85,"./content/unit/topic/topic-controller":86,"./content/unit/unit-controller":87,"./download/download-controller":88,"./login/login-controller":90,"./register/register-controller":91,"./user/user-controller":92,"./wbt-config":93,"./wbt-controller":94,"angular-bootstrap":62,"angular-ui-router":1}],90:[function(require,module,exports){
+},{"./components/d3":66,"./components/mathjax":67,"./components/remarkable":70,"./components/rest":76,"./components/ui":79,"./content/content-controller":83,"./content/unit/description/description-controller":84,"./content/unit/topic/topic-controller":85,"./content/unit/unit-controller":86,"./download/download-controller":87,"./login/login-controller":89,"./register/register-controller":90,"./user/user-controller":91,"./wbt-config":92,"./wbt-controller":93,"angular-bootstrap":62,"angular-ui-router":1}],89:[function(require,module,exports){
 module.exports=/*@ngInject*/["identity", function(identity){
   this.loginData={};
   this.login=function(form){
@@ -18825,7 +18796,7 @@ module.exports=/*@ngInject*/["identity", function(identity){
     .then(identity.get);
   };
 }];
-},{}],91:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 module.exports=function(identity){
   this.registerData={};
   this.register=function(form){
@@ -18840,12 +18811,11 @@ module.exports=function(identity){
     .catch(identity.inauthenticate);
   };
 };
-},{}],92:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 "use strict";
 module.exports=function(){
 };
-},{}],93:[function(require,module,exports){
-"use strict";
+},{}],92:[function(require,module,exports){
 module.exports=/*@ngInject*/["$stateProvider", "$urlRouterProvider", "$locationProvider", "$compileProvider", function($stateProvider,$urlRouterProvider,$locationProvider,$compileProvider){
   $locationProvider.html5Mode(true);
   $compileProvider.debugInfoEnabled(false);
@@ -18877,6 +18847,12 @@ $stateProvider.state("home",{
       return Restangular.one("units",$stateParams.unit).get();
     }]
   },
+  onEnter: ["Restangular","identity","unit",function(Restangular,identity,unit){
+    return Restangular.all("views").post({
+      unit: unit._id,
+      user: identity.data()._id
+    });
+  }],
   controller: "unitCtrl as unit",
   abstract: true,
   data: {
@@ -18899,7 +18875,14 @@ $stateProvider.state("home",{
     topic: ["unit","$stateParams",function(unit,$stateParams){
       return _.find(unit.topics,{_id: $stateParams.topic});
     }]
-  }
+  },
+  onEnter: ["unit","topic","Restangular","identity",function(unit,topic,Restangular,identity){
+    return Restangular.all("views").post({
+      unit: unit._id,
+      topic: topic._id,
+      user: identity.data()._id
+    });
+  }]
 })
 .state("content.unit.topic.example",{
   url: "/example/:example",
@@ -18989,7 +18972,7 @@ $stateProvider.state("home",{
 });
   $urlRouterProvider.otherwise("/home");
 }];
-},{}],94:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
 module.exports=/*@ngInject*/["$state", "$stateParams", "identity", function($state,$stateParams,identity){
   this.$state=$state;
   this.$stateParams=$stateParams;
@@ -18998,4 +18981,4 @@ module.exports=/*@ngInject*/["$state", "$stateParams", "identity", function($sta
   .then(identity.get)
   .catch(identity.inauthenticate);
 }];
-},{}]},{},[89]);
+},{}]},{},[88]);

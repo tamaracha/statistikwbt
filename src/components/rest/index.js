@@ -7,7 +7,6 @@ module.exports=angular.module("rest",["restangular"])
 .run(require("./auth-interceptor"))
 .factory("identity",require("./identity-service"))
 .factory("akzeptanz",require("./akzeptanz-service"))
-.factory("unitService",require("./unit-service"))
 .directive("userAvailable",require("./user-available-validator"))
 .directive("userExists",require("./user-exists-validator"))
 .name;

@@ -1,4 +1,4 @@
-var mongoose,ObjectId,User,Unit,CommentSchema,Comment;
+var mongoose,ObjectId,User,Unit,ViewSchema,View;
 mongoose=require("mongoose");
 Promise.promisifyAll(mongoose.Model);
 Promise.promisifyAll(mongoose.Model.prototype);
@@ -7,41 +7,40 @@ ObjectId=mongoose.Schema.Types.ObjectId
 User=require("../user/model");
 Unit=require("../unit/model");
 
-CommentSchema=new mongoose.Schema({
+ViewSchema=new mongoose.Schema({
   unit: {
     type: ObjectId,
     required: true,
     ref: "unit"
   },
+  topic: {
+    type: ObjectId,
+    ref: "unit.topic"
+  },
   user: {
     type: ObjectId,
     required: true,
     ref: "user"
-  },
-  value: {
-    type: String,
-    required: true
   }
 });
-CommentSchema.post("save",function(){
-  var comment=this;
-  return User.findById(comment.user)
+ViewSchema.post("save",function(){
+  var view=this;
+  return User.findById(view.user)
   .execAsync()
   .then(function(user){
-    user.akzeptanz.comments.push(comment._id);
+    user.views.push(view._id);
     return user.saveAsync();
   });
 });
-CommentSchema.post("save",function(){
-  var comment=this;
-  return Unit.findById(comment.unit)
+ViewSchema.post("save",function(){
+  var view=this;
+  return Unit.findById(view.unit)
   .execAsync()
   .then(function(unit){
-    unit.akzeptanz.comments.push(comment._id);
+    unit.views.push(view._id);
     return unit.saveAsync();
   });
 });
-
-Comment=mongoose.model("Comment",CommentSchema);
-Promise.promisifyAll(Comment.prototype);
-module.exports=Comment;
+View=mongoose.model("View",ViewSchema);
+Promise.promisifyAll(View.prototype);
+module.exports=View;
