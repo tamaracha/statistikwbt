@@ -9,6 +9,8 @@ module.exports=function(gulp,plugins,growl){
 			.bundle();
 		});
 		return gulp.src("./src/index.js")
+.pipe(plugins.jshint())
+.pipe(plugins.jshint.reporter("default"))
 		.pipe(browserified)
 		.pipe(gulp.dest("./public"))
 		.pipe(plugins.uglify())

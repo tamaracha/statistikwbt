@@ -2,7 +2,7 @@ include ../mixins/input.jade
 include ../mixins/submit.jade
 - var form="registerForm"
 h2 Registrieren
-form.form-horizontal(novalidate name=form ng-submit="register.register()" role="form")
+form.form-horizontal(novalidate name=form ng-submit="register.register(register.registerData)" role="form")
 	fieldset(name="login")
 		legend Logindaten
 		+input("email","E-Mail-Adresse")(type="email" required maxlength="20" user-available data-ng-model="register.registerData.email" placeholder="name@domain.com" data-ng-model-options="{debounce: 500}")

@@ -59,7 +59,17 @@ UnitSchema=new mongoose.Schema({
     type: ObjectId,
     ref: "Unit",
   }],
-  topics: [TopicSchema]
+  topics: [TopicSchema],
+  akzeptanz: {
+    ratings: [{
+      type: ObjectId,
+      ref: "rating"
+    }],
+    comments: [{
+      type: ObjectId,
+      ref: "comment"
+    }]
+  }
 });
 
 module.exports=mongoose.model("Unit",UnitSchema);

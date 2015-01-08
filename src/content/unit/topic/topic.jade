@@ -1,34 +1,39 @@
+include ../../../mixins/rating
+include ../../../mixins/text-input
+include ../../../mixins/submit
 h3(data-ng-bind="topic.topic|title")
 div(md="topic.topic.body" mathjax)
 .btn-toolbar(role="toolbar")
-  .btn-group(role="group" aria-label="weiterlesen")
-    .btn-group(dropdown is-open="status.examples")
+  .btn-group
+    .btn-group(dropdown is-open="status.examples" data-ng-if="topic.topic.examples.length>0")
       button.btn.btn-default.dropdown-toggle(type="button" dropdown-toggle)
         | Beispiele
         span.caret
-      ul.dropdown-menu(role="menu")
-        li(role="menuitem" data-ng-repeat="example in topic.topic.examples"): button.btn.btn-default(type="button" data-ng-click="topic.current={type: 'example',content: example}" data-ng-bind="example.title")
-    .btn-group(dropdown is-open="status.extras")
+      ul.dropdown-menu
+        li(data-ng-repeat="example in topic.topic.examples")
+          a.btn.btn-default(data-ui-sref=".example({example: example._id})" ng-bind="example.title")
+    .btn-group(dropdown is-open="status.extras" data-ng-if="topic.topic.extras.length>0")
       button.btn.btn-default.dropdown-toggle(type="button" dropdown-toggle)
         | Extras
         span.caret
-      ul.dropdown-menu(role="menu")
-        li(role="menuitem" data-ng-repeat="extra in topic.topic.extras"): button.btn.btn-default(type="button" data-ng-click="topic.current={type: 'extra',content: extra}" data-ng-bind="extra.title")
-    .btn-group(dropdown is-open="status.tests" data-ng-if="topic.topic.tests")
+      ul.dropdown-menu
+        li(data-ng-repeat="extra in topic.topic.extras")
+          a.btn.btn-default(data-ui-sref=".extra({extra: extra._id})" data-ng-bind="extra.title")
+    .btn-group(dropdown is-open="status.tests" data-ng-if="topic.topic.tests.length>0")
       button.btn.btn-default.dropdown-toggle(type="button" dropdown-toggle)
         | Testaufgaben
         span.caret
-      ul.dropdown-menu(role="menu")
-        li(role="menuitem" data-ng-repeat="test in topic.topic.tests"): button.btn.btn-default(type="button" data-ng-click="topic.current={type: 'test',content: test}" data-ng-bind="test.title")
-  .btn-group
-    button.btn.btn-default(type="button" ng-click="unit.rating=!unit.rating") Lerneinheit bewerten
-section(ng-if="topic.current")
-  h3(ng-bind="topic.current.content|title")
-  div(ng-if="topic.current.type!=='test'" md="topic.current.content.body")
-section(ng-if="unit.rating")
+      ul.dropdown-menu
+        li(data-ng-repeat="test in topic.topic.tests")
+          a.btn.btn-default(data-ui-sref=".test({test: test._id})" data-ng-bind="test.title")
+  .btn-group(data-ng-if="wbt.identity.authenticated()")
+    button.btn.btn-default(type="button" ng-click="unit.rating=!unit.rating" aria-expanded="{{!!unit.rating}}" data-ng-bind="unit.rated ? 'erneut bewerten': 'Lerneinheit bewerten'")
+section(data-ui-view)
+section(collapse="!unit.rating")
   h3 Lerneinheit bewerten?
-  dl.dl-horizontal
-    dt Lernerfolg
-    dd: rating(data-ng-model="unit.rating.success")
-    dt User Experience
-    dd: rating(data-ng-model="unit.rating.usibility")
+  form.form-horizontal(name="ratingForm" novalidate data-ng-submit="unit.akzeptanz.comment()")
+    +rating("motivation","Die Arbeit mit dem WBT war absolut unmotivierend und ich hatte irgendwann kein Bock mehr.")
+    +rating("success","Dabei habe ich überhaupt nichts gelernt und bin noch dümmer geworden.")
+    +rating("usability","Die seite war unbedienbar und chaotisch, kein Mensch kam damit klar.")
+    +text-input("comment","Kommentar",true)(data-ng-model="unit.akzeptanz.summary.comment" placeholder="Ergänzungen, Kritik oder Anmerkungen, die du noch loswerden möchtest")
+    +submit("Kommentar abschicken")

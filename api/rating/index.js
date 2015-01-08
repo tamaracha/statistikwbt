@@ -1,15 +1,12 @@
 module.exports=function(router){
 var controller=require("./controller");
 
-router.route("/users")
-.head(controller.check,controller.head)
+router.route("/ratings")
+.get(controller.find)
 .post(controller.create);
 
-router.route("/users/:id")
+router.route("/ratings/:id")
 .get(controller.findOne)
 .put(controller.update)
 .delete(controller.remove);
-
-router.route("/users/:user/akzeptanz/:unit")
-.get(controller.akzeptanz);
 };

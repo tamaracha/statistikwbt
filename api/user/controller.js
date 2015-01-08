@@ -1,7 +1,9 @@
-var User=require("./model");
-var e=require("../../errors");
-
-User.collection.drop();
+var User,Rating,Comment,e;
+User=require("./model");
+Rating=require("../rating/model");
+Comment=require("../comment/model");
+e=require("../../errors");
+ObjectId=require("mongoose").Types.ObjectId
 
 exports.check=function(req,res,next){
   return User.find(req.query)
@@ -56,6 +58,46 @@ exports.create=function(req,res){
   .then(function(user){
     return res.json(user);
   },function(err){
+    console.log(err);
+    return res.sendStatus(500);
+  });
+};
+
+exports.akzeptanz=function(req,res){
+  Rating.aggregateAsync([
+  {
+    $match: {
+      "unit": ObjectId(req.params.unit),
+      "user": ObjectId(req.params.user)
+    }
+  },
+  {
+    $sort: {"_id": -1}
+  },{
+    $group: {
+      _id: "$name",
+      value: {$first: "$value"}
+    }
+  }])
+  .then(function(ratings){
+    var data={};
+    if(ratings){
+      _.forEach(ratings,function(rating){
+        data[rating._id]=rating.value;
+      });
+    }
+    return Comment.findOne({
+      user: req.params.user,
+      unit: req.params.unit
+    })
+    .sort({_id: -1})
+    .execAsync()
+    .then(function(comment){
+      if(comment){data.comment=comment.value;}
+      return res.json(data);
+    });
+  },function(e){
+    console.log(e);
     return res.sendStatus(500);
   });
 };

@@ -4,7 +4,7 @@ section
   h2 Anmelden
   p Falls du dein Passwort nicht mehr weißt, gibt nur die E-mail-Adresse ein und klicke auf „Passwort vergessen“.
   - var form="loginForm"
-  form.form-horizontal(novalidate name=form role="form" ng-submit="login.login()")
+  form.form-horizontal(novalidate name=form role="form" ng-submit="login.login(login.loginData)")
     +input("email","E-Mail-Adresse")(placeholder="name@domain.com" data-ng-model="login.loginData.email" required maxlength="20" user-exists data-ng-model-options="{debounce: 500}")
       span.help-block(aria-live="assertive" ng-show="loginForm.email.$touched"): span(ng-if="loginForm.email.$valid") Dieser User existiert.
       span.help-block(ng-show="loginForm.email.$touched" role="status"): span(ng-if="loginForm.email.$pending") Prüfe Verfügbarkeit

@@ -1,4 +1,4 @@
-var mongoose,uniqueValidator,bcrypt,validate,ObjectId,fskSchema,RatingSchema,ViewSchema,UserSchema,User;
+var mongoose,uniqueValidator,bcrypt,validate,ObjectId,fskSchema,ViewSchema,UserSchema,User;
 mongoose=require("mongoose");
 Promise.promisifyAll(mongoose.Model);
 Promise.promisifyAll(mongoose.Model.prototype);
@@ -12,16 +12,6 @@ ObjectId=mongoose.Schema.Types.ObjectId
 fskSchema=new mongoose.Schema({
   
 });
-RatingSchema=new mongoose.Schema({
-  unit: {
-    type: ObjectId,
-    required: true
-  },
-  rating: {
-    type: Number,
-    required: true
-  }
-});
 ViewSchema=new mongoose.Schema({
   unit: {
     type: ObjectId,
@@ -29,28 +19,36 @@ ViewSchema=new mongoose.Schema({
   }
 });
 
-
 UserSchema=new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    validate: validate.emailValidator
+    validate: validate.emailValidator,
+    unique: true
   },
   password: {
     type: String,
     required: true,
     validate: validate.passwordValidator
   },
-  contact: Boolean,
   profile: {
+    contact: Boolean,
     age: Number,
     subject: String
   },
   fsk: [fskSchema],
-  ratings: [RatingSchema],
-  views: [ViewSchema]
+  akzeptanz: {
+    ratings: [{
+      type: ObjectId,
+      ref: "rating"
+    }],
+    comments: [{
+      type: ObjectId,
+      ref: "comment"
+    }]
+  },
+    views: [ViewSchema]
 },{
-  collection: "userInfo",
   toJSON: {
     transform: function(doc,ret,options){
       if(ret.password){delete ret.password;}
@@ -76,7 +74,7 @@ UserSchema.methods.validatePassword=function(password,next){
     return next(err);
   });
 };
-UserSchema.plugin(uniqueValidator);
+UserSchema
 
 var User=mongoose.model("User",UserSchema);
 Promise.promisifyAll(User.prototype);

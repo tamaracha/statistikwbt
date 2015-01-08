@@ -1,4 +1,3 @@
-"use strict";
-module.exports=/*@ngInject*/function($scope,$stateParams){
-  this.topic=_.find($scope.unit.unit.topics,{_id: $stateParams.topic});
+module.exports=/*@ngInject*/function(topic){
+  this.topic=topic;
 };

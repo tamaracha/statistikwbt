@@ -1,14 +1,5 @@
+/*jshint browserify: true, devel: true */
 "use strict";
-var MathJax=require("mathjax");
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [
-      ['$','$'],
-      ['\\(','\\)']
-    ]
-  }
-});
-
 var angular=require("angular");
 module.exports=angular.module("wbt",[
   require("angular-ui-router"),
@@ -19,10 +10,11 @@ module.exports=angular.module("wbt",[
   "ngSanitize",
   "ngAria",
   require("./components/rest"),
-  require("./components/ui")
-  //require("./components/d3")
+  require("./components/ui"),
+  require("./components/d3")
 ])
 .config(require("./wbt-config"))
+.controller("wbtCtrl",require("./wbt-controller"))
 .controller("contentCtrl",require("./content/content-controller"))
 .controller("unitCtrl",require("./content/unit/unit-controller"))
 .controller("descriptionCtrl",require("./content/unit/description/description-controller"))
@@ -31,17 +23,9 @@ module.exports=angular.module("wbt",[
 .controller("userCtrl",require("./user/user-controller"))
 .controller("loginCtrl",require("./login/login-controller"))
 .controller("registerCtrl",require("./register/register-controller"))
-.run(function($rootScope,$state,$stateParams,authService){
-  $rootScope.$state=$state;
-  $rootScope.$stateParams=$stateParams;
-  $rootScope.authService=authService;
-  var handleStateError=function(event, toState, toParams, fromState, fromParams, error){
-    console.log(error);
-  };
-  $rootScope.$on('$stateChangeError',handleStateError);
-  authService.identity()
-  .then(function(data){
-    $rootScope.identity=data;
+.run(["$rootScope",function($rootScope){
+  $rootScope.$on('$stateChangeError',function(event, toState, toParams, fromState, fromParams, error){
+    console.error(error);
   });
-})
+}])
 .name;

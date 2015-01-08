@@ -1,6 +1,7 @@
 "use strict";
-module.exports=/*@ngInject*/function($stateProvider,$urlRouterProvider,$locationProvider){
+module.exports=/*@ngInject*/function($stateProvider,$urlRouterProvider,$locationProvider,$compileProvider){
   $locationProvider.html5Mode(true);
+  $compileProvider.debugInfoEnabled(false);
 $stateProvider.state("home",{
   url: "/home",
   templateUrl: "home/home.html",
@@ -12,8 +13,8 @@ $stateProvider.state("home",{
   url: "/content",
   templateUrl: "content/content.html",
   resolve: {
-    units: ["Units",function(Units){
-      return Units.getList();
+    units: ["Restangular",function(Restangular){
+      return Restangular.all("units").getList();
     }]
   },
   controller: "contentCtrl as content",
@@ -25,8 +26,8 @@ $stateProvider.state("home",{
   url: "/:unit",
   templateUrl: "content/unit/unit.html",
   resolve: {
-    unit: ["Units","$stateParams",function(Units,$stateParams){
-      return Units.one($stateParams.unit).get();
+    unit: ["Restangular","$stateParams",function(Restangular,$stateParams){
+      return Restangular.one("units",$stateParams.unit).get();
     }]
   },
   controller: "unitCtrl as unit",
@@ -43,7 +44,55 @@ $stateProvider.state("home",{
 .state("content.unit.topic",{
   url: "/:topic",
   templateUrl: "content/unit/topic/topic.html",
-  controller: "topicCtrl as topic"
+  controller: ["topic",function(topic){
+    this.topic=topic;
+  }],
+  controllerAs: "topic",
+  resolve: {
+    topic: ["unit","$stateParams",function(unit,$stateParams){
+      return _.find(unit.topics,{_id: $stateParams.topic});
+    }]
+  }
+})
+.state("content.unit.topic.example",{
+  url: "/example/:example",
+  template: '<h3 ng-bind="example.example|title"></h3><div md="example.example.body"></div>',
+  controller: ["example",function(example){
+    this.example=example;
+  }],
+  controllerAs: "example",
+  resolve: {
+    example: ["topic","$stateParams",function(topic,$stateParams){
+      console.log($stateParams.example,topic.title);
+      return _.find(topic.examples,{_id: $stateParams.example});
+    }]
+  }
+})
+.state("content.unit.topic.extra",{
+  url: "/extra/:extra",
+  template: '<h3 ng-bind="extra.extra|title"></h3><div md="extra.extra.body"></div>',
+  controller: ["extra",function(extra){
+    this.extra=extra;
+  }],
+  controllerAs: "extra",
+  resolve: {
+    extra: ["topic","$stateParams",function(topic,$stateParams){
+      return _.find(topic.extras,{_id: $stateParams.extra});
+    }]
+  }
+})
+.state("content.unit.topic.test",{
+  url: "/test/:test",
+  template: '<h3 ng-bind="test.test.title"></h3>',
+  controller: ["test",function(test){
+    this.test=test;
+  }],
+  controllerAs: "test",
+  resolve: {
+    test: ["topic","$stateParams",function(topic,$stateParams){
+      return _.find(topic.tests,{_id: $stateParams.test});
+    }]
+  }
 })
 .state("software",{
   url: "/software",
