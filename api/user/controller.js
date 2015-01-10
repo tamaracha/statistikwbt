@@ -72,7 +72,9 @@ exports.akzeptanz=function(req,res){
     }
   },
   {
-    $sort: {"_id": -1}
+    $sort: {
+      "_id": -1
+    }
   },{
     $group: {
       _id: "$name",

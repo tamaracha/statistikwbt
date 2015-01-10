@@ -1,4 +1,4 @@
-var mongoose,uniqueValidator,bcrypt,validate,ObjectId,fskSchema,ViewSchema,UserSchema,User;
+var mongoose,uniqueValidator,bcrypt,validate,ObjectId,fskSchema,UserSchema,User;
 mongoose=require("mongoose");
 Promise.promisifyAll(mongoose.Model);
 Promise.promisifyAll(mongoose.Model.prototype);
@@ -11,12 +11,6 @@ ObjectId=mongoose.Schema.Types.ObjectId
 
 fskSchema=new mongoose.Schema({
   
-});
-ViewSchema=new mongoose.Schema({
-  unit: {
-    type: ObjectId,
-    required: true
-  }
 });
 
 UserSchema=new mongoose.Schema({

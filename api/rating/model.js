@@ -27,6 +27,12 @@ RatingSchema=new mongoose.Schema({
     required: true
   },
 });
+RatingSchema.index({
+  unit: 1,
+  user: 1,
+  _id: -1,
+  name: 1
+});
 RatingSchema.post("save",function(){
   var rating=this;
   return User.findById(rating.user)
