@@ -16,7 +16,10 @@ $stateProvider.state("home",{
       return Restangular.all("units").getList();
     }]
   },
-  controller: "contentCtrl as content",
+  controller: ["units",function(units){
+    this.units=units;
+  }],
+  controllerAs: "content",
   data: {
     access: "public"
   }
@@ -30,10 +33,11 @@ $stateProvider.state("home",{
     }]
   },
   onEnter: ["Restangular","identity","unit",function(Restangular,identity,unit){
-    return Restangular.all("views").post({
-      unit: unit._id,
-      user: identity.data()._id
-    });
+    if(!identity.authenticated()){return;}
+    var post={};
+    post.unit=unit._id;
+    post.user=identity.data()._id;
+    return Restangular.all("views").post(post);
   }],
   controller: "unitCtrl as unit",
   abstract: true,
@@ -46,6 +50,14 @@ $stateProvider.state("home",{
   templateUrl: "content/unit/description/description.html",
   controller: "descriptionCtrl"
 })
+.state("content.unit.test",{
+  url: "/test",
+  templateUrl: "content/unit/test/test.html",
+  controller: ["unit",function(unit){
+    this.test=unit.test;
+  }],
+  controllerAs: "test"
+})
 .state("content.unit.topic",{
   url: "/:topic",
   templateUrl: "content/unit/topic/topic.html",
@@ -54,16 +66,17 @@ $stateProvider.state("home",{
   }],
   controllerAs: "topic",
   resolve: {
-    topic: ["unit","$stateParams",function(unit,$stateParams){
-      return _.find(unit.topics,{_id: $stateParams.topic});
+    topic: ["Restangular","$stateParams",function(Restangular,$stateParams){
+      return Restangular.one("units",$stateParams.unit).one("topics",$stateParams.topic).get();
     }]
   },
   onEnter: ["unit","topic","Restangular","identity",function(unit,topic,Restangular,identity){
-    return Restangular.all("views").post({
-      unit: unit._id,
-      topic: topic._id,
-      user: identity.data()._id
-    });
+    if(!identity.authenticated()){return;}
+    var post={};
+    post.unit=unit._id;
+    post.topic=topic._id;
+    post.user=identity.data()._id;
+    return Restangular.all("views").post(post);
   }]
 })
 .state("content.unit.topic.example",{
@@ -75,8 +88,7 @@ $stateProvider.state("home",{
   controllerAs: "example",
   resolve: {
     example: ["topic","$stateParams",function(topic,$stateParams){
-      console.log($stateParams.example,topic.title);
-      return _.find(topic.examples,{_id: $stateParams.example});
+      return _.find(topic.examples,{title: $stateParams.example});
     }]
   }
 })
@@ -89,20 +101,7 @@ $stateProvider.state("home",{
   controllerAs: "extra",
   resolve: {
     extra: ["topic","$stateParams",function(topic,$stateParams){
-      return _.find(topic.extras,{_id: $stateParams.extra});
-    }]
-  }
-})
-.state("content.unit.topic.test",{
-  url: "/test/:test",
-  template: '<h3 ng-bind="test.test.title"></h3>',
-  controller: ["test",function(test){
-    this.test=test;
-  }],
-  controllerAs: "test",
-  resolve: {
-    test: ["topic","$stateParams",function(topic,$stateParams){
-      return _.find(topic.tests,{_id: $stateParams.test});
+      return _.find(topic.extras,{title: $stateParams.extra});
     }]
   }
 })

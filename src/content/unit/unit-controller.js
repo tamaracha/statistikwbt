@@ -9,5 +9,5 @@ module.exports=/*@ngInject*/function(unit,akzeptanz){
     "stimme eher zu",
     "stimme zu"
   ];
-  akzeptanz.get();
+  akzeptanz.get(unit._id);
 };

@@ -1,12 +1,9 @@
 var mongoose,uniqueValidator,bcrypt,validate,ObjectId,fskSchema,UserSchema,User;
 mongoose=require("mongoose");
-Promise.promisifyAll(mongoose.Model);
-Promise.promisifyAll(mongoose.Model.prototype);
-Promise.promisifyAll(mongoose.Query.prototype);
 uniqueValidator=require("mongoose-unique-validator");
 bcrypt=require("bcrypt-nodejs");
 Promise.promisifyAll(bcrypt);
-validate=require("./validate");
+validate=require("../services/validate");
 ObjectId=mongoose.Schema.Types.ObjectId
 
 fskSchema=new mongoose.Schema({
@@ -71,7 +68,6 @@ UserSchema.methods.validatePassword=function(password,next){
     return next(err);
   });
 };
-UserSchema
 
 var User=mongoose.model("User",UserSchema);
 Promise.promisifyAll(User.prototype);

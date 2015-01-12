@@ -2,4 +2,4 @@ mixin rating(name,label)
   .form-group
     .col-xs-10.control-label(id="rating-"+name)=label
     .col-xs-2
-      rating(aria-labelledby="rating-"+name data-ng-model="unit.akzeptanz.summary."+name data-ng-change="unit.akzeptanz.rate('"+name+"')" aria-valuetext="{{unit.text[unit.akzeptanz.summary."+name+"]}}")
+      rating(aria-labelledby="rating-"+name data-ng-model="unit.akzeptanz.summary."+name data-ng-change="unit.akzeptanz.rate(unit.unit._id,'"+name+"')" aria-valuetext="{{unit.text[unit.akzeptanz.summary."+name+"]}}")

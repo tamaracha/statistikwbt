@@ -1,11 +1,8 @@
 var mongoose,ObjectId,User,Unit,RatingSchema,Rating;
 mongoose=require("mongoose");
-Promise.promisifyAll(mongoose.Model);
-Promise.promisifyAll(mongoose.Model.prototype);
-Promise.promisifyAll(mongoose.Query.prototype);
 ObjectId=mongoose.Schema.Types.ObjectId
-User=require("../user/model");
-Unit=require("../unit/model");
+User=require("./user");
+Unit=require("./unit");
 
 RatingSchema=new mongoose.Schema({
   unit: {

@@ -1,11 +1,8 @@
 var mongoose,ObjectId,User,Unit,ViewSchema,View;
 mongoose=require("mongoose");
-Promise.promisifyAll(mongoose.Model);
-Promise.promisifyAll(mongoose.Model.prototype);
-Promise.promisifyAll(mongoose.Query.prototype);
 ObjectId=mongoose.Schema.Types.ObjectId
-User=require("../user/model");
-Unit=require("../unit/model");
+User=require("./user");
+Unit=require("./unit");
 
 ViewSchema=new mongoose.Schema({
   unit: {
@@ -23,6 +20,7 @@ ViewSchema=new mongoose.Schema({
     ref: "user"
   }
 });
+
 ViewSchema.post("save",function(){
   var view=this;
   return User.findById(view.user)
@@ -30,8 +28,12 @@ ViewSchema.post("save",function(){
   .then(function(user){
     user.views.push(view._id);
     return user.saveAsync();
+  })
+  .catch(function(e){
+    return console.error(e.message);
   });
 });
+
 ViewSchema.post("save",function(){
   var view=this;
   return Unit.findById(view.unit)
@@ -39,8 +41,12 @@ ViewSchema.post("save",function(){
   .then(function(unit){
     unit.views.push(view._id);
     return unit.saveAsync();
+  })
+  .catch(function(e){
+    return console.error(e.message);
   });
 });
+
 View=mongoose.model("View",ViewSchema);
 Promise.promisifyAll(View.prototype);
 module.exports=View;

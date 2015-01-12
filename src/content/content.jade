@@ -1,8 +1,8 @@
 nav(role="navigation"): ul.nav.nav-pills
   li(data-ng-repeat="unit in ::content.units" data-ui-sref-active="active"): a.btn(
-    data-ui-sref=".unit.description({unit: unit._id})"
+    data-ui-sref=".unit.description({unit: unit.title})"
     data-ng-bind="::unit.title"
-    data-ng-class="{done: 'btn-success',ready: 'btn-info',unready: 'btn-warning'}[(unit._id|unitStatus:wbt.authService.user():content.units)]"
+    data-ng-class="{done: 'btn-success',ready: 'btn-info',unready: 'btn-warning'}[(unit.title|unitStatus:wbt.authService.user():content.units)]"
   )
 section.row(ui-view): .col-md-offset-3.col-md-6
   header

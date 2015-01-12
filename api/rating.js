@@ -1,6 +1,6 @@
-var Rating,e,ObjectId;
-Rating=require("./model");
-e=require("../../errors");
+var Rating,e;
+Rating=require("./models/rating");
+e=require("./errors");
 
 exports.find=function(req,res){
   return Rating.find(req.query)
@@ -12,6 +12,7 @@ exports.find=function(req,res){
     return res.sendStatus(500);
   });
 };
+
 exports.create=function(req,res){
   Rating.createAsync(req.body)
   .then(function(rating){

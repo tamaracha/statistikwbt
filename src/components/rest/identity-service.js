@@ -28,7 +28,7 @@ module.exports=/*@ngInject*/function($window,$q,Restangular){
     password=form.password;
     return $q(function(resolve,reject){
       if(!email||!password){return reject("form incomplete");}
-      return resolve(Tokens.get(email,{},{
+      return resolve(Tokens.get("login",{},{
         Authorization: email+":"+password
       })
       .then(function(result){

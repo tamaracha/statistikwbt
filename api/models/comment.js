@@ -1,11 +1,8 @@
 var mongoose,ObjectId,User,Unit,CommentSchema,Comment;
 mongoose=require("mongoose");
-Promise.promisifyAll(mongoose.Model);
-Promise.promisifyAll(mongoose.Model.prototype);
-Promise.promisifyAll(mongoose.Query.prototype);
 ObjectId=mongoose.Schema.Types.ObjectId
-User=require("../user/model");
-Unit=require("../unit/model");
+User=require("./user");
+Unit=require("./unit");
 
 CommentSchema=new mongoose.Schema({
   unit: {

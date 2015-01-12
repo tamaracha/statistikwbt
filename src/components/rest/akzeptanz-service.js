@@ -14,27 +14,25 @@ module.exports=/*@ngInject*/function(Restangular,$stateParams,identity){
   return {
     summary: summary,
     get: function(unit){
-      unit=unit||$stateParams.unit;
+      if(!identity.authenticated()){return;}
       return identity.data().one("akzeptanz",unit).get()
       .then(function(data){
         angular.extend(summary,new Summary(data));
         return data;
       });
     },
-    rate: function(name,user,unit){
-      unit=unit||$stateParams.unit;
-      user=user||identity.data()._id;
-      if(!unit||!user){return;}
+    rate: function(unit,name){
+      if(!unit||!identity.authenticated()){return;}
       return Ratings.post({
-        user: user,
+        user: identity.data()._id,
         unit: unit,
         name: name,
         value: summary[name]
       });
     },
-    comment: function(user,unit){
-      unit=unit||$stateParams.unit;
-      user=user||identity.data()._id;
+    comment: function(unit){
+      if(!identity.authenticated()){return;}
+      user=identity.data()._id;
       if(!user||!unit||!summary.comment){return;}
       return Comments.post({
         unit: unit,

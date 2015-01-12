@@ -1,4 +1,4 @@
-var https,express,app,compression,helmet,morgan,mongoose;
+var https,express,app,compression,helmet,morgan,mongoose,router;
 global._=require("lodash");
 global.Promise=require("bluebird");
 global.config=require("./config/config");
@@ -8,6 +8,9 @@ compression=require("compression");
 helmet=require("helmet");
 morgan=require("morgan")("dev");
 mongoose=require("mongoose");
+Promise.promisifyAll(mongoose.Model);
+Promise.promisifyAll(mongoose.Model.prototype);
+Promise.promisifyAll(mongoose.Query.prototype);
 app=express();
 app.disable("x-powered-by");
 app.enable("strict routing");
@@ -36,6 +39,7 @@ app.use(helmet.csp({
 }));
 app.use(helmet.frameguard("deny"));
 app.use(helmet.nosniff());
+
 app.use("/api",require("./api"));
 app.use(compression());
 app.use(
@@ -47,9 +51,8 @@ app.use(
   express.static("./public")
 );
 app.use(function(err,req,res,next){
-  if(err.status){return res.sendStatus(err.status);}
-  if(config.env==="development"){console.error(err);}
-  return res.sendStatus(500);
+  console.error(err);
+  return err.status ? res.sendStatus(err.status) : res.sendStatus(500);
 });
 mongoose.connect("mongodb://"+config.db.host+":27017/"+config.db.database);
 https.createServer(config.ssl,app).listen(config.port);

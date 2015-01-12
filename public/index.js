@@ -18468,27 +18468,25 @@ module.exports=/*@ngInject*/["Restangular", "$stateParams", "identity", function
   return {
     summary: summary,
     get: function(unit){
-      unit=unit||$stateParams.unit;
+      if(!identity.authenticated()){return;}
       return identity.data().one("akzeptanz",unit).get()
       .then(function(data){
         angular.extend(summary,new Summary(data));
         return data;
       });
     },
-    rate: function(name,user,unit){
-      unit=unit||$stateParams.unit;
-      user=user||identity.data()._id;
-      if(!unit||!user){return;}
+    rate: function(unit,name){
+      if(!unit||!identity.authenticated()){return;}
       return Ratings.post({
-        user: user,
+        user: identity.data()._id,
         unit: unit,
         name: name,
         value: summary[name]
       });
     },
-    comment: function(user,unit){
-      unit=unit||$stateParams.unit;
-      user=user||identity.data()._id;
+    comment: function(unit){
+      if(!identity.authenticated()){return;}
+      user=identity.data()._id;
       if(!user||!unit||!summary.comment){return;}
       return Comments.post({
         unit: unit,
@@ -18540,7 +18538,7 @@ module.exports=/*@ngInject*/["$window", "$q", "Restangular", function($window,$q
     password=form.password;
     return $q(function(resolve,reject){
       if(!email||!password){return reject("form incomplete");}
-      return resolve(Tokens.get(email,{},{
+      return resolve(Tokens.get("login",{},{
         Authorization: email+":"+password
       })
       .then(function(result){
@@ -18724,19 +18722,14 @@ module.exports=function(){
 	};
 };
 },{}],83:[function(require,module,exports){
-"use strict";
-module.exports=/*@ngInject*/["units", function(units){
-	this.units=units;
-}];
-},{}],84:[function(require,module,exports){
 module.exports=function(){
 
 };
-},{}],85:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 module.exports=/*@ngInject*/["topic", function(topic){
   this.topic=topic;
 }];
-},{}],86:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 module.exports=/*@ngInject*/["unit", "akzeptanz", function(unit,akzeptanz){
   this.unit=unit;
   this.akzeptanz=akzeptanz;
@@ -18748,13 +18741,13 @@ module.exports=/*@ngInject*/["unit", "akzeptanz", function(unit,akzeptanz){
     "stimme eher zu",
     "stimme zu"
   ];
-  akzeptanz.get();
+  akzeptanz.get(unit._id);
 }];
-},{}],87:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 module.exports=/*@ngInject*/function(){
 	this.format="rtf";
 };
-},{}],88:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 (function (global){
 /*jshint browserify: true, devel: true */
 "use strict";
@@ -18773,7 +18766,6 @@ module.exports=angular.module("wbt",[
 ])
 .config(require("./wbt-config"))
 .controller("wbtCtrl",require("./wbt-controller"))
-.controller("contentCtrl",require("./content/content-controller"))
 .controller("unitCtrl",require("./content/unit/unit-controller"))
 .controller("descriptionCtrl",require("./content/unit/description/description-controller"))
 .controller("topicCtrl",require("./content/unit/topic/topic-controller"))
@@ -18788,7 +18780,7 @@ module.exports=angular.module("wbt",[
 }])
 .name;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./components/d3":66,"./components/mathjax":67,"./components/remarkable":70,"./components/rest":76,"./components/ui":79,"./content/content-controller":83,"./content/unit/description/description-controller":84,"./content/unit/topic/topic-controller":85,"./content/unit/unit-controller":86,"./download/download-controller":87,"./login/login-controller":89,"./register/register-controller":90,"./user/user-controller":91,"./wbt-config":92,"./wbt-controller":93,"angular-bootstrap":62,"angular-ui-router":1}],89:[function(require,module,exports){
+},{"./components/d3":66,"./components/mathjax":67,"./components/remarkable":70,"./components/rest":76,"./components/ui":79,"./content/unit/description/description-controller":83,"./content/unit/topic/topic-controller":84,"./content/unit/unit-controller":85,"./download/download-controller":86,"./login/login-controller":88,"./register/register-controller":89,"./user/user-controller":90,"./wbt-config":91,"./wbt-controller":92,"angular-bootstrap":62,"angular-ui-router":1}],88:[function(require,module,exports){
 module.exports=/*@ngInject*/["identity", function(identity){
   this.loginData={};
   this.login=function(form){
@@ -18796,7 +18788,7 @@ module.exports=/*@ngInject*/["identity", function(identity){
     .then(identity.get);
   };
 }];
-},{}],90:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 module.exports=function(identity){
   this.registerData={};
   this.register=function(form){
@@ -18811,11 +18803,11 @@ module.exports=function(identity){
     .catch(identity.inauthenticate);
   };
 };
-},{}],91:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 "use strict";
 module.exports=function(){
 };
-},{}],92:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 module.exports=/*@ngInject*/["$stateProvider", "$urlRouterProvider", "$locationProvider", "$compileProvider", function($stateProvider,$urlRouterProvider,$locationProvider,$compileProvider){
   $locationProvider.html5Mode(true);
   $compileProvider.debugInfoEnabled(false);
@@ -18834,7 +18826,10 @@ $stateProvider.state("home",{
       return Restangular.all("units").getList();
     }]
   },
-  controller: "contentCtrl as content",
+  controller: ["units",function(units){
+    this.units=units;
+  }],
+  controllerAs: "content",
   data: {
     access: "public"
   }
@@ -18848,10 +18843,11 @@ $stateProvider.state("home",{
     }]
   },
   onEnter: ["Restangular","identity","unit",function(Restangular,identity,unit){
-    return Restangular.all("views").post({
-      unit: unit._id,
-      user: identity.data()._id
-    });
+    if(!identity.authenticated()){return;}
+    var post={};
+    post.unit=unit._id;
+    post.user=identity.data()._id;
+    return Restangular.all("views").post(post);
   }],
   controller: "unitCtrl as unit",
   abstract: true,
@@ -18864,6 +18860,14 @@ $stateProvider.state("home",{
   templateUrl: "content/unit/description/description.html",
   controller: "descriptionCtrl"
 })
+.state("content.unit.test",{
+  url: "/test/",
+  templateUrl: "content/unit/test/test.html",
+  controller: ["unit",function(unit){
+    this.test=unit.test;
+  }],
+  controllerAs: "test"
+})
 .state("content.unit.topic",{
   url: "/:topic",
   templateUrl: "content/unit/topic/topic.html",
@@ -18872,16 +18876,17 @@ $stateProvider.state("home",{
   }],
   controllerAs: "topic",
   resolve: {
-    topic: ["unit","$stateParams",function(unit,$stateParams){
-      return _.find(unit.topics,{_id: $stateParams.topic});
+    topic: ["Restangular","$stateParams",function(Restangular,$stateParams){
+      return Restangular.one("units",$stateParams.unit).one("topics",$stateParams.topic).get();
     }]
   },
   onEnter: ["unit","topic","Restangular","identity",function(unit,topic,Restangular,identity){
-    return Restangular.all("views").post({
-      unit: unit._id,
-      topic: topic._id,
-      user: identity.data()._id
-    });
+    if(!identity.authenticated()){return;}
+    var post={};
+    post.unit=unit._id;
+    post.topic=topic._id;
+    post.user=identity.data()._id;
+    return Restangular.all("views").post(post);
   }]
 })
 .state("content.unit.topic.example",{
@@ -18893,8 +18898,7 @@ $stateProvider.state("home",{
   controllerAs: "example",
   resolve: {
     example: ["topic","$stateParams",function(topic,$stateParams){
-      console.log($stateParams.example,topic.title);
-      return _.find(topic.examples,{_id: $stateParams.example});
+      return _.find(topic.examples,{title: $stateParams.example});
     }]
   }
 })
@@ -18907,20 +18911,7 @@ $stateProvider.state("home",{
   controllerAs: "extra",
   resolve: {
     extra: ["topic","$stateParams",function(topic,$stateParams){
-      return _.find(topic.extras,{_id: $stateParams.extra});
-    }]
-  }
-})
-.state("content.unit.topic.test",{
-  url: "/test/:test",
-  template: '<h3 ng-bind="test.test.title"></h3>',
-  controller: ["test",function(test){
-    this.test=test;
-  }],
-  controllerAs: "test",
-  resolve: {
-    test: ["topic","$stateParams",function(topic,$stateParams){
-      return _.find(topic.tests,{_id: $stateParams.test});
+      return _.find(topic.extras,{title: $stateParams.extra});
     }]
   }
 })
@@ -18972,7 +18963,7 @@ $stateProvider.state("home",{
 });
   $urlRouterProvider.otherwise("/home");
 }];
-},{}],93:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 module.exports=/*@ngInject*/["$state", "$stateParams", "identity", function($state,$stateParams,identity){
   this.$state=$state;
   this.$stateParams=$stateParams;
@@ -18981,4 +18972,4 @@ module.exports=/*@ngInject*/["$state", "$stateParams", "identity", function($sta
   .then(identity.get)
   .catch(identity.inauthenticate);
 }];
-},{}]},{},[88]);
+},{}]},{},[87]);

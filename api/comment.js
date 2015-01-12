@@ -1,6 +1,6 @@
 var Comment,e;
-Comment=require("./model");
-e=require("../../errors");
+Comment=require("./models/comment");
+e=require("./errors");
 
 exports.create=function(req,res){
   return Comment.createAsync(req.body)

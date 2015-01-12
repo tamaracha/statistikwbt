@@ -1,10 +1,12 @@
+_id: 5493aa9a45ac10a752054072
 position: 1
 title: Deskriptive Statistik
 subtitle: Daten beschreiben und zusammenfassen
 description: |
   Ein Wust an frisch gemessenen Daten liegt vor dir. Auf den ersten Blick sagen sie uns nicht viel. Hier greift aber die deskriptive Statistik, mit deren Hilfe wir Messdaten auf ihre zentralen Eigenschaften reduzieren können. Berechnete Werte, die eine solche Eigenschaft ausdrücken, werden im Allgemeinen als Kennwerte bezeichnet. Es geht hier darum, sich einen Überblick über die Daten zu verschaffen. Falls du das bereits gut kannst, wirst du mit den anderen Lerneinheiten wahrscheinlich wenig Probleme haben. Deskriptive Statistik ist nicht allzu schwierig, legt aber die Basis für die übrige Statistik. Falls dir das Thema nicht so recht geläufig ist, bist du in dieser Einheit genau richtig.
 topics:
-  - title: Zentrale Tendenz
+  - _id: 54afbff1228872eb3238e6a6
+    title: Zentrale Tendenz
     body: |
       Messwerte haben i.d.R. Extremwerte und sind um einen Mittelwert herum gelagert. Außerdem gibt es oft eine Tendenz zur Mitte hin, wonach Werte aus diesem mittleren Bereich besonders häufig auftreten. Es gibt verschiedene statistische Kennwerte, die diesen Mittelwert als Zahl ausdrücken, nämlich die maße der zentralen Tendenz oder auch Lagemaße. Sie unterscheiden sich sehr darin, wie der mittelwert bestimmt wird und für welche Situationen sie geeignet sind.
       
@@ -54,7 +56,8 @@ topics:
           2. nächsten Wert zur Summe addieren, Anzahl bisher addierter Summanden im Sinn
           3. letzten Wert zur Summe addieren, Anzahl bisher addierter Summanden entspricht Gesamtanzahl der Werte
     tests:
-  - title: Streuung
+  - _id: 54afbff1228872eb3238e6a5
+    title: Streuung
     body: |
       Die zentrale Tendenz allein sagt uns noch nicht, wie die Werte einer Stichprobe um den Mittelwert gelagert sind. Das heißt, der Mittelwert könnte z.B. dadurch zustandekommen, dass die meisten Werte dem Mittelwert entsprechen oder knapp darüber/darunter liegen. Aber es kann auch sein, dass sehr verschiedene Werte auftreten, die teilweise weit vom Mittelwert entfernt liegen. Dieses Merkmal einer Stichprobe wird Streuung genannt. Je größer die Streuung, desto breiter variieren die Werte um den Mittelwert herum. Gäbe es keine Streuung, wären alle Messwerte gleich dem Mittelwert. Auch hierfür gibt es einige Kennwerte, die die Streuung ausdrücken.
       
@@ -89,7 +92,8 @@ topics:
     examples:
     extras:
     tests:
-  - title: Grafische Darstellung
+  - _id: 54afbff1228872eb3238e6a4
+    title: Grafische Darstellung
     subtitle: Boxplot
     body: |
       Eine graphische Darstellung zu den kennengelernten Werten bietet das Boxplots. Das Boxplot fasst die Quartile übersichtlich zusammen und gibt einen Überblick zu zentraler Tendenz (Median) und Streuung (Interquartilsabstand).
