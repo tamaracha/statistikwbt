@@ -2,12 +2,13 @@ include ../../../mixins/rating
 include ../../../mixins/text-input
 
 .modal-header
-  h3.modal-title Lerneinheit bewerten
+  h3.modal-title Kapitel bewerten
 .modal-body
+  p Stufe die folgenden drei Aussagen mittels der Sternchen ein (1 Stern: trifft nicht auf mich zu, 5 Sterne: trifft voll auf mich zu). Du kannst deine Wertungen beliebig oft ändern.
   form.form-horizontal(name="ratingForm" novalidate)
-    +rating("motivation","Die Arbeit mit dem WBT war absolut unmotivierend und ich hatte irgendwann kein Bock mehr.")
-    +rating("success","Dabei habe ich überhaupt nichts gelernt und bin noch dümmer geworden.")
-    +rating("usability","Die seite war unbedienbar und chaotisch, kein Mensch kam damit klar.")
+    +rating("motivation","Die Bearbeitung dieses Kapitels war für mich sehr motivierend, weiterzumachen viel mir leicht.")
+    +rating("success","Ich habe das Gefühl, einiges über das thema dazugelernt zu haben.")
+    +rating("usability","Die Webseite lässt sich gut bedienen und es ist klar, was ich als nächstes tun soll.")
     +text-input("comment","Kommentar",true)(data-ng-model="akzeptanz.summary.comment" placeholder="Ergänzungen, Kritik oder Anmerkungen, die du noch loswerden möchtest")
 .modal-footer
   button.btn.btn-primary(

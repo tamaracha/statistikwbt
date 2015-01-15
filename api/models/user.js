@@ -1,6 +1,5 @@
-var mongoose,uniqueValidator,bcrypt,validate,ObjectId,fskSchema,UserSchema,User;
+var mongoose,bcrypt,validate,ObjectId,fskSchema,UserSchema,User;
 mongoose=require("mongoose");
-uniqueValidator=require("mongoose-unique-validator");
 bcrypt=require("bcrypt-nodejs");
 Promise.promisifyAll(bcrypt);
 validate=require("../services/validate");
