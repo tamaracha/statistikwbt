@@ -26,4 +26,7 @@ module.exports=/*@ngInject*/function(unit,summary,Restangular,$modalInstance){
     }
     return $modalInstance.close(comment);
   };
+  this.cancel=function(){
+    return $modalInstance.dismiss("cancel");
+  };
 };

@@ -18759,6 +18759,9 @@ module.exports=/*@ngInject*/["unit", "summary", "Restangular", "$modalInstance",
     }
     return $modalInstance.close(comment);
   };
+  this.cancel=function(){
+    return $modalInstance.dismiss("cancel");
+  };
 }];
 },{}],84:[function(require,module,exports){
 module.exports=function(){
