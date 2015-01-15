@@ -89,7 +89,12 @@ exports.akzeptanz=function(req,res){
     }
   }])
   .then(function(ratings){
-    var data={};
+    var data={
+      motivation: 0,
+      success: 0,
+      usability: 0,
+      comment ""
+    };
     if(ratings){
       _.forEach(ratings,function(rating){
         data[rating._id]=rating.value;
