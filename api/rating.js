@@ -14,6 +14,8 @@ exports.find=function(req,res){
 };
 
 exports.create=function(req,res){
+  var rating=req.body;
+  rating.user=req.user._id;
   Rating.createAsync(req.body)
   .then(function(rating){
     return res.sendStatus(200);

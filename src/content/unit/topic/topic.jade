@@ -1,6 +1,3 @@
-include ../../../mixins/rating
-include ../../../mixins/text-input
-include ../../../mixins/submit
 h3(data-ng-bind="topic.topic|title")
 div(md="topic.topic.body" mathjax)
 .btn-toolbar(role="toolbar")
@@ -20,13 +17,5 @@ div(md="topic.topic.body" mathjax)
         li(data-ng-repeat="extra in topic.topic.extras")
           a.btn.btn-default(data-ui-sref=".extra({extra: extra.title})" data-ng-bind="extra.title")
   .btn-group(data-ng-if="wbt.identity.authenticated()")
-    button.btn.btn-default(type="button" ng-click="unit.rating=!unit.rating" aria-expanded="{{!!unit.rating}}" data-ng-bind="unit.rated ? 'erneut bewerten': 'Lerneinheit bewerten'")
+    button.btn.btn-default(type="button" ng-click="unit.getAkzeptanz()") Lerneinheit bewerten
 section(data-ui-view)
-section(collapse="!unit.rating")
-  h3 Lerneinheit bewerten?
-  form.form-horizontal(name="ratingForm" novalidate data-ng-submit="unit.akzeptanz.comment(unit.unit._id)")
-    +rating("motivation","Die Arbeit mit dem WBT war absolut unmotivierend und ich hatte irgendwann kein Bock mehr.")
-    +rating("success","Dabei habe ich überhaupt nichts gelernt und bin noch dümmer geworden.")
-    +rating("usability","Die seite war unbedienbar und chaotisch, kein Mensch kam damit klar.")
-    +text-input("comment","Kommentar",true)(data-ng-model="unit.akzeptanz.summary.comment" placeholder="Ergänzungen, Kritik oder Anmerkungen, die du noch loswerden möchtest")
-    +submit("Kommentar abschicken")

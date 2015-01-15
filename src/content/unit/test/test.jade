@@ -1,1 +1,6 @@
+include ../../../mixins/submit
+
 h3 Test
+form(novalidate name="testForm" data-ng-submit="test.submit(test.items)")
+  test-item(data-ng-repeat="item in test.items" item="item" form="testForm")
+  +submit("Auswertung")

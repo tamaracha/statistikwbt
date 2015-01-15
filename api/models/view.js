@@ -14,9 +14,12 @@ ViewSchema=new mongoose.Schema({
     type: ObjectId,
     ref: "unit.topic"
   },
+  authenticated: {
+    type: Boolean,
+    default: false
+  },
   user: {
     type: ObjectId,
-    required: true,
     ref: "user"
   }
 });

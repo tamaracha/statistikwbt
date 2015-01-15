@@ -1,13 +1,18 @@
-module.exports=/*@ngInject*/function(unit,akzeptanz){
+module.exports=/*@ngInject*/function(unit,$modal,Restangular,identity){
+  var comments=Restangular.all("comments");
   this.unit=unit;
-  this.akzeptanz=akzeptanz;
-  this.text=[
-    "keine Antwort",
-    "stimme nicht zu",
-    "stimme weniger zu",
-    "stimme teilweise zu",
-    "stimme eher zu",
-    "stimme zu"
-  ];
-  akzeptanz.get(unit._id);
+  this.getAkzeptanz=function(){
+    var akzeptanzModal=$modal.open({
+      templateUrl: "content/unit/akzeptanz/akzeptanz.html",
+      controller: "akzeptanzCtrl",
+      controllerAs: "akzeptanz",
+      resolve: {
+        unit: function(){return unit;},
+        summary: function(){return identity.data().one("akzeptanz",unit._id).get();}
+      }
+    });
+    akzeptanzModal.result.then(function(comment){
+      return comments.post(comment);
+    });
+  };
 };

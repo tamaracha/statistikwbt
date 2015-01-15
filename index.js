@@ -24,7 +24,8 @@ app.use(helmet.csp({
     "'self'",
     "https://ajax.googleapis.com",
     "https://cdnjs.cloudflare.com",
-    "https://cdn.mathjax.org"
+    "https://cdn.mathjax.org",
+    "'unsafe-inline'"
   ],
   styleSrc: [
     "'self'",

@@ -32,12 +32,8 @@ $stateProvider.state("home",{
       return Restangular.one("units",$stateParams.unit).get();
     }]
   },
-  onEnter: ["Restangular","identity","unit",function(Restangular,identity,unit){
-    if(!identity.authenticated()){return;}
-    var post={};
-    post.unit=unit._id;
-    post.user=identity.data()._id;
-    return Restangular.all("views").post(post);
+  onEnter: ["Restangular","unit",function(Restangular,unit){
+    return Restangular.all("views").post({unit: unit._id});
   }],
   controller: "unitCtrl as unit",
   abstract: true,
@@ -53,9 +49,12 @@ $stateProvider.state("home",{
 .state("content.unit.test",{
   url: "/test",
   templateUrl: "content/unit/test/test.html",
-  controller: ["unit",function(unit){
-    this.test=unit.test;
-  }],
+  resolve: {
+    items: ["Restangular","$stateParams",function(Restangular,$stateParams){
+      return Restangular.one("units",$stateParams.unit).all("tests").getList();
+    }]
+  },
+  controller: "testCtrl",
   controllerAs: "test"
 })
 .state("content.unit.topic",{
@@ -70,13 +69,11 @@ $stateProvider.state("home",{
       return Restangular.one("units",$stateParams.unit).one("topics",$stateParams.topic).get();
     }]
   },
-  onEnter: ["unit","topic","Restangular","identity",function(unit,topic,Restangular,identity){
-    if(!identity.authenticated()){return;}
-    var post={};
-    post.unit=unit._id;
-    post.topic=topic._id;
-    post.user=identity.data()._id;
-    return Restangular.all("views").post(post);
+  onEnter: ["unit","topic","Restangular",function(unit,topic,Restangular){
+    return Restangular.all("views").post({
+      unit: unit._id,
+      topic: topic._id
+    });
   }]
 })
 .state("content.unit.topic.example",{

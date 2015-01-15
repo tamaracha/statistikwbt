@@ -18452,62 +18452,16 @@ module.exports=function remarkableProvider(){
   }];
 };
 },{}],73:[function(require,module,exports){
-module.exports=/*@ngInject*/["Restangular", "$stateParams", "identity", function(Restangular,$stateParams,identity){
-  var Ratings,Comments,Summary,summary;
-  Ratings=Restangular.all("ratings");
-  Comments=Restangular.all("comments");
-  Summary=function(data){
-    this.motivation=0;
-    this.success=0;
-    this.usability=0;
-    this.comment="";
-    if(data){angular.extend(this,data);}
-  };
-  summary=new Summary();
-
-  return {
-    summary: summary,
-    get: function(unit){
-      if(!identity.authenticated()){return;}
-      return identity.data().one("akzeptanz",unit).get()
-      .then(function(data){
-        angular.extend(summary,new Summary(data));
-        return data;
-      });
-    },
-    rate: function(unit,name){
-      if(!unit||!identity.authenticated()){return;}
-      return Ratings.post({
-        user: identity.data()._id,
-        unit: unit,
-        name: name,
-        value: summary[name]
-      });
-    },
-    comment: function(unit){
-      if(!identity.authenticated()){return;}
-      user=identity.data()._id;
-      if(!user||!unit||!summary.comment){return;}
-      return Comments.post({
-        unit: unit,
-        user: user,
-        value: summary.comment
-      });
-    }
-  };
+module.exports=/*@ngInject*/["Restangular", "$window", function(Restangular,$window){
+  Restangular.addFullRequestInterceptor(function(el,op,what,url,headers){
+    if(headers.Authorization){return;}
+    var token=$window.localStorage.getItem("authToken");
+    if(!token){return;}
+    headers.Authorization="Bearer "+token;
+    return {headers: headers};
+  });
 }];
 },{}],74:[function(require,module,exports){
-"use strict";
-module.exports=/*@ngInject*/["Restangular", "$window", function(Restangular,$window){
-	Restangular.addFullRequestInterceptor(function(el,op,what,url,headers){
-		if(headers.Authorization){return;}
-		var token=$window.localStorage.getItem("authToken");
-		if(!token){return;}
-		headers.Authorization="Bearer "+token;
-		return {headers: headers};
-	});
-}];
-},{}],75:[function(require,module,exports){
 module.exports=/*@ngInject*/["$window", "$q", "Restangular", function($window,$q,Restangular){
   var Users,Tokens,_id,_token,_authenticated,_data;
   Users=Restangular.all("users");
@@ -18599,22 +18553,77 @@ module.exports=/*@ngInject*/["$window", "$q", "Restangular", function($window,$q
     create: create
   };
 }];
-},{}],76:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 (function (global){
 var angular=(typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null);
 module.exports=angular.module("rest",["restangular"])
 .config(["RestangularProvider", function(RestangularProvider){
   RestangularProvider.setBaseUrl("/api");
   RestangularProvider.setRestangularFields({id: "_id"});
+  RestangularProvider.extendCollection("tests",function(collection){
+    collection.aggregate=function(){
+      var posts=[];
+      _.forEach(collection,function(model){
+        var post={};
+        post.item=model._id;
+        post.response={};
+        switch(model.type){
+          case "single":
+            post.response.single=model.selected._id;
+            break;
+          case "multiple":
+            post.response.multiple=[];
+            _.forEach(model.choices,function(choice){
+              if(choice.selected){post.response.multiple.push(choice._id);}
+            });
+            break;
+        }
+        posts.push(post);
+      });
+      return posts;
+    };
+    return collection;
+  });
 }])
 .run(require("./auth-interceptor"))
 .factory("identity",require("./identity-service"))
-.factory("akzeptanz",require("./akzeptanz-service"))
 .directive("userAvailable",require("./user-available-validator"))
 .directive("userExists",require("./user-exists-validator"))
+.directive("testItem",require("./test-item-directive"))
 .name;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./akzeptanz-service":73,"./auth-interceptor":74,"./identity-service":75,"./user-available-validator":77,"./user-exists-validator":78}],77:[function(require,module,exports){
+},{"./auth-interceptor":73,"./identity-service":74,"./test-item-directive":76,"./user-available-validator":77,"./user-exists-validator":78}],76:[function(require,module,exports){
+module.exports=/*@ngInject*/function(){
+  return {
+    scope: {
+      item: "=",
+      form: "="
+    },
+    template: '<ng-include src="template"/>',
+    link: function(scope){
+      var type="";
+      switch(scope.item.type){
+        case "single":
+          type="single-choice";
+          break;
+        case "multiple":
+          type="multiple-choice";
+          break;
+        case "fill":
+          type="fill";
+          break;
+        case "reflect":
+          type="reflect";
+          break;
+        default:
+          type="single-choice";
+          break;
+      }
+      scope.template="components/rest/"+type+".html"
+    }
+  };
+};
+},{}],77:[function(require,module,exports){
 "use strict";
 module.exports=/*@ngInject*/["$q", "Restangular", function($q,Restangular){return{
   require: "ngModel",
@@ -18722,18 +18731,12 @@ module.exports=function(){
 	};
 };
 },{}],83:[function(require,module,exports){
-module.exports=function(){
-
-};
-},{}],84:[function(require,module,exports){
-module.exports=/*@ngInject*/["topic", function(topic){
-  this.topic=topic;
-}];
-},{}],85:[function(require,module,exports){
-module.exports=/*@ngInject*/["unit", "akzeptanz", function(unit,akzeptanz){
-  this.unit=unit;
-  this.akzeptanz=akzeptanz;
-  this.text=[
+module.exports=/*@ngInject*/["unit", "summary", "Restangular", "$modalInstance", function(unit,summary,Restangular,$modalInstance){
+  var self,ratings;
+  self=this;
+  ratings=Restangular.all("ratings");
+  this.summary=summary;
+  this.labels=[
     "keine Antwort",
     "stimme nicht zu",
     "stimme weniger zu",
@@ -18741,13 +18744,65 @@ module.exports=/*@ngInject*/["unit", "akzeptanz", function(unit,akzeptanz){
     "stimme eher zu",
     "stimme zu"
   ];
-  akzeptanz.get(unit._id);
+  this.rate=function(name){
+    var post={
+      unit: unit._id,
+      name: name,
+      value: self.summary[name]
+    };
+    return ratings.post(post);
+  };
+  this.ok=function(){
+    var comment={
+      unit: unit._id,
+      value: self.summary.comment
+    }
+    return $modalInstance.close(comment);
+  };
+}];
+},{}],84:[function(require,module,exports){
+module.exports=function(){
+
+};
+},{}],85:[function(require,module,exports){
+module.exports=/*@ngInject*/["items", "unit", "Restangular", "identity", function(items,unit,Restangular,identity){
+  this.items=items;
+  this.submit=function(items){
+    var posts=items.aggregate();
+    return Restangular.all("exams").post({
+      unit: unit._id,
+      items: posts
+    });
+  };
 }];
 },{}],86:[function(require,module,exports){
+module.exports=/*@ngInject*/["topic", function(topic){
+  this.topic=topic;
+}];
+},{}],87:[function(require,module,exports){
+module.exports=/*@ngInject*/["unit", "$modal", "Restangular", "identity", function(unit,$modal,Restangular,identity){
+  var comments=Restangular.all("comments");
+  this.unit=unit;
+  this.getAkzeptanz=function(){
+    var akzeptanzModal=$modal.open({
+      templateUrl: "content/unit/akzeptanz/akzeptanz.html",
+      controller: "akzeptanzCtrl",
+      controllerAs: "akzeptanz",
+      resolve: {
+        unit: function(){return unit;},
+        summary: function(){return identity.data().one("akzeptanz",unit._id).get();}
+      }
+    });
+    akzeptanzModal.result.then(function(comment){
+      return comments.post(comment);
+    });
+  };
+}];
+},{}],88:[function(require,module,exports){
 module.exports=/*@ngInject*/function(){
 	this.format="rtf";
 };
-},{}],87:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 (function (global){
 /*jshint browserify: true, devel: true */
 "use strict";
@@ -18769,6 +18824,8 @@ module.exports=angular.module("wbt",[
 .controller("unitCtrl",require("./content/unit/unit-controller"))
 .controller("descriptionCtrl",require("./content/unit/description/description-controller"))
 .controller("topicCtrl",require("./content/unit/topic/topic-controller"))
+.controller("testCtrl",require("./content/unit/test/test-controller"))
+.controller("akzeptanzCtrl",require("./content/unit/akzeptanz/akzeptanz-controller"))
 .controller("downloadCtrl",require("./download/download-controller"))
 .controller("userCtrl",require("./user/user-controller"))
 .controller("loginCtrl",require("./login/login-controller"))
@@ -18780,7 +18837,7 @@ module.exports=angular.module("wbt",[
 }])
 .name;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./components/d3":66,"./components/mathjax":67,"./components/remarkable":70,"./components/rest":76,"./components/ui":79,"./content/unit/description/description-controller":83,"./content/unit/topic/topic-controller":84,"./content/unit/unit-controller":85,"./download/download-controller":86,"./login/login-controller":88,"./register/register-controller":89,"./user/user-controller":90,"./wbt-config":91,"./wbt-controller":92,"angular-bootstrap":62,"angular-ui-router":1}],88:[function(require,module,exports){
+},{"./components/d3":66,"./components/mathjax":67,"./components/remarkable":70,"./components/rest":75,"./components/ui":79,"./content/unit/akzeptanz/akzeptanz-controller":83,"./content/unit/description/description-controller":84,"./content/unit/test/test-controller":85,"./content/unit/topic/topic-controller":86,"./content/unit/unit-controller":87,"./download/download-controller":88,"./login/login-controller":90,"./register/register-controller":91,"./user/user-controller":92,"./wbt-config":93,"./wbt-controller":94,"angular-bootstrap":62,"angular-ui-router":1}],90:[function(require,module,exports){
 module.exports=/*@ngInject*/["identity", function(identity){
   this.loginData={};
   this.login=function(form){
@@ -18788,7 +18845,7 @@ module.exports=/*@ngInject*/["identity", function(identity){
     .then(identity.get);
   };
 }];
-},{}],89:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 module.exports=function(identity){
   this.registerData={};
   this.register=function(form){
@@ -18803,11 +18860,11 @@ module.exports=function(identity){
     .catch(identity.inauthenticate);
   };
 };
-},{}],90:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 "use strict";
 module.exports=function(){
 };
-},{}],91:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
 module.exports=/*@ngInject*/["$stateProvider", "$urlRouterProvider", "$locationProvider", "$compileProvider", function($stateProvider,$urlRouterProvider,$locationProvider,$compileProvider){
   $locationProvider.html5Mode(true);
   $compileProvider.debugInfoEnabled(false);
@@ -18842,12 +18899,8 @@ $stateProvider.state("home",{
       return Restangular.one("units",$stateParams.unit).get();
     }]
   },
-  onEnter: ["Restangular","identity","unit",function(Restangular,identity,unit){
-    if(!identity.authenticated()){return;}
-    var post={};
-    post.unit=unit._id;
-    post.user=identity.data()._id;
-    return Restangular.all("views").post(post);
+  onEnter: ["Restangular","unit",function(Restangular,unit){
+    return Restangular.all("views").post({unit: unit._id});
   }],
   controller: "unitCtrl as unit",
   abstract: true,
@@ -18861,11 +18914,14 @@ $stateProvider.state("home",{
   controller: "descriptionCtrl"
 })
 .state("content.unit.test",{
-  url: "/test/",
+  url: "/test",
   templateUrl: "content/unit/test/test.html",
-  controller: ["unit",function(unit){
-    this.test=unit.test;
-  }],
+  resolve: {
+    items: ["Restangular","$stateParams",function(Restangular,$stateParams){
+      return Restangular.one("units",$stateParams.unit).all("tests").getList();
+    }]
+  },
+  controller: "testCtrl",
   controllerAs: "test"
 })
 .state("content.unit.topic",{
@@ -18880,13 +18936,11 @@ $stateProvider.state("home",{
       return Restangular.one("units",$stateParams.unit).one("topics",$stateParams.topic).get();
     }]
   },
-  onEnter: ["unit","topic","Restangular","identity",function(unit,topic,Restangular,identity){
-    if(!identity.authenticated()){return;}
-    var post={};
-    post.unit=unit._id;
-    post.topic=topic._id;
-    post.user=identity.data()._id;
-    return Restangular.all("views").post(post);
+  onEnter: ["unit","topic","Restangular",function(unit,topic,Restangular){
+    return Restangular.all("views").post({
+      unit: unit._id,
+      topic: topic._id
+    });
   }]
 })
 .state("content.unit.topic.example",{
@@ -18963,7 +19017,7 @@ $stateProvider.state("home",{
 });
   $urlRouterProvider.otherwise("/home");
 }];
-},{}],92:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 module.exports=/*@ngInject*/["$state", "$stateParams", "identity", function($state,$stateParams,identity){
   this.$state=$state;
   this.$stateParams=$stateParams;
@@ -18972,4 +19026,4 @@ module.exports=/*@ngInject*/["$state", "$stateParams", "identity", function($sta
   .then(identity.get)
   .catch(identity.inauthenticate);
 }];
-},{}]},{},[87]);
+},{}]},{},[89]);

@@ -3,7 +3,9 @@ Comment=require("./models/comment");
 e=require("./errors");
 
 exports.create=function(req,res){
-  return Comment.createAsync(req.body)
+  comment=req.body;
+  comment.user=req.user._id;
+  return Comment.createAsync(comment)
   .then(function(comment){
     return res.json(comment);
   })

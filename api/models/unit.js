@@ -16,7 +16,11 @@ UnitSchema=new mongoose.Schema({
   },
   requires: [String],
   topics: [require("./topic").schema],
-  tests: [require("./test").schema]
+  tests: {
+    inputs: [require("./input").schema],
+    singleChoices: [require("./single-choice").schema],
+    multipleChoices: [require("./multiple-choice").schema]
+  },
   akzeptanz: {
     ratings: [{
       type: ObjectId,

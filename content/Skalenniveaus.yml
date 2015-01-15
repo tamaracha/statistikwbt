@@ -114,3 +114,34 @@ topics:
     title: Absolutskala
     body: |
       Die Absolutskala hat kein künstlich definiertes Intervall mehr, sondern ein natürliches. Die empirischen Größenunterschiede entsprechen genau denen der Zahlen. Als Faustregel gesagt ist alles absolutskaliert, was sich einfach zählen lässt, ohne dass dabei eine Maßeinheit von belang wäre. Das Interessante an der Absolutskala ist, dass man Messwerte aus unterschiedlichen Merkmalen miteinander vergleichen kann. Ein ähnlicher Effekt wird auch bei der Z-Transformation und der Standardnormalverteilung ausgenutzt.
+tests:
+  - _id: 54b3e496bbc6ca306ba0e001
+    text: Was ist eine Prokrastinationsrationalisierungsleber?
+    type: multiple
+    choices:
+      - _id: 54b3e4dfbbc6ca306ba0e002
+        text: etwas, das bei Psychologiestudenten entsteht, wenn sie zu viel studieren
+        correct: true
+        feedback:
+          correct: Enemene Mei
+          incorrect: und raus bist du
+      - _id: 54b3e51bbbc6ca306ba0e003
+        text: etwas, das bei jedem Studenten entsteht
+        feedback:
+          incorrect: lol
+          correct: rofl
+      - _id: 54b3e56bbbc6ca306ba0e004
+        text: ein Organ, das nur Meeressäuger besitzen
+        feedback:
+          incorrect: Mach lieber ein Jodeldiplom
+          correct: blub
+  - text: Was solltest du tun, wenn dir Bibi Blocksberg dein Pausenbrot weghext?
+    type: single
+    choices:
+      - text: Harry Potter bei Ebay versteigern
+        correct: true
+        feedback: Investment-Punk
+      - text: ihr einen Noceboeffekt induzieren
+        feedback: hexhex
+      - text: Mahnwachen gegen Mundraub einberufen
+        feedback: viel Spaß

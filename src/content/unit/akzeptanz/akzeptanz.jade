@@ -1,0 +1,20 @@
+include ../../../mixins/rating
+include ../../../mixins/text-input
+
+.modal-header
+  h3.modal-title Lerneinheit bewerten
+.modal-body
+  form.form-horizontal(name="ratingForm" novalidate)
+    +rating("motivation","Die Arbeit mit dem WBT war absolut unmotivierend und ich hatte irgendwann kein Bock mehr.")
+    +rating("success","Dabei habe ich überhaupt nichts gelernt und bin noch dümmer geworden.")
+    +rating("usability","Die seite war unbedienbar und chaotisch, kein Mensch kam damit klar.")
+    +text-input("comment","Kommentar",true)(data-ng-model="akzeptanz.summary.comment" placeholder="Ergänzungen, Kritik oder Anmerkungen, die du noch loswerden möchtest")
+.modal-footer
+  button.btn.btn-primary(
+    type="button"
+    data-ng-click="akzeptanz.ok()"
+  ) Kommentar abschicken
+  button.btn.btn-default(
+    type="button"
+    data-ng-click="akzeptanz.$dismiss('cancel')"
+  ) abbrechen

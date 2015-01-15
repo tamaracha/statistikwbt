@@ -18,6 +18,8 @@ module.exports=angular.module("wbt",[
 .controller("unitCtrl",require("./content/unit/unit-controller"))
 .controller("descriptionCtrl",require("./content/unit/description/description-controller"))
 .controller("topicCtrl",require("./content/unit/topic/topic-controller"))
+.controller("testCtrl",require("./content/unit/test/test-controller"))
+.controller("akzeptanzCtrl",require("./content/unit/akzeptanz/akzeptanz-controller"))
 .controller("downloadCtrl",require("./download/download-controller"))
 .controller("userCtrl",require("./user/user-controller"))
 .controller("loginCtrl",require("./login/login-controller"))

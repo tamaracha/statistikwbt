@@ -10,6 +10,8 @@ module.exports={
   jwt: {
     secret: "H9XVhpaHhNuoHkGNQ4vk",
     options: {
+      audience: "https://t-cook.de",
+      issuer: "https://t-cook.de",
       expiresInMinutes: 60*24*7,
       subject: "authenticate"
     }
