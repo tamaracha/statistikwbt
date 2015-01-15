@@ -93,7 +93,7 @@ exports.akzeptanz=function(req,res){
       motivation: 0,
       success: 0,
       usability: 0,
-      comment ""
+      comment: ""
     };
     if(ratings){
       _.forEach(ratings,function(rating){
