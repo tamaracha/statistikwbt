@@ -3,19 +3,19 @@ module.exports=function(identity){
   this.subjects=[{
     name: "psychology",
     label: "Psychologie",
-    group: "Sozialwissenschaften"
+    group: "Sozial- und Wirtschaftswissenschaften"
   },{
     name: "education",
-    label: "Erziehungswissenschaften",
-    group: "Lehramt"
-  },{
-    name: "theology",
-    label: "Theologie",
-    group: "Geisteswissenschaften"
+    label: "Lehramt",
+    group: "Erziehungswissenschaften"
   },{
     name: "physics",
     label: "Physik",
     group: "Naturwissenschaften"
+  },{
+    name: "philosophy",
+    label: "Philosophie",
+    group: "Geisteswissenschaften"
   }];
   this.register=function(form){
     return identity.create(form)
