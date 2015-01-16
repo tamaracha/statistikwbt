@@ -1,7 +1,8 @@
 module.exports=/*@ngInject*/function(unit,summary,Restangular,$modalInstance){
-  var self,ratings;
+  var self,ratings,comments;
   self=this;
   ratings=Restangular.all("ratings");
+  comments=Restangular.all("comments");
   this.summary=summary;
   this.labels=[
     "keine Antwort",
@@ -24,7 +25,8 @@ module.exports=/*@ngInject*/function(unit,summary,Restangular,$modalInstance){
       unit: unit._id,
       value: self.summary.comment
     }
-    return $modalInstance.close(comment);
+    return comments.post(comment)
+    .then($modalInstance.close);
   };
   this.cancel=function(){
     return $modalInstance.dismiss("cancel");

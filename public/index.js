@@ -18462,7 +18462,7 @@ module.exports=/*@ngInject*/["Restangular", "$window", function(Restangular,$win
   });
 }];
 },{}],74:[function(require,module,exports){
-module.exports=/*@ngInject*/["$window", "$q", "Restangular", function($window,$q,Restangular){
+module.exports=/*@ngInject*/["$window", "$q", "Restangular", "$modal", function($window,$q,Restangular,$modal){
   var Users,Tokens,_id,_token,_authenticated,_data;
   Users=Restangular.all("users");
   Tokens=Restangular.all("tokens");
@@ -18548,7 +18548,14 @@ module.exports=/*@ngInject*/["$window", "$q", "Restangular", function($window,$q
       controllerAs: "login"
     });
     loginModal.result
-    .then(identity.get);
+    .then(get);
+  };
+  var fsk=function(){
+    var fskModal=$modal.open({
+      templateUrl: "user/fsk/fsk.html",
+      controller: "fskCtrl",
+      controllerAs: "fsk"
+    });
   };
   return {
     init: init,
@@ -18560,7 +18567,8 @@ module.exports=/*@ngInject*/["$window", "$q", "Restangular", function($window,$q
     update: update,
     remove: remove,
     create: create,
-    login: login
+    login: login,
+    fsk: fsk
   };
 }];
 },{}],75:[function(require,module,exports){
@@ -18742,9 +18750,10 @@ module.exports=function(){
 };
 },{}],83:[function(require,module,exports){
 module.exports=/*@ngInject*/["unit", "summary", "Restangular", "$modalInstance", function(unit,summary,Restangular,$modalInstance){
-  var self,ratings;
+  var self,ratings,comments;
   self=this;
   ratings=Restangular.all("ratings");
+  comments=Restangular.all("comments");
   this.summary=summary;
   this.labels=[
     "keine Antwort",
@@ -18767,7 +18776,8 @@ module.exports=/*@ngInject*/["unit", "summary", "Restangular", "$modalInstance",
       unit: unit._id,
       value: self.summary.comment
     }
-    return $modalInstance.close(comment);
+    return comments.post(comment)
+    .then($modalInstance.close);
   };
   this.cancel=function(){
     return $modalInstance.dismiss("cancel");
@@ -18795,8 +18805,7 @@ module.exports=/*@ngInject*/["topic", function(topic){
   this.topic=topic;
 }];
 },{}],87:[function(require,module,exports){
-module.exports=/*@ngInject*/["unit", "$modal", "Restangular", "identity", function(unit,$modal,Restangular,identity){
-  var comments=Restangular.all("comments");
+module.exports=/*@ngInject*/["unit", "$modal", "identity", function(unit,$modal,identity){
   this.unit=unit;
   this.getAkzeptanz=function(){
     var akzeptanzModal=$modal.open({
@@ -18807,9 +18816,6 @@ module.exports=/*@ngInject*/["unit", "$modal", "Restangular", "identity", functi
         unit: function(){return unit;},
         summary: function(){return identity.data().one("akzeptanz",unit._id).get();}
       }
-    });
-    akzeptanzModal.result.then(function(comment){
-      return comments.post(comment);
     });
   };
 }];
@@ -18845,6 +18851,7 @@ module.exports=angular.module("wbt",[
 .controller("userCtrl",require("./user/user-controller"))
 .controller("loginCtrl",require("./login/login-controller"))
 .controller("registerCtrl",require("./register/register-controller"))
+.controller("fskCtrl",require("./user/fsk/fsk-controller"))
 .run(["$rootScope",function($rootScope){
   $rootScope.$on('$stateChangeError',function(event, toState, toParams, fromState, fromParams, error){
     console.error(error);
@@ -18852,7 +18859,7 @@ module.exports=angular.module("wbt",[
 }])
 .name;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./components/d3":66,"./components/mathjax":67,"./components/remarkable":70,"./components/rest":75,"./components/ui":79,"./content/unit/akzeptanz/akzeptanz-controller":83,"./content/unit/description/description-controller":84,"./content/unit/test/test-controller":85,"./content/unit/topic/topic-controller":86,"./content/unit/unit-controller":87,"./download/download-controller":88,"./login/login-controller":90,"./register/register-controller":91,"./user/user-controller":92,"./wbt-config":93,"./wbt-controller":94,"angular-bootstrap":62,"angular-ui-router":1}],90:[function(require,module,exports){
+},{"./components/d3":66,"./components/mathjax":67,"./components/remarkable":70,"./components/rest":75,"./components/ui":79,"./content/unit/akzeptanz/akzeptanz-controller":83,"./content/unit/description/description-controller":84,"./content/unit/test/test-controller":85,"./content/unit/topic/topic-controller":86,"./content/unit/unit-controller":87,"./download/download-controller":88,"./login/login-controller":90,"./register/register-controller":91,"./user/fsk/fsk-controller":92,"./user/user-controller":93,"./wbt-config":94,"./wbt-controller":95,"angular-bootstrap":62,"angular-ui-router":1}],90:[function(require,module,exports){
 module.exports=/*@ngInject*/["identity", "$modalInstance", function(identity,$modalInstance){
   var self=this;
   this.loginData={};
@@ -18869,6 +18876,23 @@ module.exports=/*@ngInject*/["identity", "$modalInstance", function(identity,$mo
 },{}],91:[function(require,module,exports){
 module.exports=function(identity){
   this.registerData={};
+  this.subjects=[{
+    name: "psychology",
+    label: "Psychologie",
+    group: "Sozialwissenschaften"
+  },{
+    name: "education",
+    label: "Erziehungswissenschaften",
+    group: "Lehramt"
+  },{
+    name: "theology",
+    label: "Theologie",
+    group: "Geisteswissenschaften"
+  },{
+    name: "physics",
+    label: "Physik",
+    group: "Naturwissenschaften"
+  }];
   this.register=function(form){
     return identity.create(form)
     .then(function(){
@@ -18882,10 +18906,22 @@ module.exports=function(identity){
   };
 };
 },{}],92:[function(require,module,exports){
+module.exports=/*@ngInject*/["identity", "$modalInstance", function(identity,$modalInstance){
+  var self=this;
+  this.fskData={};
+  this.ok=function(){
+    return identity.data().all("fsk").post(self.fskData)
+    .then($modalInstance.close);
+  };
+  this.cancel=function(){
+  return $modalInstance.dismiss();
+  };
+}];
+},{}],93:[function(require,module,exports){
 "use strict";
 module.exports=function(){
 };
-},{}],93:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 module.exports=/*@ngInject*/["$stateProvider", "$urlRouterProvider", "$locationProvider", "$compileProvider", function($stateProvider,$urlRouterProvider,$locationProvider,$compileProvider){
   $locationProvider.html5Mode(true);
   $compileProvider.debugInfoEnabled(false);
@@ -19030,8 +19066,8 @@ $stateProvider.state("home",{
 });
   $urlRouterProvider.otherwise("/home");
 }];
-},{}],94:[function(require,module,exports){
-module.exports=/*@ngInject*/["$state", "$stateParams", "identity", "$modal", function($state,$stateParams,identity,$modal){
+},{}],95:[function(require,module,exports){
+module.exports=/*@ngInject*/["$state", "$stateParams", "identity", function($state,$stateParams,identity){
   this.$state=$state;
   this.$stateParams=$stateParams;
   this.identity=identity;

@@ -1,20 +1,49 @@
 include ../mixins/input.jade
+include ../mixins/checkbox
+include ../mixins/radio-inline
 include ../mixins/submit.jade
 - var form="registerForm"
 h2 Registrieren
 form.form-horizontal(novalidate name=form ng-submit="register.register(register.registerData)" role="form")
-	fieldset(name="login")
-		legend Logindaten
-		+input("email","E-Mail-Adresse")(type="email" required maxlength="20" user-available data-ng-model="register.registerData.email" placeholder="name@domain.com" data-ng-model-options="{debounce: 500}")
-			span.help-block(ng-if="registerForm.email.$pending") Prüfe Verfügbarkeit
-			span.help-block(ng-if="registerForm.email.$valid") Der Benutzer ist noch verfügbar.
-			span.help-block(ng-messages="registerForm.email.$error" ng-if="registerForm.email.$touched")
-				span(ng-message="required") Sie müssen eine E-Mail-Adresse angeben.
-				span(ng-message="userAvailable") Diese E-Mail ist schon registriert
-		+input("password","Passwort")(type="{{register.showPassword ? 'text' : 'password'}}" required minlength="8" data-ng-model="register.registerData.password"  placeholder="Passwort")
-			span.help-block(ng-messages="registerForm.password.$error")
-				span(ng-message="minlength") Das Passwort sollte mindestens acht Zeichen lang sein.
-		.form-group: .col-xs-offset-2.col-xs-10: .checkbox: label
-			input(type="checkbox" name="showpassword" ng-model="register.showPassword")
-			span Eingegebenes Passwort einblenden
-	+submit("Registrieren")
+  fieldset(name="login")
+    legend Logindaten
+    +input("email","E-Mail-Adresse")(type="email" required maxlength="20" user-available data-ng-model="register.registerData.email" placeholder="name@domain.com" data-ng-model-options="{debounce: 500}")
+      span.help-block(aria-live="assertive" data-ng-show="registerForm.email.$touched")
+        span(ng-if="registerForm.email.$valid") Diese E-mail ist noch verfügbar.
+        span(data-ng-if="registerForm.email.$pending") Prüfe Verfügbarkeit
+      span.help-block(ng-messages="registerForm.email.$error" ng-if="registerForm.email.$touched")
+        span(ng-message="required") Bitte gib eine E-Mail-Adresse an.
+        span(ng-message="email") Das ist keine gültige E-mail-Adresse.
+        span(ng-message="userAvailable") Diese E-Mail ist schon registriert
+    +input("password","Passwort")(type="{{register.showPassword ? 'text' : 'password'}}" required minlength="8" data-ng-model="register.registerData.password"  placeholder="Passwort")
+      span.help-block(ng-messages="registerForm.password.$error" data-ng-if="registerForm.password.$touched")
+        span(ng-message="required") Bitte gib ein Passwort an.
+        span(ng-message="minlength") Das Passwort sollte mindestens acht Zeichen lang sein.
+    .form-group
+      .col-xs-offset-2.col-xs-10
+        .checkbox
+          label
+            input(type="checkbox" name="showpassword" ng-model="register.showPassword")
+            span Eingegebenes Passwort einblenden
+  fieldset(name="person")
+    legend Personenangaben
+    +input("nickname","Nickname (optional")(data-ng-model="register.registerData.nickname")
+    - var sex={"male":"männlich","female":"weiblich"}
+    +input("age","Alter in Jahren")(type="number" required min="0" max="100" step="1" data-ng-model="register.registerData.age")
+    +radio-inline("sex","Geschlecht",sex)(required data-ng-model="register.registerData.sex")
+    +checkbox("study","Ich studiere zur Zeit oder habe studiert.")(data-ng-model="register.registerData.study")
+    .form-group(data-ng-if="register.registerData.study")
+      label.col-xs-2.control-label Studienfach
+      .col-xs-10
+        select.form-control(required data-ng-options="subject.name as subject.label group by subject.group for subject in register.subjects" data-ng-model="register.registerData.subject")
+  fieldset
+    legend Datenschutz
+    .form-group
+      .col-xs-offset-2.col-xs-10
+        .checkbox
+          label
+            input(type="checkbox" name="agree" data-ng-model="register.registerData.agree")
+            span Ich akzeptiere die
+              a(data-ui-sref="contact") Datenschutzrichtlinien
+            | und bin damit einverstanden, dass meine auf dieser Webseite getätigten Eingaben zu wissenschaftlichen Zwecken ausgewertet werden.
+  +submit("Registrieren")

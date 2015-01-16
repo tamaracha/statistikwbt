@@ -1,0 +1,6 @@
+.header
+  h2(data-ng-bind="identity.data().email")
+ul.nav.nav-tabs
+  li(data-ui-sref-active="active"): a(data-ui-sref=".profile") Profil
+  li(data-ui-sref-active="active"): a(data-ui-sref=".edit") Bearbeiten
+ui-view

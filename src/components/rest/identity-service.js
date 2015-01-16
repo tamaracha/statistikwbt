@@ -1,4 +1,4 @@
-module.exports=/*@ngInject*/function($window,$q,Restangular){
+module.exports=/*@ngInject*/function($window,$q,Restangular,$modal){
   var Users,Tokens,_id,_token,_authenticated,_data;
   Users=Restangular.all("users");
   Tokens=Restangular.all("tokens");
@@ -84,7 +84,14 @@ module.exports=/*@ngInject*/function($window,$q,Restangular){
       controllerAs: "login"
     });
     loginModal.result
-    .then(identity.get);
+    .then(get);
+  };
+  var fsk=function(){
+    var fskModal=$modal.open({
+      templateUrl: "user/fsk/fsk.html",
+      controller: "fskCtrl",
+      controllerAs: "fsk"
+    });
   };
   return {
     init: init,
@@ -96,6 +103,7 @@ module.exports=/*@ngInject*/function($window,$q,Restangular){
     update: update,
     remove: remove,
     create: create,
-    login: login
+    login: login,
+    fsk: fsk
   };
 };

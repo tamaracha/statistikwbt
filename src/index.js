@@ -24,6 +24,7 @@ module.exports=angular.module("wbt",[
 .controller("userCtrl",require("./user/user-controller"))
 .controller("loginCtrl",require("./login/login-controller"))
 .controller("registerCtrl",require("./register/register-controller"))
+.controller("fskCtrl",require("./user/fsk/fsk-controller"))
 .run(["$rootScope",function($rootScope){
   $rootScope.$on('$stateChangeError',function(event, toState, toParams, fromState, fromParams, error){
     console.error(error);
