@@ -1,4 +1,4 @@
-module.exports=/*@ngInject*/function($state,$stateParams,identity){
+module.exports=/*@ngInject*/function($state,$stateParams,identity,$modal){
   this.$state=$state;
   this.$stateParams=$stateParams;
   this.identity=identity;

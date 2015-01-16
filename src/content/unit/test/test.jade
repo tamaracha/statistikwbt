@@ -2,5 +2,10 @@ include ../../../mixins/submit
 
 h3 Test
 form(novalidate name="testForm" data-ng-submit="test.submit(test.items)")
-  test-item(data-ng-repeat="item in test.items" item="item" form="testForm")
-  +submit("Auswertung")
+  test-item(item="test.items[test.current]" form="testForm")
+  .form-group
+    input.btn.btn-primary(type="submit" value="Auflösung" data-ng-hide="testForm.$submitted")
+    input.btn.btn-default(type="button" value="weiter" data-ng-click="test.current=test.current+1" data-ng-show="testForm.$submitted")
+    progress(max="test.items.length")
+      bar(type="info" value="test.current" title="Fortschritt")
+      bar(type="success" value="test.current" title="korrekt gelöst")

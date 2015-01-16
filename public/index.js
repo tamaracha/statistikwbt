@@ -18541,6 +18541,15 @@ module.exports=/*@ngInject*/["$window", "$q", "Restangular", function($window,$q
       return result;
     });
   };
+  var login=function(){
+    var loginModal=$modal.open({
+      templateUrl: "login/login.html",
+      controller: "loginCtrl",
+      controllerAs: "login"
+    });
+    loginModal.result
+    .then(identity.get);
+  };
   return {
     init: init,
     authenticate: authenticate,
@@ -18550,7 +18559,8 @@ module.exports=/*@ngInject*/["$window", "$q", "Restangular", function($window,$q
     get: get,
     update: update,
     remove: remove,
-    create: create
+    create: create,
+    login: login
   };
 }];
 },{}],75:[function(require,module,exports){
@@ -18769,8 +18779,10 @@ module.exports=function(){
 };
 },{}],85:[function(require,module,exports){
 module.exports=/*@ngInject*/["items", "unit", "Restangular", "identity", function(items,unit,Restangular,identity){
+  this.current=0;
   this.items=items;
   this.submit=function(items){
+    return;
     var posts=items.aggregate();
     return Restangular.all("exams").post({
       unit: unit._id,
@@ -18841,11 +18853,17 @@ module.exports=angular.module("wbt",[
 .name;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./components/d3":66,"./components/mathjax":67,"./components/remarkable":70,"./components/rest":75,"./components/ui":79,"./content/unit/akzeptanz/akzeptanz-controller":83,"./content/unit/description/description-controller":84,"./content/unit/test/test-controller":85,"./content/unit/topic/topic-controller":86,"./content/unit/unit-controller":87,"./download/download-controller":88,"./login/login-controller":90,"./register/register-controller":91,"./user/user-controller":92,"./wbt-config":93,"./wbt-controller":94,"angular-bootstrap":62,"angular-ui-router":1}],90:[function(require,module,exports){
-module.exports=/*@ngInject*/["identity", function(identity){
+module.exports=/*@ngInject*/["identity", "$modalInstance", function(identity,$modalInstance){
+  var self=this;
   this.loginData={};
-  this.login=function(form){
-    return identity.authenticate(form)
-    .then(identity.get);
+  this.login=function(){
+    return identity.authenticate(self.loginData)
+    .then(function(id){
+      $modalInstance.close(id);
+    },identity.inauthenticate);
+  };
+  this.cancel=function(){
+    $modalInstance.dismiss("cancel");
   };
 }];
 },{}],91:[function(require,module,exports){
@@ -18994,14 +19012,6 @@ $stateProvider.state("home",{
     access: "public"
   }
 })
-.state("login",{
-  url: "/login",
-  templateUrl: "login/login.html",
-  controller: "loginCtrl as login",
-  data: {
-    access: "public"
-  }
-})
 .state("register",{
   url: "/register",
   templateUrl: "register/register.html",
@@ -19021,7 +19031,7 @@ $stateProvider.state("home",{
   $urlRouterProvider.otherwise("/home");
 }];
 },{}],94:[function(require,module,exports){
-module.exports=/*@ngInject*/["$state", "$stateParams", "identity", function($state,$stateParams,identity){
+module.exports=/*@ngInject*/["$state", "$stateParams", "identity", "$modal", function($state,$stateParams,identity,$modal){
   this.$state=$state;
   this.$stateParams=$stateParams;
   this.identity=identity;

@@ -124,14 +124,6 @@ $stateProvider.state("home",{
     access: "public"
   }
 })
-.state("login",{
-  url: "/login",
-  templateUrl: "login/login.html",
-  controller: "loginCtrl as login",
-  data: {
-    access: "public"
-  }
-})
 .state("register",{
   url: "/register",
   templateUrl: "register/register.html",

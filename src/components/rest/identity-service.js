@@ -77,6 +77,15 @@ module.exports=/*@ngInject*/function($window,$q,Restangular){
       return result;
     });
   };
+  var login=function(){
+    var loginModal=$modal.open({
+      templateUrl: "login/login.html",
+      controller: "loginCtrl",
+      controllerAs: "login"
+    });
+    loginModal.result
+    .then(identity.get);
+  };
   return {
     init: init,
     authenticate: authenticate,
@@ -86,6 +95,7 @@ module.exports=/*@ngInject*/function($window,$q,Restangular){
     get: get,
     update: update,
     remove: remove,
-    create: create
+    create: create,
+    login: login
   };
 };
