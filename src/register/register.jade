@@ -36,6 +36,17 @@ form.form-horizontal(novalidate name=form ng-submit="register.register(register.
       label.col-xs-2.control-label Studienfach
       .col-xs-10
         select.form-control(required data-ng-options="subject.name as subject.label group by subject.group for subject in register.subjects" data-ng-model="register.registerData.subject")
+    .form-group
+      label.col-xs-2 Was erwartest du dir hiervon?
+      .col-xs-10
+        .checkbox
+            label
+              input(type="checkbox" name="reason1")
+              span Mal gucken, was es hier so gibt
+          .ckeckbox
+            label
+              input(type="checkbox" name="reason-2")
+              span Habe nach Statiker gesucht und bin bei Statistik gelandet.
   fieldset
     legend Datenschutz
     .form-group
@@ -46,4 +57,4 @@ form.form-horizontal(novalidate name=form ng-submit="register.register(register.
             span Ich akzeptiere die
               a(data-ui-sref="contact") Datenschutzrichtlinien
             | und bin damit einverstanden, dass meine auf dieser Webseite getätigten Eingaben zu wissenschaftlichen Zwecken ausgewertet werden.
-  +submit("Registrieren")
+    +submit("Registrieren")
