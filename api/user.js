@@ -25,7 +25,7 @@ exports.create=function(req,res){
     return res.json(user);
   })
   .catch(function(e){
-    console.log(e.message);
+    console.log(e.stack);
     return res.sendStatus(e.status||500);
   });
 };

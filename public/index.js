@@ -18874,7 +18874,7 @@ module.exports=/*@ngInject*/["identity", "$modalInstance", function(identity,$mo
   };
 }];
 },{}],91:[function(require,module,exports){
-module.exports=function(identity){
+module.exports=function($state,identity){
   this.registerData={};
   this.subjects=[{
     name: "psychology",
@@ -18902,6 +18902,9 @@ module.exports=function(identity){
       };
     })
     .then(identity.authenticate)
+    .then(function(){
+      return $state.go("content");
+    })
     .catch(identity.inauthenticate);
   };
 };
