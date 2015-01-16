@@ -32,7 +32,7 @@ exports.create=function(req,res){
 
 exports.findOne=function(req,res){
   return Unit.findOne({title: req.params.unit})
-  .select("title subtitle description topics.title tests._id")
+  .select("title subtitle description topics.title")
   .lean()
   .execAsync()
   .then(function(unit){
