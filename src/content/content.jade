@@ -7,14 +7,14 @@ nav(role="navigation"): ul.nav.nav-pills
 section.row(ui-view): .col-md-offset-3.col-md-6
   header
     h2 So funktioniertt's
-    alert(type="warning" data-ng-hide="wbt.identity.authenticated()") Es wäre super, wenn du dich kurz
-      button.btn.btn-primary(type="button" data-ng-click="wbt.identity.login()")
+    alert(type="warning" data-ng-hide="wbt.identity.authenticated()") Es wäre super, wenn du dich kurz 
+      button.btn.btn-sm.btn-primary(type="button" data-ng-click="wbt.identity.login()")
         span.glyphicon.glyphicon-log-in
-        span anmelden
-      | würdest, bevor du beginnst.
-    alert(type="info" data-ng-show="wbt.identity.authenticated&&wbt.identity.data().fsk.length===0") Willkommen! Wir können gleich anfangen. Doch vorher gib bitte noch eine
+        |  anmelden
+      |  würdest, bevor du beginnst.
+    alert(type="info" data-ng-show="wbt.identity.authenticated&&wbt.identity.data().fsk.length===0") Willkommen! Wir können gleich anfangen. Doch vorher gib bitte noch eine 
       button.btn.btn-primary(type="button" data-ng-click="wbt.identity.fsk()") Selbsteinschätzung deiner Statistikvorkenntnisse
-      | ab.
+      |  ab.
     alert(type="success" data-ng-show="wbt.identity.authenticated&&wbt.identity.data().fsk.length>0") Prima, wir können jetzt anfangen.
   p Es gibt hier {{content.units.length}} Kapitel. Jedes von ihnen beschäftigt sich mit einem bestimmten statistischen Themengebiet. Es gibt keine festgelegte Reihenfolge bei der Bearbeitung und du brauchst nicht alles von Anfang bis Ende durchzulesen, was hier zu finden ist. Ein Kapitel besteht aus den Kernartikeln, die jeweils durch Zusätze ergänzt sind . Du kannst relativ flexibel entscheiden, welche Zusätze du lesen möchtest.
   dl.dl-horizontal

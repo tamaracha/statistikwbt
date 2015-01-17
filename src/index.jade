@@ -1,25 +1,11 @@
 include mixins/menu-item.jade
 doctype html
-html(lang="de" data-ng-app="wbt" data-ng-csp)
+html(lang="de" data-ng-app="wbt")
   head
     title Einführung in die psychologische Statistik
     meta(charset="utf-8")
     base(href="/")
     link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet")
-    style.
-      /* Include this file in your html if you are using the CSP mode. */
-      
-      @charset "UTF-8";
-      
-      [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
-      .ng-cloak, .x-ng-cloak,
-      .ng-hide:not(.ng-hide-animate) {
-        display: none !important;
-      }
-      
-      ng\:form {
-        display: block;
-      }
     script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/restangular/1.4.0/restangular.min.js")
@@ -38,7 +24,7 @@ html(lang="de" data-ng-app="wbt" data-ng-csp)
           span.icon-bar
         a.navbar-brand(data-ui-sref="home")
           span.glyphicon.glyphicon-home
-          | Statistik für Jedermann
+          |  Statistik für Jedermann
       #mainnav.collapse.navbar-collapse(data-collapse="wbt.menuCollapse")
         ul.nav.navbar-nav.navbar-left
           +menu-item("content","Übersicht")
@@ -48,13 +34,13 @@ html(lang="de" data-ng-app="wbt" data-ng-csp)
         ul.nav.navbar-nav.navbar-right(data-ng-if="!wbt.identity.authenticated()")
           li: button.btn.btn-default(type="button" data-ng-click="wbt.identity.login()")
             span.glyphicon.glyphicon-log-in
-            span Anmelden
+            |  Anmelden
           +menu-item("register","registrieren","registration-mark")
         p.navbar-text.navbar-right(data-ng-if="wbt.identity.authenticated()") Hallo 
           a.navbar-link(ui-sref="user({id: wbt.identity._id})")
             span.glyphicon.glyphicon-user
-            | {{wbt.identity.data().email}}, 
+            |  {{wbt.identity.data().email}}, 
           button.btn.btn-default.navbar-btn(type="button" data-ng-click="::wbt.identity.inauthenticate()")
             span.glyphicon.glyphicon-log-out(aria-hidden="true")
-            span Abmelden
+            |  Abmelden
     .container(data-ui-view)
