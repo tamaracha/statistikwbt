@@ -1,4 +1,4 @@
-h3(data-ng-bind="topic.topic|title")
+h3(data-ng-bind="topic.topic.subtitle ? topic.topic.title+': '+topic.topic.subtitle : topic.topic.title")
 div(md="topic.topic.body" mathjax)
 .btn-toolbar(role="toolbar")
   .btn-group
@@ -17,5 +17,6 @@ div(md="topic.topic.body" mathjax)
         li(data-ng-repeat="extra in topic.topic.extras")
           a.btn.btn-default(data-ui-sref=".extra({extra: extra.title})" data-ng-bind="extra.title")
   .btn-group(data-ng-if="wbt.identity.authenticated()")
-    button.btn.btn-default(type="button" ng-click="unit.getAkzeptanz()") Kapitel bewerten
+    button.btn.btn-default(type="button" ng-click="unit.content.akzeptanz(unit.unit)") Kapitel bewerten
+    button.btn.btn-default(type="button" data-ng-click="wbt.identity.fsk()") Statistikkenntnisse einschätzen
 section(data-ui-view)

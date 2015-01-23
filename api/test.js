@@ -26,10 +26,7 @@ exports.find=function(req,res){
     tests=_.shuffle(tests);
     return res.json(tests);
   })
-  .catch(function(e){
-    console.error(e.stack);
-    return res.sendStatus(e.status||500);
-  });
+  .catch(e.onError(res));
 };
 exports.findOne=function(req,res){
   Unit.findOne({title: req.params.unit})
@@ -39,8 +36,5 @@ exports.findOne=function(req,res){
     if(!test){throw e.notFound("test not found");}
     return res.json(test);
   })
-  .catch(function(e){
-    console.error(e.message);
-    return res.sendStatus(e.status||500);
-  });
+  .catch(e.onError(res));
 };

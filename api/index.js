@@ -24,7 +24,13 @@ router.route("/units/:unit")
 // topics
 var topic=require("./topic");
 router.route("/units/:unit/topics/:topic")
-.get(topic.findOne);
+.get(expressJwt,topic.findOne);
+
+router.route("/units/:unit/akzeptanz/summary")
+.get(expressJwt,unit.akzeptanz);
+
+router.route("/units/:unit/guesses/summary")
+.get(expressJwt,unit.guesses);
 
 // tests
 var test=require("./test");
@@ -38,13 +44,11 @@ var user=require("./user");
 router.route("/users")
 .head(user.check)
 .post(user.create);
-router.route("/users/:user",expressJwt)
+router.route("/users/:user")
 .all(expressJwt)
 .get(user.findOne)
-.put(user.update)
+.patch(user.update)
 .delete(user.remove);
-router.route("/users/:user/akzeptanz/:unit")
-.get(user.akzeptanz);
 
 // tokens
 var token=require("./token");
@@ -67,9 +71,9 @@ router.route("/views")
 .post(expressJwt,view.create);
 
 // exams
-var exam=require("./exam");
-router.route("/exams")
-.post(expressJwt,exam.create);
+var guess=require("./guess");
+router.route("/guesses")
+.post(expressJwt,guess.create);
 
 // upload units
 require("./upload");

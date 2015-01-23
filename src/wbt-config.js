@@ -12,46 +12,44 @@ $stateProvider.state("home",{
   url: "/content",
   templateUrl: "content/content.html",
   resolve: {
-    units: ["Restangular",function(Restangular){
-      return Restangular.all("units").getList();
+    units: ["content",function(content){
+      return content.units();
     }]
   },
   controller: ["units",function(units){
     this.units=units;
   }],
-  controllerAs: "content",
-  data: {
-    access: "public"
-  }
+  controllerAs: "content"
 })
 .state("content.unit",{
   url: "/:unit",
   templateUrl: "content/unit/unit.html",
   resolve: {
-    unit: ["Restangular","$stateParams",function(Restangular,$stateParams){
-      return Restangular.one("units",$stateParams.unit).get();
+    unit: ["content","$stateParams",function(content,$stateParams){
+      return content.unit($stateParams.unit);
     }]
   },
-  onEnter: ["Restangular","unit",function(Restangular,unit){
-    return Restangular.all("views").post({unit: unit._id});
-  }],
-  controller: "unitCtrl as unit",
-  abstract: true,
-  data: {
-    access: "user"
-  }
+  controller: "unitCtrl",
+  controllerAs: "unit",
+  abstract: true
 })
 .state("content.unit.description",{
   url: "/description",
   templateUrl: "content/unit/description/description.html",
-  controller: "descriptionCtrl"
+  controller: "descriptionCtrl",
+  onEnter: ["content","unit",function(content,unit){
+    return content.view(unit._id);
+  }],
 })
 .state("content.unit.test",{
   url: "/test",
   templateUrl: "content/unit/test/test.html",
   resolve: {
-    items: ["Restangular","$stateParams",function(Restangular,$stateParams){
-      return Restangular.one("units",$stateParams.unit).all("tests").getList();
+    items: ["content","$stateParams",function(content,$stateParams){
+      return content.tests($stateParams.unit);
+    }],
+    guesses: ["content","unit","items",function(content,unit,items){
+      return content.guesses(unit._id,items)
     }]
   },
   controller: "testCtrl",
@@ -65,15 +63,12 @@ $stateProvider.state("home",{
   }],
   controllerAs: "topic",
   resolve: {
-    topic: ["Restangular","$stateParams",function(Restangular,$stateParams){
-      return Restangular.one("units",$stateParams.unit).one("topics",$stateParams.topic).get();
+    topic: ["content","$stateParams",function(content,$stateParams){
+      return content.topic($stateParams.unit,$stateParams.topic);
     }]
   },
-  onEnter: ["unit","topic","Restangular",function(unit,topic,Restangular){
-    return Restangular.all("views").post({
-      unit: unit._id,
-      topic: topic._id
-    });
+  onEnter: ["content","unit","topic",function(content,unit,topic){
+    return content.view(unit._id,topic._id);
   }]
 })
 .state("content.unit.topic.example",{

@@ -11,11 +11,11 @@ include ../../../mixins/text-input
     +rating("usability","Die Webseite lässt sich gut bedienen und es ist klar, was ich als nächstes tun soll.")
     +text-input("comment","Kommentar",true)(data-ng-model="akzeptanz.summary.comment" placeholder="Ergänzungen, Kritik oder Anmerkungen, die du noch loswerden möchtest")
 .modal-footer
-  button.btn.btn-primary(
-    type="button"
-    data-ng-click="akzeptanz.ok()"
-  ) Kommentar abschicken
   button.btn.btn-default(
     type="button"
     data-ng-click="akzeptanz.cancel()"
   ) abbrechen
+  button.btn.btn-primary(
+    type="button"
+    data-ng-click="akzeptanz.ok()"
+  ) Kommentar abschicken

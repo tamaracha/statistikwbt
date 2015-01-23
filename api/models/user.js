@@ -5,10 +5,6 @@ Promise.promisifyAll(bcrypt);
 validate=require("../services/validate");
 ObjectId=mongoose.Schema.Types.ObjectId
 
-fskSchema=new mongoose.Schema({
-  
-});
-
 UserSchema=new mongoose.Schema({
   email: {
     type: String,
@@ -22,11 +18,31 @@ UserSchema=new mongoose.Schema({
     validate: validate.passwordValidator
   },
   profile: {
-    contact: Boolean,
-    age: Number,
-    subject: String
+    nickname: String,
+    age: {
+      type: Number,
+      required: true
+    },
+    sex: {
+      type: String,
+      required: true
+    },
+    subject: {
+      type: String,
+      required: true
+    },
+    expect: [Number],
+    agree: {
+      type: Boolean,
+      required: true
+    }
   },
-  fsk: [fskSchema],
+  fsk: [{
+    sessko: {
+      type: [Number],
+      required: true
+    }
+  }],
   akzeptanz: {
     ratings: [{
       type: ObjectId,
@@ -37,16 +53,14 @@ UserSchema=new mongoose.Schema({
       ref: "comment"
     }]
   },
+  complete: [{
+    type: ObjectId,
+    ref: "unit"
+  }],
   views: [{
     type: ObjectId,
     ref: "view"
   }]
-},{
-  toJSON: {
-    transform: function(doc,ret,options){
-      if(ret.password){delete ret.password;}
-    }
-  }
 });
 UserSchema.pre("save",function(next){
   var user=this;

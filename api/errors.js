@@ -14,7 +14,9 @@ exports.forbidden=new ErrorFactory("forbidden",403);
 exports.notFound=new ErrorFactory("not found",404);
 exports.serverError=new ErrorFactory("internal error",500);
 
-exports.onError=function(e){
-  console.error(e);
-  res.sendStatus(e.status||500);
+exports.onError=function(res){
+  return function(e){
+    console.error(e);
+    res.sendStatus(e.status||500);
+  };
 };

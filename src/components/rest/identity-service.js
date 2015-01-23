@@ -78,20 +78,32 @@ module.exports=/*@ngInject*/function($window,$q,Restangular,$modal){
     });
   };
   var login=function(){
-    var loginModal=$modal.open({
+    return $modal.open({
       templateUrl: "login/login.html",
       controller: "loginCtrl",
       controllerAs: "login"
     });
-    loginModal.result
-    .then(get);
   };
   var fsk=function(){
-    var fskModal=$modal.open({
+    return $modal.open({
       templateUrl: "user/fsk/fsk.html",
       controller: "fskCtrl",
-      controllerAs: "fsk"
+      controllerAs: "fsk",
+      size: "lg"
     });
+  };
+  var createFsk=function(sessko){
+    if(!_data.fsk){_data.fsk=[];}
+    _data.fsk.push({sessko: sessko});
+    return _data.patch({fsk: _data.fsk});
+  };
+  var complete=function(unit){
+    return _.contains(_data.complete,unit);
+  };
+  var setComplete=function(unit){
+    if(!_data.complete){_data.complete=[];}
+    _data.complete.push(unit);
+    return _data.patch({complete: _data.complete});
   };
   return {
     init: init,
@@ -104,6 +116,9 @@ module.exports=/*@ngInject*/function($window,$q,Restangular,$modal){
     remove: remove,
     create: create,
     login: login,
-    fsk: fsk
+    fsk: fsk,
+    createFsk: createFsk,
+    complete: complete,
+    setComplete: setComplete
   };
 };

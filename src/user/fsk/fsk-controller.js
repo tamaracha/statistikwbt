@@ -1,8 +1,9 @@
 module.exports=/*@ngInject*/function(identity,$modalInstance){
   var self=this;
-  this.fskData={};
+  this.identity=identity;
+  this.sessko=[];
   this.ok=function(){
-    return identity.data().all("fsk").post(self.fskData)
+    return identity.createFsk(self.sessko)
     .then($modalInstance.close);
   };
   this.cancel=function(){

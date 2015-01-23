@@ -1,21 +1,18 @@
 var validate=require("mongoose-validator");
 
 module.exports={
-	nameValidator: [validate({
-		validator: "isAlphanumeric",
-		message: "alpha"
-	}),validate({
-		validator: "isLength",
-		arguments: [3,50],
-		message: "length"
-	})],
-	passwordValidator: validate({
-		validator: "isLength",
-		arguments: [8],
-		message: "xyz"
-	}),
-	emailValidator: validate({
-		validator: "isEmail",
-		message: "xyz"
-	})
+  passwordValidator: validate({
+    validator: "isLength",
+    arguments: [8],
+    message: "password must have at least eight characters"
+  }),
+  emailValidator: validate({
+    validator: "isEmail",
+    message: "not a valid email address"
+  }),
+  sesskoValidator: validate({
+    validator: "isLength",
+    arguments: [5,10],
+    message: "array must contain five items"
+  })
 };

@@ -1,4 +1,3 @@
-"use strict";
 module.exports=function remarkableProvider(){
   var preset,options;
   preset="full";

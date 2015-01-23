@@ -1,9 +1,8 @@
-module.exports=/*@ngInject*/function(unit,summary,Restangular,$modalInstance){
-  var self,ratings,comments;
-  self=this;
-  ratings=Restangular.all("ratings");
-  comments=Restangular.all("comments");
+module.exports=/*@ngInject*/function(content,$modalInstance,unit,summary){
+  var self=this;
+  this.unit=unit;
   this.summary=summary;
+  console.log(summary);
   this.labels=[
     "keine Antwort",
     "stimme nicht zu",
@@ -12,20 +11,9 @@ module.exports=/*@ngInject*/function(unit,summary,Restangular,$modalInstance){
     "stimme eher zu",
     "stimme zu"
   ];
-  this.rate=function(name){
-    var post={
-      unit: unit._id,
-      name: name,
-      value: self.summary[name]
-    };
-    return ratings.post(post);
-  };
+  this.content=content;
   this.ok=function(){
-    var comment={
-      unit: unit._id,
-      value: self.summary.comment
-    }
-    return comments.post(comment)
+    return content.comment(unit._id,self.summary.comment)
     .then($modalInstance.close);
   };
   this.cancel=function(){

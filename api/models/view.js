@@ -26,6 +26,7 @@ ViewSchema=new mongoose.Schema({
 
 ViewSchema.post("save",function(){
   var view=this;
+  if(!view.authenticated){return;}
   return User.findById(view.user)
   .execAsync()
   .then(function(user){
@@ -33,7 +34,7 @@ ViewSchema.post("save",function(){
     return user.saveAsync();
   })
   .catch(function(e){
-    return console.error(e.message);
+    return console.error(e.stack);
   });
 });
 
@@ -46,7 +47,7 @@ ViewSchema.post("save",function(){
     return unit.saveAsync();
   })
   .catch(function(e){
-    return console.error(e.message);
+    return console.error(e.stack);
   });
 });
 
