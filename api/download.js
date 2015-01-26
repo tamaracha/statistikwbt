@@ -30,7 +30,6 @@ exports.checkUser=function(req,res,next){
 };
 
 exports.find=function(req,res){
-  console.log(req.query.units);
   var query=Unit.find()
   .sort({position: 1});
   if(req.query.units){
@@ -39,7 +38,6 @@ exports.find=function(req,res){
   }
   query.execAsync()
   .then(function(units){
-    console.log(units.length);
     var contents={};
     if(_.isArray(req.query.contents)){
       _.forEach(req.query.contents,function(value){
