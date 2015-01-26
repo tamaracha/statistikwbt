@@ -107,10 +107,17 @@ $stateProvider.state("home",{
 .state("download",{
   url: "/download",
   templateUrl: "download/download.html",
-  controller: "downloadCtrl as download",
-  data: {
-    roles: ["user"]
-  }
+  resolve: {
+    units: /*@ngInject*/function(content){
+      return content.units();
+    },
+    token: /*@ngInject*/function(identity){
+      return identity.authenticatedAsync()
+      .catch(identity.login);
+    }
+  },
+  controller: "downloadCtrl",
+  controllerAs: "download"
 })
 .state("contact",{
   url: "/contact",

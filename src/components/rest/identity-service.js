@@ -21,6 +21,12 @@ module.exports=/*@ngInject*/function($window,$q,Restangular,$modal){
     });
   };
   var authenticated=function(){return _authenticated;};
+  var authenticatedAsync=function(){
+    return $q(function(resolve,reject){
+      return _authenticated ? resolve(true) : reject(false);
+    });
+  };
+  var token=function(){return _token;}
   var data=function(){return _data;}
   var authenticate=function(form){
     var email,password;
@@ -78,7 +84,7 @@ module.exports=/*@ngInject*/function($window,$q,Restangular,$modal){
     });
   };
   var login=function(){
-    return $modal.open({
+    $modal.open({
       templateUrl: "login/login.html",
       controller: "loginCtrl",
       controllerAs: "login"
@@ -110,7 +116,9 @@ module.exports=/*@ngInject*/function($window,$q,Restangular,$modal){
     authenticate: authenticate,
     inauthenticate: inauthenticate,
     authenticated: authenticated,
+    authenticatedAsync: authenticatedAsync,
     data: data,
+    token: token,
     get: get,
     update: update,
     remove: remove,

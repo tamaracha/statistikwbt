@@ -75,6 +75,11 @@ var guess=require("./guess");
 router.route("/guesses")
 .post(expressJwt,guess.create);
 
+// downloads
+var download=require("./download");
+router.route("/downloads")
+.get(download.checkUser,download.find);
+
 // upload units
 require("./upload");
 

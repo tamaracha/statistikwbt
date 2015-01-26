@@ -116,32 +116,66 @@ topics:
       Die Absolutskala hat kein künstlich definiertes Intervall mehr, sondern ein natürliches. Die empirischen Größenunterschiede entsprechen genau denen der Zahlen. Als Faustregel gesagt ist alles absolutskaliert, was sich einfach zählen lässt, ohne dass dabei eine Maßeinheit von belang wäre. Das Interessante an der Absolutskala ist, dass man Messwerte aus unterschiedlichen Merkmalen miteinander vergleichen kann. Ein ähnlicher Effekt wird auch bei der Z-Transformation und der Standardnormalverteilung ausgenutzt.
 tests:
   - _id: 54b3e496bbc6ca306ba0e001
-    text: Was ist eine Prokrastinationsrationalisierungsleber?
+    text: Welche der folgenden Operationen sind mit iintervallskalierten Werten möglich?
     type: multiple
     choices:
       - _id: 54b3e4dfbbc6ca306ba0e002
-        text: etwas, das bei Psychologiestudenten entsteht, wenn sie zu viel studieren
+        text: Rangreihe bilden
         correct: true
         feedback:
-          correct: Enemene Mei
-          incorrect: und raus bist du
+          correct: Richtig, alle Metrischen Skalen verfügen auch über Ranginformationen.
+          incorrect: Doch, da die Intervallskala auch Größer/Kleiner-Beziehungen umfasst, können die Werte auch in ihre Rangfolge gebracht werden.
       - _id: 54b3e51bbbc6ca306ba0e003
-        text: etwas, das bei jedem Studenten entsteht
+        text: Größenverhältnisse bilden
+        correct: false
         feedback:
-          incorrect: lol
-          correct: rofl
+          incorrect: Nein, da es keinen natürlichen Nullpunkt gibt, sind Größenverhältnisse, also lineare Transformationen nicht möglich.
+          correct: Genau, ohne natürlichen Nullpunkt kann man nicht linear transformieren und somit auch keine Größenverhältnisse bilden.
       - _id: 54b3e56bbbc6ca306ba0e004
-        text: ein Organ, das nur Meeressäuger besitzen
+        text: Mittelwert und Standardabweichung bestimmen
+        correct: true
         feedback:
-          incorrect: Mach lieber ein Jodeldiplom
-          correct: blub
-  - text: Was solltest du tun, wenn dir Bibi Blocksberg dein Pausenbrot weghext?
+          incorrect: Doch, da die Intervallskala metrisch ist, können Mittelwert und Standardabweichung bestimmt werden.
+          correct: Richtig, dies ist bei allen metrischen Skalen möglich.
+      - _id: 54c24d204a398398c44ec6be
+        text: Größenunterschiede bilden
+        correct: true
+        feedback:
+          correct: Richtig, denn Addition und subtraktion sind schon durch das feste Intervall möglich.
+          incorrect: Doch, denn dazu sind nur Addition und Subtraktion nötig, die durch das Intervall der Intervallskala möglich sind.
+  - _id: 54c2518e4a398398c44ec6bf
+    text: Was ist nur bei der Absolutskala möglich?
     type: single
     choices:
-      - text: Harry Potter bei Ebay versteigern
+      - _id: 54c253114a398398c44ec6c0
+        text: Werte aus verschiedenen Gruppen direkt miteinander vergleichen
         correct: true
-        feedback: Investment-Punk
-      - text: ihr einen Noceboeffekt induzieren
-        feedback: hexhex
-      - text: Mahnwachen gegen Mundraub einberufen
-        feedback: viel Spaß
+        feedback: Richtig, durch das natürliche Intervall ist das Intervall immer dasselbe und die Werte werden vergleichbar.
+      - _id: 54c2532a4a398398c44ec6c1
+        text: Größenverhältnisse bilden
+        correct: false
+        feedback: Nein, das ist auch bei der Verhältnisskala möglich
+      - _id: 54c253be4a398398c44ec6c2
+        text: den Interquartilsabstand bestimmen
+        correct: false
+        feedback: Doch, dies ist bereits bei der Intervallskala möglich.
+  - _id: 54c254914a398398c44ec6c3
+    text:
+    type: multiple
+    choices:
+      - _id: 54c255834a398398c44ec6c4
+        text:
+        correct:
+        feedback:
+      - _id: 54c2559a4a398398c44ec6c5
+        text:
+        correct:
+        feedback:
+      - _id: 54c255a54a398398c44ec6c6
+        text:
+        correct:
+        feedback:
+      - _id: 54c255b04a398398c44ec6c7
+        text:
+        correct:
+        feedback:

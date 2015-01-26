@@ -9,10 +9,5 @@ module.exports={
   emailValidator: validate({
     validator: "isEmail",
     message: "not a valid email address"
-  }),
-  sesskoValidator: validate({
-    validator: "isLength",
-    arguments: [5,10],
-    message: "array must contain five items"
   })
 };

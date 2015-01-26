@@ -4,4 +4,4 @@ mixin checkbox-inline(name,label,options)
     .col-xs-10: each option, key in options
       label.checkbox-inline
         input(type="checkbox" name=name value=key)&attributes(attributes)
-        span=option
+        |  #{option}

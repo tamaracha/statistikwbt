@@ -8,7 +8,7 @@ MultipleChoiceSchema=new mongoose.Schema({
   },
   type: {
     type: String,
-    default: "single"
+    required: true
   },
   choices: [{
     text: {

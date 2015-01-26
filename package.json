@@ -22,10 +22,12 @@
     "js-yaml": "^3.2.3",
     "jsonwebtoken": "^1.2.0",
     "lodash": "^2.4.1",
+    "mime": "^1.2.11",
     "mongoose": "^3.8.21",
     "mongoose-validator": "^1.0.3",
     "morgan": "^1.5.0",
     "node-require-directory": "^1.0.2",
+    "pdc": "^0.2.2",
     "remarkable": "^1.4.2"
   },
   "repository": {
@@ -43,11 +45,14 @@
     "chai": "^1.10.0",
     "del": "^1.1.0",
     "gulp": "^3.8.10",
+    "gulp-concat": "^2.4.3",
     "gulp-jade": "^0.10.0",
     "gulp-jshint": "^1.9.0",
     "gulp-load-plugins": "^0.8.0",
     "gulp-notify": "^2.1.0",
     "gulp-rename": "^1.2.0",
+    "gulp-template": "^2.1.0",
+    "gulp-template-compile": "^0.2.1",
     "gulp-uglify": "^1.0.2",
     "gulp-util": "^3.0.1",
     "karma": "^0.12.28",
@@ -78,7 +83,7 @@
     "d3": "global:d3",
     "remarkable": "global:Remarkable",
     "angular-bootstrap": {
-      "exports":"angular.module('ui.bootstrap').name"
+      "exports": "angular.module('ui.bootstrap').name"
     }
   }
 }

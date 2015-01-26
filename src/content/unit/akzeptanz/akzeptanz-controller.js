@@ -2,7 +2,6 @@ module.exports=/*@ngInject*/function(content,$modalInstance,unit,summary){
   var self=this;
   this.unit=unit;
   this.summary=summary;
-  console.log(summary);
   this.labels=[
     "keine Antwort",
     "stimme nicht zu",

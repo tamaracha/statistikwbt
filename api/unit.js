@@ -8,7 +8,7 @@ e=require("./errors");
 
 exports.find=function(req,res){
   return Unit.find(req.query)
-  .select("-_id position title requires")
+  .select("position title requires")
   .sort("position")
   .lean()
   .execAsync()

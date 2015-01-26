@@ -9156,6 +9156,12 @@ module.exports=/*@ngInject*/["$window", "$q", "Restangular", "$modal", function(
     });
   };
   var authenticated=function(){return _authenticated;};
+  var authenticatedAsync=function(){
+    return $q(function(resolve,reject){
+      return _authenticated ? resolve(true) : reject(false);
+    });
+  };
+  var token=function(){return _token;}
   var data=function(){return _data;}
   var authenticate=function(form){
     var email,password;
@@ -9213,7 +9219,7 @@ module.exports=/*@ngInject*/["$window", "$q", "Restangular", "$modal", function(
     });
   };
   var login=function(){
-    return $modal.open({
+    $modal.open({
       templateUrl: "login/login.html",
       controller: "loginCtrl",
       controllerAs: "login"
@@ -9245,7 +9251,9 @@ module.exports=/*@ngInject*/["$window", "$q", "Restangular", "$modal", function(
     authenticate: authenticate,
     inauthenticate: inauthenticate,
     authenticated: authenticated,
+    authenticatedAsync: authenticatedAsync,
     data: data,
+    token: token,
     get: get,
     update: update,
     remove: remove,
@@ -9498,7 +9506,6 @@ module.exports=/*@ngInject*/["content", "$modalInstance", "unit", "summary", fun
   var self=this;
   this.unit=unit;
   this.summary=summary;
-  console.log(summary);
   this.labels=[
     "keine Antwort",
     "stimme nicht zu",
@@ -9577,9 +9584,10 @@ module.exports=/*@ngInject*/["unit", "content", "identity", function(unit,conten
   this.content=content;
 }];
 },{}],27:[function(require,module,exports){
-module.exports=/*@ngInject*/function(){
-	this.format="rtf";
-};
+module.exports=/*@ngInject*/["units", function(units){
+  this.format="rtf";
+  this.units=units;
+}];
 },{}],28:[function(require,module,exports){
 (function (global){
 /*jshint browserify: true, devel: true */
@@ -9793,10 +9801,17 @@ $stateProvider.state("home",{
 .state("download",{
   url: "/download",
   templateUrl: "download/download.html",
-  controller: "downloadCtrl as download",
-  data: {
-    roles: ["user"]
-  }
+  resolve: {
+    units: /*@ngInject*/["content", function(content){
+      return content.units();
+    }],
+    token: /*@ngInject*/["identity", function(identity){
+      return identity.authenticatedAsync()
+      .catch(identity.login);
+    }]
+  },
+  controller: "downloadCtrl",
+  controllerAs: "download"
 })
 .state("contact",{
   url: "/contact",
