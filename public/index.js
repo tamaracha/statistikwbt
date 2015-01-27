@@ -8453,108 +8453,6 @@ angular.module("template/typeahead/typeahead-popup.html", []).run(["$templateCac
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],3:[function(require,module,exports){
-/**
- * Checklist-model
- * AngularJS directive for list of checkboxes
- */
-
-module.exports=angular.module('checklist-model', [])
-.directive('checklistModel', ['$parse', '$compile', function($parse, $compile) {
-  // contains
-  function contains(arr, item) {
-    if (angular.isArray(arr)) {
-      for (var i = 0; i < arr.length; i++) {
-        if (angular.equals(arr[i], item)) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  // add
-  function add(arr, item) {
-    arr = angular.isArray(arr) ? arr : [];
-    for (var i = 0; i < arr.length; i++) {
-      if (angular.equals(arr[i], item)) {
-        return arr;
-      }
-    }    
-    arr.push(item);
-    return arr;
-  }  
-
-  // remove
-  function remove(arr, item) {
-    if (angular.isArray(arr)) {
-      for (var i = 0; i < arr.length; i++) {
-        if (angular.equals(arr[i], item)) {
-          arr.splice(i, 1);
-          break;
-        }
-      }
-    }
-    return arr;
-  }
-
-  // http://stackoverflow.com/a/19228302/1458162
-  function postLinkFn(scope, elem, attrs) {
-    // compile with `ng-model` pointing to `checked`
-    $compile(elem)(scope);
-
-    // getter / setter for original model
-    var getter = $parse(attrs.checklistModel);
-    var setter = getter.assign;
-
-    // value added to list
-    var value = $parse(attrs.checklistValue)(scope.$parent);
-
-    // watch UI checked change
-    scope.$watch('checked', function(newValue, oldValue) {
-      if (newValue === oldValue) { 
-        return;
-      } 
-      var current = getter(scope.$parent);
-      if (newValue === true) {
-        setter(scope.$parent, add(current, value));
-      } else {
-        setter(scope.$parent, remove(current, value));
-      }
-    });
-
-    // watch original model change
-    scope.$parent.$watch(attrs.checklistModel, function(newArr, oldArr) {
-      scope.checked = contains(newArr, value);
-    }, true);
-  }
-
-  return {
-    restrict: 'A',
-    priority: 1000,
-    terminal: true,
-    scope: true,
-    compile: function(tElement, tAttrs) {
-      if (tElement[0].tagName !== 'INPUT' || !tElement.attr('type', 'checkbox')) {
-        throw 'checklist-model should be applied to `input[type="checkbox"]`.';
-      }
-
-      if (!tAttrs.checklistValue) {
-        throw 'You should provide `checklist-value`.';
-      }
-
-      // exclude recursion
-      tElement.removeAttr('checklist-model');
-      
-      // local scope var storing individual checkbox model
-      tElement.attr('ng-model', 'checked');
-
-      return postLinkFn;
-    }
-  };
-}])
-.name;
-
-},{}],4:[function(require,module,exports){
 module.exports=/*@ngInject*/["$provide", function($provide){
   $provide.decorator("d3",["$delegate", function($delegate){
     var boxWhiskers=function(d) {
@@ -8874,7 +8772,7 @@ module.exports=/*@ngInject*/["$provide", function($provide){
     return $delegate;
   }]);
 }];
-},{}],5:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 module.exports=/*@ngInject*/["d3", function(d3){
   return {
     restrict: "AE",
@@ -9006,14 +8904,14 @@ module.exports=/*@ngInject*/["d3", function(d3){
     }
   };
 }];
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 (function (global){
 module.exports=/*@ngInject*/function(){
   var d3=(typeof window !== "undefined" ? window.d3 : typeof global !== "undefined" ? global.d3 : null);
   return d3;
 };
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 (function (global){
 var angular=(typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null);
 module.exports=angular.module('d3',[])
@@ -9022,7 +8920,7 @@ module.exports=angular.module('d3',[])
 .directive("boxplot",require("./boxplot/boxplot-directive"))
 .name;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./boxplot/boxplot-decorator":4,"./boxplot/boxplot-directive":5,"./d3-service":6}],8:[function(require,module,exports){
+},{"./boxplot/boxplot-decorator":3,"./boxplot/boxplot-directive":4,"./d3-service":5}],7:[function(require,module,exports){
 (function (global){
 var angular=(typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null);
 module.exports=angular.module("mathjax",[])
@@ -9030,7 +8928,7 @@ module.exports=angular.module("mathjax",[])
 .directive("mathjax",require("./mathjax-directive"))
 .name;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./mathjax-directive":9,"./mathjax-provider":10}],9:[function(require,module,exports){
+},{"./mathjax-directive":8,"./mathjax-provider":9}],8:[function(require,module,exports){
 module.exports=function(){
   return {
     restrict: "A",
@@ -9040,7 +8938,7 @@ module.exports=function(){
     }
   };
 };
-},{}],10:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 (function (global){
 module.exports=/*@ngInject*/function mathjaxProvider(){
   var mathjax=(typeof window !== "undefined" ? window.MathJax : typeof global !== "undefined" ? global.MathJax : null);
@@ -9061,7 +8959,7 @@ module.exports=/*@ngInject*/function mathjaxProvider(){
   };
 };
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],11:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 (function (global){
 var angular=(typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null);
 module.exports=angular.module("remarkable",[])
@@ -9073,7 +8971,7 @@ module.exports=angular.module("remarkable",[])
 .directive("md",require("./remarkable-directive"))
 .name;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./remarkable-directive":12,"./remarkable-provider":13}],12:[function(require,module,exports){
+},{"./remarkable-directive":11,"./remarkable-provider":12}],11:[function(require,module,exports){
 module.exports=/*@ngInject*/["md", function(md){
   return {
     restrict: "A",
@@ -9090,7 +8988,7 @@ module.exports=/*@ngInject*/["md", function(md){
     }
   };
 }];
-},{}],13:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 module.exports=function remarkableProvider(){
   var preset,options;
   preset="full";
@@ -9109,7 +9007,7 @@ module.exports=function remarkableProvider(){
     return new Remarkable(preset,options);
   }];
 };
-},{}],14:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports=/*@ngInject*/["Restangular", "$window", "identity", function(Restangular,$window,identity){
   Restangular.addFullRequestInterceptor(function(el,op,what,url,headers){
     if(headers.Authorization){return;}
@@ -9132,7 +9030,7 @@ module.exports=/*@ngInject*/["Restangular", "$window", "identity", function(Rest
     return true;
   });
 }];
-},{}],15:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module.exports=/*@ngInject*/["$window", "$q", "Restangular", "$modal", function($window,$q,Restangular,$modal){
   var Users,Tokens,_id,_token,_authenticated,_data;
   Users=Restangular.all("users");
@@ -9265,7 +9163,7 @@ module.exports=/*@ngInject*/["$window", "$q", "Restangular", "$modal", function(
     setComplete: setComplete
   };
 }];
-},{}],16:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 (function (global){
 var angular=(typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null);
 module.exports=angular.module("rest",["restangular"])
@@ -9281,7 +9179,7 @@ module.exports=angular.module("rest",["restangular"])
 .directive("testItem",require("./test-item-directive"))
 .name;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./auth-interceptor":14,"./identity-service":15,"./test-item-directive":17,"./unit-service":18,"./user-available-validator":19,"./user-exists-validator":20}],17:[function(require,module,exports){
+},{"./auth-interceptor":13,"./identity-service":14,"./test-item-directive":16,"./unit-service":17,"./user-available-validator":18,"./user-exists-validator":19}],16:[function(require,module,exports){
 module.exports=/*@ngInject*/function(){
   return {
     scope: {
@@ -9312,7 +9210,7 @@ module.exports=/*@ngInject*/function(){
     }
   };
 };
-},{}],18:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports=/*@ngInject*/["Restangular", "$modal", function(Restangular,$modal){
   var Units=Restangular.all("units");
   var units=function(){
@@ -9466,7 +9364,7 @@ module.exports=/*@ngInject*/["Restangular", "$modal", function(Restangular,$moda
     view: view
   };
 }];
-},{}],19:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 "use strict";
 module.exports=/*@ngInject*/["$q", "Restangular", function($q,Restangular){return{
   require: "ngModel",
@@ -9484,7 +9382,7 @@ module.exports=/*@ngInject*/["$q", "Restangular", function($q,Restangular){retur
     };
   }
 };}];
-},{}],20:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 "use strict";
 module.exports=/*@ngInject*/["$q", "Restangular", function($q,Restangular){return{
   require: "ngModel",
@@ -9501,7 +9399,7 @@ module.exports=/*@ngInject*/["$q", "Restangular", function($q,Restangular){retur
     };
   }
 };}];
-},{}],21:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 module.exports=/*@ngInject*/["content", "$modalInstance", "unit", "summary", function(content,$modalInstance,unit,summary){
   var self=this;
   this.unit=unit;
@@ -9523,17 +9421,17 @@ module.exports=/*@ngInject*/["content", "$modalInstance", "unit", "summary", fun
     return $modalInstance.dismiss("cancel");
   };
 }];
-},{}],22:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 module.exports=function(){
 
 };
-},{}],23:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 module.exports=/*@ngInject*/["item", function(item){
   this.item=item;
   this.selected=null;
   this.solved=false;
 }];
-},{}],24:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 module.exports=/*@ngInject*/["identity", "content", "unit", "items", "guesses", function(identity,content,unit,items,guesses){
   var self=this;
   this.guesses=guesses;
@@ -9574,21 +9472,21 @@ module.exports=/*@ngInject*/["identity", "content", "unit", "items", "guesses", 
   this.group();
   if(!this.items.todo){this.state="finished";}
 }];
-},{}],25:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 module.exports=/*@ngInject*/["topic", function(topic){
   this.topic=topic;
 }];
-},{}],26:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 module.exports=/*@ngInject*/["unit", "content", "identity", function(unit,content,identity){
   this.unit=unit;
   this.content=content;
 }];
-},{}],27:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 module.exports=/*@ngInject*/["units", function(units){
   this.format="rtf";
   this.units=units;
 }];
-},{}],28:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 (function (global){
 /*jshint browserify: true, devel: true */
 var angular=(typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null);
@@ -9601,8 +9499,7 @@ module.exports=angular.module("wbt",[
   "ngSanitize",
   "ngAria",
   require("./components/rest"),
-  require("./components/d3"),
-  require("./components/checklist-model/checklist-model")
+  require("./components/d3")
 ])
 .config(require("./wbt-config"))
 .controller("wbtCtrl",require("./wbt-controller"))
@@ -9624,7 +9521,7 @@ module.exports=angular.module("wbt",[
 }])
 .name;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./components/checklist-model/checklist-model":3,"./components/d3":7,"./components/mathjax":8,"./components/remarkable":11,"./components/rest":16,"./content/unit/akzeptanz/akzeptanz-controller":21,"./content/unit/description/description-controller":22,"./content/unit/test/item/item-controller":23,"./content/unit/test/test-controller":24,"./content/unit/topic/topic-controller":25,"./content/unit/unit-controller":26,"./download/download-controller":27,"./login/login-controller":29,"./register/register-controller":30,"./user/fsk/fsk-controller":31,"./user/user-controller":32,"./wbt-config":33,"./wbt-controller":34,"angular-bootstrap":2,"angular-ui-router":1}],29:[function(require,module,exports){
+},{"./components/d3":6,"./components/mathjax":7,"./components/remarkable":10,"./components/rest":15,"./content/unit/akzeptanz/akzeptanz-controller":20,"./content/unit/description/description-controller":21,"./content/unit/test/item/item-controller":22,"./content/unit/test/test-controller":23,"./content/unit/topic/topic-controller":24,"./content/unit/unit-controller":25,"./download/download-controller":26,"./login/login-controller":28,"./register/register-controller":29,"./user/fsk/fsk-controller":30,"./user/user-controller":31,"./wbt-config":32,"./wbt-controller":33,"angular-bootstrap":2,"angular-ui-router":1}],28:[function(require,module,exports){
 module.exports=/*@ngInject*/["identity", "$modalInstance", function(identity,$modalInstance){
   var self=this;
   this.loginData={};
@@ -9639,7 +9536,7 @@ module.exports=/*@ngInject*/["identity", "$modalInstance", function(identity,$mo
     $modalInstance.dismiss("cancel");
   };
 }];
-},{}],30:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 module.exports=function($state,identity){
   this.registerData={};
   this.subjects=[{
@@ -9674,7 +9571,7 @@ module.exports=function($state,identity){
     .catch(identity.inauthenticate);
   };
 };
-},{}],31:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 module.exports=/*@ngInject*/["identity", "$modalInstance", function(identity,$modalInstance){
   var self=this;
   this.identity=identity;
@@ -9687,12 +9584,12 @@ module.exports=/*@ngInject*/["identity", "$modalInstance", function(identity,$mo
   return $modalInstance.dismiss();
   };
 }];
-},{}],32:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 "use strict";
 module.exports=function(){
 };
-},{}],33:[function(require,module,exports){
-module.exports=/*@ngInject*/["$stateProvider", "$urlRouterProvider", "$locationProvider", "$compileProvider", function($stateProvider,$urlRouterProvider,$locationProvider,$compileProvider){
+},{}],32:[function(require,module,exports){
+module.exports=function($stateProvider,$urlRouterProvider,$locationProvider,$compileProvider){
   $locationProvider.html5Mode(true);
   $compileProvider.debugInfoEnabled(false);
 $stateProvider.state("home",{
@@ -9837,8 +9734,8 @@ $stateProvider.state("home",{
   }
 });
   $urlRouterProvider.otherwise("/home");
-}];
-},{}],34:[function(require,module,exports){
+};
+},{}],33:[function(require,module,exports){
 module.exports=/*@ngInject*/["$state", "$stateParams", "identity", function($state,$stateParams,identity){
   this.$state=$state;
   this.$stateParams=$stateParams;
@@ -9847,4 +9744,4 @@ module.exports=/*@ngInject*/["$state", "$stateParams", "identity", function($sta
   .then(identity.get)
   .catch(identity.inauthenticate);
 }];
-},{}]},{},[28]);
+},{}]},{},[27]);

@@ -9,8 +9,7 @@ module.exports=angular.module("wbt",[
   "ngSanitize",
   "ngAria",
   require("./components/rest"),
-  require("./components/d3"),
-  require("./components/checklist-model/checklist-model")
+  require("./components/d3")
 ])
 .config(require("./wbt-config"))
 .controller("wbtCtrl",require("./wbt-controller"))

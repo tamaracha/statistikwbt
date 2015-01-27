@@ -1,4 +1,4 @@
-module.exports=/*@ngInject*/function($stateProvider,$urlRouterProvider,$locationProvider,$compileProvider){
+module.exports=function($stateProvider,$urlRouterProvider,$locationProvider,$compileProvider){
   $locationProvider.html5Mode(true);
   $compileProvider.debugInfoEnabled(false);
 $stateProvider.state("home",{
