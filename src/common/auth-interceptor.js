@@ -1,4 +1,5 @@
-module.exports=/*@ngInject*/function(Restangular,$window,identity){
+angular.module("wbt")
+.run(function(Restangular,$window,identity){
   Restangular.addFullRequestInterceptor(function(el,op,what,url,headers){
     if(headers.Authorization){return;}
     var token=$window.localStorage.getItem("authToken");
@@ -19,4 +20,4 @@ module.exports=/*@ngInject*/function(Restangular,$window,identity){
     }
     return true;
   });
-};
+});

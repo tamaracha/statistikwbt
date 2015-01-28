@@ -1,4 +1,5 @@
-module.exports=function(){
+angular.module("wbt")
+.directive("mathJax",function(){
   return {
     restrict: "A",
     scope: false,
@@ -6,4 +7,4 @@ module.exports=function(){
       MathJax.Hub.Queue(["Typeset",MathJax.Hub,$element[0]]);
     }
   };
-};
+});

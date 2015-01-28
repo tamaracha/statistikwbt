@@ -1,4 +1,5 @@
-module.exports=/*@ngInject*/function(identity,$modalInstance){
+angular.module("wbt")
+.controller("fskCtrl",function(identity,$modalInstance){
   var self=this;
   this.identity=identity;
   this.sessko=[];
@@ -9,4 +10,4 @@ module.exports=/*@ngInject*/function(identity,$modalInstance){
   this.cancel=function(){
   return $modalInstance.dismiss();
   };
-};
+});

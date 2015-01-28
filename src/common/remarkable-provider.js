@@ -1,4 +1,5 @@
-module.exports=function remarkableProvider(){
+angular.module("wbt")
+.provider("remarkable",function(){
   var preset,options;
   preset="full";
   options={
@@ -12,7 +13,7 @@ module.exports=function remarkableProvider(){
   this.options=function(value){
     options=value;
   };
-  this.$get=["Remarkable",function(Remarkable){
+  this.$get=function(){
     return new Remarkable(preset,options);
-  }];
-};
+  };
+});

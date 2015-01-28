@@ -1,4 +1,5 @@
-module.exports=/*@ngInject*/function(content,$modalInstance,unit,summary){
+angular.module("wbt")
+.controller("akzeptanzCtrl",function(content,$modalInstance,unit,summary){
   var self=this;
   this.unit=unit;
   this.summary=summary;
@@ -18,4 +19,4 @@ module.exports=/*@ngInject*/function(content,$modalInstance,unit,summary){
   this.cancel=function(){
     return $modalInstance.dismiss("cancel");
   };
-};
+});

@@ -1,5 +1,5 @@
-"use strict";
-module.exports=/*@ngInject*/function($q,Restangular){return{
+angular.module("wbt")
+.directive("userExists",function($q,Restangular){return{
   require: "ngModel",
   restrict: "A",
   link: function(scope,el,attrs,c){
@@ -13,4 +13,4 @@ module.exports=/*@ngInject*/function($q,Restangular){return{
       });
     };
   }
-};};
+};});

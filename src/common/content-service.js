@@ -1,4 +1,5 @@
-module.exports=/*@ngInject*/function(Restangular,$modal){
+angular.module("wbt")
+.factory("content",function(Restangular,$modal){
   var Units=Restangular.all("units");
   var units=function(){
     return Units.withHttpConfig({cache: true}).getList();
@@ -45,13 +46,14 @@ module.exports=/*@ngInject*/function(Restangular,$modal){
     .then(function(guesses){
       _.forEach(guesses.plain(),function(guess,key){
         var item=_.find(items,{_id: key});
+        if(!item){return;}
         switch(item.type){
           case "single":
             var choice=_.find(item.choices,{_id: guess.single});
             guesses[key]=choice;
             break;
           case "multiple":
-            var tmp=item.choices;;
+            var tmp=item.choices;
             _.forEach(tmp,function(choice,index){
               if(_.contains(guess.multiple,choice._id)){tmp[index].selected=true;}
               else{tmp[index].selected=false;}
@@ -88,10 +90,8 @@ module.exports=/*@ngInject*/function(Restangular,$modal){
       switch(item.type){
         case "single":
           return points+1;
-          break;
         case "multiple":
           return points+item.choices.length;
-          break;
         default:
           return points+1;
       }
@@ -115,17 +115,14 @@ module.exports=/*@ngInject*/function(Restangular,$modal){
     switch(item.type){
       case "single":
         return {};
-        break;
       case "multiple":
         var choices=item.choices;
         _.forEach(choices,function(choice){
           choice.selected=false;
         });
         return choices;
-        break;
       case "input":
         return "";
-        break;
       default:
         return {};
     }
@@ -150,4 +147,4 @@ module.exports=/*@ngInject*/function(Restangular,$modal){
     type: type,
     view: view
   };
-};
+});

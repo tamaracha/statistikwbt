@@ -1,4 +1,5 @@
-module.exports=/*@ngInject*/function($window,$q,Restangular,$modal){
+angular.module("wbt")
+.factory("identity",function($window,$q,Restangular,$modal){
   var Users,Tokens,_id,_token,_authenticated,_data;
   Users=Restangular.all("users");
   Tokens=Restangular.all("tokens");
@@ -26,8 +27,8 @@ module.exports=/*@ngInject*/function($window,$q,Restangular,$modal){
       return _authenticated ? resolve(true) : reject(false);
     });
   };
-  var token=function(){return _token;}
-  var data=function(){return _data;}
+  var token=function(){return _token;};
+  var data=function(){return _data;};
   var authenticate=function(form){
     var email,password;
     email=form.email;
@@ -129,4 +130,4 @@ module.exports=/*@ngInject*/function($window,$q,Restangular,$modal){
     complete: complete,
     setComplete: setComplete
   };
-};
+});

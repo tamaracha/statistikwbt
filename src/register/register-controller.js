@@ -1,4 +1,5 @@
-module.exports=function($state,identity){
+angular.module("wbt")
+.controller("registerCtrl",function($state,identity){
   this.registerData={};
   this.subjects=[{
     name: "psychology",
@@ -31,4 +32,4 @@ module.exports=function($state,identity){
     })
     .catch(identity.inauthenticate);
   };
-};
+});

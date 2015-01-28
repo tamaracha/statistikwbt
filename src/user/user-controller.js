@@ -1,3 +1,3 @@
-"use strict";
-module.exports=function(){
-};
+angular.module("wbt")
+.controller("userCtrl",function(){
+});

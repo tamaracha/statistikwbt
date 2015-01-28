@@ -1,4 +1,5 @@
-module.exports=/*@ngInject*/function(identity,$modalInstance){
+angular.module("wbt")
+.controller("loginCtrl",function(identity,$modalInstance){
   var self=this;
   this.loginData={};
   this.login=function(){
@@ -11,4 +12,4 @@ module.exports=/*@ngInject*/function(identity,$modalInstance){
   this.cancel=function(){
     $modalInstance.dismiss("cancel");
   };
-};
+});

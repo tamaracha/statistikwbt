@@ -1,4 +1,5 @@
-module.exports=/*@ngInject*/function(identity,content,unit,items,guesses){
+angular.module("wbt")
+.controller("testCtrl",function(identity,content,unit,items,guesses){
   var self=this;
   this.guesses=guesses;
   this.state="intro";
@@ -37,4 +38,4 @@ module.exports=/*@ngInject*/function(identity,content,unit,items,guesses){
   };
   this.group();
   if(!this.items.todo){this.state="finished";}
-};
+});
