@@ -6,9 +6,6 @@ angular.module("wbt")
 $stateProvider.state("home",{
   url: "/home",
   templateUrl: "home/home.html",
-  data: {
-    access: "public"
-  }
 })
 .state("content",{
   url: "/content",
@@ -18,9 +15,7 @@ $stateProvider.state("home",{
       return content.units();
     }
   },
-  controller: ["units",function(units){
-    this.units=units;
-  }],
+  controller: "contentCtrl",
   controllerAs: "content"
 })
 .state("content.unit",{
