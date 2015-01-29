@@ -110,7 +110,7 @@ $stateProvider.state("home",{
 })
 .state("content.unit.topic.example",{
   url: "/example/:example",
-  template: '<h3 ng-bind="example.example|title"></h3><div md="example.example.body"></div>',
+  template: '<h3 ng-bind="example.example"></h3><div math-jax md="example.example.body"></div>',
   controller: ["example",function(example){
     this.example=example;
   }],
@@ -123,7 +123,7 @@ $stateProvider.state("home",{
 })
 .state("content.unit.topic.extra",{
   url: "/extra/:extra",
-  template: '<h3 ng-bind="extra.extra|title"></h3><div md="extra.extra.body"></div>',
+  template: '<h3 ng-bind="extra.extra"></h3><div math-jax md="extra.extra.body"></div>',
   controller: ["extra",function(extra){
     this.extra=extra;
   }],
@@ -549,12 +549,12 @@ angular.module("wbt")
   }
 };}]);
 angular.module("wbt")
-.controller("contentCtrl",["units", function(units){
+.controller("downloadCtrl",["units", function(units){
+  this.format="rtf";
   this.units=units;
 }]);
 angular.module("wbt")
-.controller("downloadCtrl",["units", function(units){
-  this.format="rtf";
+.controller("contentCtrl",["units", function(units){
   this.units=units;
 }]);
 angular.module("wbt")
