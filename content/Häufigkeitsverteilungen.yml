@@ -2,5 +2,82 @@ _id: 5493aa9a45ac10a752054073
 position: 2
 title: Häufigkeitsverteilungen
 subtitle: Grafische Datenaufbereitung und ihr Nutzen
-description:
+description: |
   Eine Häufigkeitsverteilung beschreibt, wie oft ein bestimmter Wert innerhalb eines <dfn title="Merkmal">Merkmals</dfn>, einer gemessenen Eigenschaft wie Masse oder Neugier, auftritt. Die Werte können sich um den Mittelwert herum häufen, aber auch z.B. um das Minimum. Viele Eigenschaften nähern sich einer Verteilungsform an, die sich als mathematische Funktion ausdrücken lässt, ähnlich wie die Geradengleichung eine Gerade beschreibt. In der Statistik machen wir uns diese Gesetzmäßigkeiten zunutze um mehr über die Eigenschaft zu erfahren. Es geht in dieser Lerneinheit vor allem darum, die Verteilung an der grafischen Aufbereitung zu erkennen und daraus weitere Schlüsse über das Merkmal zu ziehen.
+topics:
+  - _id: 54ca8ff7aa9e83ef4888fa81
+    title: Normalverteilung
+    body: |
+      Es zeigt sich, dass viele Merkmale sich von ihrer Häufigkeitsverteilung her einer ganz charakteristischen Verteilungsform angleichen: der Normalverteilung. Das ist eine symmetrische, glockenförmige Häufigkeits- oder Wahrscheinlichkeitsverteilung. Es gibt also einen Modalwert, der auch gleichzeitig der Mittelwert und der Median ist, und je weiter Sie von dort in der Verteilung nach außen gehen, desto flacher wird sie, desto seltener kommt diese Ausprägung vor. Sie können sich das auch so vorstellen, dass es bei vielen Merkmalen unter den Merkmalsträgern eine große mittelmäßige Gruppe gibt und je extremer die Ausprägung, desto seltener kommt sie vor. Die meisten Menschen sind mittelmäßig intelligent, aber nur je 2,5% sind hoch- bzw. minderbegabt.
+      
+      Eigentlich ist die Normalverteilung eine mathematische Wahrscheinlichkeitsfunktion. Das heißt, Sie können für jeden Ausprägungsbereich (nicht einzelne Ausprägungen) die Auftretenswahrscheinlichkeit oder -Häufigkeit direkt ausrechnen, wenn Sie den Mittelwert und die Standardabweichung kennen. Dieses Prinzip kennen Sie sicher von der Geradengleichung. Dort brauchen Sie die Steigung und den Achsenabschnitt, damit Sie zu jedem X-Wert den korrespondierenden Y-Wert berechnen können. Steigung und Achsenabschnitt sind die Parameter der Geradengleichung, geben der Gerade sozusagen ihren Charakter. So sind Mittelwert und Standardabweichung die beiden Parameter der Normalverteilung. Wie Sie das schon von den Häufigkeiten her kennen, verschiebt der Mittelwert die ganze Verteilung nach links oder rechts, während die Standardabweichung die Verteilung entweder schmal und hoch (kleine Standardabweichung) oder breit und flach (große Standardabweichung) aussehen. Auch die Gerade ist ein mathematisches Konstrukt, aber wir finden in Messungen häufig Zahlenmuster, die sich als Näherung an die Gerade darstellen lassen. Analog dazu funktioniert auch die Normalverteilung. Die Häufigkeiten vieler Merkmale stellen sich in möglichst repräsentativen Messungen als Näherung an die Normalverteilung heraus. Der große Vorteil dabei ist, dass wir die Auftretenshäufigkeit jedes Ausprägungsbereichs direkt berechnen können. Von hier an werden wir die Parameter als $\mu$ (my) für den Mittelwert und $\sigma$ (sigma) für die Standardabweichung bezeichnen. Es geht nämlich bei diesen Parametern meistens um Populationskennwerte und Populationskennwerte werden mit griechischen Buchstaben bezeichnet, im Gegensatz zu den Stichprobenkennwerten, die lateinische Buchstaben bekommen. So weiß man auch gleich, ob es um Stichproben- oder Populationskennwerte geht, selbst wenn einem der Kennwert gerade nicht bekannt ist. Man kann den Populationskennwerten auch noch einen Hut aufsetzen ($\hat{\mu}$ und $\hat{\sigma}$), was deutlich macht, dass es sich um Schätzwerte handelt und nicht direkt um die wahren Werte. 
+      
+      #### Parameter der Normalverteilung
+      Hier können Sie die Parameter der Normalverteilung verändern und beobachten, wie sich die Verteilung daraufhin verändert.
+    examples:
+      - title: Beispiel 1
+        body: |
+          Hier kommt Beispiel 1.
+      - title: Beispiel 2
+        body: |
+          Hier kommt Beispiel 2.
+    extras:
+      - title: Extra 1
+        subtitle: besonders extra
+        body: |
+          Hier kommt Extra 1
+      - title: Extra 2
+        body: |
+          Hier kommt Extra 2
+  - _id: 54ca94b5aa9e83ef4888fa84
+    title: Parameter der Normalverteilung
+    body: |
+      Hier können Sie die Parameter der Normalverteilung verändern und beobachten, wie sich die Verteilung daraufhin verändert. 
+  - _id: 54ca9238aa9e83ef4888fa83
+    title: Integrale der Normalverteilung
+    body: |
+      Hier geht es um die Ausprägungsbereiche und deren Auftretenswahrscheinlichkeit, also die Auftretenshäufigkeit der Werte, die in einem bestimmten Ausprägungsbereich liegen. Eine sehr beliebte Vorgehensweise ist es, die Ausprägungsbereiche in Standardabweichungen anzugeben, weil dabei die Wahrscheinlichkeiten immer gleich sind, unabhängig davon, wie groß die Parameter selbst sind. Der Integralrechner hier auf dieser Seite ist im Ausgangszustand auf einen Flächenanteil von μ±1σ eingestellt. Sie können aber auch jedes andere Integral aufspannen. Die Wahrscheinlichkeit wird unten als Prozentangabe angezeigt und entspricht auch dem Flächenanteil der Verteilung. Hätten wir z.B. ein Merkmal wie Schulleistung, das ein μ von 50 und ein σ von 10 hat, hätten 68% der Population einen Leistungsindex zwischen 40 und 60. Die hier gezeigte Verteilung hat ein μ von 50 und ein σ von 10. Sie können auch eine Integralgrenze auf μ einstellen und die andere in Standardabweichungen variieren. Die Verteilung ist symmetrisch und daher wären diese Flächenanteile genau halb so groß wie diejenigen, in denen beide Grenzen gleich weit vom Mittelwert verschoben werden. Sie können aber auch jedes beliebige andere Integral berechnen, das nicht genau durch Standardabweichungen aufgeteilt werden kann.
+  - _id: 54ca921caa9e83ef4888fa82
+    title: Standardnormalverteilung
+    body: |
+      Die Standardnormalverteilung ist eine Normalverteilung mit den Parametern μ=0 und σ=1. Wenn Merkmale in der Standardnormalverteilung vorliegen, hat das den großen Vorteil, dass Sie Werte aus dem einen Merkmal mit Werten aus dem anderen Merkmal vergleichen können. Sie erinnern sich hoffentlich noch an die Absolutskala und die z-Standardisierung. Die Standardnormalverteilung ist eine Normalverteilung, deren Werte z-transformiert wurden. Wenn wir normalverteilte Merkmale mit unterschiedlichen Parametern haben, können wir sie einfach selbst mittels z-Transformation standardisieren. Außerdem erleichtert diese Form das berechnen der Auftretenswahrscheinlichkeit von Merkmalsbereichen, weil die Werte schon direkt ausdrücken, um wie viele Standardabweichungen sie vom Mittelwert entfernt liegen.
+  - _id: 54ca9ba2aa9e83ef4888fa8c
+    title: Parameter schätzen
+    subtitle: Kennwerte schätzen
+    body: |
+      Jetzt wissen Sie über die Vorzüge der Normalverteilung Bescheid und dass man nur μ und σ braucht um diese Häufigkeitsverteilung rekonstruieren zu können. Hier erfahren sie, wie Sie den Mittelwert und die Standardabweichung der Population mit einer Stichprobe statistisch schätzen können.
+      
+      #### Mittelwert schätzen
+      Für den Mittelwert berechnen wir keinen direkten Schätzer, sondern eine Art Vertrauensintervall, also einen Ausprägungsbereich, in dem μ mit hoher Wahrscheinlichkeit liegt. Je größer und repräsentativer die Stichprobe, desto enger wird dieser Bereich, desto besser haben wir μ eingegrenzt. Etwas ähnliches haben Sie ja schon bei der Normalverteilung und den Integralen kennengelernt. Je kleiner die Standardabweichung ist, desto enger wird auch der Bereich, in dem ein Messwert wahrscheinlich liegen wird. Um das Vertrauensintervall des Mittelwertes zu bestimmen benutzen wir jetzt aber keine Standardabweichung mehr, sondern führen einen neuen Stichprobenkennwert ein: den Standardfehler des Mittelwerts (SEM). Er verkörpert die Standardabweichung aller Stichprobenmittelwerte. Auch die Verteilung aller Stichprobenmittelwerte einer Population ist normalverteilt mit dem wahren Populationsmittelwert als Mittelwert. Die meisten Stichprobenmittelwerte liegen nah beim wahren Mittelwert, je extremer die Stichprobenmittelwerte, desto seltener treten sie auf. Und je kleiner die gezogenen Stichproben sind, desto breiter Streuen sie. Sie können also auch mal eine Stichprobe erwischen, die einen ganz untypischen Mittelwert hat. Daher braucht es auch nicht gleich das ganze Weltbild zu erschüttern, wenn einmal eine Studie etwas ganz unerwartetes findet. Berechnet wird der Standardfehler, indem die Standardabweichung durch die Wurzel des Stichprobenumfangs geteilt wird: SEM=s/n√. Dabei geht die Stichprobengröße in den Kennwert mit ein und je größer die Stichprobe, desto kleiner wird der Standardfehler. Excel: Stabw.s, Wurzel.
+      
+      Nun können Sie sich um den Stichprobenmittelwert eine imaginäre Normalverteilung vorstellen, deren Standardabweichung dem eben berechneten Standardfehler entspricht. Das ist die Verteilung aller potentiellen Stichprobenmittelwerte mit der aktuellen Stichprobengröße. Wenn die Stichprobenmittelwerte normalverteilt um μ herumstreuen, muss μ in dieser imaginären Verteilung liegen. Im Intervall x¯±SEM liegen 68% der Verteilung, es besteht also eine Wahrscheinlichkeit von 68%, dass der wahre Populationsmittelwert in diesem Bereich liegt. Wenn Sie mehr Gewissheit wollen, müssen Sie das Intervall breiter spannen, z.B. um 2SEM. Damit erwischen Sie den Populationsmittelwert zu 95% Wahrscheinlichkeit, haben aber auch eine gröbere Schätzung. Sie können also mit dem Standardfehler sowohl den wahren Mittelwert eingrenzen, aber der Standardfehler ist auch ein Indikator für die Genauigkeit der Messung. Deswegen wird er in Publikationen auch kommuniziert, weil man sich daran einen Eindruck der Messgenauigkeit verschaffen kann. 
+      
+      #### Standardabweichung schätzen
+      Die Standardabweichung wird direkt als Kennwert geschätzt. Der Vorgang der Berechnung ist fast genau wie bei der Stichprobenstandardabweichung, nur teilen Sie Summe der quadrierten Abweichungen nicht durch n, sondern durch n−1. Die Idee dabei ist, dass die Varianz der Population tendenziell etwas größer ist als die einer Stichprobe. Indem durch n−1 geteilt wird, ist die berechnete Varianz ein wenig größer als wenn man durch n teilt.
+  - _id: 54ca9b87aa9e83ef4888fa8b
+    title: Fehlerbalken
+    body: |
+      In Grafiken wird der Standardfehler des Mittelwertes dargestellt, indem man Fehlerbalken einzeichnet. Dabei werden Mittelwerte als Punkte dargestellt und die Fehlerbalken sind Striche auf diesen Punkten, deren Länge das Vertrauensintervall ausdrückt. Hier sind die Mittelwerte der Denktrainingsdaten mit Fehlerbalken aufgeführt (±1SEM). Jeder Punkt stellt die Mittlere Intelligenz einer Trainingsform/Zeitpunkt-Kombination dar.
+tests:
+  - _id: 54ca963eaa9e83ef4888fa86
+    text: Wie viel Prozent der Werte der Verteilung liegen im Ausprägungsbereich von μ bis μ+1σ?
+    type: single
+    choices:
+      - _id: 54ca962baa9e83ef4888fa85
+        text: 68%
+        correct: false
+        feedback: Nein, das wäre der Bereich von $\mu - \sigma$ bis $\mu + \sigma$.
+      - _id: 54ca9683aa9e83ef4888fa87
+        text: 34%
+        correct: true
+        feedback: Richtig.
+      - _id: 54ca96cfaa9e83ef4888fa88
+        text: 47%
+        correct: false
+        feedback: Nein, das wäre $\mu$ bis $\mu + 2\sigma$.
+      - _id: 54ca9705aa9e83ef4888fa89
+        text: 25%
+        correct: false
+        feedback: Nein, dieser Wert kommt bei den Integralen nicht vor, die durch ganze Standardabweichungen erzeugt werden.
+  - _id: 54ca98d7aa9e83ef4888fa8a
+    text: Ein Kind macht einen Schulleistungstest und einen Intelligenztest. Im Leistungstest erreicht es einen Wert von 80 und einen IQ von 100. Worin ist das Kind besser, bei welchem Merkmal liegt es weiter oben in der jeweiligen Häufigkeitsverteilung?
