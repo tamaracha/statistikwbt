@@ -16,17 +16,23 @@ topics:
       Schauen wir uns zunächst diese Abbildungen an.
       
       <figure>
+      
       ![Positive Kovarianz](/images/PositiveKovarianz.svg "Positive Kovarianz")
+      
       <figcaption>Abb. A: Positive Kovarianz</figcaption>
       </figure>
       
       <figure>
+      
       ![Negative Kovarianz](/images/NegativeKovarianz.svg "Negative Kovarianz")
+      
       <figcaption>Abb. B: Negative Kovarianz</figcaption>
       </figure>
       
       <figure>
+      
       ![Keine Kovarianz](/images/KeineKovarianz.svg "Keine Kovarianz")
+      
       <figcaption>Abb. C: Keine Kovarianz</figcaption>
       </figure>
       
@@ -76,11 +82,15 @@ topics:
           Zur Verallgemeinerung einer Korrelation auf die Gesamtpopulation ist es wichtig, dass man die Stichprobe zufällig zieht. Es kann durchaus passieren, dass bestimmte Verzerrungen den Korrelationskoeffizienten beeinflussen, sodass die Stichprobenkorrelation die Populationskorrelation erheblich unterschätzen oder überschätzen kann. Hierzu zwei Streudiagramme.
           
           <figure>
+          
           ![Selectionsfehler klein](/images/SelektionKlein.svg "zu kleine Streubreite")
+          
           </figure>
           
           <figure>
+          
           ![SelectionsFehler Extrem](/images/SelektionExtrem.svg "extreme Streubreite")
+          
           </figure>
           
           Abbildung a zeigt eine Stichprobe mit zu kleiner Streubreite. Abbildung b zeigt eine aus Extremgruppen zusammengesetzte Stichprobe. In beiden Fällen führt die Stichprobe zu einer Verzerrung des Korrelationskoeffizienten.
