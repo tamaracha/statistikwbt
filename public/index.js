@@ -423,7 +423,7 @@ angular.module("wbt")
     });
   };
   var login=function(){
-    $modal.open({
+    return $modal.open({
       templateUrl: "login/login.html",
       controller: "loginCtrl",
       controllerAs: "login"
