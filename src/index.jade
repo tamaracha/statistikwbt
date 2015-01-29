@@ -46,4 +46,11 @@ html(lang="de" data-ng-app="wbt" data-ng-strict-di)
             |  Abmelden
     .container(data-ui-view)
     script(src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML")
+    script
+      | MathJax.Hub.Config({
+      |   tex2jax: {
+      |     inlineMath: [['$','$'], ['\\(','\\)']],
+      |     processEscapes: true
+      |   }
+      | });
     script(src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js")

@@ -549,12 +549,12 @@ angular.module("wbt")
   }
 };}]);
 angular.module("wbt")
-.controller("downloadCtrl",["units", function(units){
-  this.format="rtf";
+.controller("contentCtrl",["units", function(units){
   this.units=units;
 }]);
 angular.module("wbt")
-.controller("contentCtrl",["units", function(units){
+.controller("downloadCtrl",["units", function(units){
+  this.format="rtf";
   this.units=units;
 }]);
 angular.module("wbt")

@@ -12,11 +12,11 @@ topics:
       
       #### Arithmetisches Mittel
       Der klassische Durchschnitt oder Mittelwert. Berechnet wird er, indem du alle Messwerte zusammenaddierst und diese Summe durch die Anzahl der Werte teilst. Dieser Kennwert enthält sehr viel Information über den Datensatz, denn jeder Wert geht als Zahl in den Mittelwert ein. Der Mittelwert ist deswegen aber auch anfällig für Verzerrungen, schon wenn es einen einzigen, stark abweichenden Extremwert gibt. Solche stark abweichenden Werte heißen Ausreißer. Die Formel für das arithmetische Mittel lautet:
-      \\[\overline{x} = \frac{\sum _{i=1} ^n x_i}{n}\\]
-      Der Mittelwert (\\(\overline{x}\\), sprich x-quer) ist gleich die Summe aller Werte (\\(\sum _{i=1} ^n x_i\\)) geteilt durch die Anzahl aller Werte (\\(n\\)).
+      $$\overline{x} = \frac{\sum _{i=1} ^n x_i}{n}$$
+      Der Mittelwert ($\overline{x}$, sprich x-quer) ist gleich die Summe aller Werte ($\sum _{i=1} ^n x_i$ geteilt durch die Anzahl aller Werte ($n$.
       
       #### Median
-      Der Median lässt sich folgendermaßen charakterisieren: 50% der Werte sind kleiner oder gleich dem Median und die anderen 50% der Werte sind größer oder gleich dem Median. Für seine Berechnung sind also nicht mehr die konkreten Messwerte entscheidend, sondern ihre Rangfolge. Der Median ist somit der rangmittlere Wert, wenn die Werte aufsteigend nach ihrer Größe sortiert wurden. Der Median ist weniger empfindlich (robuster) gegenüber Ausreißern als der Mittelwert. Bei einer geraden Anzahl an Messwerten hast du zwei rangmittlere Werte. Dann ist der Median das arithmetische Mittel dieser beiden Werte. Als Formel ausgedrückt lautet das \\((n+1)/2\\) (der Rang des x-Wertes, der auch der Median ist).
+      Der Median lässt sich folgendermaßen charakterisieren: 50% der Werte sind kleiner oder gleich dem Median und die anderen 50% der Werte sind größer oder gleich dem Median. Für seine Berechnung sind also nicht mehr die konkreten Messwerte entscheidend, sondern ihre Rangfolge. Der Median ist somit der rangmittlere Wert, wenn die Werte aufsteigend nach ihrer Größe sortiert wurden. Der Median ist weniger empfindlich (robuster) gegenüber Ausreißern als der Mittelwert. Bei einer geraden Anzahl an Messwerten hast du zwei rangmittlere Werte. Dann ist der Median das arithmetische Mittel dieser beiden Werte. Als Formel ausgedrückt lautet das $(n+1)/2$ (der Rang des x-Wertes, der auch der Median ist).
       
       #### Modalwert
       Der Modalwert oder Modus ist derjenige Messwert, der am häufigsten auftritt. Hierzu wird nicht gerechnet und keine Rangreihe gebildet, sondern die Werte werden gruppiert. Diese Form der zentralen Tendenz stellt besonders niedrige Anforderungen an die Daten, verliert aber auch viel Information.
@@ -27,13 +27,13 @@ topics:
           Hin und wieder kommt es vor, dass Messwerte keine „richtigen“ Zahlen sind, sondern nur eine Rangreihenfolge der Messwerte vorhanden ist. Zum Beispiel kann man Gemälde nach ihrer Ästhetik schwer in Zahlen beurteilen, aber du kannst mehrere Bilder trotzdem nach ihrer von dir wahrgenommenen Schönheit sortieren. Um die zentrale Tendenz zu bestimmen, kannst du hier kein arithmetisches Mittel verwenden, aber den Median. Du würdest hierbei zuerst alle Bilder aufsteigend nach ihrer Schönheit sortieren und das Bild heraussuchen, das  genau in der Mitte dieser Rangreihe steht. Das gibt dir einen groben Eindruck, auf welchem Niveau sich deine Bilder insgesamt bewegen.
       - title: Zahlenbeispiel
         body: |
-          Von 6 Schülern wurde die Schuhgröße gemessen: \\(x_1=36\\), \\(x_2=36\\), \\(x_3=40\\), \\(x_4=42\\), \\(x_5=44\\), \\(x_6=46\\).
+          Von 6 Schülern wurde die Schuhgröße gemessen: $x_1=36$, $x_2=36$, $x_3=40$, $x_4=42$, $x_5=44$, $x_6=46$.
           
           arithmetisches Mittel
-          : \\[\overline{x} = \frac{\sum _{i=1} ^6 x_i}{6} = 40,67\\]
+          : $$\overline{x} = \frac{\sum _{i=1} ^6 x_i}{6} = 40,67$$
           
           Median
-          : Rang: \\((6+1)/2 = 3,5\\), also Mittelwert aus Rängen 3 und 4 (\\(\mathit{md} = 41\\))
+          : Rang: $(6+1)/2 = 3.5$, also Mittelwert aus Rängen 3 und 4 ($\mathit{md} = 41$
           
           Modalwert
           : 36, kommt zweimal vor, alle anderen nur einmal.
@@ -43,13 +43,13 @@ topics:
         body: |
           Statistische Kennwerte bzw. deren Formeln sollen allgemein auf jede Messung anwendbar sein. Konkrete Messwerte in Formeln zu schreiben ist damit nicht möglich. Wir brauchen einen allgemeineren Weg um auszudrücken, welche Werte in die Formeln eingesetzt werden und was mit ihnen gemacht werden soll.
           
-          Variablen werden mit Buchstaben bezeichnet und definieren welche Werte/Zahlen in die Formel eingesetzt werden. Sehr häufig anzutreffen ist z.B. die Stichprobengröße \\(n\\). Wenn wir wissen, dass \\(n\\) die Anzahl aller Messwerte in der jeweiligen Stichprobe ist, können wir den Zahlenwert von \\(n\\) jederzeit für jede unserer Stichproben selbst korrekt bestimmen.
+          Variablen werden mit Buchstaben bezeichnet und definieren welche Werte/Zahlen in die Formel eingesetzt werden. Sehr häufig anzutreffen ist z.B. die Stichprobengröße $n$. Wenn wir wissen, dass $n$ die Anzahl aller Messwerte in der jeweiligen Stichprobe ist, können wir den Zahlenwert von $n$ jederzeit für jede unserer Stichproben selbst korrekt bestimmen.
           
-          Abgesehen von \\(n\\) werden auch Variablen definiert, die jeweils Messwerte eines bestimmten Merkmals enthalten. \\(x\\) könnte z.B. einen Wert für Schuhgröße enthalten, \\(y\\) einen für Körpergewicht. Damit die verschiedenen Messwerte nicht alle einfach nur \\(x\\) oder \\(y\\) heißen und damit gar nicht unterscheidbar wären, müssen sie mittels eines Subscripts durchnummeriert werden, also \\(x_1\\), \\(x_2\\), x3, … \\(x_n\\). Mit Hilfe von \\(n\\) wird völlig allgemein definiert, dass \\(x_n\\) der letzte durchnummerierte Messwert des Merkmals ist. Hast du z.B. 23 Schuhgrößen gemessen, gilt \\(n=23\\) und du kannst vom ersten bis zum dreiundzwanzigsten bzw. letzten Wert durchnummerieren. Auch die Zahl im Subscript darf als Variable definiert werden und heißt meistens \\(i\\). \\(i\\) ist eine Laufvariable, weil sie während eines Zähl- oder Nummerierungsvorganges die Anzahl der bereits gezählten Werte enthält.
+          Abgesehen von $n$ werden auch Variablen definiert, die jeweils Messwerte eines bestimmten Merkmals enthalten. $x$ könnte z.B. einen Wert für Schuhgröße enthalten, $y$ einen für Körpergewicht. Damit die verschiedenen Messwerte nicht alle einfach nur $x$ oder $y$ heißen und damit gar nicht unterscheidbar wären, müssen sie mittels eines Subscripts durchnummeriert werden, also $x_1$, $x_2$, x3, … $x_n$. Mit Hilfe von $n$ wird völlig allgemein definiert, dass $x_n$ der letzte durchnummerierte Messwert des Merkmals ist. Hast du z.B. 23 Schuhgrößen gemessen, gilt $n=23$ und du kannst vom ersten bis zum dreiundzwanzigsten bzw. letzten Wert durchnummerieren. Auch die Zahl im Subscript darf als Variable definiert werden und heißt meistens $i$. $i$ ist eine Laufvariable, weil sie während eines Zähl- oder Nummerierungsvorganges die Anzahl der bereits gezählten Werte enthält.
       - title: SummenSchreibweise
         body: |
           Laufvariablen sind nützlich um auszudrücken, wenn man mit jedem Wert der Reihe nach etwas machen möchte, z.b. ihn zu einer anderen Zahl addieren. Hier ist noch einmal die Formel für das arithmetische Mittel:
-          \\[\overline(x) = \frac{\sum _{i=1} ^n x_i}{n}\\]
+          $$\overline(x) = \frac{\sum _{i=1} ^n x_i}{n}$$
           Dabei läuft i vom ersten bis zum letzten Wert, während der Wert mit dem jeweiligen i zur Gesamtsumme addiert wird. Die Summenschreibweise gibt den Anfang und das Ende der Laufvariable an.
           
           1. ersten Wert nehmen, Anzahl bisher addierter Summanden im Sinn
@@ -67,28 +67,28 @@ topics:
       #### Interquartilsabstand
       Dies ist sozusagen eine Spannweite ohne Ausreißer. Um zu verstehen, was ein Quartil ist, verfährst du zunächst wie bei der Berechnung des Mediana: Die Werte einer Stichprobe der Größe nach in eine Rangreihe bringen. Nun bestimmst du aber nicht nur den Median, sondern „vierteln“ die Reihe sozusagen. Beim Vierteln entstehen drei Stellen, an denen die Reihe in vier etwa gleich große Teile zerlegt wird. Wenn du die Ränge weißt, kannst du einfach in der Reihe nachschauen, welcher Messwert sich dahinter verbirgt. Also verwechsel nicht Ränge und Messwerte. Den Rang einer Messung kannst du folgendermaßen bestimmen:
       
-      \\(n\\) steht für die Anzahl der Messwerte, \\(x\\) für den Rang und \\(q\\) für den zugehörigen Wert, der an x'ter Stelle steht.
+      $n$ steht für die Anzahl der Messwerte, $x$ für den Rang und $q$ für den zugehörigen Wert, der an x'ter Stelle steht.
       
-      erstes Quartil (\\(q_1\\))
-      : \\(\frac{1}{4}\\) der Werte sind kleiner oder gleich.
-      : \\(x_1=0.25*(n+1)\\)
+      erstes Quartil ($q_1$
+      : $\frac{1}{4}$ der Werte sind kleiner oder gleich.
+      : $x_1=0.25*(n+1)$
       
-      Median oder zweites Quartil (\\(q_2\\))
-      : \\(\frac{1}{2}\\) der Werte sind kleiner oder gleich.
-      : Bei ungeradem \\(n\\) gilt: \\(x=0.5*(n+1)\\)
-      : bei geradem \\(n\\) ist \\(q_2\\) der Mittelwert der beiden rangmittleren Werte.
+      Median oder zweites Quartil ($q_2$
+      : $\frac{1}{2}$ der Werte sind kleiner oder gleich.
+      : Bei ungeradem $n$ gilt: $x=0.5*(n+1)$
+      : bei geradem $n$ ist $q_2$ der Mittelwert der beiden rangmittleren Werte.
       
-      drittes Quartil (\\(q_3\\))
+      drittes Quartil ($q_3$
       : ¾ der Werte sind kleiner oder gleich.
-      : \\(x_3=0.75*(n+1)\\)
+      : $x_3=0.75*(n+1)$
       
       Zwischen dem ersten und dritten Quartil liegen also nur etwa 50% der Messwerte. Die Ausreißer sind nicht mehr dabei, sondern liegen in den äußeren Vierteln. Den Interquartilsabstand berechnest du, indem du das erste Quartil vom dritten Quartil subtrahierst. Je größer die Streuung, desto größer wird der Abstand sein.
       
       #### Varianz und Standardabweichung
       Ein differenzierteres Maß der Streuung ist die Varianz und die Standardabweichung. In ihre Berechnung gehen die Abweichungen aller Werte zum Mittelwert ein. Die verbale Formel könnte so lauten: Die Varianz ist die durchschnittliche quadrierte Abweichung der Messwerte zum Mittelwert. Die mathematische Formel lautet:
-      \\[s^2 = \frac{\sum _{i=1} ^n {(x_i - \overline{x})^2}}{n}\\]
+      $$s^2 = \frac{\sum _{i=1} ^n {(x_i - \overline{x})^2}}{n}$$
       
-      Der so berechnete Kennwert heißt **Varianz** und wird normalerweise in Formeln mit \\(s^2\\) gekennzeichnet. Diese Buchstabenkennung macht deutlich, dass in diesem Wert die Quadrierung steckt, die bei der Berechnung der Varianz vorgenommen wurde. Dadurch ist die Varianz eine quadrierte mittlere Abweichung vom Mittelwert. Diese ist schwierig zu interpretieren und deswegen möchten wir eine „normale“, von der Quadrierung bereinigte mittlere Abweichung. Die erhalten wir, indem wir die Wurzel aus der Varianz ziehen: s=√s². Diese Wurzel der Varianz heißt **Standardabweichung** und wird einfach mit \\(s\\) gekennzeichnet. Sie ist leichter zu interpretieren und wird häufiger als Streuungsmaß verwendet, weil sie technisch gesehen einer durchschnittlichen Abweichung der Werte vom Mittelwert entspricht. Generell wird die Standardabweichung extrem häufig verwendet, weshalb es sich für dich auf jeden Fall lohnt, sie zu kennen und interpretieren zu können.
+      Der so berechnete Kennwert heißt **Varianz** und wird normalerweise in Formeln mit $s^2$ gekennzeichnet. Diese Buchstabenkennung macht deutlich, dass in diesem Wert die Quadrierung steckt, die bei der Berechnung der Varianz vorgenommen wurde. Dadurch ist die Varianz eine quadrierte mittlere Abweichung vom Mittelwert. Diese ist schwierig zu interpretieren und deswegen möchten wir eine „normale“, von der Quadrierung bereinigte mittlere Abweichung. Die erhalten wir, indem wir die Wurzel aus der Varianz ziehen: s=√s². Diese Wurzel der Varianz heißt **Standardabweichung** und wird einfach mit $s$ gekennzeichnet. Sie ist leichter zu interpretieren und wird häufiger als Streuungsmaß verwendet, weil sie technisch gesehen einer durchschnittlichen Abweichung der Werte vom Mittelwert entspricht. Generell wird die Standardabweichung extrem häufig verwendet, weshalb es sich für dich auf jeden Fall lohnt, sie zu kennen und interpretieren zu können.
     examples:
     extras:
     tests:
