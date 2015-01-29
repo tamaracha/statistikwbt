@@ -69,9 +69,11 @@ $stateProvider.state("home",{
 })
 .state("content.unit.topic.example",{
   url: "/example/:example",
-  template: '<h3 ng-bind="example.example"></h3><div math-jax md="example.example.body"></div>',
+  template:
+    '<h3 ng-bind="example.title"></h3><div math-jax md="example.example.body"></div>',
   controller: ["example",function(example){
     this.example=example;
+    this.title=example.subtitle ? example.title+": "+example.subtitle : example.title;
   }],
   controllerAs: "example",
   resolve: {
@@ -82,9 +84,11 @@ $stateProvider.state("home",{
 })
 .state("content.unit.topic.extra",{
   url: "/extra/:extra",
-  template: '<h3 ng-bind="extra.extra"></h3><div math-jax md="extra.extra.body"></div>',
+  template:
+    '<h3 ng-bind="extra.title"></h3><div math-jax md="extra.extra.body"></div>',
   controller: ["extra",function(extra){
     this.extra=extra;
+    this.title=extra.subtitle ? extra.title+": "+extra.subtitle : extra.title;
   }],
   controllerAs: "extra",
   resolve: {
