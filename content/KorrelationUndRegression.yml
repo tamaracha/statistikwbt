@@ -3,4 +3,89 @@ position: 5
 title: Korrelation und Regression
 subtitle: Zusammenhänge
 description: |
-  Der Zusammenhang zwischen zwei metrischen Merkmalen (nicht kategorial) kann statistisch untersucht werden. Bei einer Stichprobe von Personen misst man nicht mehr einen Wert pro Person, sondern ein Wertepaar (beide Merkmale für jede Person). Ist der eine Messwert umso größer, je größer der andere Messwert ist? Wie genau kann man den einen Messwert aufgrund des anderen bestimmen? Solche Fragestellungen ergänzen sich mit jenen nach dem Gruppenunterschied. Sie können außerdem auch gut grafisch untersucht werden.
+  Häufig besteht eine paarweise Beziehung zwischen zwei gemessenen Beobachtungen (Werten). Manchmal willst du dich aber nicht damit begnügen nur festzustellen, ob ein Zusammenhang besteht, sondern die Enge des Zusammenhangs soll auch charakterisiert werden. Du willst also herausfinden wie stark der Zusammenhang zwischen Messwerten ist. Vielleicht hast du schon einmal den Satz gehört: „Zwischen diesen Merkmalen besteht eine hohe Korrelation“. In diesem Kapitel wirst du Methoden kennenlernen wie du die Stärke eines Zusammenhangs beschreiben kannst.
+topics:
+  - _id: 54ca01e3aa9e83ef4888fa7d
+    title: Kovarianz
+    subtitle: nicht standardisiertes Maß
+    body: |
+      Die Kovarianz ist ein nicht-standardisiertes Zusammenhangsmaß, welches zur Beschreibung linearer Zusammenhänge verwendet wird. Ein Zusammenhang zwischen zwei Variablen ist linear, wenn er durch eine Gerade repräsentiert werden kann. Natürlich kommt es so gut wie nie vor, dass deine Messungen alle auf einer Gerade liegen. Jedoch kann man durch eine Gerade einen Trend feststellen.
+      
+      Wir können Datenpunkte in einem Streudiagramm abbilden und wenn der Punkteschwarm gut durch eine Gerade mit positiver oder negativer Steigung repräsentiert wird, spiegelt die Kovarianz wider, wie weit die Punkte von der hypothetischen Geraden entfernt liegen.
+      
+      Schauen wir uns zunächst diese Abbildungen an.
+      
+      <figure>
+      <figcaption>Abb. A: Positive Kovarianz</figcaption>
+      [Positive Kovarianz](/images/PositiveKovarianz.svg "Positive Kovarianz")
+      </figure>
+      
+      <figure>
+      <figcaption>Abb. B: Negative Kovarianz</figcaption>
+      [Negative Kovarianz](/images/NegativeKovarianz.svg "Negative Kovarianz")
+      </figure>
+      
+      <figure>
+      <figcaption>Abb. C: Keine Kovarianz</figcaption>
+      [Keine Kovarianz](/images/KeineKovarianz.svg "Keine Kovarianz")
+      </figure>
+      
+        Eine hohe positive Kovarianz ist gegeben, wenn häufig ein überdurchschnittlichen Wert einer Variable $x$ einem überdurchschnittlichen Wert in $y$ entspricht bzw. ein unterdurchschnittlicher Wert in $x$ einen unterdurchschnittlichen Wert in $y$ entspricht (siehe Abbildung a).  
+        Umgekehrt ist es bei einer hohen negativen Kovarianz. Hier ist es so, dass ein überdurchschnittlicher $x$-Wert häufig einem unterdurchschnittlichen $y$-Wert entspricht bzw. ein unterdurchschnittlicher $x$-Wert einem überdurchschnittlichem $y$-Wert entspricht (siehe Abbildung b).
+      Besteht keine Kovarianz zwischen den beiden Variablen, so entsprechen unter- und überdurchschnittliche Werte von $x$ denen in $y$ und umgekehrt. Hier ließe sich keine lineare Beziehung feststellen (siehe Abbildung c).
+      
+      Die Kovarianz zweier Variablen wird durch folgende Formel berechnet:
+      $$\mathit{kov} = \frac{\Big(\sum _{i=1} ^n {(x_i-\overline{x})(y_i-\overline{y})}\Big)}{n}$$
+    examples:
+      - title: Kovarianz berechnen
+        body: |
+          Nehmen wir folgende Messwerte an: $x_1 = 2$, $x_2 = 1$, $x_3 = 9$, $x_4 = 5$ und $x_5 = 3$, sowie $y_1 = 4$, $y_2 = 6$, $y_3 = 1$, $y_4 = 2$ und $y_5 = 2$.
+          
+          Daraus ergibt sich: $\overline{x} = 4$; $\overline{y} = 3$; $s_{xy} = \frac{-21}{4} = -5.25$
+          
+          Es handelt sich um eine hohe negative Kovarianz. In unserem Beispiel unterscheiden sich die korrespondierenden Abweichungen überwiegend (bis auf eine Ausnahme) im Vorzeichen. Die Höhe der Kovarianz wird jedoch nicht nur durch die Anzahl der gleich gerichteten bzw. ungleich gerichteten Abweichungen, sondern auch durch deren Größe bestimmt (viele kleine negative Werte können einen großen positiven Wert ausgleichen).
+  - _id: 54ca0accaa9e83ef4888fa7e
+    title: Produkt-Moment-Korrelation
+    subtitle: standardisiertes Maß
+    body: |
+      Die Kovarianz ist ein ungeeignetes Maß, wenn man davon ausgeht, dass zwischen zwei Merkmalen ein „wahrer“ Zusammenhang unabhängig von der Quantifizierung der Merkmale existiert. Das heißt, sie ist nur dann sinnvoll, wenn ein verbindlicher Maßstab wie z.B. Zeit, Gewicht oder Länge, vorgegeben ist. Werden aber in zwei Messungen die Merkmale Intelligenz und Gewissenhaftigkeit jeweils unterschiedlich erhoben, so erhalten wir Kovarianzen, die nicht miteinander vergleichbar sind. Dazu bedarf es einem anderen Maßstab: Den Korrelationskoeffizient.
+      
+      #### Korrelationskoeffizient
+      Den Korrelationskoeffizient $r$ erhalten wir, indem die Kovarianz zweier Variablen durch das Produkt der Standardabweichung der Variablen dividiert wird:
+      $$r = \frac{s_{xy}}{s_x \cdot s_y}$$
+      Der Korrelationskoeffizient beschreibt  die Enge des linearen Zusammenhangs zweier Merkmale durch eine Zahl $r$, die zwischen $+1$ und $-1$ liegt. Bei $r = +1$ sprechen wir von einem perfekt positiven und bei $r = -1$ von einem perfekt negativen Zusammenhang. Ist $r = 0$, besteht kein linearer Zusammenhang.
+      
+      #### Interpretation
+      Angenommen, ein Schulpsychologe ermittelt zwischen der Gesamtabiturnote $y$ und dem Intelligenzquotienten $x$ von 200 Abiturienten eine Korrelation von $r = 0.60$. Was bedeutet diese Zahl? Dieser Wert gibt an, mit wie hoher Sicherheit wir vom einen auf das andere Merkmal schließen können, ohne extra nachzumessen (vorhersagen). Bestünde kein Zusammenhang zwischen Intelligenzquotient und Abiturnote  ($r = 0$), so könnte der Schulpsychologe keine Vorhersage darüber machen was für Abiturnoten die Schüler mit hohen oder niedrigen IQ bekommen würden. Er müsste raten und es hinge allein vom Zufall ab, ob er richtig oder falsch läge. Da jedoch eine positive Korrelation von $0.60$ besteht, kannst du sagen, dass Schüler mit hohem IQ überzufällig häufig auch eine gute Abiturnote bekommen bzw. umgekehrt. Je höher der Korrelationskoeffizient desto wahrscheinlicher ist es, dass dieser Zusammenhang besteht. Eine Korrelation von $r = 1$ wäre ein perfekt positiver Zusammenhang ohne Ausnahmen (kommt so gut wie nie vor).
+  - _id: 54ca0fe0aa9e83ef4888fa7f
+    title: Korrelation und Kausalität 
+    body: |
+      Hat man zwischen zwei Variablen eine Korrelation gefunden, kann diese folgendermaßen interpretiert werden:
+      
+      * $x$ beeinflusst $y$ kausal,
+      * $y$ beeinflusst $x$ kausal,
+      * $x$ und $y$ werden von einer dritten oder weiteren Variablen kausal beeinflusst,
+      * $x$ und $y$ beeinflussen sich wechselseitig kausal.
+      
+      Der Korrelationskoeffizient liefert keine Information darüber, welche dieser Interpretationen richtig ist. Es ist Aufgabe des Forschers bzw. des Interpreten aufgrund einer theoretischen Überlegung und oder weiteren statistischen Hypothesentestens eine Aussage zu treffen. Eine Korrelation zwischen zwei Variablen ist eine notwendige, aber keine hinreichende Voraussetzung für kausale Abhängigkeiten. Korrelationen sind deshalb bestenfalls Hinweise auf den wahren Zusammenhang zweier Variablen. Deshalb gilt:
+      
+      * Korrelationen dürfen ohne Zusatzinformationen nicht kausal interpretiert werden.
+    extras:
+      - title: Selektionsfehler
+        body: |
+          Zur Verallgemeinerung einer Korrelation auf die Gesamtpopulation ist es wichtig, dass man die Stichprobe zufällig zieht. Es kann durchaus passieren, dass bestimmte Verzerrungen den Korrelationskoeffizienten beeinflussen, sodass die Stichprobenkorrelation die Populationskorrelation erheblich unterschätzen oder überschätzen kann. Hierzu zwei Streudiagramme.
+          
+          <figure>
+          [Selectionsfehler klein](/images/SelektionKlein.svg "zu kleine Streubreite")
+          </figure>
+          
+          <figure>
+          [SelectionsFehler Extrem](/images/SelektionExtrem.svg "extreme Streubreite")
+          </figure>
+          
+          Abbildung a zeigt eine Stichprobe mit zu kleiner Streubreite. Abbildung b zeigt eine aus Extremgruppen zusammengesetzte Stichprobe. In beiden Fällen führt die Stichprobe zu einer Verzerrung des Korrelationskoeffizienten.
+  - _id: 54ca1308aa9e83ef4888fa80
+    title: Regression
+    subtitle: Einfache lineare Regression
+    body: |
+      Hier kommt die regression…
