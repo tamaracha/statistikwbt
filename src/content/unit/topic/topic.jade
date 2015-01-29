@@ -1,5 +1,5 @@
 h3(data-ng-bind="topic.topic.subtitle ? topic.topic.title+': '+topic.topic.subtitle : topic.topic.title")
-div(md="topic.topic.body" mathjax)
+div(md="topic.topic.body" math-jax)
 .btn-toolbar(role="toolbar")
   .btn-group
     .btn-group(dropdown is-open="status.examples" data-ng-if="topic.topic.examples.length>0")

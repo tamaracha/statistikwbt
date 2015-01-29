@@ -17,8 +17,8 @@ module.exports={
     }
   },
   ssl: {
+    ca: fs.readFileSync(__dirname+"/ssl/t-cook_de.ca-bundle"),
     cert: fs.readFileSync(__dirname+"/ssl/t-cook_de.crt"),
-    key: fs.readFileSync(__dirname+"/ssl/t-cook_de.key"),
-    ca: fs.readFileSync(__dirname+"/ssl/t-cook_de.ca-bundle")
+    key: fs.readFileSync(__dirname+"/ssl/t-cook_de.key")
   }
 };

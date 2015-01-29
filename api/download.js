@@ -14,14 +14,16 @@ fs.readFileAsync(__dirname+"/download.md","utf8")
 });
 
 exports.checkUser=function(req,res,next){
-  if(!req.query.token){return next(e.unauthorized("unauthenticated"));}
+  if(!req.query.token){return next(e.unauthorized("no token found"));}
   jwt.verifyAsync(req.query.token,config.jwt.secret)
   .then(function(token){
     return User.findById(token._id)
+    .lean()
     .execAsync();
   })
   .then(function(user){
     if(!user){return e.notFound("user not found");}
+    req.user=user;
     return next();
   })
   .catch(function(e){
@@ -52,6 +54,7 @@ exports.find=function(req,res){
   })
   .then(function(md){
     var format=req.query.format||"md";
+    var cachePath=process.cwd()+"/.filecache/"+req.user._id;
     res.setHeader("content-disposition", "attachment; filename=Statistik-WBT."+format);
     res.setHeader("content-type", mime.lookup(format));
     switch(format){
@@ -59,12 +62,22 @@ exports.find=function(req,res){
       case "rtf":
         return pdcAsync(md,"markdown","rtf")
         .then(function(doc){
-          return res.send(doc);
+          res.send(doc);
+        });
+      case "tex":
+        return pdcAsync(md,"markdown","latex")
+        .then(function(doc){
+          res.send(doc);
+        });
+      case "docx":
+        return pdcAsync(md,"markdown","docx",["-o",cachePath+".docx"])
+        .then(function(doc){
+          return res.sendFile(cachePath+".docx");
         });
       case "epub":
-        return pdcAsync(md,"markdown","epub")
+        return pdcAsync(md,"markdown","epub",["-o",cachePath+".rtf"])
         .then(function(doc){
-          return res.send(doc);
+          return res.sendFile(cachePath+".rtf");
         });
       default: return res.send(md);
     }

@@ -13,5 +13,5 @@ form.form-horizontal(name="downloadForm" novalidate method="get" action="/api/do
           input(type="checkbox" name="units" data-ng-value="unit._id" checked)
           |  {{unit.title}}
   +checkbox-inline("contents","Inhalte",{body: "Kerntexte",examples: "Beispiele",extras: "Extras"})(checked)
-  +radio-inline("format","Dateiformat",{"rtf": "RTF-Format","docx": "MS Word","epub": "EPub-Format","markdown": "Markdown","latex": "LaTex"})(data-ng-model="download.format")
+  +radio-inline("format","Dateiformat",{"rtf": "RTF-Format","docx": "MS Word","epub": "EPub-Format","md": "Markdown","tex": "LaTex"})(data-ng-model="download.format")
   +submit("Download")

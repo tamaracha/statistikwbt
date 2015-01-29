@@ -1,5 +1,9 @@
 module.exports=function(gulp,plugins,growl){
-  gulp.task("scripts",["libs"],function(){
+  var swallowError=function(error){
+    plugins.util.log(error.message);
+    this.emit("end");
+  };
+  gulp.task("scripts",function(){
     return gulp.src([
       "src/index.js",
       "src/common/**/*.js",
@@ -17,6 +21,7 @@ module.exports=function(gulp,plugins,growl){
     }}))
     .pipe(plugins.concat("index.js"))
     .pipe(plugins.ngAnnotate())
+    .on("error",swallowError)
     .pipe(gulp.dest("public"))
     .pipe(plugins.uglify())
     .pipe(plugins.rename({suffix: ".min"}))
