@@ -1,6 +1,7 @@
-header.col-sm-3
+header.row
   h2: a(data-ui-sref=".description" data-ng-bind="unit.unit.subtitle ? unit.unit.title+': '+unit.unit.subtitle : unit.unit.title")
-  nav: ul.nav.nav-pills.nav-stacked
+.row
+  nav.col-sm-4: ul.nav.nav-pills.nav-stacked
     li(data-ng-repeat="topic in unit.unit.topics" data-ui-sref-active="active"): a(data-ui-sref=".topic({topic: topic.title})" data-ng-bind="topic.title")
     li(data-ui-sref-active="active"): a(data-ui-sref=".test") Test
-main.col-sm-9(data-ui-view)
+  main.col-sm-8(data-ui-view)

@@ -17,6 +17,7 @@ exports.serverError=new ErrorFactory("internal error",500);
 exports.onError=function(res){
   return function(e){
     console.error(e);
-    res.sendStatus(e.status||500);
+    res.status(e.status||500);
+    return e.message ? res.send(e.message) : res.end();
   };
 };

@@ -11,6 +11,9 @@ include ../mixins/submit.jade
       span.help-block(ng-messages="loginForm.email.$error" ng-show="loginForm.email.$touched")
         span(ng-message="userExists") Dieser User existiert nicht.
     +input("password","Passwort")(type="password" ng-model="login.loginData.password" required minlength="8" placeholder="Passwort")
+      span.help-block(data-ng-switch="login.message" aria-live="assertive")
+        span(data-ng-switch-when="incorrect password") Das Passwort ist nicht korrekt.
+        span(data-ng-switch-when="incorrect username") Der Benutzer existiert nicht.
 .modal-footer
-  input.btn(type="button" data-ng-class="{'btn-primary': loginForm.$valid, 'btn-danger': loginForm.$invalid}" value="anmelden" data-ng-click="login.login()")
   input.btn.btn-default(type="button" value="abbrechen" data-ng-click="login.cancel()")
+  input.btn(type="button" data-ng-class="{'btn-primary': loginForm.$valid, 'btn-danger': loginForm.$invalid}" value="anmelden" data-ng-click="login.login()")

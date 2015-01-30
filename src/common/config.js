@@ -1,8 +1,12 @@
 angular.module("wbt")
-.config(function($stateProvider,$urlRouterProvider,$locationProvider,$compileProvider,RestangularProvider){
+.config(function($stateProvider,$urlRouterProvider,$locationProvider,$compileProvider,RestangularProvider,$httpProvider){
   $locationProvider.html5Mode(true);
   $compileProvider.debugInfoEnabled(false);
+  $httpProvider.interceptors.push("authInterceptor");
   RestangularProvider.setBaseUrl("/api");
+  RestangularProvider.setRestangularFields({
+    id: "_id"
+  });
 $stateProvider.state("home",{
   url: "/home",
   templateUrl: "home/home.html",
@@ -11,7 +15,7 @@ $stateProvider.state("home",{
   url: "/content",
   templateUrl: "content/content.html",
   resolve: {
-    units: function(content){
+    units: function(content,identity){
       return content.units();
     }
   },
@@ -121,26 +125,19 @@ $stateProvider.state("home",{
 })
 .state("contact",{
   url: "/contact",
-  templateUrl: "contact/contact.html",
-  data: {
-    access: "public"
-  }
+  templateUrl: "contact/contact.html"
 })
 .state("register",{
   url: "/register",
   templateUrl: "register/register.html",
-  controller: "registerCtrl as register",
-  data: {
-    access: "public"
-  }
+  controller: "registerCtrl",
+  controllerAs: "register"
 })
 .state("user",{
   url: "/user/:id",
   templateUrl: "user/user.html",
-  controller: "userCtrl as user",
-  data: {
-    access: "user"
-  }
+  controller: "userCtrl",
+  controllerAs: "user"
 });
   $urlRouterProvider.otherwise("/home");
 })

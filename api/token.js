@@ -22,10 +22,10 @@ exports.login=function(req,res){
     .execAsync();
   })
   .then(function(user){
-    if(!user){return e.notFound("user not found");}
+    if(!user){throw e.unauthorized("incorrect username");}
     return user.validatePasswordAsync(password)
     .then(function(isMatch){
-      if(!isMatch){throw e.unauthorized("wrong password");}
+      if(!isMatch){throw e.unauthorized("incorrect password");}
       return user;
     });
   })
@@ -36,8 +36,5 @@ exports.login=function(req,res){
       _id: user._id
     });
   })
-  .catch(function(e){
-    console.error(e.message);
-    return res.sendStatus(e.status||500);
-  });
+  .catch(e.onError(res));
 };
