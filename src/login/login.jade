@@ -7,7 +7,7 @@ include ../mixins/submit.jade
   form.form-horizontal(novalidate name=form role="form")
     +input("email","E-Mail-Adresse")(placeholder="name@domain.com" data-ng-model="login.loginData.email" required maxlength="20" user-exists data-ng-model-options="{debounce: 500}")
       span.help-block(aria-live="assertive" ng-show="loginForm.email.$touched"): span(ng-if="loginForm.email.$valid") Dieser User existiert.
-      span.help-block(ng-show="loginForm.email.$touched" role="status"): span(ng-if="loginForm.email.$pending") Prüfe Verfügbarkeit
+      span.help-block(ng-show="loginForm.email.$touched" aria-live="assertive"): span(ng-if="loginForm.email.$pending") Prüfe Verfügbarkeit
       span.help-block(ng-messages="loginForm.email.$error" ng-show="loginForm.email.$touched")
         span(ng-message="userExists") Dieser User existiert nicht.
     +input("password","Passwort")(type="password" ng-model="login.loginData.password" required minlength="8" placeholder="Passwort")
