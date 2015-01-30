@@ -2,7 +2,7 @@ include mixins/menu-item.jade
 doctype html
 html(lang="de" data-ng-app="wbt" data-ng-strict-di)
   head
-    title Einführung in die psychologische Statistik
+    title Statistik für Jedermann
     meta(charset="utf-8")
     base(href="/")
     link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet")
@@ -28,7 +28,7 @@ html(lang="de" data-ng-app="wbt" data-ng-strict-di)
           |  Statistik für Jedermann
       #mainnav.collapse.navbar-collapse(data-collapse="wbt.menuCollapse")
         ul.nav.navbar-nav.navbar-left
-          +menu-item("content","Übersicht")
+          +menu-item("content","Inhalte")
           +menu-item("download","Download")
           +menu-item("software","Statistiksoftware")
           +menu-item("contact","Kontakt")
@@ -44,7 +44,7 @@ html(lang="de" data-ng-app="wbt" data-ng-strict-di)
           button.btn.btn-default.navbar-btn(type="button" data-ng-click="::wbt.identity.inauthenticate()")
             span.glyphicon.glyphicon-log-out(aria-hidden="true")
             |  Abmelden
-    .container(data-ui-view)
+    .container-fluid(data-ui-view)
     script(src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML")
     script
       | MathJax.Hub.Config({

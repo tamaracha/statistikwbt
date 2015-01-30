@@ -1,26 +1,8 @@
-nav(role="navigation"): ul.nav.nav-pills
+nav.row(role="navigation"): ul.nav.nav-pills
   li(data-ng-repeat="unit in ::content.units" data-ui-sref-active="active"): a(
     data-ui-sref=".unit.description({unit: unit.title})"
     data-ng-bind="::unit.title"
   )
-section.row(ui-view): .col-md-offset-3.col-md-6
-  header
-    h2 So funktioniertt's
-    alert(type="warning" data-ng-hide="wbt.identity.authenticated()") Es wäre super, wenn du dich kurz 
-      button.btn.btn-sm.btn-primary(type="button" data-ng-click="wbt.identity.login()")
-        span.glyphicon.glyphicon-log-in
-        |  anmelden
-      |  würdest, bevor du beginnst.
-    alert(type="info" data-ng-show="wbt.identity.authenticated&&wbt.identity.data().fsk.length===0") Willkommen! Wir können gleich anfangen. Doch vorher gib bitte noch eine 
-      button.btn.btn-primary(type="button" data-ng-click="wbt.identity.fsk()") Selbsteinschätzung deiner Statistikvorkenntnisse
-      |  ab.
-    alert(type="success" data-ng-show="wbt.identity.authenticated&&wbt.identity.data().fsk.length>0") Prima, wir können jetzt anfangen.
-  p Es gibt hier {{content.units.length}} Kapitel. Jedes von ihnen beschäftigt sich mit einem bestimmten statistischen Themengebiet. Es gibt keine festgelegte Reihenfolge bei der Bearbeitung und du brauchst nicht alles von Anfang bis Ende durchzulesen, was hier zu finden ist. Ein Kapitel besteht aus den Kernartikeln, die jeweils durch Zusätze ergänzt sind . Du kannst relativ flexibel entscheiden, welche Zusätze du lesen möchtest.
-  dl.dl-horizontal
-    dt Aufgaben
-    dd Die Einheit ist abgeschlossen, wenn du alle Aufgaben bearbeitet hast.
-    dt Beispiele
-    dd Wenn du mehr Hilfestellung oder Veranschaulichung brauchst, kannst du dir die Beispiele ansehen.
-    dt Extras
-    dd theoretischere Hintergrundinformationen, für den Fall, dass du noch Luft hast und es genauer wissen möchtest
-  p Du wirst nach Abschluss eines Tests gebeten, das Kapitel zu bewerten, kannst dies aber auch zu jedem anderen Zeitpunkt tun. Wenn du dich umentscheidest, ist das kein Problem, du kannst deine Bewertungen beliebig oft updaten. Großzügiger Gebrauch der Bewertungen ist sehr erwünscht.
+section.row(ui-view)
+  h2 Wozu überhaupt Statistik?
+  p Die Welt ist eine pandimensionale Computertastatur und Gott ist ein dauerzockendes Metawesen, das ununterbrochen diese Tastatur bedient. Wir selbst sind die Mikrokolonie in der Tastatur, die sich von Gottes Chipskrümeln nährt.
