@@ -39,7 +39,7 @@ html(lang="de" data-ng-app="wbt" data-ng-strict-di)
             |  Anmelden
           +menu-item("register","registrieren","registration-mark")
         p.navbar-text.navbar-right(data-ng-if="wbt.identity.authenticated()") Hallo 
-          a(ui-sref="user({id: wbt.identity._id})")
+          a.navbar-link(ui-sref="user({id: wbt.identity._id})")
             span.glyphicon.glyphicon-user
             |  {{wbt.identity.data().profile.nickname||wbt.identity.data().email}}, 
           button(type="button" data-ng-click="::wbt.identity.inauthenticate()")
