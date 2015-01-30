@@ -34,15 +34,15 @@ html(lang="de" data-ng-app="wbt" data-ng-strict-di)
           +menu-item("software","Statistiksoftware")
           +menu-item("contact","Kontakt")
         ul.nav.navbar-nav.navbar-right(data-ng-if="!wbt.identity.authenticated()")
-          li: button.btn.btn-default(type="button" data-ng-click="wbt.identity.login()")
+          li: button(type="button" data-ng-click="wbt.identity.login()")
             span.glyphicon.glyphicon-log-in
             |  Anmelden
           +menu-item("register","registrieren","registration-mark")
         p.navbar-text.navbar-right(data-ng-if="wbt.identity.authenticated()") Hallo 
-          a.navbar-link(ui-sref="user({id: wbt.identity._id})")
+          a(ui-sref="user({id: wbt.identity._id})")
             span.glyphicon.glyphicon-user
             |  {{wbt.identity.data().profile.nickname||wbt.identity.data().email}}, 
-          button.btn.btn-default.navbar-btn(type="button" data-ng-click="::wbt.identity.inauthenticate()")
+          button(type="button" data-ng-click="::wbt.identity.inauthenticate()")
             span.glyphicon.glyphicon-log-out(aria-hidden="true")
             |  Abmelden
     .container(data-ui-view)
