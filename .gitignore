@@ -3,4 +3,5 @@ bower_components
 npm_debug.log
 .filecache
 config
+public
 
