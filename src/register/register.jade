@@ -35,7 +35,7 @@ form.form-horizontal(novalidate name=form ng-submit="register.register(register.
     .form-group(data-ng-if="register.registerData.profile.study")
       label.col-xs-2.control-label Studienfach
       .col-xs-10
-        select.form-control(required data-ng-options="subject.name as subject.label group by subject.group for subject in register.subjects" data-ng-model="register.registerData.profile.subject")
+        input.form-control(data-ng-model="register.registerData.profile.subject" typeahead="subject.name for subject in register.getSubjects($viewValue)" placeholder="hier Suchbegriffe eingeben")
     .form-group
       label.col-xs-2 Was erwartest du dir hiervon?
       .col-xs-10

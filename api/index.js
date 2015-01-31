@@ -80,7 +80,12 @@ var download=require("./download");
 router.route("/downloads")
 .get(download.checkUser,download.find);
 
+var subject=require("./subject");
+router.route("/subjects")
+.get(subject.find);
+
 // upload units
-require("./upload");
+//require("./upload");
+require("./subject-upload");
 
 module.exports=router;

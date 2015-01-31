@@ -1,23 +1,10 @@
 angular.module("wbt")
-.controller("registerCtrl",function($state,identity){
+.controller("registerCtrl",function($state,Restangular,identity){
+  var self=this;
   this.registerData={};
-  this.subjects=[{
-    name: "psychology",
-    label: "Psychologie",
-    group: "Sozial- und Wirtschaftswissenschaften"
-  },{
-    name: "education",
-    label: "Lehramt",
-    group: "Erziehungswissenschaften"
-  },{
-    name: "physics",
-    label: "Physik",
-    group: "Naturwissenschaften"
-  },{
-    name: "philosophy",
-    label: "Philosophie",
-    group: "Geisteswissenschaften"
-  }];
+  this.getSubjects=function(search){
+    return Restangular.all("subjects").getList({search: search});
+  };
   this.register=function(form){
     return identity.create(form)
     .then(function(){
