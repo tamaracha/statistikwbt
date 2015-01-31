@@ -46,7 +46,10 @@ angular.module("wbt")
     .then(function(guesses){
       _.forEach(guesses.plain(),function(guess,key){
         var item=_.find(items,{_id: key});
-        if(!item){return;}
+        if(!item){
+          delete guesses[key];
+          return;
+        }
         switch(item.type){
           case "single":
             var choice=_.find(item.choices,{_id: guess.single});
