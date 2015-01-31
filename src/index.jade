@@ -38,8 +38,9 @@ html(lang="de" data-ng-app="wbt" data-ng-strict-di)
             span.glyphicon.glyphicon-log-in
             |  Anmelden
           +menu-item("register","registrieren","registration-mark")
-        ul.nav.navbar-nav.navbar-right(data-ng-if="wbt.identity.authenticated()") Hallo 
-          li(data-ui-sref-active="active"): a(ui-sref="user({id: wbt.identity._id})")
+        ul.nav.navbar-nav.navbar-right(data-ng-if="wbt.identity.authenticated()")
+          li(data-ui-sref-active="active") angemeldet als 
+            a(ui-sref="user({id: wbt.identity._id})")
             span.glyphicon.glyphicon-user
             |  {{wbt.identity.data().profile.nickname||wbt.identity.data().email}}
           li: button(type="button" data-ng-click="::wbt.identity.inauthenticate()")
