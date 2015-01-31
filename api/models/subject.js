@@ -11,7 +11,6 @@ SubjectSchema=mongoose.Schema({
     type: String
   }
 });
-SubjectSchema.index({name: "text"});
 
 Subject=mongoose.model("Subject",SubjectSchema);
 Promise.promisifyAll(Subject.prototype);

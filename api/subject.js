@@ -3,15 +3,7 @@ Subject=require("./models/subject");
 e=require("./errors");
 
 exports.find=function(req,res){
-  Subject.find({
-    $text: {
-      $search: req.query.search,
-      $language: "de"
-    }
-  },{
-    textScore: {$meta: "textScore"}
-  })
-  .sort({textScore: {$meta: "textScore"}})
+  Subject.find({name: new RegExp(req.query.search)})
   .execAsync()
   .then(function(subjects){
     return res.json(subjects);
