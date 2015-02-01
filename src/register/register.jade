@@ -15,16 +15,17 @@ form.form-horizontal(novalidate name=form ng-submit="register.register(register.
         span(ng-message="required") Bitte gib eine E-Mail-Adresse an.
         span(ng-message="email") Das ist keine gültige E-mail-Adresse.
         span(ng-message="userAvailable") Diese E-Mail ist schon registriert
-    +input("password","Passwort")(type="{{register.showPassword ? 'text' : 'password'}}" required minlength="8" data-ng-model="register.registerData.password"  placeholder="Passwort")
-      span.help-block(ng-messages="registerForm.password.$error" data-ng-if="registerForm.password.$touched")
-        span(ng-message="required") Bitte gib ein Passwort an.
-        span(ng-message="minlength") Das Passwort sollte mindestens acht Zeichen lang sein.
     .form-group
-      .col-xs-offset-2.col-xs-10
-        .checkbox
-          label
-            input(type="checkbox" name="showpassword" ng-model="register.showPassword")
-            span Eingegebenes Passwort einblenden
+      label.col-xs-2.control-label(for="password-input") Passwort
+      .col-xs-10
+        .input-group
+          input#password-input.form-control(type="{{register.showPassword ? 'password' : 'text'}}" name="password" data-ng-model="register.registerData.password" required minlength="8" placeholder="unlösbar")
+          span.input-group-addon: label.checkbox-inline
+            input(type="checkbox" data-ng-model="register.showPassword")
+            |  {{register.showPassword ? 'ausblenden' : 'einblenden'}}
+        span.help-block(ng-messages="registerForm.password.$error" data-ng-if="registerForm.password.$touched")
+          span(ng-message="required") Bitte gib ein Passwort an.
+          span(ng-message="minlength") Das Passwort sollte mindestens acht Zeichen lang sein.
   fieldset(name="person")
     legend Personenangaben
     +input("nickname","Nickname (optional")(data-ng-model="register.registerData.profile.nickname")
