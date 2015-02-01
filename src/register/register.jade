@@ -19,10 +19,9 @@ form.form-horizontal(novalidate name=form ng-submit="register.register(register.
       label.col-xs-2.control-label(for="password-input") Passwort
       .col-xs-10
         .input-group
-          input#password-input.form-control(type="{{register.showPassword ? 'password' : 'text'}}" name="password" data-ng-model="register.registerData.password" required minlength="8" placeholder="unlösbar")
-          span.input-group-addon: label.checkbox-inline
-            input(type="checkbox" data-ng-model="register.showPassword")
-            |  {{register.showPassword ? 'ausblenden' : 'einblenden'}}
+          input#password-input.form-control(type="{{register.showPassword ? 'text' : 'password'}}" name="password" data-ng-model="register.registerData.password" required minlength="8" placeholder="unlösbar")
+          span.input-group-btn
+            button.btn.btn-default(data-ng-click="register.showPassword=!register.showPassword" data-ng-bind="register.showPassword ? 'ausblenden' : 'einblenden'")
         span.help-block(ng-messages="registerForm.password.$error" data-ng-if="registerForm.password.$touched")
           span(ng-message="required") Bitte gib ein Passwort an.
           span(ng-message="minlength") Das Passwort sollte mindestens acht Zeichen lang sein.
