@@ -85,7 +85,9 @@ router.route("/subjects")
 .get(subject.find);
 
 // upload units
-//require("./upload");
-//require("./subject-upload");
+if(config.environment==="development"){
+  require("./upload");
+  //require("./subject-upload");
+}
 
 module.exports=router;

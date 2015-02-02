@@ -4,6 +4,6 @@ nav.row(role="navigation"): ul.nav.nav-pills
     data-ng-bind="::unit.title"
     data-ng-class="{'text-success': wbt.identity.complete(unit._id), 'text-primary': wbt.identity.requiresComplete(unit.requires)&&!wbt.identity.complete(unit._id), 'text-warning': !wbt.identity.requiresComplete(unit.requires)&&!wbt.identity.complete(unit._id)}"
   )
-section.row: .col-xs-12(ui-view)
+section.row: .col-xs-12(data-ui-view)
   h2 Wozu überhaupt Statistik?
   p Die Welt ist eine pandimensionale Computertastatur und Gott ist ein dauerzockendes Metawesen, das ununterbrochen diese Tastatur bedient. Wir selbst sind die Mikrokolonie in der Tastatur, die sich von Gottes Chipskrümeln nährt.
