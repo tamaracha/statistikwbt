@@ -5,7 +5,7 @@ yaml=require("js-yaml");
 Promise.promisifyAll(yaml);
 Subject=require("./models/subject");
 
-fs.readFileAsync("./studiengänge.yml","utf8")
+fs.readFileAsync("./api/studiengänge.yml","utf8")
 .then(yaml.load)
 .then(function(groups){
   var subjects=[];
