@@ -1,4 +1,4 @@
 module.exports=function(gulp,plugins){
-  gulp.task("default",["clean","copy","jade","libs","scripts"],function(){
+  gulp.task("default",["clean","copy","jade","sass","libs","scripts"],function(){
   });
 };
