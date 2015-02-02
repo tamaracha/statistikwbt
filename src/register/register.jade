@@ -4,57 +4,28 @@ include ../mixins/radio-inline
 include ../mixins/submit.jade
 - var form="registerForm"
 h2 Registrieren
-form.form-horizontal(novalidate name=form ng-submit="register.register(register.registerData)" role="form")
-  fieldset(name="login")
+form.form-horizontal(novalidate name=form ng-submit="wbt.identity.register(register.registerData)" role="form")
+  fieldset
     legend Logindaten
-    +input("email","E-Mail-Adresse")(type="email" required maxlength="20" user-available data-ng-model="register.registerData.email" placeholder="name@domain.com" data-ng-model-options="{debounce: 500}")
+    +input("email","E-Mail-Adresse","email",{required: "Bitte gib eine E-Mail-Adresse an.", email: "Das ist keine gültige E-mail-Adresse.", userAvailable: "Diese E-Mail ist schon registriert."})(
+      required maxlength="20" placeholder="name@provider.com" data-ng-model="register.registerData.email" data-ng-model-options="{debounce: 500}" user-available)
       span.help-block(aria-live="assertive" data-ng-show="registerForm.email.$touched")
-        span(ng-if="registerForm.email.$valid") Diese E-mail ist noch verfügbar.
+        span(data-ng-if="registerForm.email.$valid") Diese E-mail ist noch verfügbar.
         span(data-ng-if="registerForm.email.$pending") Prüfe Verfügbarkeit
-      span.help-block(ng-messages="registerForm.email.$error" ng-if="registerForm.email.$touched")
-        span(ng-message="required") Bitte gib eine E-Mail-Adresse an.
-        span(ng-message="email") Das ist keine gültige E-mail-Adresse.
-        span(ng-message="userAvailable") Diese E-Mail ist schon registriert
-    .form-group
-      label.col-xs-2.control-label(for="password-input") Passwort
-      .col-xs-10
-        .input-group
-          input#password-input.form-control(type="{{register.showPassword ? 'text' : 'password'}}" name="password" data-ng-model="register.registerData.password" required minlength="8" placeholder="unlösbar")
-          span.input-group-btn
-            button.btn.btn-default(data-ng-click="register.showPassword=!register.showPassword" data-ng-bind="register.showPassword ? 'ausblenden' : 'einblenden'")
-        span.help-block(ng-messages="registerForm.password.$error" data-ng-if="registerForm.password.$touched")
-          span(ng-message="required") Bitte gib ein Passwort an.
-          span(ng-message="minlength") Das Passwort sollte mindestens acht Zeichen lang sein.
-  fieldset(name="person")
+    +input("password","Passwort","{{register.showPassword ? 'text' : 'password'}}",{required: "Bitte gib ein Passwort an.",minlength: "Das Passwort sollte mindestens acht Zeichen lang sein."},"register.showPassword ? 'ausblenden' : 'einblenden'","register.showPassword=!register.showPassword")(data-ng-model="register.registerData.password" required minlength="8" placeholder="unlösbar")
+  fieldset
     legend Personenangaben
-    +input("nickname","Nickname (optional")(data-ng-model="register.registerData.profile.nickname")
-    - var sex={"male":"männlich","female":"weiblich"}
-    +input("age","Alter in Jahren")(type="number" required min="0" max="100" step="1" data-ng-model="register.registerData.profile.age")
-    +radio-inline("sex","Geschlecht",sex)(required data-ng-model="register.registerData.profile.sex")
-    +checkbox("study","Ich studiere zur Zeit oder habe studiert.")(data-ng-model="register.registerData.profile.study")
-    .form-group(data-ng-if="register.registerData.profile.study")
-      label.col-xs-2.control-label Studienfach
-      .col-xs-10
-        input.form-control(data-ng-model="register.registerData.profile.subject" typeahead="subject.name for subject in register.getSubjects($viewValue)" placeholder="hier Studienfach eingeben und auswählen" typeahead-min-length="3")
-    .form-group
-      label.col-xs-2 Was erwartest du dir hiervon?
-      .col-xs-10
-        .checkbox
-          label
-            input(type="checkbox" name="reason1")
-            |  Mal gucken, was es hier so gibt
-        .checkbox
-          label
-            input(type="checkbox" name="reason-2")
-            |  Habe nach Statiker gesucht und bin bei Statistik gelandet.
+    +input("nickname","Nickname (optional")(data-ng-model="register.registerData.profile.nickname" maxlength="20")
+    +input("age","Alter","number","Jahre")(required min="0" max="100" step="1" data-ng-model="register.registerData.profile.age")
+    +radio-inline("sex","Geschlecht",{male: "männlich", femail: "weiblich"})(required data-ng-model="register.registerData.profile.sex")
+    +input("subject","Studienfach (optional)")(data-ng-model="register.registerData.profile.subject" typeahead="subject.name for subject in wbt.identity.getSubjects($viewValue)" placeholder="hier Studienfach eingeben und auswählen" typeahead-min-length="3" ng-required="register.profile.subject")
+    +checkbox("Registrierungsgrund/gründe","register.registerData.reasons",["Interesse für das Thema","Langeweile, Zeitvertreib, zufällig reingestolpert","Vor- oder Nachbereitung für Klausur/Vorlesung"])
   fieldset
     legend Datenschutz
-    .form-group
-      .col-xs-offset-2.col-xs-10
-        .checkbox
-          label
-            input(type="checkbox" name="agree" data-ng-model="register.registerData.profile.agree")
-            |  Ich akzeptiere die
-            a(data-ui-sref="contact") Datenschutzrichtlinien
-            | und bin damit einverstanden, dass meine auf dieser Webseite getätigten Eingaben zu wissenschaftlichen Zwecken ausgewertet werden.
-    +submit("Registrieren")
+    p Mit der Registrierung erklärst du dich mit folgenden Punkten einverstanden:
+    ul
+      li Wir behandeln deine Eingaben anonym und vertraulich.
+      li Neben deinen explizit gemachten Angaben werden deine Bewegungen teilweise mit erfasst um dich nicht zusätzlich nach deiner Verweildauer, den von dir angefurften Inhalten o.Ä. fragen zu müssen.
+      li Zu Forschungszwecken werten wir alle Nutzerdaten wissenschaftlich aus.
+      li Wir behalten uns das Recht vor, dich zu Forschungszwecken über deine hier angegebene E-Mail-Adresse kontaktieren zu können.
+    +submit("Einverstanden und Registrieren")

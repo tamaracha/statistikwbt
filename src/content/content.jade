@@ -2,6 +2,7 @@ nav.row(role="navigation"): ul.nav.nav-pills
   li(data-ng-repeat="unit in ::content.units" data-ui-sref-active="active"): a(
     data-ui-sref=".unit.description({unit: unit.title})"
     data-ng-bind="::unit.title"
+    data-ng-class="{'text-success': wbt.identity.complete(unit._id), 'text-primary': wbt.identity.requiresComplete(unit.requires)&&!wbt.identity.complete(unit._id), 'text-warning': !wbt.identity.requiresComplete(unit.requires)&&!wbt.identity.complete(unit._id)}"
   )
 section.row: .col-xs-12(ui-view)
   h2 Wozu überhaupt Statistik?

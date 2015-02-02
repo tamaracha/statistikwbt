@@ -31,11 +31,7 @@ UserSchema=new mongoose.Schema({
       type: String,
       required: true
     },
-    expect: [Number],
-    agree: {
-      type: Boolean,
-      required: true
-    }
+    reasons: [Boolean]
   },
   fsk: [{
     sessko: {

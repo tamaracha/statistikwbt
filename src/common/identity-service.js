@@ -1,5 +1,5 @@
 angular.module("wbt")
-.factory("identity",function($window,$q,Restangular,$modal){
+.factory("identity",function($window,$q,Restangular,$state,$modal){
   var Users,Tokens,_id,_token,_authenticated,_data;
   Users=Restangular.all("users");
   Tokens=Restangular.all("tokens");
@@ -84,6 +84,22 @@ angular.module("wbt")
       return result;
     });
   };
+  var getSubjects=function(value){
+    return Restangular.all("subjects").getList({search: value});
+  };
+  var register=function(form){
+    return create(form)
+    .then(function(){
+      return authenticate({
+        email: form.email,
+        password: form.password
+      });
+    })
+    .then(function(){
+      return $state.go("content");
+    })
+    .catch(inauthenticate);
+  };
   var login=function(){
     return $modal.open({
       templateUrl: "login/login.html",
@@ -112,6 +128,15 @@ angular.module("wbt")
     _data.complete.push(unit);
     return _data.patch({complete: _data.complete});
   };
+  var requiresComplete=function(requires){
+    var complete=true;
+    _.forEach(requires,function(require){
+      if(_.contains(_data.complete,require)){return;}
+      if(!complete){return;}
+      complete=false;
+    });
+    return complete;
+  };
   return {
     init: init,
     authenticate: authenticate,
@@ -124,10 +149,13 @@ angular.module("wbt")
     update: update,
     remove: remove,
     create: create,
+    getSubjects: getSubjects,
+    register: register,
     login: login,
     fsk: fsk,
     createFsk: createFsk,
     complete: complete,
-    setComplete: setComplete
+    setComplete: setComplete,
+    requiresComplete: requiresComplete
   };
 });
