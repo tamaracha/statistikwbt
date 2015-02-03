@@ -20,14 +20,8 @@ MultipleChoiceSchema=new mongoose.Schema({
       default: false
     },
     feedback: {
-      correct: {
-        type: String,
-        required: true
-      },
-      incorrect: {
-        type: String,
-        required: true
-      }
+      correct: String,
+      incorrect: String
     }
   }]
 });

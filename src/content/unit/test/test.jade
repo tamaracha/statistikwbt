@@ -19,7 +19,7 @@ ng-switch(on="test.state")
         label
           input(type="radio" name="{{test.item._id}}" data-ng-value="choice" data-ng-model="test.choice")
           |  {{choice.text}}
-      p(data-ng-class="test.choice.correct ? 'text-success' : 'text-warning'" data-ng-bind="test.choice.feedback" data-ng-show="test.guesses[test.item._id]")
+      p(data-ng-class="test.choice.correct ? 'text-success' : 'text-warning'" data-ng-bind="test.choice.feedback||test.choice.correct ? 'Richtig.' : 'Leider nicht richtig.'" data-ng-show="test.guesses[test.item._id]")
     .form-group(data-ng-switch-when="multiple")
       label(data-ng-bind="test.item.text")
       .checkbox(data-ng-repeat="choice in test.choice")

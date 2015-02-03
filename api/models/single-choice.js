@@ -19,10 +19,7 @@ SingleChoiceSchema=new mongoose.Schema({
       type: Boolean,
       default: false
     },
-    feedback: {
-      type: String,
-      required: true
-    }
+    feedback: String
   }]
 });
 

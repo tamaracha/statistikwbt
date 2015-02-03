@@ -55,7 +55,6 @@ topics:
           1. ersten Wert nehmen, Anzahl bisher addierter Summanden im Sinn
           2. nächsten Wert zur Summe addieren, Anzahl bisher addierter Summanden im Sinn
           3. letzten Wert zur Summe addieren, Anzahl bisher addierter Summanden entspricht Gesamtanzahl der Werte
-    tests:
   - _id: 54afbff1228872eb3238e6a5
     title: Streuung
     body: |
@@ -91,7 +90,6 @@ topics:
       Der so berechnete Kennwert heißt **Varianz** und wird normalerweise in Formeln mit $s^2$ gekennzeichnet. Diese Buchstabenkennung macht deutlich, dass in diesem Wert die Quadrierung steckt, die bei der Berechnung der Varianz vorgenommen wurde. Dadurch ist die Varianz eine quadrierte mittlere Abweichung vom Mittelwert. Diese ist schwierig zu interpretieren und deswegen möchten wir eine „normale“, von der Quadrierung bereinigte mittlere Abweichung. Die erhalten wir, indem wir die Wurzel aus der Varianz ziehen: s=√s². Diese Wurzel der Varianz heißt **Standardabweichung** und wird einfach mit $s$ gekennzeichnet. Sie ist leichter zu interpretieren und wird häufiger als Streuungsmaß verwendet, weil sie technisch gesehen einer durchschnittlichen Abweichung der Werte vom Mittelwert entspricht. Generell wird die Standardabweichung extrem häufig verwendet, weshalb es sich für dich auf jeden Fall lohnt, sie zu kennen und interpretieren zu können.
     examples:
     extras:
-    tests:
   - _id: 54afbff1228872eb3238e6a4
     title: Grafische Darstellung
     subtitle: Boxplot
@@ -104,4 +102,52 @@ topics:
       Von der Box geht nach beiden Seiten je eine sogenannte Antenne ab. Die Länge einer Antenne beträgt maximal das 1,5-fache des **Interquartilsabstandes**. Gibt es an der Stelle keinen Messwert mehr, reicht diese Antenne nur bis zum Extremwert. Gibt es dort noch Messwerte, reicht die Antenne bis zum extremsten Wert, der noch in diesem hypothetischen Bereich liegt. Die noch extremeren Werte (Ausreißer) werden als Punkte abgetragen. So liegen etwa 50% der Werte innerhalb der Box und ein Großteil (etwa 95%) wird durch die Antennen abgedeckt.
     examples:
     extras:
-    tests:
+tests:
+  - _id: 54cf92a0aa9e83ef4888fa95
+    text: Welche der folgenden sind Streuungsmaße?
+    type: multiple
+    choices:
+      - _id:  54cf9503aa9e83ef4888fa96
+        text: Median
+        correct: false
+      - _id: 54cf9515aa9e83ef4888fa97
+        text: Standardabweichung
+        correct: true
+      - _id: 54cf9526aa9e83ef4888fa98
+        text: Spannweite
+        correct: true
+      - _id: 54cf9532aa9e83ef4888fa99
+        text: Modalwert
+        correct: false
+  - _id: 54cf98a2aa9e83ef4888fa9a
+    text: Was sind Vorteile des Medians?
+    type: multiple
+    choices:
+      - _id: 54cf99a5aa9e83ef4888fa9b
+        text: Robustheit gegenüber Ausreißern
+        correct: true
+      - _id: 54cf99f3aa9e83ef4888fa9c
+        text: Sensitivität
+        correct: false
+      - _id: 54cf9af9aa9e83ef4888fa9d
+        text: auch bei nicht numerischen Werten anwendbar
+        correct: true
+      - _id: 54cf9b37aa9e83ef4888fa9e
+        text: führt zu besonders präzisen Ergebnissen
+        correct: false
+  - _id: 54cf9f52aa9e83ef4888fa9f
+    text: Was trifft nicht auf Boxplots zu?
+    type: single
+    choices:
+      - _id: 54cf9f65aa9e83ef4888faa0
+        text: Boxplots zeigen die zentrale Tendenz und die Streuung
+        correct: false
+      - _id: 54cf9fa5aa9e83ef4888faa1
+        text: Boxen können nebeneinander angeordnet werden um mehere Datengruppen abzutragen.
+        correct: false
+      - _id: 54cfa003aa9e83ef4888faa2
+        text: Die meisten Boxplots haben keine Antennen.
+        correct: true
+      - _id: 54cfa105aa9e83ef4888faa3
+        text: Die Box zeigt den Bereich an, in dem sich das Gros der Daten befindet.
+        correct: false

@@ -5,12 +5,11 @@ include ../mixins/submit.jade
 .modal-body
   - var form="loginForm"
   form.form-horizontal(novalidate name=form role="form" data-ng-click="login.login()")
-    +input("email","E-Mail-Adresse")(placeholder="name@domain.com" data-ng-model="login.loginData.email" required maxlength="20" user-exists data-ng-model-options="{debounce: 500}")
-      span.help-block(aria-live="assertive" ng-show="loginForm.email.$touched"): span(ng-if="loginForm.email.$valid") Dieser User existiert.
-      span.help-block(ng-show="loginForm.email.$touched" aria-live="assertive"): span(ng-if="loginForm.email.$pending") Prüfe Verfügbarkeit
-      span.help-block(ng-messages="loginForm.email.$error" ng-show="loginForm.email.$touched")
-        span(ng-message="userExists") Dieser User existiert nicht.
-    +input("password","Passwort")(type="password" ng-model="login.loginData.password" required minlength="8" placeholder="Passwort")
+    +input("email","E-Mail-Adresse","email",{required: "Bitte gib eine E-Mail-Adresse an.", email: "Das ist keine gültige E-mail-Adresse.",userExists: "Dieser User existiert nicht."})(placeholder="name@domain.com" data-ng-model="login.loginData.email" required maxlength="20" user-exists data-ng-model-options="{debounce: 500}")
+      span.help-block(aria-live="assertive" data-ng-show="loginForm.email.$touched")
+        span(ng-if="loginForm.email.$valid") Dieser User existiert.
+        span(ng-if="loginForm.email.$pending") Prüfe Verfügbarkeit
+    +input("password","Passwort","password")(ng-model="login.loginData.password" required minlength="8" placeholder="unlösbar")
       span.help-block(data-ng-switch="login.message" aria-live="assertive")
         span(data-ng-switch-when="incorrect password") Das Passwort ist nicht korrekt.
         span(data-ng-switch-when="incorrect username") Der Benutzer existiert nicht.
