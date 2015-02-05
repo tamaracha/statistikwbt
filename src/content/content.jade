@@ -1,4 +1,4 @@
-nav.row(role="navigation"): ul.nav.nav-pills
+nav.row(role="navigation"): .col-xs-12: ul.nav.nav-pills
   li(data-ng-repeat="unit in ::content.units" data-ui-sref-active="active"): a(
     data-ui-sref=".unit.description({unit: unit.title})"
     data-ng-bind="::unit.title"

@@ -14,7 +14,7 @@ UnitSchema=new mongoose.Schema({
     type: String,
     required: true
   },
-  requires: [String],
+  requires: [ObjectId],
   topics: [require("./topic").schema],
   tests: {
     inputs: [require("./input").schema],
