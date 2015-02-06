@@ -1,5 +1,3 @@
-var fs=require("fs");
-
 module.exports={
   env: process.env.NODE_ENV||"development",
   host: process.env.HOST||"localhost",
@@ -16,10 +14,5 @@ module.exports={
       expiresInMinutes: 60*24*7,
       subject: "authenticate"
     }
-  },
-  ssl: {
-    ca: fs.readFileSync("../ssl/t-cook_de.ca-bundle"),
-    cert: fs.readFileSync("../ssl/t-cook_de.crt"),
-    key: fs.readFileSync("../ssl/t-cook_de.key")
   }
 };

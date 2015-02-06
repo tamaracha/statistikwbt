@@ -1,8 +1,7 @@
-var https,express,app,compression,helmet,morgan,mongoose,router;
+var express,app,compression,helmet,morgan,mongoose,router;
 global._=require("lodash");
 global.Promise=require("bluebird");
 global.config=require("./config/config");
-https=require("https");
 express=require("express");
 compression=require("compression");
 helmet=require("helmet");
@@ -35,5 +34,4 @@ app.use(function(err,req,res,next){
 });
 mongoose.connect("mongodb://"+config.db.host+":27017/"+config.db.database);
 app.listen(config.port,config.host);
-//https.createServer(config.ssl,app).listen(config.port);
 console.log("listening on port %s",config.port);
