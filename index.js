@@ -1,9 +1,8 @@
-var express,app,compression,helmet,morgan,mongoose,router;
+var express,app,helmet,morgan,mongoose,router;
 global._=require("lodash");
 global.Promise=require("bluebird");
 global.config=require("./config/config");
 express=require("express");
-compression=require("compression");
 helmet=require("helmet");
 morgan=require("morgan")("dev");
 mongoose=require("mongoose");
@@ -19,7 +18,6 @@ app.use(helmet.frameguard("deny"));
 app.use(helmet.nosniff());
 
 app.use("/api",require("./api"));
-app.use(compression());
 app.use(
   function(req,res,next){
     var n=req.url.indexOf(".");
