@@ -19,7 +19,7 @@ app.use(morgan);
 app.use(helmet.frameguard("deny"));
 app.use(helmet.nosniff());
 
-app.use("/statistikwbt/api",require("./api"));
+app.use("/api",require("./api"));
 app.use(compression());
 app.use(
   function(req,res,next){
