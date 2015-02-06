@@ -34,5 +34,6 @@ app.use(function(err,req,res,next){
   return res.sendStatus(err.status||500);
 });
 mongoose.connect("mongodb://"+config.db.host+":27017/"+config.db.database);
-https.createServer(config.ssl,app).listen(config.port);
+app.listen(config.port,config.host);
+//https.createServer(config.ssl,app).listen(config.port);
 console.log("listening on port %s",config.port);
