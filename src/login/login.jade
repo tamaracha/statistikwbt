@@ -4,7 +4,7 @@ include ../mixins/submit.jade
   h3 Anmelden
 .modal-body
   - var form="loginForm"
-  form.form-horizontal(novalidate name=form role="form" data-ng-submit="login.login()")
+  form.form-horizontal(novalidate name="loginForm" role="form" data-ng-submit="login.login()")
     +input("email","E-Mail-Adresse","email",{required: "Bitte gib eine E-Mail-Adresse an.", email: "Das ist keine gültige E-mail-Adresse.",userExists: "Dieser User existiert nicht."})(placeholder="name@domain.com" data-ng-model="login.loginData.email" required maxlength="20" user-exists data-ng-model-options="{debounce: 500}")
       span.help-block(aria-live="assertive" data-ng-show="loginForm.email.$touched")
         span(ng-if="loginForm.email.$valid") Dieser User existiert.
@@ -15,4 +15,4 @@ include ../mixins/submit.jade
         span(data-ng-switch-when="incorrect username") Der Benutzer existiert nicht.
 .modal-footer
   input.btn.btn-default(type="button" value="abbrechen" data-ng-click="login.cancel()")
-  input.btn(type="submit" form=form data-ng-class="{'btn-primary': loginForm.$valid, 'btn-danger': loginForm.$invalid}" value="anmelden")
+  input.btn(type="submit" form="loginForm" data-ng-class="{'btn-primary': loginForm.$valid, 'btn-danger': loginForm.$invalid}" value="anmelden")
