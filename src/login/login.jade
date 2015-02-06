@@ -14,4 +14,4 @@ include ../mixins/input.jade
         span(data-ng-switch-when="incorrect username") Der Benutzer existiert nicht.
 .modal-footer
   input.btn.btn-default(type="button" value="abbrechen" data-ng-click="login.cancel()")
-  input.btn(type="button" form="loginForm" data-ng-class="{'btn-primary': loginForm.$valid, 'btn-danger': loginForm.$invalid}" value="anmelden" data-ng-submit="login.login()")
+  input.btn(type="button" form="loginForm" data-ng-class="{'btn-primary': loginForm.$valid, 'btn-danger': loginForm.$invalid}" value="anmelden" data-ng-click="login.login()")
