@@ -2,7 +2,7 @@ var fs=require("fs");
 
 module.exports={
   env: process.env.NODE_ENV||"development",
-  host: process.env.HOST||127.0.0.1,
+  host: process.env.HOST||"localhost",
   port: process.env.PORT||3000,
   db: {
     host: "localhost",
