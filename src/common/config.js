@@ -3,7 +3,7 @@ angular.module("wbt")
   $locationProvider.html5Mode(true);
   $compileProvider.debugInfoEnabled(false);
   $httpProvider.interceptors.push("authInterceptor");
-  RestangularProvider.setBaseUrl("/api");
+  RestangularProvider.setBaseUrl("/statistikwbt/api");
   RestangularProvider.setRestangularFields({
     id: "_id"
   });
