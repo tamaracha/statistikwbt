@@ -2,6 +2,8 @@ _id: 5493aa9a45ac10a752054075
 position: 5
 title: Korrelation und Regression
 subtitle: Zusammenhänge
+requires:
+  - 5493aa9a45ac10a752054072
 description: |
   Häufig besteht eine paarweise Beziehung zwischen zwei gemessenen Beobachtungen (Werten). Manchmal willst du dich aber nicht damit begnügen nur festzustellen, ob ein Zusammenhang besteht, sondern die Enge des Zusammenhangs soll auch charakterisiert werden. Du willst also herausfinden wie stark der Zusammenhang zwischen Messwerten ist. Vielleicht hast du schon einmal den Satz gehört: „Zwischen diesen Merkmalen besteht eine hohe Korrelation“. In diesem Kapitel wirst du Methoden kennenlernen wie du die Stärke eines Zusammenhangs beschreiben kannst.
 topics:

@@ -2,6 +2,8 @@ _id: 5493aa9a45ac10a752054074
 position: 7
 title: Signifikanztests
 subtitle: Gruppenunterschiede
+requires:
+  - 5493aa9a45ac10a752054072
 description: |
   In den Sozialwissenschaften sehr geläufig sind Fragestellungen nach Gruppenunterschieden. Bei der statistischen Signifikanz geht es darum, ob man gefundene Gruppenunterschiede in Stichproben auf die Population übertragen kann. Die Gruppenunterschiede müssen signifikant (bedeutsam) genug sein, damit wir sie verallgemeinern können. Signifikanz wird mit einem Signifikanztest geprüft, einem Verfahren aus der Inferenzstatistik. Es gibt für alle möglichen Szenarien und Fragestellungen passende Signifikanztests. Du lernst hier einige von ihnen kennen und anzuwenden.
   
