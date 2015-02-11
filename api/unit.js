@@ -30,7 +30,8 @@ exports.create=function(req,res){
 
 exports.findOne=function(req,res){
   return Unit.findOne({title: req.params.unit})
-  .select("title subtitle description topics.title")
+  .select("title subtitle description requires topics.title")
+  .populate("requires","title")
   .lean()
   .execAsync()
   .then(function(unit){

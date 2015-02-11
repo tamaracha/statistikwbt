@@ -8,6 +8,7 @@ exports.find=function(req,res){
   .lean()
   .execAsync()
   .then(function(unit){
+    if(!unit.tests){throw e.notFound("no tests found");}
     var tests=[];
     if(unit.tests.singleChoices&&unit.tests.singleChoices.length>0){
       tests=tests.concat(unit.tests.singleChoices);

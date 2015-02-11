@@ -4,7 +4,7 @@ include ../mixins/radio-inline
 include ../mixins/submit.jade
 - var form="registerForm"
 h2 Registrieren
-form.form-horizontal(novalidate name=form ng-submit="wbt.identity.register(register.registerData)" role="form")
+form.form-horizontal(novalidate name=form ng-submit="main.identity.register(register.registerData)" role="form")
   fieldset
     legend Logindaten
     +input("email","E-Mail-Adresse","email",{required: "Bitte gib eine E-Mail-Adresse an.", email: "Das ist keine gültige E-mail-Adresse.", userAvailable: "Diese E-Mail ist schon registriert."})(
@@ -18,7 +18,7 @@ form.form-horizontal(novalidate name=form ng-submit="wbt.identity.register(regis
     +input("nickname","Nickname (optional")(data-ng-model="register.registerData.profile.nickname" maxlength="20")
     +input("age","Alter","number","Jahre")(required min="0" max="100" step="1" data-ng-model="register.registerData.profile.age")
     +radio-inline("sex","Geschlecht",{male: "männlich", femail: "weiblich"})(required data-ng-model="register.registerData.profile.sex")
-    +input("subject","Studienfach (optional)")(data-ng-model="register.registerData.profile.subject" typeahead="subject.name for subject in wbt.identity.getSubjects($viewValue)" placeholder="hier Studienfach eingeben und auswählen" typeahead-min-length="3" ng-required="register.profile.subject")
+    +input("subject","Studienfach (optional)")(data-ng-model="register.registerData.profile.subject" typeahead="subject.name for subject in main.identity.getSubjects($viewValue)" placeholder="hier Studienfach eingeben und auswählen" typeahead-min-length="3" ng-required="register.profile.subject")
     +checkbox("Registrierungsgrund/gründe","register.registerData.reasons",["Interesse für das Thema","Langeweile, Zeitvertreib, zufällig reingestolpert","Vor- oder Nachbereitung für Klausur/Vorlesung"])
   fieldset
     legend Datenschutz

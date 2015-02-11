@@ -7,11 +7,11 @@ angular.module("wbt")
     return identity.authenticate(this.loginData)
     .then(identity.get,function(res){
       self.message=res.data||res;
-      return $q.reject(res);
+      $q.reject(res);
     })
-    .then(function(id){
-      $modalInstance.close(id);
-    },identity.inauthenticate);
+    .then(function(data){
+      return $modalInstance.close(data._id);
+    });
   };
   this.cancel=function(){
     $modalInstance.dismiss("cancel");

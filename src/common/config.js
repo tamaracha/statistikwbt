@@ -7,11 +7,19 @@ angular.module("wbt")
   RestangularProvider.setRestangularFields({
     id: "_id"
   });
-$stateProvider.state("home",{
+$stateProvider
+.state("main",{
+  url: "",
+  templateUrl: "main/main.html",
+  controller: "mainCtrl",
+  controllerAs: "main",
+  abstract: true
+})
+.state("main.home",{
   url: "/home",
   templateUrl: "home/home.html",
 })
-.state("content",{
+.state("main.content",{
   url: "/content",
   templateUrl: "content/content.html",
   resolve: {
@@ -22,7 +30,7 @@ $stateProvider.state("home",{
   controller: "contentCtrl",
   controllerAs: "content"
 })
-.state("content.unit",{
+.state("main.content.unit",{
   url: "/:unit",
   templateUrl: "content/unit/unit.html",
   resolve: {
@@ -34,14 +42,14 @@ $stateProvider.state("home",{
   controllerAs: "unit",
   abstract: true
 })
-.state("content.unit.description",{
+.state("main.content.unit.description",{
   url: "/description",
   templateUrl: "content/unit/description/description.html",
   onEnter: ["content","unit",function(content,unit){
     return content.view(unit._id);
   }],
 })
-.state("content.unit.test",{
+.state("main.content.unit.test",{
   url: "/test",
   templateUrl: "content/unit/test/test.html",
   resolve: {
@@ -55,7 +63,7 @@ $stateProvider.state("home",{
   controller: "testCtrl",
   controllerAs: "test"
 })
-.state("content.unit.topic",{
+.state("main.content.unit.topic",{
   url: "/:topic",
   templateUrl: "content/unit/topic/topic.html",
   controller: ["topic",function(topic){
@@ -71,7 +79,7 @@ $stateProvider.state("home",{
     return content.view(unit._id,topic._id);
   }]
 })
-.state("content.unit.topic.example",{
+.state("main.content.unit.topic.example",{
   url: "/example/:example",
   template:
     '<h3 ng-bind="example.title"></h3><div math-jax md="example.example.body"></div>',
@@ -86,7 +94,7 @@ $stateProvider.state("home",{
     }
   }
 })
-.state("content.unit.topic.extra",{
+.state("main.content.unit.topic.extra",{
   url: "/extra/:extra",
   template:
     '<h3 ng-bind="extra.title"></h3><div math-jax md="extra.extra.body"></div>',
@@ -101,14 +109,14 @@ $stateProvider.state("home",{
     }
   }
 })
-.state("software",{
+.state("main.software",{
   url: "/software",
   templateUrl: "software/software.html",
   data: {
     menuText: "Statistiksoftware"
   }
 })
-.state("download",{
+.state("main.download",{
   url: "/download",
   templateUrl: "download/download.html",
   resolve: {
@@ -123,17 +131,17 @@ $stateProvider.state("home",{
   controller: "downloadCtrl",
   controllerAs: "download"
 })
-.state("contact",{
+.state("main.contact",{
   url: "/contact",
   templateUrl: "contact/contact.html"
 })
-.state("register",{
+.state("main.register",{
   url: "/register",
   templateUrl: "register/register.html",
   controller: "registerCtrl",
   controllerAs: "register"
 })
-.state("user",{
+.state("main.user",{
   url: "/user/:id",
   templateUrl: "user/user.html",
   controller: "userCtrl",

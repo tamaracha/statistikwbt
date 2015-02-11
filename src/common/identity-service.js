@@ -3,24 +3,16 @@ angular.module("wbt")
   var Users,Tokens,_id,_token,_authenticated,_data;
   Users=Restangular.all("users");
   Tokens=Restangular.all("tokens");
-  _id=null;
-  _token=null;
-  _authenticated=false;
-
-  var init=function(){
-    var id,token;
-    id=$window.localStorage.getItem("id");
-    token=$window.localStorage.getItem("authToken");
-    return $q(function(resolve,reject){
-      if(id!==null&&token!==null){
-        _id=id;
-        _token=token;
-        _authenticated=true;
-        return resolve(_authenticated);
-      }
-      else{return reject("inauthenticated");}
+  _id=$window.localStorage.getItem("id");
+  _token=$window.localStorage.getItem("authToken");
+  _authenticated=_id&&_token ? true : false;
+  if(_authenticated){
+    Users.get(_id)
+    .then(function(data){
+      _data=data;
     });
-  };
+  }
+
   var authenticated=function(){return _authenticated;};
   var authenticatedAsync=function(){
     return $q(function(resolve,reject){
@@ -96,7 +88,7 @@ angular.module("wbt")
       });
     })
     .then(function(){
-      return $state.go("content");
+      return $state.go("main.content");
     })
     .catch(inauthenticate);
   };
@@ -121,6 +113,7 @@ angular.module("wbt")
     return _data.patch({fsk: _data.fsk});
   };
   var complete=function(unit){
+    if(!_authenticated||!_data.complete){return false;}
     return _.contains(_data.complete,unit);
   };
   var setComplete=function(unit){
@@ -129,6 +122,8 @@ angular.module("wbt")
     return _data.patch({complete: _data.complete});
   };
   var requiresComplete=function(requires){
+    if(!requires||requires.length===0){return true;}
+    if(!_authenticated||!_data.complete){return false;}
     var complete=true;
     _.forEach(requires,function(require){
       if(_.contains(_data.complete,require)){return;}
@@ -138,7 +133,6 @@ angular.module("wbt")
     return complete;
   };
   return {
-    init: init,
     authenticate: authenticate,
     inauthenticate: inauthenticate,
     authenticated: authenticated,

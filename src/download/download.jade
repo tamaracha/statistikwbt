@@ -4,7 +4,7 @@ include ../mixins/submit
 h2 Download
 p Falls du die Inhalte dieser Webseite gern als Textdokument archivieren möchtest, kannst du hier ein Dokument mit den von dir bearbeiteten Kapiteln herunterladen. Du kannst zwischen ein paar Formaten wählen und einstellen, welche Bestandteile du haben möchtest.
 form.form-horizontal(name="downloadForm" novalidate method="get" action="/api/downloads")
-  input(type="hidden" name="token" ng-value="wbt.identity.token()")
+  input(type="hidden" name="token" ng-value="main.identity.token()")
   .form-group
     label.col-xs-2 Kapitel
     .col-xs-10

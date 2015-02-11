@@ -21,6 +21,10 @@ UnitSchema=new mongoose.Schema({
     singleChoices: [require("./single-choice").schema],
     multipleChoices: [require("./multiple-choice").schema]
   },
+  views: [{
+    type: ObjectId,
+    ref: "view"
+  }],
   akzeptanz: {
     ratings: [{
       type: ObjectId,
@@ -30,11 +34,7 @@ UnitSchema=new mongoose.Schema({
       type: ObjectId,
       ref: "comment"
     }]
-  },
-  views: [{
-    type: ObjectId,
-    ref: "view"
-  }]
+  }
 });
 
 Unit=mongoose.model("Unit",UnitSchema);

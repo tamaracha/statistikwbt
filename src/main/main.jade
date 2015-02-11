@@ -1,0 +1,30 @@
+include ../mixins/menu-item.jade
+
+nav.navbar.navbar-inverse.navbar-static-top(role="navigation"): .container-fluid
+  .navbar-header
+    button.navbar-toggle.collapsed(type="button" data-ng-click="main.menuCollapse=!main.menuCollapse" aria-controls="mainnav" aria-expanded="{{!main.menuCollapse}}" aria-label="{{main.menuCollapse ? 'Menü ausklappen' : 'Menü einklappen'}}")
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    a.navbar-brand(data-ui-sref=".home")
+      span.glyphicon.glyphicon-home
+      |  Statistik für Jedermann
+  #mainnav.collapse.navbar-collapse(data-collapse="main.menuCollapse")
+    ul.nav.navbar-nav.navbar-left
+      +menu-item(".content","Inhalte")
+      +menu-item(".download","Download")
+      +menu-item(".software","Statistiksoftware")
+      +menu-item(".contact","Kontakt")
+    ul.nav.navbar-nav.navbar-right(data-ng-if="!main.identity.authenticated()")
+      li: button(type="button" data-ng-click="main.identity.login()")
+        span.glyphicon.glyphicon-log-in
+        |  Anmelden
+      +menu-item(".register","registrieren","registration-mark")
+    ul.nav.navbar-nav.navbar-right(data-ng-if="main.identity.authenticated()")
+      li(data-ui-sref-active="active"): a(ui-sref=".user({id: main.identity._id})")
+          span.glyphicon.glyphicon-user
+          |  {{main.identity.data().profile.nickname||main.identity.data().email}}
+      li: button(type="button" data-ng-click="::main.identity.inauthenticate()")
+        span.glyphicon.glyphicon-log-out(aria-hidden="true")
+        |  Abmelden
+.container(data-ui-view)

@@ -16,7 +16,7 @@ div(md="topic.topic.body" math-jax)
       ul.dropdown-menu
         li(data-ng-repeat="extra in topic.topic.extras")
           a.btn.btn-default(data-ui-sref=".extra({extra: extra.title})" data-ng-bind="extra.title")
-  .btn-group(data-ng-if="wbt.identity.authenticated()")
+  .btn-group(data-ng-if="main.identity.authenticated()")
     button.btn.btn-default(type="button" ng-click="unit.content.akzeptanz(unit.unit)") Kapitel bewerten
-    button.btn.btn-default(type="button" data-ng-click="wbt.identity.fsk()") Statistikkenntnisse einschätzen
+    button.btn.btn-default(type="button" data-ng-click="main.identity.fsk()") Statistikkenntnisse einschätzen
 section(data-ui-view)

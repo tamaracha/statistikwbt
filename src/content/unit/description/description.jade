@@ -1,7 +1,7 @@
 h3 Beschreibung
 div(md="unit.unit.description")
-h3 Voraussetzungen
+h4 Voraussetzungen
 p(data-ng-if="!unit.unit.requires") Es gibt keine Voraussetzungen.
 ul.list-unstyled(data-ng-if="unit.unit.requires")
 	li(data-ng-repeat="required in unit.unit.requires")
-			a.btn(data-ng-bind="required.title" data-ui-sref=".({unit: required._id})" data-ng-class="required._id|unitStatus:wbt.authService.user():content.units")
+			a(data-ng-bind="required.title" data-ui-sref=".({unit: required.title})")

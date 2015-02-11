@@ -24,33 +24,6 @@ ViewSchema=new mongoose.Schema({
   }
 });
 
-ViewSchema.post("save",function(){
-  var view=this;
-  if(!view.authenticated){return;}
-  return User.findById(view.user)
-  .execAsync()
-  .then(function(user){
-    user.views.push(view._id);
-    return user.saveAsync();
-  })
-  .catch(function(e){
-    return console.error(e.stack);
-  });
-});
-
-ViewSchema.post("save",function(){
-  var view=this;
-  return Unit.findById(view.unit)
-  .execAsync()
-  .then(function(unit){
-    unit.views.push(view._id);
-    return unit.saveAsync();
-  })
-  .catch(function(e){
-    return console.error(e.stack);
-  });
-});
-
 View=mongoose.model("View",ViewSchema);
 Promise.promisifyAll(View.prototype);
 module.exports=View;

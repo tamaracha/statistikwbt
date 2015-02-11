@@ -2,6 +2,8 @@ _id: 5493aa9a45ac10a752054077
 position: 3
 title: Skalenniveaus
 subtitle: Was kann man mit welchen Daten machen?
+requires:
+  - 5493aa9a45ac10a752054072
 description: |
   Wenn man etwas misst, beobachtet man etwas in der physischen Welt und drückt diese Beobachtung als Messwert aus. Die Messung ist eine abstrakte Repräsentation dessen, wie sich die Beobachtungen voneinander unterscheiden, in welcher Beziehung sie also zueinander stehen. Sind zwei Messwerte gleich/ungleich, oder ist einer größer als der andere, kann man den Größenunterschied als Zahl ausdrücken?
   
