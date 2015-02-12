@@ -20,21 +20,21 @@ topics:
       <div class="row">
       <figure class="col-sm-4">
       
-      ![Positive Kovarianz](/images/PositiveKovarianz.svg "Positive Kovarianz")
+      ![Positive Kovarianz](images/PositiveKovarianz.svg "Positive Kovarianz")
       
       <figcaption>Abb. A: Positive Kovarianz</figcaption>
       </figure>
       
       <figure class="col-sm-4">
       
-      ![Negative Kovarianz](/images/NegativeKovarianz.svg "Negative Kovarianz")
+      ![Negative Kovarianz](images/NegativeKovarianz.svg "Negative Kovarianz")
       
       <figcaption>Abb. B: Negative Kovarianz</figcaption>
       </figure>
       
       <figure class="col-sm-4">
       
-      ![Keine Kovarianz](/images/KeineKovarianz.svg "Keine Kovarianz")
+      ![Keine Kovarianz](images/KeineKovarianz.svg "Keine Kovarianz")
       
       <figcaption>Abb. C: Keine Kovarianz</figcaption>
       </figure>
@@ -88,13 +88,13 @@ topics:
           <div class="row">
           <figure class="col-sm-6">
           
-          ![Selectionsfehler klein](/images/SelektionKlein.svg "zu kleine Streubreite")
+          ![Selectionsfehler klein](images/SelektionKlein.svg "zu kleine Streubreite")
           
           </figure>
           
           <figure class="col-sm-6">
           
-          ![SelectionsFehler Extrem](/images/SelektionExtrem.svg "extreme Streubreite")
+          ![SelectionsFehler Extrem](images/SelektionExtrem.svg "extreme Streubreite")
           
           </figure>
           </div>
