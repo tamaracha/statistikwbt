@@ -54,30 +54,30 @@ exports.find=function(req,res){
   })
   .then(function(md){
     var format=req.query.format||"md";
-    var cachePath=process.cwd()+"/.filecache/"+req.user._id;
+    var filePath=process.cwd()+"/public/";
     res.setHeader("content-disposition", "attachment; filename=Statistik-WBT."+format);
     res.setHeader("content-type", mime.lookup(format));
     switch(format){
       case "md": return res.send(md);
       case "rtf":
-        return pdcAsync(md,"markdown","rtf")
+        return pdcAsync(md,"markdown","rtf",[],{cwd: filePath})
         .then(function(doc){
           res.send(doc);
         });
       case "tex":
-        return pdcAsync(md,"markdown","latex")
+        return pdcAsync(md,"markdown","latex",[],{cdw: filePath})
         .then(function(doc){
           res.send(doc);
         });
       case "docx":
-        return pdcAsync(md,"markdown","docx",["-o",cachePath+".docx"])
+        return pdcAsync(md,"markdown","docx",["-o",req.user._id+".docx"],{cwd: filePath})
         .then(function(doc){
-          return res.sendFile(cachePath+".docx");
+          return res.sendFile(filePath+req.user._id+".docx");
         });
       case "epub":
-        return pdcAsync(md,"markdown","epub",["-o",cachePath+".rtf"])
+        return pdcAsync(md,"markdown","epub",["-o",req.user._id+".epub"],{cwd: filePath})
         .then(function(doc){
-          return res.sendFile(cachePath+".rtf");
+          return res.sendFile(filePath+req.user._id+".epub");
         });
       default: return res.send(md);
     }
