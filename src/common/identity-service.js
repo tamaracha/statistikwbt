@@ -113,7 +113,7 @@ angular.module("wbt")
     return _data.patch({fsk: _data.fsk});
   };
   var complete=function(unit){
-    if(!_authenticated||!_data.complete){return false;}
+    if(!_authenticated||!_data||!_data.complete){return false;}
     return _.contains(_data.complete,unit);
   };
   var setComplete=function(unit){
@@ -123,7 +123,7 @@ angular.module("wbt")
   };
   var requiresComplete=function(requires){
     if(!requires||requires.length===0){return true;}
-    if(!_authenticated||!_data.complete){return false;}
+    if(!_authenticated||!_data||!_data.complete){return false;}
     var complete=true;
     _.forEach(requires,function(require){
       if(_.contains(_data.complete,require)){return;}
