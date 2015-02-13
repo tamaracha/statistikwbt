@@ -9,7 +9,16 @@ module.exports=function(gulp,plugins,growl){
       "src/common/**/*.js",
       "src/**/*.js"
     ])
-    .pipe(plugins.jshint())
+    .pipe(plugins.jshint({
+      undef: true,
+      devel: true,
+      globals: {
+        angular: false,
+        _: false,
+        Remarkable: false,
+        MathJax: false
+      }
+    }))
     .pipe(plugins.notify({title: "jshint", message: function(file){
       if(file.jshint.success){return false;}
       var errors = file.jshint.results.map(function (data) {
@@ -20,6 +29,7 @@ module.exports=function(gulp,plugins,growl){
       return file.relative + " (" + file.jshint.results.length + " errors)\n" + errors;
     }}))
     .pipe(plugins.concat("index.js"))
+    .pipe(plugins.headerfooter('(function(){\n"use strict";\n','\n}());'))
     .pipe(plugins.ngAnnotate())
     .on("error",swallowError)
     .pipe(gulp.dest("public"))
