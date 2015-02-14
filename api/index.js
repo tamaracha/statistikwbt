@@ -84,8 +84,14 @@ var subject=require("./subject");
 router.route("/subjects")
 .get(subject.find);
 
+// Vega
+var vega=require("./vega");
+router.route("/vega/:vega")
+.get(vega.findOne);
+
 // upload units
 require("./upload");
+require("./vega-upload");
 //require("./subject-upload");
 
 module.exports=router;

@@ -146,6 +146,17 @@ $stateProvider
   templateUrl: "user/user.html",
   controller: "userCtrl",
   controllerAs: "user"
+})
+.state("vega",{
+  url: "/vega",
+  templateUrl: "vega/vega.html",
+  controller: "vegaCtrl",
+  controllerAs: "vega",
+  resolve: {
+    spec: function(Restangular){
+      return Restangular.all("vega").get("scatterplot");
+    }
+  }
 });
   $urlRouterProvider.otherwise("/home");
 })
