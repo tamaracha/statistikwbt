@@ -147,7 +147,7 @@ $stateProvider
   controller: "userCtrl",
   controllerAs: "user"
 })
-.state("vega",{
+.state("main.vega",{
   url: "/vega",
   templateUrl: "vega/vega.html",
   controller: "vegaCtrl",
