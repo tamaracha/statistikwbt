@@ -1,4 +1,5 @@
 mixin rating(name,label)
   .form-group
-    label.control-label(id="rating-"+name)=label
-    rating(aria-labelledby="rating-"+name data-ng-model="akzeptanz.summary."+name data-ng-change="akzeptanz.content.rate(akzeptanz.unit._id,'"+name+"',akzeptanz.summary."+name+")" aria-valuetext="{{akzeptanz.labels[akzeptanz.summary."+name+"]}}")
+    label.col-xs-8(id="rating-"+name)=label
+    .col-xs-4
+      rating(aria-labelledby="rating-"+name data-ng-model="akzeptanz.summary."+name data-ng-change="akzeptanz.content.rate(akzeptanz.unit._id,'"+name+"',akzeptanz.summary."+name+")" aria-valuetext="{{akzeptanz.labels[akzeptanz.summary."+name+"]}}")

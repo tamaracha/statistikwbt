@@ -5,7 +5,7 @@ include ../../../mixins/text-input
   h3.modal-title Kapitel bewerten
 .modal-body
   p Stufe die folgenden drei Aussagen mittels der Sternchen ein (1 Stern: trifft nicht auf mich zu, 5 Sterne: trifft voll auf mich zu). Du kannst deine Wertungen beliebig oft ändern.
-  form(name="ratingForm" novalidate)
+  form.form-horizontal(name="ratingForm" novalidate)
     +rating("motivation","Die Bearbeitung dieses Kapitels war für mich sehr motivierend, weiterzumachen viel mir leicht.")
     +rating("success","Ich habe das Gefühl, einiges über das thema dazugelernt zu haben.")
     +rating("usability","Die Webseite lässt sich gut bedienen und es ist klar, was ich als nächstes tun soll.")
