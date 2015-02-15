@@ -1,6 +1,6 @@
 mixin sessko-item(name,label,min,max)
   .form-group
-    p=label
+    p: strong=label
     label.radio-inline
       input(type="radio" name=name data-ng-value="1")&attributes(attributes)
       |  #{min}
