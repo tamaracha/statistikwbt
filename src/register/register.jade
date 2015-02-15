@@ -17,7 +17,17 @@ form.form-horizontal(novalidate name=form ng-submit="main.identity.register(regi
     legend Personenangaben
     +input("nickname","Nickname (optional")(data-ng-model="register.registerData.profile.nickname" maxlength="20")
     +input("age","Alter","number","Jahre")(required min="0" max="100" step="1" data-ng-model="register.registerData.profile.age")
-    +radio-inline("sex","Geschlecht",{male: "männlich", femail: "weiblich"})(required data-ng-model="register.registerData.profile.sex")
+    .form-group
+      label.col-xs-2 Geschlecht
+      .col-xs-10
+        label.radio-inline
+          input(type="radio" name="sex" value="male" data-ng-model="register.registerData.profile.sex" required)
+          span.fa.fa-male
+          |  männlich
+        label.radio-inline
+          input(type="radio" name="sex" value="female" data-ng-model="register.registerData.profile.sex" required)
+          span.fa.fa-female
+          |  weiblich
     +input("subject","Studienfach (optional)")(data-ng-model="register.registerData.profile.subject" typeahead="subject.name for subject in main.identity.getSubjects($viewValue)" placeholder="hier Studienfach eingeben und auswählen" typeahead-min-length="3" ng-required="register.profile.subject")
     +checkbox("Registrierungsgrund/gründe","register.registerData.reasons",["Interesse für das Thema","Langeweile, Zeitvertreib, zufällig reingestolpert","Vor- oder Nachbereitung für Klausur/Vorlesung"])
   fieldset
