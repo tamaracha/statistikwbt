@@ -4,7 +4,7 @@ nav.row(role="navigation"): .col-xs-12: ul.nav.nav-pills
     data-ng-bind="unit.title"
     data-ng-class="{'text-success': main.identity.complete(unit._id), 'text-primary': main.identity.requiresComplete(unit.requires)&&!main.identity.complete(unit._id), 'text-warning': !main.identity.requiresComplete(unit.requires)&&!main.identity.complete(unit._id)}"
   )
-section.row: .col-xs-12(data-ui-view)
+section.row(data-ui-view): .col-xs-12
   h2 Wozu überhaupt Statistik?
   p Psychologie leistet einen enormen Beitrag zur Gestaltung wirksamer Unterrichtsmethoden, Diagnostik und Interventionen, Marketing/Werbung, Personalauswahl und -Entwicklung, Produktdesign (Ergonomie), und weiteren Anwendungsbereichen, in denen Wissen über das Erleben und Verhalten des Menschen unabdingbar ist. Wie kommen wir aber zu diesem Wissen?
   dl
