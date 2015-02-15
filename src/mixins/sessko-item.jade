@@ -1,12 +1,13 @@
 mixin sessko-item(name,label,min,max)
   .form-group
-    label=label
+    label.control-label=label
     label.radio-inline
       input(type="radio" name=name data-ng-value="1")&attributes(attributes)
       |  #{min}
     each option in [2,3,4,5]
       label.radio-inline
         input(type="radio" name=name data-ng-value=option)&attributes(attributes)
+        |  #{option}
     label.radio-inline
       input(type="radio" name=name data-ng-value="6")&attributes(attributes)
       |  #{max}
