@@ -29,15 +29,15 @@ scales:
     domain:
       data: table
       field: data.x
-    nice: y
+    nice: true
   - name: yScale
     type: linear
     range: height
     domain:
       data: table
       field: data.y
-    nice: y
-    reverse: y
+    nice: true
+    reverse: true
 axes:
   - title: X-Achse
     type: x
@@ -60,5 +60,3 @@ marks:
         y:
           field: data.y
           scale: yScale
-        size:
-          value: 25

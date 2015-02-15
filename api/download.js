@@ -60,22 +60,22 @@ exports.find=function(req,res){
     switch(format){
       case "md": return res.send(md);
       case "rtf":
-        return pdcAsync(md,"markdown","rtf",[],{cwd: filePath})
+        return pdcAsync(md,"markdown","rtf",["-s"],{cwd: filePath})
         .then(function(doc){
           res.send(doc);
         });
-      case "tex":
-        return pdcAsync(md,"markdown","latex",[],{cdw: filePath})
+      case "latex":
+        return pdcAsync(md,"markdown","latex",["-s"],{cwd: filePath})
         .then(function(doc){
           res.send(doc);
         });
       case "docx":
-        return pdcAsync(md,"markdown","docx",["-o",req.user._id+".docx"],{cwd: filePath})
+        return pdcAsync(md,"markdown","docx",["-s","-o",req.user._id+".docx"],{cwd: filePath})
         .then(function(doc){
           return res.sendFile(filePath+req.user._id+".docx");
         });
       case "epub":
-        return pdcAsync(md,"markdown","epub",["-o",req.user._id+".epub"],{cwd: filePath})
+        return pdcAsync(md,"markdown","epub",["-s","-o",req.user._id+".epub"],{cwd: filePath})
         .then(function(doc){
           return res.sendFile(filePath+req.user._id+".epub");
         });

@@ -13,5 +13,26 @@ form.form-horizontal(name="downloadForm" novalidate method="get" action="/statis
           input(type="checkbox" name="units" data-ng-value="unit._id" checked)
           |  {{unit.title}}
   +checkbox-inline("contents","Inhalte",{body: "Kerntexte",examples: "Beispiele",extras: "Extras"})(checked)
-  +radio-inline("format","Dateiformat",{"rtf": "RTF-Format","docx": "MS Word","epub": "EPub-Format","md": "Markdown","tex": "LaTex"})(data-ng-model="download.format")
+  .form-group
+    label.col-xs-2 Dateiformat
+    .col-xs-10
+      label.radio-inline
+        input(type="radio" name="format" value="docx" checked)
+        span.fa.fa-file-word-o
+        |  MS Word
+      label.radio-inline
+        input(type="radio" name="format" value="rtf")
+        |  RTF
+      label.radio-inline
+        input(type="radio" name="format" value="epub")
+        span.fa.fa-book
+        |  Epub
+      label.radio-inline
+        input(type="radio" name="format" value="markdown")
+        span.fa.fa-file-text-o
+        |  Markdown
+      label.radio-inline
+        input(type="radio" name="format" value="latex")
+        span.fa.fa-file-code-o
+        |  LaTex
   +submit("Download")
