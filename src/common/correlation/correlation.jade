@@ -1,0 +1,6 @@
+h3 Korrelation
+form.form-inline
+  form-group
+    label.control-label(for="correlation-input") Korrelation
+    input#correlation-input.form-control(type="number" min="-1" max="1" step="0.1" data-ng-model="correlation.cor" data-ng-change="correlation.getData()")
+vega(spec="correlation.spec" vega-renderer="'svg'" vega-data="correlation.data")

@@ -89,6 +89,13 @@ var vega=require("./vega");
 router.route("/vega/:vega")
 .get(vega.findOne);
 
+// rio
+var rio=require("./rio");
+router.route("/rio/evaluate/:rio")
+.get(rio.evaluate);
+router.route("/rio/corgen/:cor")
+.get(rio.corgen);
+
 // upload units
 require("./upload");
 require("./vega-upload");
