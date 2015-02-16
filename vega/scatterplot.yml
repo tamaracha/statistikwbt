@@ -1,27 +1,9 @@
 name: scatterplot
+width: 400
+height: 400
 data:
   - name: table
-    values:
-      - x: 8
-        y: 17
-      - x: 12
-        y: 20
-      - x: 34
-        y: 41
-      - x: 28
-        y: 50
-      - x: 7
-        y: 10
-      - x: 22
-        y: 30
-      - x: 49
-        y: 36
-      - x: 52
-        y: 23
-      - x: 39
-        y: 28
-      - x: 26
-        y: 44
+    url: /statistikwbt/api/rio/corgen/0.5
 scales:
   - name: xScale
     type: linear
@@ -37,19 +19,15 @@ scales:
       data: table
       field: data.y
     nice: true
-    reverse: true
 axes:
   - title: X-Achse
     type: x
     scale: xScale
-    orient: bottom
   - title: Y-Achse
     type: y
     scale: yScale
-    orient: left
 marks:
   - type: symbol
-    description: Scatterpunkte
     from:
       data: table
     properties:
@@ -60,3 +38,7 @@ marks:
         y:
           field: data.y
           scale: yScale
+        fill:
+          value: green
+        size:
+          value: 25
