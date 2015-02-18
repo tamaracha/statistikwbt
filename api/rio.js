@@ -42,7 +42,7 @@ exports.evaluate=function(req,res){
 };
 
 exports.correlation=function(req,res){
-  return rio.sourceAndEvalAsync("correlation.r","correlation",req.query)
+  return rio.sourceAndEvalAsync("correlation.R","correlation",req.query)
   .then(function(data){
     return res.send(data);
   })
