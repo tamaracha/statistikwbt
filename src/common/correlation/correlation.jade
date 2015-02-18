@@ -1,6 +1,24 @@
-h3 Korrelation
-form.form-inline
-  form-group
-    label.control-label(for="correlation-input") Korrelation
-    input#correlation-input.form-control(type="number" min="-1" max="1" step="0.1" data-ng-model="correlation.cor" data-ng-change="correlation.getData()")
-vega(spec="correlation.spec" vega-renderer="'svg'" vega-data="correlation.data")
+.row: .col-xs-12
+  h3 Korrelation
+.row
+  .col-sm-4
+    form.form-horizontal(novalidate name="correlationForm")
+      .form-group
+        label.control-label.col-xs-4(for="cor-input") Korrelation
+        .col-xs-8: input#cor-input.form-control(type="number" name="cor" min="-1" max="1" step="0.1" data-ng-model="correlation.query.r" data-ng-change="correlation.getData()")
+      .form-group
+        label.control-label.col-xs-4(for="len-input") Stichprobengröße
+        .col-xs-8: input#len-input.form-control(type="number" name="len" min="3" max="100" data-ng-model="correlation.query.len" data-ng-change="correlation.getData()")
+      .form-group
+        label.col-xs-4 Renderer
+        .col-xs-8
+          label.radio-inline
+            input(type="radio" name="renderer" value="svg" data-ng-model="correlation.renderer")
+            |  SVG
+          label.radio-inline
+            input(type="radio" name="renderer" value="canvas" data-ng-model="correlation.renderer")
+            |  Canvas
+      .form-group
+        label.control-label.col-xs-4(for="color-input") Farbe der punkte
+        .col-xs-8: input#color-input.form-control(type="color" name="color" data-ng-model="correlation.spec.marks[0].properties.update.fill.value")
+  .col-sm-8(ng-if="correlation.spec" vega spec="correlation.spec" vega-data="correlation.data" vega-renderer="correlation.renderer")

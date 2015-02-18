@@ -1,22 +1,31 @@
 angular.module("wbt")
-.controller("correlationCtrl",function(Restangular){
+.controller("correlationCtrl",function(vega){
   var self=this;
-  this.cor=0.5;
+  this.renderer="svg";
+  this.data={};
+  this.query={
+    r: 0,
+    len: 30
+  };
   this.getData=function(){
-    return Restangular.all("rio").all("corgen").get(this.cor)
+    return vega.data("correlation",this.query)
     .then(function(data){
-      self.data={table: data};
+      self.data.table=data;
+      return data;
     });
   };
-  Restangular.all("vega").get("scatterplot")
+  vega.spec("correlation")
   .then(function(spec){
     self.spec=spec;
   });
 })
 .directive("correlation",function(){
   return {
+    restrict: "E",
     controller: "correlationCtrl",
     controllerAs: "correlation",
+    bindToController: true,
+    scope: {},
     templateUrl: "common/correlation/correlation.html"
   };
 });

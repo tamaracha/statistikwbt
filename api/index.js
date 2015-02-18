@@ -86,15 +86,13 @@ router.route("/subjects")
 
 // Vega
 var vega=require("./vega");
-router.route("/vega/:vega")
+router.route("/vega-specs/:spec")
 .get(vega.findOne);
 
-// rio
+// R data
 var rio=require("./rio");
-router.route("/rio/evaluate/:rio")
-.get(rio.evaluate);
-router.route("/rio/corgen/:cor")
-.get(rio.corgen);
+router.get("/evaluate/:command",rio.evaluate);
+router.get("/datasets/correlation",rio.correlation);
 
 // upload units
 require("./upload");

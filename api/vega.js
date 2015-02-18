@@ -3,7 +3,7 @@ Vega=require("./models/vega");
 e=require("./errors");
 
 exports.findOne=function(req,res){
-  Vega.findOne({name: req.params.vega})
+  Vega.findOne({name: req.params.spec})
   .lean()
   .execAsync()
   .then(function(vega){

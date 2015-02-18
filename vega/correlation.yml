@@ -1,0 +1,77 @@
+name: correlation
+width: 400
+height: 400
+data:
+  - name: table
+    url: api/datasets/correlation
+scales:
+  - name: x
+    type: linear
+    range: width
+    domain:
+      data: table
+      field: data.x
+    nice: true
+  - name: y
+    type: linear
+    range: height
+    domain:
+      data: table
+      field: data.y
+    nice: true
+axes:
+  - title: X-Achse
+    type: x
+    scale: x
+  - title: Y-Achse
+    type: y
+    scale: y
+marks:
+  - type: symbol
+    from:
+      data: table
+    properties:
+      enter:
+        x:
+          field: data.x
+          scale: x
+        y:
+          field: data.y
+          scale: y
+        fill:
+          value: green
+        size:
+          value: 25
+      update:
+        x:
+          field: data.x
+          scale: x
+        y:
+          field: data.y
+          scale: y
+        fill:
+          value: steelblue
+        size:
+          value: 25
+  - type: line
+    from:
+      data: table
+    properties:
+      enter:
+        x:
+          field: data.x
+          scale: x
+        y:
+          field: data.y
+          scale: y
+        stroke:
+          value: green
+      update:
+        x:
+          field: data.x
+          scale: x
+        y:
+          field: data.y
+          scale: y
+        stroke:
+          value: steelblue
