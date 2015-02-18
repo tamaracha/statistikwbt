@@ -8,6 +8,8 @@ scales:
   - name: x
     type: linear
     range: width
+    domainMin: -4
+    domainMax: 4
     domain:
       data: table
       field: data.x
@@ -15,6 +17,8 @@ scales:
   - name: y
     type: linear
     range: height
+    domainMin: -4
+    domainMax: 4
     domain:
       data: table
       field: data.y
