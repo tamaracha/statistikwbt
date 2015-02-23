@@ -8,9 +8,9 @@ angular.module("wbt")
     len: 30
   };
   this.getData=function(){
-    return $http.post("/ocpu/library/stats/R/rnorm/json",{n: 5})
+    return $http.post("/ocpu/library/ecodist/R/corgen/json",this.query)
     .then(function(data){
-      self.data=data;
+      self.data=data.data;
       return data;
     });
   };
