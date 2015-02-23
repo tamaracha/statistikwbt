@@ -1,5 +1,5 @@
 angular.module("wbt")
-.controller("correlationCtrl",function(){
+.controller("correlationCtrl",function($http){
   var self=this;
   this.renderer="svg";
   this.data={};
