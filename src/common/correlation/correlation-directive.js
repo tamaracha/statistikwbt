@@ -8,7 +8,7 @@ angular.module("wbt")
     len: 30
   };
   this.getData=function(){
-    return $http.post("/ocpu/library/stats/R/rnorm")
+    return $http.post("/ocpu/library/stats/R/rnorm",{})
     .then(function(data){
       self.data=data;
       return data;
