@@ -3,26 +3,17 @@ width: 400
 height: 400
 data:
   - name: table
-    url: api/datasets/correlation
 scales:
   - name: x
     type: linear
     range: width
-    domainMin: -4
-    domainMax: 4
-    domain:
-      data: table
-      field: data.x
-    nice: true
+    domainMin: -5
+    domainMax: 5
   - name: y
     type: linear
     range: height
-    domainMin: -4
-    domainMax: 4
-    domain:
-      data: table
-      field: data.y
-    nice: true
+    domainMin: -5
+    domainMax: 5
 axes:
   - title: X-Achse
     type: x
@@ -57,25 +48,3 @@ marks:
           value: steelblue
         size:
           value: 25
-  - type: line
-    from:
-      data: table
-    properties:
-      enter:
-        x:
-          field: data.x
-          scale: x
-        y:
-          field: data.y
-          scale: y
-        stroke:
-          value: green
-      update:
-        x:
-          field: data.x
-          scale: x
-        y:
-          field: data.y
-          scale: y
-        stroke:
-          value: steelblue

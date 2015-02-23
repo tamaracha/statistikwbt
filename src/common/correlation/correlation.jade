@@ -21,4 +21,4 @@
       .form-group
         label.control-label.col-xs-4(for="color-input") Farbe der punkte
         .col-xs-8: input#color-input.form-control(type="color" name="color" data-ng-model="correlation.spec.marks[0].properties.update.fill.value")
-  .col-sm-8(ng-if="correlation.spec" vega spec="correlation.spec" vega-data="correlation.data" vega-renderer="correlation.renderer")
+  .col-sm-8 {{correlation.data}}

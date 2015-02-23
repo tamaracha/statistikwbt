@@ -1,5 +1,5 @@
 angular.module("wbt")
-.controller("correlationCtrl",function(vega){
+.controller("correlationCtrl",function(){
   var self=this;
   this.renderer="svg";
   this.data={};
@@ -8,16 +8,13 @@ angular.module("wbt")
     len: 30
   };
   this.getData=function(){
-    return vega.data("correlation",this.query)
+    return $http.get("/ocpu/library/stats/R/rnorm")
     .then(function(data){
-      self.data.table=data;
+      self.data=data;
       return data;
     });
   };
-  vega.spec("correlation")
-  .then(function(spec){
-    self.spec=spec;
-  });
+  this.getData();
 })
 .directive("correlation",function(){
   return {
