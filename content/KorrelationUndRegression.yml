@@ -134,7 +134,8 @@ topics:
       Damit alle Abweichungen positiv sind, werden sie quadriert.
       Diesen Ausdruck kann auch nach b abgeleitet werden:
       
-      $$b = \mathit{Covarianz von xy}/\mathit{Varianz von x}$$
+      $$b = \frac{\mathit{Covarianz von xy}}{\mathit{Varianz von x}}$$
+      
       Da b für die Steigung der Geraden steht, besagt es, wie sich der y-Schätzwert y-Dach ändert wenn x um eine Einheit steigt.
      
       #### Der Determinationskoeffizient (r²)
@@ -152,7 +153,7 @@ topics:
       
       Hier siehst du die quadrierte Abweichung zwischen Vorhersagewert y-Dach und Mittelwert von y (y-Strich). Die Vorhersage gegenüber dem Mittelwert lässt sich um diese Differenz verbessern.
       
-      *** Formel für nicht-erklärte Varianz von y***
+      **Formel für nicht-erklärte Varianz von $y$**
       
       $$\frac{\sum _{i=1} ^n {(y_i -\hat{y}_i)^2}}{n}$$
       
@@ -164,7 +165,7 @@ topics:
       
       Wie du weißt bildet sich der Determinationskoeffizient aus dem Anteil der erklärten Varianz an der Gesamtvarianz von y:
       
-      $$r^2 = \frac{\mathit{Erklärte Varianz}}{\mathit{Gesamtvarianz}} = \frac{\sum _{i=1} ^n {(\hat{y}_i -\overline{y}}^2}{\frac{\sum _{i=1} ^n {(y_i -\overline{y})^2}{n}}$$
+      $$r^2 = \frac{\mathit{Erklärte Varianz}}{\mathit{Gesamtvarianz}} = \frac{\sum _{i=1} ^n {(\hat{y}_i -\overline{y})^2}}{\frac{\sum _{i=1} ^n {(y_i -\overline{y})^2}{n}}$$
       
       Durch $r^2$ kannst du den Anteil der erklärten Varianz an der Gesamtvariant bestimmen. $R^2$ liegt immer zwischen 0 und 1. Ist der Wert 1 entspricht die Erklärte Varianz der Gesamtvarianz. Dadurch lägen alle Punkte exakt auf der Regressionsgeraden und ein perfekt linearer Zusammenhang zwischen x und y wäre gegeben und x kann die gesamte Streuung von y aufdecken. 
       Übrigens kannst du den Determinationskoeffizienten auch leicht aus dem Korrelationskoeffizienten berechnen, indem du den r quadrierst ;-).
