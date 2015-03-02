@@ -6,7 +6,7 @@ module.exports=function(gulp,plugins){
       'bower_components/vega/vega.min.js',
       'bower_components/ng-debounce/angular-debounce.js',
       'bower_components/ng-vega/src/ng-vega.js',
-      'bower_components/ngstorage/ngstorage.min.js'
+      'bower_components/ngstorage/ngStorage.min.js'
     ])
     .pipe(plugins.concat('libs.js'))
     .pipe(gulp.dest('public'));
