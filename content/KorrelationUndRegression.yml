@@ -127,9 +127,10 @@ topics:
       
       Damit die beste Anpassung einer Geraden an eine Punktwolke bestimmt werden kann, muss die Summe der Abweichungen zwischen den echten und den vorhergesagten y-Werten minimal sein. Dies lässt sich mit folgender Formel bestimmen:
       
-      $$\sum _{i=1} ^n {(y_i -\hat{y})^2}$$ 
+      $$\sum _{i=1} ^n {(y_i - \hat{y})^2}$$
       
-      oder mit Geraden-Gleichung: (\\sum_{i=1} ^n(a + bx))^2\\) --> min
+      oder mit Geraden-Gleichung:
+      $$\sum _{i=1} ^n {(a + bx)^2}$$ --> min
       
       Damit alle Abweichungen positiv sind, werden sie quadriert.
       Diesen Ausdruck kann auch nach b abgeleitet werden:
