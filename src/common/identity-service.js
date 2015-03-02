@@ -12,7 +12,6 @@ angular.module("wbt")
       _data=data;
     });
   }
-
   var authenticated=function(){return _authenticated;};
   var authenticatedAsync=function(){
     return $q(function(resolve,reject){

@@ -1,5 +1,5 @@
 angular.module("wbt")
-.controller("correlationCtrl",function(vega){
+.controller("correlationCtrl",function(vega,$http){
   var self=this;
   this.renderer="svg";
   this.data={};

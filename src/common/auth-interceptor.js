@@ -1,9 +1,8 @@
 angular.module("wbt")
-.factory("authInterceptor",function($q,$window,$injector){
+.factory("authInterceptor",function($q,$localStorage,$injector){
   var request=function(config){
     if(!config.headers.authorization){
-      var token=$window.localStorage.getItem("authToken");
-      if(token){config.headers.authorization="bearer "+token;}
+      if($localStorage.token){config.headers.authorization="bearer "+$localStorage.token;}
     }
     return config;
   };
@@ -21,7 +20,6 @@ angular.module("wbt")
     return $q.reject(response);
   };
   return {
-    request: request,
-    responseError: responseError
+    request: request
   };
 });

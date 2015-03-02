@@ -149,7 +149,12 @@ $stateProvider
 })
 .state("main.vega",{
   url: "/vega",
-  templateUrl: "vega/vega.html"
+  templateUrl: "vega/vega.html",
+  controller: ['user',function(user){
+    this.user=user;
+    this.loginData={};
+  }],
+  controllerAs: 'user'
 });
   $urlRouterProvider.otherwise("/home");
 })

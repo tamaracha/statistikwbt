@@ -16,8 +16,7 @@ router.use(bodyParser.json());
 // units
 var unit=require("./unit");
 router.route("/units")
-.get(unit.find)
-.post(unit.create);
+.get(unit.find);
 router.route("/units/:unit")
 .get(unit.findOne);
 

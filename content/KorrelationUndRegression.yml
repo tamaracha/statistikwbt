@@ -104,4 +104,67 @@ topics:
     title: Regression
     subtitle: Einfache lineare Regression
     body: |
-      Hier kommt die regression…
+      Die einfache lineare Regression stellt neben einer Maßzahl auch ein komplexeres Verfahren dar, weil es die Realisierung eines Modells abbildet. Sie wird deshalb „einfach“ genannt, weil nur zwei Variablen betrachtet werden (bivariat); bei mehr als zwei Variablen stellt die lineare Regression ein multivariates Verfahren dar und wird nicht mehr als „einfache“ sondern als „multiple“ Regression bezeichnet. Die einfache lineare Regression betrachtet eine gerichtete Beziehung:
+      
+      * X stellt die unabhängige Variable (UV, angenommene Ursache) und Y die abhängige Variable AV (angenommene Wirkung) dar
+      * Es lassen sich gerichtete Hypothesen bilden („X hat einen Einfluss auf y“)
+      
+      Mit der linearen Regression wird eine Verbindung von 3 Ansätzen realisiert:
+      
+      * Untersuchung des Zusammenhangs X und Y
+      * Schätzung der Werte von y unter Verwendung von X
+      * Erklärung der Streuung von y unter Verwendung von X
+      
+      ##Die Regressionsgerade
+      Je stärker x und y miteinander linear zusammenhängen, umso besser ist x geeignet, um die Werte von y vorherzusagen. Die Vorhersagewerte werden hierbei als y-Werte einer Regressionsgeraden ỹ (y-Dach) eingetragen.
+      
+      Die Regressionsgerade passt sich einer bivariaten Punktewolke am besten an. Je stärker der Zusammenhang zwischen x und y ist, umso weniger weichen die realen y-Werte von den geschätzten y-Dach-Werten der Regressionsgeraden ab. Es lassen sich zwar nach Augenmaß sehr viele „passende“ Geraden durch eine Punktewolke legen aber mathematisch gesehen liefert die Regressionsgerade die beste Anpassung an die Datenpunkte. Beachte aber, dass wenn keine oder nur eine schwache lineare Beziehung zwischen x und y Werten existiert die Schätzung der y-Werte durch eine Regressionsgerade kaum verbessern kann.
+      
+      Eine Gerade ist eindeutig bestimmbar, wenn die Steigung (b) und der Y-Achsenabschnitt (a) bekannt sind. Der y-Achsenabschnitt a kann durch b und einen Punkt der Geraden berechnet werden.
+      Die Formel einer Geraden lautet:
+      
+      $$\hat{y} = a + bx$$
+      
+      Damit die beste Anpassung einer Geraden an eine Punktwolke bestimmt werden kann, muss die Summe der Abweichungen zwischen den echten und den vorhergesagten y-Werten minimal sein. Dies lässt sich mit folgender Formel bestimmen:
+      
+      $$\sum _{i=1} ^n {(y_i -\hat{y})^2}$$ 
+      
+      oder mit Geraden-Gleichung: (\\sum_{i=1} ^n(a + bx))^2\\) --> min
+      
+      Damit alle Abweichungen positiv sind, werden sie quadriert.
+      Diesen Ausdruck kann auch nach b abgeleitet werden:
+      
+      $$b = \mathit{Covarianz von xy}/\mathit{Varianz von x}$$
+      Da b für die Steigung der Geraden steht, besagt es, wie sich der y-Schätzwert y-Dach ändert wenn x um eine Einheit steigt.
+     
+      ##Der Determinationskoeffizient (r²)
+      Der Determinationskoeffizient (r²) gilt als Maß der Güte einer Regressionsgleichung. Das Ausmaß, mit dem x die Streuung von y erklären kann, lässt sich mit dem Determinationskoeffizienten bestimmen. R² wird definiert als der Anteil der erklärten Varianz an der Gesamtvarianz von y. 
+      
+      ($\overline{x}$, sprich x-quer) ist gleich die Summe aller Werte ($\sum _{i=1} ^n {x_i}$)
+      
+      **Forme für Gesamtvarianz von y**
+      
+      $$\frac{\sum_{i=1} ^n {(y_i - \overline{y})^2}}{n}$$
+      
+      **Formel für die "Erklärte Varianz" von y.**
+      
+      $$\frac{\sum _{i=1} ^n {(\hat{y}_i -\overline{y})^2}}{n}$$
+      
+      Hier siehst du die quadrierte Abweichung zwischen Vorhersagewert y-Dach und Mittelwert von y (y-Strich). Die Vorhersage gegenüber dem Mittelwert lässt sich um diese Differenz verbessern.
+      
+      *** Formel für nicht-erklärte Varianz von y***
+      
+      $$\frac{\sum _{i=1} ^n {(y_i -\hat{y}_i)^2}}{n}$$
+      
+      Mit dieser Formel wird die quadrierte Abweichung zwischen Vorhersagewert (y-Dach) und dem beobachteten Wert y berechnet. Diese Different ist der „Rest“, welcher auch nicht durch die Regressionsgerade nicht erklärt werden kann.
+      
+      **Es gilt: Erklärte Varianz + Nicht Erklärte Varianz = Gesamtvarianz**
+     
+      Visualisierung (hier kommt ein Bild hin):
+      
+      Wie du weißt bildet sich der Determinationskoeffizient aus dem Anteil der erklärten Varianz an der Gesamtvarianz von y:
+      
+      $$r^2 = \frac{\mathit{Erklärte Varianz}}{\mathit{Gesamtvarianz}} = \frac{\sum _{i=1} ^n {(\hat{y}_i -\overline{y}}^2}{\frac{\sum _{i=1} ^n {(y_i -\overline{y})^2}{n}}$$
+      
+      Durch $r^2$ kannst du den Anteil der erklärten Varianz an der Gesamtvariant bestimmen. $R^2$ liegt immer zwischen 0 und 1. Ist der Wert 1 entspricht die Erklärte Varianz der Gesamtvarianz. Dadurch lägen alle Punkte exakt auf der Regressionsgeraden und ein perfekt linearer Zusammenhang zwischen x und y wäre gegeben und x kann die gesamte Streuung von y aufdecken. 
+      Übrigens kannst du den Determinationskoeffizienten auch leicht aus dem Korrelationskoeffizienten berechnen, indem du den r quadrierst ;-).

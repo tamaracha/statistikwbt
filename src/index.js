@@ -4,5 +4,6 @@ angular.module("wbt",[
   "ngMessages",
   "ngAria",
   "restangular",
-  "ngVega"
+  "ngVega",
+  'ngStorage'
 ]);
