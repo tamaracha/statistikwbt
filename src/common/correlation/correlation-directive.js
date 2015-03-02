@@ -1,11 +1,11 @@
 angular.module("wbt")
-.controller("correlationCtrl",function($http){
+.controller("correlationCtrl",function(vega){
   var self=this;
   this.renderer="svg";
   this.data={};
   this.query={
     r: 0,
-    len: 30
+    n: 30
   };
   this.getData=function(){
     return $http.post("/ocpu/library/ecodist/R/corgen/json",this.query)

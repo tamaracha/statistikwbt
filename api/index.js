@@ -89,11 +89,6 @@ var vega=require("./vega");
 router.route("/vega-specs/:spec")
 .get(vega.findOne);
 
-// R data
-var rio=require("./rio");
-router.get("/evaluate/:command",rio.evaluate);
-router.get("/datasets/correlation",rio.correlation);
-
 // upload units
 require("./upload");
 require("./vega-upload");

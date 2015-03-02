@@ -25,9 +25,7 @@
     "mongoose-validator": "^1.0.3",
     "morgan": "^1.5.1",
     "node-require-directory": "^1.0.2",
-    "pdc": "^0.2.2",
-    "python-shell": "0.0.3",
-    "rio": "^1.4.0"
+    "pdc": "^0.2.2"
   },
   "repository": {
     "type": "git",
