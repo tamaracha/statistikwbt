@@ -115,7 +115,7 @@ topics:
       * Schätzung der Werte von y unter Verwendung von X
       * Erklärung der Streuung von y unter Verwendung von X
       
-      ##Die Regressionsgerade
+      #### Die Regressionsgerade
       Je stärker x und y miteinander linear zusammenhängen, umso besser ist x geeignet, um die Werte von y vorherzusagen. Die Vorhersagewerte werden hierbei als y-Werte einer Regressionsgeraden ỹ (y-Dach) eingetragen.
       
       Die Regressionsgerade passt sich einer bivariaten Punktewolke am besten an. Je stärker der Zusammenhang zwischen x und y ist, umso weniger weichen die realen y-Werte von den geschätzten y-Dach-Werten der Regressionsgeraden ab. Es lassen sich zwar nach Augenmaß sehr viele „passende“ Geraden durch eine Punktewolke legen aber mathematisch gesehen liefert die Regressionsgerade die beste Anpassung an die Datenpunkte. Beachte aber, dass wenn keine oder nur eine schwache lineare Beziehung zwischen x und y Werten existiert die Schätzung der y-Werte durch eine Regressionsgerade kaum verbessern kann.
@@ -137,7 +137,7 @@ topics:
       $$b = \mathit{Covarianz von xy}/\mathit{Varianz von x}$$
       Da b für die Steigung der Geraden steht, besagt es, wie sich der y-Schätzwert y-Dach ändert wenn x um eine Einheit steigt.
      
-      ##Der Determinationskoeffizient (r²)
+      #### Der Determinationskoeffizient (r²)
       Der Determinationskoeffizient (r²) gilt als Maß der Güte einer Regressionsgleichung. Das Ausmaß, mit dem x die Streuung von y erklären kann, lässt sich mit dem Determinationskoeffizienten bestimmen. R² wird definiert als der Anteil der erklärten Varianz an der Gesamtvarianz von y. 
       
       ($\overline{x}$, sprich x-quer) ist gleich die Summe aller Werte ($\sum _{i=1} ^n {x_i}$)
