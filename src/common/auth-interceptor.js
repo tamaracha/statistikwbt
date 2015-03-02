@@ -1,8 +1,16 @@
 angular.module("wbt")
-.factory("authInterceptor",function($q,$localStorage,$injector){
+.factory("authInterceptor",function($q,$window,$injector){
   var request=function(config){
+    /*
     if(!config.headers.authorization){
       if($localStorage.token){config.headers.authorization="bearer "+$localStorage.token;}
+    }
+    */
+    if(!config.headers.authorization){
+    var token=$window.localStorage.getItem('authToken');
+    if(token){
+      config.headers.authorization="bearer "+token;
+    }
     }
     return config;
   };
