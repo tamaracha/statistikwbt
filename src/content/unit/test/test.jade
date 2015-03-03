@@ -32,5 +32,5 @@ ng-switch(on="test.state")
   section(data-ng-switch-when="finished")
     progressbar(type="success" value="test.progress.points" max="test.progress.maxPoints" title="korrekt gelöst")
     p Du hast alle Aufgaben für dieses Kapitel bearbeitet und {{test.progress.points}} von {{test.progress.maxPoints}} Punkten erzielt. Du kannst also Kapitel bearbeiten, die dieses Kapitel als Voraussetzung haben. Jetzt wäre eine gute Gelegenheit, die 
-      button.btn.btn-sm(type="button" data-ng-click="main.identity.fsk()") Selbsteinschätzung deiner Statistikkenntnisse
+      button.btn.btn-sm(type="button" data-ng-click="main.modal.fsk()") Selbsteinschätzung deiner Statistikkenntnisse
       |  aufzufrischen.

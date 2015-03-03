@@ -1,10 +1,10 @@
 angular.module("wbt")
-.controller("fskCtrl",function(identity,$modalInstance){
+.controller("fskCtrl",function(user,$modalInstance){
   var self=this;
-  this.identity=identity;
+  this.user=user;
   this.sessko=[];
   this.ok=function(){
-    return identity.createFsk(self.sessko)
+    return user.createFsk(self.sessko)
     .then($modalInstance.close);
   };
   this.cancel=function(){

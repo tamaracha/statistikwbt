@@ -31,5 +31,5 @@ app.use(function(err,req,res,next){
   return res.sendStatus(err.status||500);
 });
 mongoose.connect("mongodb://"+config.db.host+":27017/"+config.db.database);
-app.listen(config.port);
+app.listen(config.port,config.host);
 console.log("listening on port %s",config.port);

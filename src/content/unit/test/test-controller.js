@@ -1,5 +1,5 @@
 angular.module("wbt")
-.controller("testCtrl",function(identity,content,unit,items,guesses){
+.controller("testCtrl",function(user,content,unit,items,guesses){
   var self=this;
   this.guesses=guesses;
   this.state="intro";
@@ -22,7 +22,7 @@ angular.module("wbt")
       self.progress.done=_.size(self.guesses);
       self.progress.points=content.points(self.guesses);
       if(self.progress.done===self.progress.max){
-        return identity.setComplete(unit._id);
+        return user.setComplete(unit._id);
       }
     });
   };

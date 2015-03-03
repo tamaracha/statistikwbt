@@ -1,16 +1,19 @@
 angular.module("wbt")
-.controller("loginCtrl",function(identity,$modalInstance,$q){
+.controller("loginCtrl",function(user,$modalInstance,$q){
   var self=this;
   this.loginData={};
   this.message="";
   this.login=function(){
-    return identity.authenticate(this.loginData)
-    .then(identity.get,function(res){
-      self.message=res.data||res;
-      $q.reject(res);
+    return user.authenticate(this.loginData)
+    .then(function(){
+      return user.fetch();
     })
     .then(function(data){
       return $modalInstance.close(data._id);
+    })
+    .catch(function(res){
+      self.message=res.data||res;
+      return res;
     });
   };
   this.cancel=function(){

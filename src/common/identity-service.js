@@ -1,3 +1,4 @@
+/*
 angular.module("wbt")
 .factory("identity",function($window,$q,Restangular,$state,$modal){
   var Users,Tokens,_id,_token,_authenticated,_data;
@@ -152,3 +153,4 @@ angular.module("wbt")
     requiresComplete: requiresComplete
   };
 });
+*/

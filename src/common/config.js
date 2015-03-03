@@ -23,7 +23,7 @@ $stateProvider
   url: "/content",
   templateUrl: "content/content.html",
   resolve: {
-    units: function(content,identity){
+    units: function(content){
       return content.units();
     }
   },
@@ -122,10 +122,6 @@ $stateProvider
   resolve: {
     units: function(content){
       return content.units();
-    },
-    token: function(identity){
-      return identity.authenticatedAsync()
-      .catch(identity.login);
     }
   },
   controller: "downloadCtrl",

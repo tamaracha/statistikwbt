@@ -15,16 +15,16 @@ nav.navbar.navbar-inverse.navbar-static-top(role="navigation"): .container-fluid
       +menu-item(".download","Download","download")
       +menu-item(".software","Statistiksoftware","calculator")
       +menu-item(".contact","Kontakt","support")
-    ul.nav.navbar-nav.navbar-right(data-ng-if="!main.identity.authenticated()")
-      li: button(type="button" data-ng-click="main.identity.login()")
+    ul.nav.navbar-nav.navbar-right(data-ng-if="!main.user.authenticated")
+      li: button(type="button" data-ng-click="main.modal.login()")
         span.fa.fa-sign-in
         |  Anmelden
       +menu-item(".register","registrieren","user-plus")
-    ul.nav.navbar-nav.navbar-right(data-ng-if="main.identity.authenticated()")
-      li(data-ui-sref-active="active"): a(ui-sref=".user({id: main.identity._id})")
+    ul.nav.navbar-nav.navbar-right(data-ng-if="main.user.authenticated")
+      li(data-ui-sref-active="active"): a(ui-sref=".user({id: main.user.$storage._id})")
           span.fa.fa-user
-          |  {{main.identity.data().profile.nickname||main.identity.data().email}}
-      li: button(type="button" data-ng-click="::main.identity.inauthenticate()")
+          |  {{main.user.data.profile.nickname||main.user.data.email}}
+      li: button(type="button" data-ng-click="::main.user.inauthenticate()")
         span.fa.fa-sign-out(aria-hidden="true")
         |  Abmelden
 .container(data-ui-view)
