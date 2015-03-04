@@ -27,7 +27,7 @@ app.use(
   express.static("./public")
 );
 app.use(function(err,req,res,next){
-  console.error(err.stack);
+  console.error(err.message);
   return res.sendStatus(err.status||500);
 });
 mongoose.connect("mongodb://"+config.db.host+":27017/"+config.db.database);
