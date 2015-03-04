@@ -1,4 +1,4 @@
-var express,app,helmet,morgan,mongoose,router;
+var express,app,helmet,morgan,mongoose,router,hookshot;
 global._=require("lodash");
 global.Promise=require("bluebird");
 global.config=require("./config/config");
@@ -9,6 +9,7 @@ mongoose=require("mongoose");
 Promise.promisifyAll(mongoose.Model);
 Promise.promisifyAll(mongoose.Model.prototype);
 Promise.promisifyAll(mongoose.Query.prototype);
+hookshot=require('hookshot');
 app=express();
 app.disable("x-powered-by");
 app.enable("strict routing");
@@ -26,6 +27,10 @@ app.use(
   },
   express.static("./public")
 );
+app.use('/webhook',hookshot(
+  'refs/heads/master',
+  'git pull&&git checkout&&npm i&&bower i&&pm2 restart statistikwbt'
+));
 app.use(function(err,req,res,next){
   console.error(err.stack);
   return res.sendStatus(err.status||500);
