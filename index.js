@@ -1,4 +1,4 @@
-var express,app,helmet,morgan,mongoose,router,hookshot;
+var express,app,helmet,morgan,mongoose,router;
 global._=require("lodash");
 global.Promise=require("bluebird");
 global.config=require("./config/config");
@@ -19,10 +19,6 @@ app.use(helmet.frameguard("deny"));
 app.use(helmet.nosniff());
 
 app.use("/api",require("./api"));
-app.use('/webhook',hookshot(
-  'refs/heads/webhook',
-  'git pull && npm i && bower i && pm2 restart statistikwbt && ls'
-));
 app.use(
   function(req,res,next){
     var n=req.url.indexOf(".");
