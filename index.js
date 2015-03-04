@@ -9,7 +9,6 @@ mongoose=require("mongoose");
 Promise.promisifyAll(mongoose.Model);
 Promise.promisifyAll(mongoose.Model.prototype);
 Promise.promisifyAll(mongoose.Query.prototype);
-hookshot=require('hookshot');
 app=express();
 app.disable("x-powered-by");
 app.enable("strict routing");
