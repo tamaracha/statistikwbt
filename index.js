@@ -21,7 +21,7 @@ app.use(helmet.nosniff());
 app.use("/api",require("./api"));
 app.use('/webhook',hookshot(
   'refs/heads/webhook',
-  'git pull'
+  'git pull && npm i'
 ));
 app.use(
   function(req,res,next){
@@ -32,7 +32,7 @@ app.use(
   express.static("./public")
 );
 app.use(function(err,req,res,next){
-  console.error(err.message);
+  console.error(err);
   return res.sendStatus(err.status||500);
 });
 mongoose.connect("mongodb://"+config.db.host+":27017/"+config.db.database);
