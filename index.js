@@ -21,7 +21,7 @@ app.use(helmet.nosniff());
 app.use("/api",require("./api"));
 app.use('/webhook',hookshot(
   'refs/heads/webhook',
-  'pm2 stop statistikwbt&&git pull&&npm i&&bower i&&gulp&&pm2 restart statistikwbt'
+  'git pull'
 ));
 app.use(
   function(req,res,next){
