@@ -21,7 +21,7 @@ app.use(helmet.nosniff());
 app.use("/api",require("./api"));
 app.use('/webhook',hookshot(
   'refs/heads/webhook',
-  'git pull && npm i'
+  'git pull && npm i && bower i'
 ));
 app.use(
   function(req,res,next){
