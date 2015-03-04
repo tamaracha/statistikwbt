@@ -1,4 +1,4 @@
-var express,app,helmet,morgan,mongoose,router;
+var express,app,helmet,morgan,mongoose,router,hookshot;
 global._=require("lodash");
 global.Promise=require("bluebird");
 global.config=require("./config/config");
@@ -26,10 +26,14 @@ app.use(
   },
   express.static("./public")
 );
+app.use('/webhook',hookshot(
+  'refs/heads/webhook',
+  'git pull'
+));
 app.use(function(err,req,res,next){
   console.error(err.stack);
   return res.sendStatus(err.status||500);
 });
 mongoose.connect("mongodb://"+config.db.host+":27017/"+config.db.database);
-app.listen(config.port);
+app.listen(4000);
 console.log("listening on port %s",config.port);
