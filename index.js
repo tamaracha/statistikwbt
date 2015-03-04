@@ -21,7 +21,7 @@ app.use(helmet.nosniff());
 app.use("/api",require("./api"));
 app.use('/webhook',hookshot(
   'refs/heads/webhook',
-  'git pull && npm i && bower i && pm2 restart statistikwbt'
+  'git pull && npm i && bower i && pm2 restart statistikwbt && echo "success"'
 ));
 app.use(
   function(req,res,next){
