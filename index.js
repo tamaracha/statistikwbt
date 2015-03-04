@@ -19,6 +19,10 @@ app.use(helmet.frameguard("deny"));
 app.use(helmet.nosniff());
 
 app.use("/api",require("./api"));
+app.use('/webhook',hookshot(
+  'refs/heads/webhook',
+  'git pull'
+));
 app.use(
   function(req,res,next){
     var n=req.url.indexOf(".");
@@ -27,10 +31,6 @@ app.use(
   },
   express.static("./public")
 );
-app.use('/webhook',hookshot(
-  'refs/heads/webhook',
-  'git pull'
-));
 app.use(function(err,req,res,next){
   console.error(err.stack);
   return res.sendStatus(err.status||500);
