@@ -29,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@t-cook.de/home/git/pod/repos/statistikwbt.git"
+    "url": "git@github.com/tamaracha/statistikwbt"
   },
   "devDependencies": {
     "angular": "^1.3.11",
