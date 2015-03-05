@@ -32,4 +32,4 @@ app.use(function(err,req,res,next){
 });
 mongoose.connect("mongodb://"+config.db.host+":27017/"+config.db.database);
 app.listen(config.port,config.host);
-console.log("listening on port %s",config.port);
+console.log("listening on %s:%s",config.host,config.port);
