@@ -176,19 +176,55 @@ Eine Summe beginnt mit dem Befehl `\sum` (ohne Argument), dann kommt die Laufvar
 Es gibt Befehle zum Erzeugen von griechischen Buchstaben, die jeweils so heißen wie der zu erzeugende Buchstabe: $\alpha \beta \gamma \sigma$.
 
 ## Frontend
+### HTML
+Um HTML-Dateien zu erstellen, wird [Jade] verwendet, eine etwas anders aussehende Syntax und ein Tool, das aus dieser Syntax HTML baut. Am Ende kommt also „richtiges“ HTML heraus. Dieser Umwandlungsprozess ist automatisiert. Ich habe ÜJade] aus einigen Gründen gewählt:
 
+* Es gibt keine öffnenden und schließenden Tags und keine spitzen Klammern. Es hat mich immer genervt, dass man den Namen eines Tags immer zweimal schreiben muss. In Jade sieht ein Tag eher aus wie ein Funktionsaufruf. aus `<li id="itemid" class="itemclass">list item</li>`wird in [Jade] ein `li(id="itemid" class="itemclass")`.
+* Die Schachtelung von HTML-Tags erfolgt durch Einrückungen. Dadurch sieht man gut, was wie geschachtelt ist. Ich finde das lesbarer als die HTML-Syntax.
+* Weil es eine sog. Templating Engine ist, kann man Variablen verwenden, muss es natürlich nicht.
+* Man kann Mixins definieren. Für sich wiederholende HTML-Schnipsel, in denen sich kleine Details ändern, kann in Form von mixins eine Art Abkürzung definiert werden.
 
+Man kann sich im Netz gut über [Jade] informieren, daher kommen hier jetzt keine Ausführlichen Beispiele.
+
+### Angular
+Viele Funktionen des WBT sind nicht serverseitig implementiert, sondern für den Browser. Es wird also starker Gebrauch von JavaScript (bitte nicht Java) gemacht. Um das Ganze in eine gewisse Ordnung zu bringen, wird das JavaScript-Framework [Angular.js] eingesetzt.
+
+* Es hilft sehr dabei, den anwachsenden Code in Ordnung zu halten.
+* Man kann Javascript-Variablen und Ausdrücke direkt im HTML einbinden
+* Man kann neue HTML-Tags erfinden und mit eigener Funktionalität versehen. Das Email-Feld im Login fragt z.B. beim Server nach, ob diese Email überhaupt registriert wurde. Diese Funktion wurde mit einem selbsterstellten HTML-Attribut implementiert.
+* Es ist deklarativ und nicht imperativ. Man kann also mehr aussagenlogisch als prozedural denken. Wenn man z.B. möchte, dass der Login- und Registrieren-Button immer versteckt werden, wenn man angemeldet ist, braucht man dies nur auf Aussagenlogische weise auszudrücken: Versteckt dich, wenn Benutzer authentifiziert; oder zeige dich, wenn Benutzer nicht authentifiziert. Angular prüft die Prämissen und versteckt oder zeigt die Buttons entsprechend. Mit imperativen Jrameworks wie JQuery müsste man so etwas von Hand selbst auf den zu versteckenden HTML-Elementen ausführen: Mitbekommen, wenn man sich einloggt, richtige Tags suchen, Attribute richtig zum Verstecken einstellen; wenn man sich ausloggt, muss das Ganze wieder rückwärts erfolgen. Das Verstecken/zeigen von Elementen ist natürlich nur ein Beispiel um das Prinzip zu verdeutlichen, es gibt weitaus mehr Möglichkeiten.
+
+Auch hierüber kann man sich gut informieren, es ist geradezu ein Hype.
+
+### Grafik, Simulationen
+Für Diagramme auf Webseiten ist generell das SVG-Format gut geeignet. Als Vektorgrafik kann es anders als Pixelgrafiken beliebig vergrößert oder verkleinert werden. Außerdem sind Diagramme hauptsächlich aus relativ einfachen geometrischen Figuren zusammengesetzt und lassen sich somit in SVG gut beschreiben. Also auch bei statischen Bildern ist SVG eine gute wahl.
+
+Die Simulationen können mit [Vega] browserseitig erstellt werden. Allerdings erzeugt [Vega] allein zunächst erst mal Diagramme aus gegebenen Daten. Dabei beschreibt man das Diagramm in einem deklarativen Format als JavaScript-Objekt (wirklich nur ein Objekt, keine Funktion). Falls das YAML-Format gut gefällt, können auch die Vega-Objekte in YAML geschrieben werden. [Vega] arbeitet im Hintergrund mit der Plot-Engine [D3.js], wovon man aber nichts mitbekommt. Um ein wenig mit den deklarationen herumzuspielen, empfehle ich den [Live Editor][Vega-Editor]. Die so erstellten Grafiken sind nativ direkt in die Webseite eingebunden und benötigen keine IFrames o.Ä. Es sollte in vielen aktuellen Browsern und bei vielen verschiedenen Nutzern gut funktionieren.
+
+Der Simulationsanteil kommt nun dadurch zustande, dass man mit [Angular][Angular.JS] die Objekteigenschaften der Vega-Deklaration verändern kann, woraufhin das Diagramm neu gerendert wird. So kann ein Steuerelement wie ein Schieberegler, Eingabefeld usw. mit einer solchen Eigenschaft verknüpft werden.
+
+Um die Diagramme mit daten zu füttern, kann R auf dem Server installiert werden. Es gibt ein HTTP-Schnittstelle für R namens [OpenCPU], über die man R-Code mit dem Browser an den R-Server schicken und auswerten lassen kann. Das Ergebnis bekommt man dann zurückgeschickt. R würde hier also die Aufgabe erfüllen, Daten auszuliefern, zu manipulieren oder zu generieren.
 
 ## Backend
 #### MongoDB
-[MongoDB] ist ein Datenbanksystem, wie z.B. SQL. In einer MongoDB-Datenbank liegen die Lernkapitel, die Benutzerdaten und noch ein paar andere Details.
+[MongoDB] ist ein Datenbanksystem, wie z.B. SQL. In einer MongoDB-Datenbank liegen die Lernkapitel, die Benutzerdaten und noch ein paar andere Details. Durch eine Datenbank wird es sehr einfach, Lernkapitel, benutzer usw. nach bestimmten Suchkriterien schnell zu finden, zu erzeugen, zu verändern oder zu löschen. Direkt über die YAML-Dateien wäre dies deutlich umständlicher. Letztere dienen also nur zur redaktionellen Bearbeitung und werden dann in die Datenbank eingelesen, wenn das WBT neu startet.
 
 #### Node.JS
 [node.js] ist sozusagen „JavaScript für den Server“. Man kann damit sehr fein ausgeklügelte Webanwendungen erschaffen, aber auch noch einiges mehr. Wenn man JavaScript gelernt hat, kommt man hier schon ziemlich weit, weil man den Server nicht konfiguriert, sondern eben in JavaScript programmiert. Sobald man nicht nur statische Dateien an den Browser ausliefern will, sondern auch dynamische Inhalte, ist es eine gute Wahl. Die Community ist aber auch ziemlich kreativ darin, es auch für andere Zwecke als Webanwendungen zu verwenden.
 
-Mit Hilfe von [Node.JS] werden viele Teile des WBT entwickelt. Es etabliert die Kommunikation zwischen dem Benutzer/Browser und der Datenbank, regelt die Benutzeranmeldung usw. Für diese Aufgaben wird das Webframework [express.js] verwendet.
+Mit Hilfe von [Node.JS] werden viele Teile des WBT entwickelt. Es etabliert die Kommunikation zwischen dem Benutzer/Browser und der Datenbank, lädt die YAML-Dateien in die Datenbank, regelt die Benutzeranmeldung usw. Für diese Aufgaben wird das Webframework [express.js] verwendet.
 
-Es kompiliert aber auch die Frontend-Quelldateien zu komprimierten internetfreundlichen Dateien. So kann man ordentlich und strukturiert für das Frontend entwickeln und daraus mit einem automatisierten Vorgang eine Browserfreundliche Version bauen. Dieser Bauvorgang ist mit [gulp.js] umgesetzt.
+#### Automatisierte Frontendkompilierung
+Die Frontend-Quelldateien werden zu komprimierten internetfreundlichen Dateien kompiliert. So kann man ordentlich und strukturiert für das Frontend entwickeln und daraus mit einem automatisierten Vorgang eine Browserfreundliche Version bauen. Dieser Bauvorgang ist mit [gulp.js] umgesetzt.
+
+* Fremdbibliotheken werden zu einer libs.js zusammengeführt
+* Eigene JavaScript-dateien werden zu einer index.js zusammengeführt
+* Angular-Annotationen
+* Code-Minimierung, in index.min.js gespeichert
+* Jade-Templates werden nach html kompiliert und zu einer templates.js zusammengeführt
+
+#### Benutzerauthentifizierung
+Die Benutzerauthentifizierung wird nicht über Cookies geregelt, sondern mittels [JWT (JSON Webtoken)][JWT].
 
 [git]: http://git-scm.com
 [Pro git]: http://git-scm.com/book/de/v1 "Pro Git Book auf Deutsch"
@@ -210,4 +246,5 @@ Es kompiliert aber auch die Frontend-Quelldateien zu komprimierten internetfreun
 [Bootstrap]: http://getbootstrap.com
 [d3.js]: http://d3js.org
 [vega]: http://trifacta.github.io/vega/
+[Vega-Editor]: http://trifacta.github.io/vega/editor/ "Vega Live Editor"
 [opencpu]: https://www.opencpu.org
