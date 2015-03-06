@@ -186,6 +186,9 @@ Um HTML-Dateien zu erstellen, wird [Jade] verwendet, eine etwas anders aussehend
 
 Man kann sich im Netz gut über [Jade] informieren, daher kommen hier jetzt keine Ausführlichen Beispiele.
 
+### Styles
+Für das Design der Webseite wird das CSS-Framework [Bootstrap] verwendet. Es bietet einen recht guten Startpunkt, so dass man nicht alle Räder neu erfinden muss. Details können natürlich trotzdem gerne noch mit CSS verfeinert werden. Bislang wurden sehr wenige eigene Styles erstellt, nur für die Unterkapitel bestehen ein paar Anpassungen.
+
 ### Angular
 Viele Funktionen des WBT sind nicht serverseitig implementiert, sondern für den Browser. Es wird also starker Gebrauch von JavaScript (bitte nicht Java) gemacht. Um das Ganze in eine gewisse Ordnung zu bringen, wird das JavaScript-Framework [Angular.js] eingesetzt.
 
