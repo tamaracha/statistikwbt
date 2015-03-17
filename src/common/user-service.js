@@ -19,6 +19,9 @@ User.prototype.fetch=function(){
   .then(function(data){
     user.data=data;
     return data;
+  },function(res){
+    user.inauthenticate();
+    return res;
   });
 };
 User.prototype.authenticate=function(form){
@@ -81,6 +84,6 @@ User.prototype.requiresComplete=function(requires){
     if(_.contains(this.data.complete,require)){return;}
     if(!complete){return;}
     complete=false;
-  });
+  },this);
   return complete;
 };
