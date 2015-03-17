@@ -3,6 +3,7 @@ angular.module("wbt",[
   "ui.bootstrap",
   "ngMessages",
   "ngAria",
+  'ngAnimate',
   "restangular",
   "ngVega",
   'ngStorage'
