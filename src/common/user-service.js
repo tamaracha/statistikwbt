@@ -1,9 +1,7 @@
 angular.module('wbt')
 .service('user',User);
-function User($localStorage,$q,$state,$modal,Restangular){
+function User($localStorage,$q,Restangular){
   this.$q=$q;
-  this.$state=$state;
-  this.$modal=$modal;
   this.Users=Restangular.all('users');
   this.Tokens=Restangular.all('tokens');
   this.$storage=$localStorage;
@@ -20,6 +18,10 @@ User.prototype.fetch=function(){
   return this.Users.get(this.$storage._id)
   .then(function(data){
     user.data=data;
+    return data;
+  },function(res){
+    user.inauthenticate();
+    return res;
   });
 };
 User.prototype.authenticate=function(form){
@@ -58,24 +60,6 @@ User.prototype.create=function(form){
       email: form.email,
       password: form.password
     });
-  })
-  .then(function(){
-    user.$state.go('main.content');
-  });
-};
-User.prototype.login=function(){
-  return this.$modal.open({
-    templateUrl: "login/login.html",
-    controller: "loginCtrl",
-    controllerAs: "login"
-  });
-};
-User.prototype.fsk=function(){
-  return this.$modal.open({
-    templateUrl: "user/fsk/fsk.html",
-    controller: "fskCtrl",
-    controllerAs: "fsk",
-    size: "lg"
   });
 };
 User.prototype.createFsk=function(sessko){
@@ -100,6 +84,6 @@ User.prototype.requiresComplete=function(requires){
     if(_.contains(this.data.complete,require)){return;}
     if(!complete){return;}
     complete=false;
-  });
+  },this);
   return complete;
 };

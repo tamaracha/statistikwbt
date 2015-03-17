@@ -1,5 +1,5 @@
 angular.module("wbt")
-.factory("content",function(Restangular,$modal){
+.factory("content",function(Restangular){
   var Units=Restangular.all("units");
   var units=function(){
     return Units.withHttpConfig({cache: true}).getList();
@@ -9,19 +9,6 @@ angular.module("wbt")
   };
   var topic=function(unit,topic){
     return Units.one(unit).one("topics",topic).withHttpConfig({cache: true}).get();
-  };
-  var akzeptanz=function(unit){
-    return $modal.open({
-      templateUrl: "content/unit/akzeptanz/akzeptanz.html",
-      controller: "akzeptanzCtrl",
-      controllerAs: "akzeptanz",
-      resolve: {
-        unit: function(){return unit;},
-        summary: function(){
-          return unit.one("akzeptanz","summary").get();
-        }
-      }
-    });
   };
   var rate=function(unit,name,value){
     var rating={
@@ -139,7 +126,6 @@ angular.module("wbt")
     units: units,
     unit: unit,
     topic: topic,
-    akzeptanz: akzeptanz,
     rate: rate,
     comment: comment,
     tests: tests,
