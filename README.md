@@ -176,7 +176,6 @@ Eine Summe beginnt mit dem Befehl `\sum` (ohne Argument), dann kommt die Laufvar
 Es gibt Befehle zum Erzeugen von griechischen Buchstaben, die jeweils so heißen wie der zu erzeugende Buchstabe: $\alpha \beta \gamma \sigma$.
 
 ## Frontend
-<<<<<<< HEAD
 ### HTML
 Um HTML-Dateien zu erstellen, wird [Jade] verwendet, eine etwas anders aussehende Syntax und ein Tool, das aus dieser Syntax HTML baut. Am Ende kommt also „richtiges“ HTML heraus. Dieser Umwandlungsprozess ist automatisiert. Ich habe ÜJade] aus einigen Gründen gewählt:
 
@@ -212,19 +211,10 @@ Um die Diagramme mit daten zu füttern, kann R auf dem Server installiert werden
 ## Backend
 #### MongoDB
 [MongoDB] ist ein Datenbanksystem, wie z.B. SQL. In einer MongoDB-Datenbank liegen die Lernkapitel, die Benutzerdaten und noch ein paar andere Details. Durch eine Datenbank wird es sehr einfach, Lernkapitel, benutzer usw. nach bestimmten Suchkriterien schnell zu finden, zu erzeugen, zu verändern oder zu löschen. Direkt über die YAML-Dateien wäre dies deutlich umständlicher. Letztere dienen also nur zur redaktionellen Bearbeitung und werden dann in die Datenbank eingelesen, wenn das WBT neu startet.
-=======
-
-
-
-## Backend
-#### MongoDB
-[MongoDB] ist ein Datenbanksystem, wie z.B. SQL. In einer MongoDB-Datenbank liegen die Lernkapitel, die Benutzerdaten und noch ein paar andere Details.
->>>>>>> user-service
 
 #### Node.JS
 [node.js] ist sozusagen „JavaScript für den Server“. Man kann damit sehr fein ausgeklügelte Webanwendungen erschaffen, aber auch noch einiges mehr. Wenn man JavaScript gelernt hat, kommt man hier schon ziemlich weit, weil man den Server nicht konfiguriert, sondern eben in JavaScript programmiert. Sobald man nicht nur statische Dateien an den Browser ausliefern will, sondern auch dynamische Inhalte, ist es eine gute Wahl. Die Community ist aber auch ziemlich kreativ darin, es auch für andere Zwecke als Webanwendungen zu verwenden.
 
-<<<<<<< HEAD
 Mit Hilfe von [Node.JS] werden viele Teile des WBT entwickelt. Es etabliert die Kommunikation zwischen dem Benutzer/Browser und der Datenbank, lädt die YAML-Dateien in die Datenbank, regelt die Benutzeranmeldung usw. Für diese Aufgaben wird das Webframework [express.js] verwendet.
 
 #### Automatisierte Frontendkompilierung
@@ -238,11 +228,6 @@ Die Frontend-Quelldateien werden zu komprimierten internetfreundlichen Dateien k
 
 #### Benutzerauthentifizierung
 Die Benutzerauthentifizierung wird nicht über Cookies geregelt, sondern mittels [JWT (JSON Webtoken)][JWT].
-=======
-Mit Hilfe von [Node.JS] werden viele Teile des WBT entwickelt. Es etabliert die Kommunikation zwischen dem Benutzer/Browser und der Datenbank, regelt die Benutzeranmeldung usw. Für diese Aufgaben wird das Webframework [express.js] verwendet.
-
-Es kompiliert aber auch die Frontend-Quelldateien zu komprimierten internetfreundlichen Dateien. So kann man ordentlich und strukturiert für das Frontend entwickeln und daraus mit einem automatisierten Vorgang eine Browserfreundliche Version bauen. Dieser Bauvorgang ist mit [gulp.js] umgesetzt.
->>>>>>> user-service
 
 [git]: http://git-scm.com
 [Pro git]: http://git-scm.com/book/de/v1 "Pro Git Book auf Deutsch"
@@ -264,8 +249,5 @@ Es kompiliert aber auch die Frontend-Quelldateien zu komprimierten internetfreun
 [Bootstrap]: http://getbootstrap.com
 [d3.js]: http://d3js.org
 [vega]: http://trifacta.github.io/vega/
-<<<<<<< HEAD
 [Vega-Editor]: http://trifacta.github.io/vega/editor/ "Vega Live Editor"
-=======
->>>>>>> user-service
 [opencpu]: https://www.opencpu.org
