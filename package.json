@@ -14,7 +14,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "github.com/tamaracha/statistikwbt.git"
+    "url": "git://github.com/tamaracha/statistikwbt.git"
   },
   "devDependencies": {
     "angular": "^1.4.3",
