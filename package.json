@@ -11,7 +11,7 @@
     "lint": "eslint ./"
   },
   "author": "Tamara Cook",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git@github.com/tamaracha/statistikwbt.git"
