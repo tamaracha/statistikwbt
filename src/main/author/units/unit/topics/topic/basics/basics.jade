@@ -1,0 +1,7 @@
+form.form-horizontal(novalidate name="basicsForm")
+  formly-form(model="topic.topic" fields="topic.topicFields" form="topic.topicForm")
+.alert.alert-success(ng-if="topic.patches.length===0" role="alert") alles hochgeladen
+.alert.alert-info(ng-if="topic.patches.length>0" role="alert") lade Änderungen hoch
+.alert.alert-danger(ng-if="topic.error" role="alert")
+  button(type="button" ng-click="topic.topic=topic.recover") rückgängig
+  span Fehler beim Hochladen

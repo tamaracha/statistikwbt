@@ -1,6 +1,0 @@
-_id: 5493aa9a45ac10a752054078
-position: 4
-title: Wahrscheinlichkeitstheorie
-subtitle: Den Zufall berechnen
-description: |
-  Der Zufall ist den meisten Menschen ein widerstrebendes Konzept. Klare Tatsachen, Sicherheit, Kontrolle scheinen da deutlich sympathischer. Zufall wird gern als völlige Unsicherheit betrachtet, dabei gibt es ein mathematisches Framework um das Ausmaß dieser Unsicherheit zu quantifizieren: die Wahrscheinlichkeit. Ohne Wahrscheinlichkeit verzichten wir auf Informationen und Kontrolle; wir überlassen es dem Zufall. Meistens können wir anhand der Wahrscheinlichkeit genauer einschätzen, ob ein Ereignis eintreten wird. Viele Forschungsfragen lassen sich nur auf der Wahrscheinlichkeitsebene beantworten und auch Statistik hängt eng mit der Wahrscheinlichkeitstheorie zusammen.

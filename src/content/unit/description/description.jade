@@ -1,7 +1,0 @@
-h3 Beschreibung
-div(md="unit.unit.description")
-h4 Voraussetzungen
-p(data-ng-if="!unit.unit.requires") Es gibt keine Voraussetzungen.
-ul.list-unstyled(data-ng-if="unit.unit.requires")
-	li(data-ng-repeat="required in unit.unit.requires")
-			a(data-ng-bind="required.title" data-ui-sref=".({unit: required.title})")

@@ -1,18 +1,23 @@
-var mongoose,VegaSchema,Vega;
-mongoose=require("mongoose");
-VegaSchema=new mongoose.Schema({
+'use strict';
+const mongoose=require('mongoose');
+module.exports = new mongoose.Schema({
   name: {
     type: String,
     required: true,
     unique: true
   },
-  data: [],
-  scales: [],
-  axes: [],
-  legends: [],
-  marks: []
+  source: {
+    method: {
+      type: String,
+      default: 'GET',
+      enum: ['GET','POST']
+    },
+    url: {
+      type: String,
+      required: true
+    },
+    params: {}
+  },
+  fields: [],
+  spec: {}
 });
-
-Vega=mongoose.model("Vega",VegaSchema);
-Promise.promisifyAll(Vega.prototype);
-module.exports=Vega;

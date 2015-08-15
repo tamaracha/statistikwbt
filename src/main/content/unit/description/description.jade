@@ -1,0 +1,7 @@
+h3 Beschreibung
+div(markdown="unit.unit.description")
+h4 Voraussetzungen
+p(ng-if="unit.unit.requires.length===0") Es gibt keine Voraussetzungen.
+ul.list-unstyled(ng-if="unit.unit.requires.length>0")
+  li(ng-repeat="r in unit.requires")
+    a(ng-bind="r.title" ui-sref=".({unit: r._id})")

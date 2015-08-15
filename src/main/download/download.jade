@@ -1,0 +1,48 @@
+include /mixins/submit
+h2 Download
+p Falls du die Inhalte dieser Webseite gern als Textdokument archivieren möchtest, kannst du hier ein Dokument mit den von dir bearbeiteten Kapiteln herunterladen. Du kannst zwischen ein paar Formaten wählen und einstellen, welche Bestandteile du haben möchtest.
+form.form-horizontal(
+  novalidate
+  name="downloads.form"
+  method="get"
+  action="api/downloads"
+)
+  input(type="hidden" name="token" ng-value="main.user.token")
+  .form-group
+    label.col-xs-2 Schnellauswahl
+    .col-xs-10: .toolbar(role="toolbar")
+      .btn-group
+        button.btn.btn-default#showunits(
+          ng-click="download.show.units=!download.show.units" aria-expanded="{{download.show.units}}"
+        )
+          | Kapitel
+          span.fa(
+            ng-class="download.show.units ? 'fa-caret-square-o-up' : 'fa-caret-square-o-down'"
+            aria-hidden="true"
+          )
+        .btn-group#unitgroup(
+          ng-show="download.show.units"
+          role="group"
+          aria-labelledby="showunits"
+        )
+          button.btn.btn-default(ng-click="download.selectUnits(true)") Alle
+          button.btn.btn-default(ng-click="download.selectUnits(false)") keine
+      .btn-group
+        button.btn.btn-default#showcontent(
+          ng-click="download.show.contents=!download.show.contents"
+          aria-expanded="{{download.show.contents}}"
+        )
+          | Inhalte
+          span.fa(
+            ng-class="download.show.contents ? 'fa-caret-square-o-up' : 'fa-caret-square-o-down'"
+            aria-hidden="true"
+          )
+        .btn-group(
+          ng-show="download.show.contents"
+          role="group"
+          aria-labelledby="showcontent"
+        )
+          button.btn.btn-default(ng-click="download.selectContents(true)") Alle
+          button.btn.btn-default(ng-click="download.selectContents(false)") keine
+  formly-form(model="download.data" fields="download.fields" form="download.form")
+    +submit('Download')

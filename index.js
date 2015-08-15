@@ -1,35 +1,31 @@
-var express,app,helmet,morgan,mongoose,router;
-global._=require("lodash");
-global.Promise=require("bluebird");
-global.config=require("./config/config");
-express=require("express");
-helmet=require("helmet");
-morgan=require("morgan")("dev");
-mongoose=require("mongoose");
-Promise.promisifyAll(mongoose.Model);
-Promise.promisifyAll(mongoose.Model.prototype);
-Promise.promisifyAll(mongoose.Query.prototype);
-app=express();
-app.disable("x-powered-by");
-app.enable("strict routing");
-app.set("view engine","jade");
-app.use(morgan);
-app.use(helmet.frameguard("deny"));
-app.use(helmet.nosniff());
-
-app.use("/api",require("./api"));
-app.use(
-  function(req,res,next){
-    var n=req.url.indexOf(".");
-    if(n===-1){res.sendFile(__dirname+"/public/index.html");}
-    else{next();}
-  },
-  express.static("./public")
-);
-app.use(function(err,req,res,next){
-  console.error(err.stack);
-  return res.sendStatus(err.status||500);
+'use strict';
+const koa=require('koa');
+const send=require('koa-send');
+const helmet=require('koa-helmet');
+const mount = require('koa-mount');
+const statics = require('koa-static');
+const mongoose=require('mongoose');
+const api=require('./api');
+const config=require('config');
+const server=config.get('server');
+const db=config.get('db');
+const assets=config.get('assets');
+const app=koa();
+require('koa-qs')(app);
+require('koa-onerror')(app);
+if(config.get('logging')){
+  app.use(require('koa-morgan').middleware('dev'));
+}
+app.use(helmet())
+.use(api.routes())
+.use(api.allowedMethods());
+if(assets.serve){
+  app.use(mount('/dist',statics(assets.root)));
+}
+app.use(function *(){
+  yield send(this, assets.index,{root: assets.root});
+})
+.listen(server.port,server.host,function(){
+  console.log(`listening on ${server.host}:${server.port}`);
 });
-mongoose.connect("mongodb://"+config.db.host+":27017/"+config.db.database);
-app.listen(config.port,config.host);
-console.log("listening on %s:%s",config.host,config.port);
+mongoose.connect(`mongodb://${db.host}:27017/${db.database}`);

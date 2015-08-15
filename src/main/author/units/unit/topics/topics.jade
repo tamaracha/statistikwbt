@@ -1,0 +1,18 @@
+button.btn.btn-default(type="button" ng-click="topics.collapse=!topics.collapse" ng-bind="topics.collapse ? 'Subkapitelübersicht einblenden' : 'Subkapitelübersicht ausblenden'")
+div(collapse="topics.collapse"): form.form-horizontal(novalidate name="topics.form")
+  .form-group
+    label.col-xs-2.control-label(for="selectTopic") Subkapitel
+    .col-xs-10
+      select.form-control#selectTopic(
+        ng-options="t.title for t in topics.topics track by t._id"
+        ng-model="topics.selected"
+        ng-change="topics.select()"
+      )
+        option(value="") Neues Subkapitel
+  .form-group(ng-if="topics.selected")
+    .col-xs-offset-2.col-xs-10: .button-group
+      button(type="button" ng-click="topics.moveUp()") hoch
+      button(type="button" ng-click="topics.moveDown()") runter
+      //- a(ui-sref=".topic.basics({topic: topics.selected._id})") bearbeiten
+      button(type="button" ng-click="topics.remove()") löschen
+ui-view

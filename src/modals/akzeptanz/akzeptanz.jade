@@ -1,0 +1,18 @@
+.modal-header
+  h3.modal-title Kapitel bewerten
+.modal-body
+  p Stufe die folgenden drei Aussagen mittels der Sternchen ein (1 Stern: trifft nicht auf mich zu, 5 Sterne: trifft voll auf mich zu). Du kannst deine Wertungen beliebig oft ändern.
+  formly-form.form-horizontal(
+    model="akzeptanz.summary"
+    fields="akzeptanz.fields"
+    form="akzeptanz.form"
+  )
+.modal-footer
+  button.btn.btn-default(
+    type="button"
+    ng-click="akzeptanz.cancel()"
+  ) Abbrechen
+  button.btn.btn-primary(
+    type="button"
+    ng-click="akzeptanz.ok()"
+  ) Kommentar abschicken

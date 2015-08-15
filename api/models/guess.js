@@ -1,29 +1,17 @@
-var mongoose,ObjectId,GuessSchema,Guess;
-mongoose=require("mongoose");
-ObjectId=mongoose.Schema.Types.ObjectId;
-
-GuessSchema=new mongoose.Schema({
-  unit: {
-    type: ObjectId,
-    required: true,
-    ref: "unit"
-  },
+'use strict';
+const mongoose=require('mongoose');
+const ObjectId=mongoose.Schema.Types.ObjectId;
+const ResponseSchema = require('./response');
+module.exports = new mongoose.Schema({
   user: {
     type: ObjectId,
     required: true,
-    ref: "user"
+    ref: 'users'
   },
-  item: {
+  test: {
     type: ObjectId,
-    required: true
+    required: true,
+    ref: 'tests'
   },
-  response: {
-    single: ObjectId,
-    multiple: [ObjectId],
-    input: String
-  }
+  responses: [ResponseSchema]
 });
-
-Guess=mongoose.model("Guess",GuessSchema);
-Promise.promisifyAll(Guess.prototype);
-module.exports=Guess;

@@ -1,54 +1,33 @@
-var mongoose,ObjectId,User,Unit,RatingSchema,Rating;
-mongoose=require("mongoose");
-ObjectId=mongoose.Schema.Types.ObjectId
-User=require("./user");
-Unit=require("./unit");
-
-RatingSchema=new mongoose.Schema({
+'use strict';
+const mongoose=require('mongoose');
+const ObjectId=mongoose.Schema.Types.ObjectId;
+module.exports = new mongoose.Schema({
   unit: {
     type: ObjectId,
     required: true,
-    ref: "unit"
+    ref: 'units',
+    index: true
   },
   user: {
     type: ObjectId,
     required: true,
-    ref: "user"
+    ref: 'users',
+    index: true
   },
   name: {
     type: String,
-    required: true
+    required: true,
+    enum: [
+      'motivation',
+      'success',
+      'usability'
+    ],
+    index: true
   },
   value: {
     type: Number,
-    required: true
-  },
+    required: true,
+    min: 1,
+    max: 5
+  }
 });
-RatingSchema.index({
-  unit: 1,
-  user: 1,
-  _id: -1,
-  name: 1
-});
-RatingSchema.post("save",function(){
-  var rating=this;
-  return User.findById(rating.user)
-  .execAsync()
-  .then(function(user){
-    user.akzeptanz.ratings.push(rating._id);
-    return user.saveAsync();
-  });
-});
-RatingSchema.post("save",function(){
-  var rating=this;
-  return Unit.findById(rating.unit)
-  .execAsync()
-  .then(function(unit){
-    unit.akzeptanz.ratings.push(rating._id);
-    return unit.saveAsync();
-  });
-});
-
-Rating=mongoose.model("Rating",RatingSchema);
-Promise.promisifyAll(Rating.prototype);
-module.exports=Rating;

@@ -1,29 +1,19 @@
-var mongoose,ObjectId,User,Unit,ViewSchema,View;
-mongoose=require("mongoose");
-ObjectId=mongoose.Schema.Types.ObjectId
-User=require("./user");
-Unit=require("./unit");
-
-ViewSchema=new mongoose.Schema({
+'use strict';
+const mongoose=require('mongoose');
+const ObjectId=mongoose.Schema.Types.ObjectId;
+module.exports = new mongoose.Schema({
   unit: {
     type: ObjectId,
     required: true,
-    ref: "unit"
+    ref: 'units'
   },
   topic: {
     type: ObjectId,
-    ref: "unit.topic"
-  },
-  authenticated: {
-    type: Boolean,
-    default: false
+    ref: 'unit.topic'
   },
   user: {
     type: ObjectId,
-    ref: "user"
+    ref: 'user',
+    required: true
   }
 });
-
-View=mongoose.model("View",ViewSchema);
-Promise.promisifyAll(View.prototype);
-module.exports=View;

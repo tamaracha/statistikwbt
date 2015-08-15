@@ -1,0 +1,5 @@
+include /mixins/submit
+h3(ng-init="units.selected=null") Neues Kapitel anlegen
+form.form-horizontal(novalidate name="new.form" ng-submit="units.save(new.unit)")
+  formly-form(model="new.unit" fields="new.fields" form="new.form")
+    +submit('Anlegen','new.form')

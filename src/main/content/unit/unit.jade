@@ -1,0 +1,14 @@
+header.row
+  .col-sm-4
+    h2: a(ui-sref=".description" ng-bind="unit.unit.title")
+  .col-sm-8
+    h2(ng-bind="unit.unit.subtitle")
+.row
+  nav.col-sm-4: ul.nav.nav-pills.nav-stacked
+    li(ng-repeat="topic in unit.unit.topics track by topic._id" ui-sref-active="active")
+      a(
+        ui-sref=".topic({topic: topic._id})"
+        ng-bind="topic.title"
+      )
+    li(data-ui-sref-active="active"): a(data-ui-sref="main.content.unit.test") Test
+  main.col-sm-8.subkapitel(data-ui-view)

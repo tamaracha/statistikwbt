@@ -1,0 +1,10 @@
+.checkbox(ng-repeat="value in units.units | filter : {_id: unit.unit._id}"): label
+  input(
+    type="checkbox"
+    id="{{id + '_'+ $index}}"
+    ng-model="multiCheckbox.checked[$index]"
+    ng-change="multiCheckbox.change()"
+    name="{{options.key}}"
+    ng-value="option[to.valueProp||'value']"
+  )
+  |  {{option[to.labelProp || 'name']}}

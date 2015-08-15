@@ -1,0 +1,18 @@
+include /mixins/submit
+h3 Testaufgaben
+p(ng-if="tests.tests.length===0") Noch keine Testaufgaben hinzugefügt
+form.form-horizontal(novalidate name="tests.testsForm" ng-if="tests.tests.length>0")
+  .form-group
+    label.col-xs-2.control-label(for="selectTest") Aufgabe
+    .col-xs-10
+      select.form-control#selectTest(name="selectTest" ng-model="tests.selected" ng-options="v.text for v in tests.tests")
+        option(value="") Neue Aufgabe
+form.form-horizontal(novalidate ng-if="tests.selected" ng-submit="tests.update()")
+  formly-form(model="tests.selected" fields="tests.fields" form="tests.testForm")
+    .form-group
+      .col-xs-offset-2.col-xs-10
+        input.btn.btn-danger(type="button" value="Löschen" ng-click="tests.remove()")
+        input.btn(type="submit" value="Aktualisieren" ng-class="{'btn-primary': tests.testForm.$valid, 'btn-danger': tests.testForm.$invalid}")
+form.form-horizontal(novalidate name="tests.newTestForm" ng-submit="tests.create()" ng-if="!tests.selected")
+  formly-form(model="tests.newTest" fields="tests.newFields" form="tests.newTestForm")
+        +submit('Erstellen', 'tests.newTestForm')

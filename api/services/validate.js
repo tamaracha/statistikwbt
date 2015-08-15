@@ -1,13 +1,26 @@
-var validate=require("mongoose-validator");
+'use strict';
+const $=require('mongoose-validator');
+const _=require('lodash');
 
 module.exports={
-  passwordValidator: validate({
-    validator: "isLength",
+  passwordValidator: $({
+    validator: 'isLength',
     arguments: [8],
-    message: "password must have at least eight characters"
+    message: 'password must have at least eight characters'
   }),
-  emailValidator: validate({
-    validator: "isEmail",
-    message: "not a valid email address"
+  emailValidator: $({
+    validator: 'isEmail',
+    message: 'not a valid email address'
+  }),
+  notEmpty: $({
+    validator: function(options){
+      return options.length>0;
+    },
+    message: 'must contain at least one option'
+  },{
+    validator: function(options){
+      return _.any(options,'correct');
+    },
+    message: 'at least one option must be correct'
   })
 };

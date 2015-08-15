@@ -1,7 +1,8 @@
-var mongoose,TopicSchema,Topic;
-mongoose=require("mongoose");
-
-TopicSchema=new mongoose.Schema({
+'use strict';
+const mongoose=require('mongoose');
+const ExampleSchema = require('./example');
+const ExtraSchema = require('./extra');
+module.exports = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -12,10 +13,6 @@ TopicSchema=new mongoose.Schema({
     type: String,
     required: true
   },
-  examples: [require("./example").schema],
-  extras: [require("./extra").schema]
+  examples: [ExampleSchema],
+  extras: [ExtraSchema]
 });
-
-Topic=mongoose.model("Topic",TopicSchema);
-Promise.promisifyAll(Topic.prototype);
-module.exports=Topic;

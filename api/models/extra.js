@@ -1,7 +1,6 @@
-var mongoose,ExtraSchema,Extra;
-mongoose=require("mongoose");
-
-ExtraSchema=new mongoose.Schema({
+'use strict';
+const mongoose=require('mongoose');
+module.exports = new mongoose.Schema({
   title: {
     type: String,
     required: true
@@ -12,6 +11,3 @@ ExtraSchema=new mongoose.Schema({
     required: true
   }
 });
-
-Extra=mongoose.model("Extra",ExtraSchema);
-module.exports=Extra;

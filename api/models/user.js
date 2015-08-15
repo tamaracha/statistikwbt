@@ -1,11 +1,11 @@
-var mongoose,bcrypt,validate,ObjectId,fskSchema,UserSchema,User;
-mongoose=require("mongoose");
-bcrypt=require("bcrypt-nodejs");
-Promise.promisifyAll(bcrypt);
-validate=require("../services/validate");
-ObjectId=mongoose.Schema.Types.ObjectId
+'use strict';
+const mongoose=require('mongoose');
+const bcrypt = require('bcrypt-nodejs');
+const validate=require('../services/validate');
+const ObjectId=mongoose.Schema.Types.ObjectId;
+const DoneSchema = require('./done');
 
-UserSchema=new mongoose.Schema({
+const UserSchema=new mongoose.Schema({
   email: {
     type: String,
     required: true,
@@ -14,8 +14,13 @@ UserSchema=new mongoose.Schema({
   },
   password: {
     type: String,
+    select: false,
     required: true,
     validate: validate.passwordValidator
+  },
+  role: {
+    type: String,
+    required: true
   },
   profile: {
     nickname: String,
@@ -25,59 +30,50 @@ UserSchema=new mongoose.Schema({
     },
     sex: {
       type: String,
-      required: true
+      required: true,
+      enum: ['male','female']
     },
     subject: {
       type: String,
       required: true
     },
-    reasons: [Boolean]
+    reasons: [{
+      type: String,
+      enum: ['interesse','langeweile','klausur']
+    }]
   },
-  fsk: [{
-    sessko: {
-      type: [Number],
-      required: true
-    }
-  }],
   akzeptanz: {
     ratings: [{
       type: ObjectId,
-      ref: "rating"
+      ref: 'rating'
     }],
     comments: [{
       type: ObjectId,
-      ref: "comment"
+      ref: 'comment'
     }]
   },
-  complete: [{
-    type: ObjectId,
-    ref: "unit"
-  }],
+  done: [DoneSchema],
   views: [{
     type: ObjectId,
-    ref: "view"
+    ref: 'views'
   }]
 });
-UserSchema.pre("save",function(next){
-  var user=this;
-  if(!user.isModified("password")){return next();}
-  return bcrypt.hashAsync(user.password,null,null)
-  .then(function(hash){
-    user.password=hash;
-    return next();
-  },function(err){
-    return next(err);
+UserSchema.pre('save',function(cb){
+  const user = this;
+  if(!user.isModified('password')){return cb();}
+  bcrypt.hash(user.password,null,null,function(err,hash){
+    if(err){
+      return cb(err);
+    }
+    user.password = hash;
+    return cb();
   });
 });
-UserSchema.methods.validatePassword=function(password,next){
-  return bcrypt.compareAsync(password, this.password)
-  .then(function(isMatch){
-    return next(null,isMatch);
-  },function(err){
-    return next(err);
-  });
+UserSchema.methods.validatePassword=function(password){
+  const user = this;
+  return function(cb){
+    bcrypt.compare(password,user.password,cb);
+  };
 };
 
-var User=mongoose.model("User",UserSchema);
-Promise.promisifyAll(User.prototype);
-module.exports=User;
+module.exports=mongoose.model('User',UserSchema);
