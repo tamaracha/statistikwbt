@@ -7,12 +7,10 @@ then
   else
     REPOSITORY_BASENAME=$(basename $(readlink -nf "$PWD"/..))
   fi
-echo repository: $REPOSITORY_BASENAME
 
 while read oldrev newrev refname
 do
   branch=$(git rev-parse --symbolic --abbrev-ref $refname)
-  echo branch: $branch
   case $branch in
   master)
     appname=$REPOSITORY_BASENAME
