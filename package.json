@@ -5,9 +5,7 @@
   "main": "index.js",
   "browser": "dist/bundle.min.js",
   "scripts": {
-    "start": "node --es_staging index.js",
-    "build": "gulp",
-    "dev": "gulp dev"
+    "start": "node --es_staging index.js"
   },
   "author": "Tamara Cook",
   "license": "MIT",
