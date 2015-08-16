@@ -1,13 +1,18 @@
 #!/bin/sh
 export NVM_DIR=/home/git/.nvm
 . $NVM_DIR/nvm.sh
+if [ $(git rev-parse --is-bare-repository) = true ]
+then
+    REPOSITORY_BASENAME=$(basename "$PWD" .git) 
+  else
+    REPOSITORY_BASENAME=$(basename $(readlink -nf "$PWD"/..))
+  fi
 
 echo "Checkout the Files"
-cd ~/apps/statistikwbt
+cd ~/apps/$REPOSITORY_BASENAME
 unset GIT_DIR
 git pull
-npm install --production && npm prune --production
+npm install --production
+npm prune --production
 
-echo "start service"
-pm2 restart statistikwbt -m
-
+pm2 restart $REPOSITORY_BASENAME -m
