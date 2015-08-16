@@ -7,8 +7,7 @@
   "scripts": {
     "start": "node --es_staging index.js",
     "build": "gulp",
-    "dev": "gulp dev",
-    "lint": "eslint ./"
+    "dev": "gulp dev"
   },
   "author": "Tamara Cook",
   "license": "MIT",
