@@ -2,7 +2,7 @@
 export NVM_DIR=/home/git/.nvm
 . $NVM_DIR/nvm.sh
 if [ $(git rev-parse --is-bare-repository) = true ]
-then
+  then
     REPOSITORY_BASENAME=$(basename "$PWD" .git) 
   else
     REPOSITORY_BASENAME=$(basename $(readlink -nf "$PWD"/..))
@@ -21,10 +21,5 @@ do
     appname=${REPOSITORY_BASENAME}_dev
     ;;
   esac
-  cd ~/apps/$appname
-  unset GIT_DIR
-  git pull
-  npm install --production
-  npm prune --production
-  pm2 restart $appname -m
+  pm2 stop $appname -m
 done
