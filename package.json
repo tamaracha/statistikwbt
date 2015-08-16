@@ -10,7 +10,7 @@
     "dev": "gulp dev",
     "lint": "eslint ./"
   },
-  "author": "Tamara Cook <tamara.cook@icloud.com>",
+  "author": "Tamara Cook",
   "license": "MIT",
   "repository": {
     "type": "git",
