@@ -1,0 +1,13 @@
+#!/bin/sh
+export NVM_DIR=/home/git/.nvm
+. $NVM_DIR/nvm.sh
+refname="$1"
+if [ $(git rev-parse --is-bare-repository) = true ]
+then
+    REPOSITORY_BASENAME=$(basename "$PWD" .git) 
+  else
+    REPOSITORY_BASENAME=$(basename $(readlink -nf "$PWD"/..))
+  fi
+echo REPOSITORY_BASENAME is $REPOSITORY_BASENAME
+
+pm2 stop $REPOSITORY_BASENAME -m

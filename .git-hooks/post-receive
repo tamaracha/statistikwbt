@@ -1,0 +1,13 @@
+#!/bin/sh
+export NVM_DIR=/home/git/.nvm
+. $NVM_DIR/nvm.sh
+
+echo "Checkout the Files"
+cd ~/apps/statistikwbt
+unset GIT_DIR
+git pull
+npm install --production && npm prune --production
+
+echo "start service"
+pm2 restart statistikwbt -m
+
