@@ -82,7 +82,7 @@
     "nodemailer": "^1.4.0"
   },
   "post_update": [
-    "echo updating deps",
+    "echo \"updating deps\"",
     "npm install --production",
     "npm prune --production"
   ]
