@@ -7,10 +7,12 @@ then
   else
     REPOSITORY_BASENAME=$(basename $(readlink -nf "$PWD"/..))
   fi
+echo repository: $REPOSITORY_BASENAME
 
 while read oldrev newrev refname
 do
   branch=$(git rev-parse --symbolic --abbrev-ref $refname)
+  echo branch: $branch
   case $branch in
   master)
     appname=$REPOSITORY_BASENAME
@@ -19,10 +21,5 @@ do
     appname=${REPOSITORY_BASENAME}_dev
     ;;
   esac
-  cd ~/apps/$appname
-  unset GIT_DIR
-  git pull
-  npm install --production
-  npm prune --production
-  pm2 restart $appname -m
+  pm2 pull $appname
 done

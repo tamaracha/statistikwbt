@@ -1,0 +1,5 @@
+server:
+  port: port
+  host: host
+jwt:
+  secret: jwt_secret

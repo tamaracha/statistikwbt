@@ -80,5 +80,9 @@
     "mongoose-json-patch": "^1.0.1",
     "mongoose-validator": "^1.2.3",
     "nodemailer": "^1.4.0"
-  }
+  },
+  "post_update": [
+    "npm install --production",
+    "npm prune --production"
+  ]
 }
