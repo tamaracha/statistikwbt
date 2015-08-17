@@ -23,8 +23,8 @@ if(assets.serve){
   const statics = require('koa-static');
   app.use(mount('/dist',statics(assets.root)));
 }
-
 app.use(jade.middleware({
+  viewPath: __dirname+'/src',
   debug: false,
   locals: {
     versions: {
