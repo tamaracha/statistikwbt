@@ -21,5 +21,6 @@ do
     appname=${REPOSITORY_BASENAME}_dev
     ;;
   esac
+  echo appname: $appname
   pm2 pull $appname
 done
