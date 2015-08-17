@@ -1,9 +1,8 @@
 'use strict';
 const koa=require('koa');
-const send=require('koa-send');
+const path = require('path');
+const jade = require('koa-jade');
 const helmet=require('koa-helmet');
-const mount = require('koa-mount');
-const statics = require('koa-static');
 const mongoose=require('mongoose');
 const api=require('./api');
 const config=require('config');
@@ -20,10 +19,29 @@ app.use(helmet())
 .use(api.routes())
 .use(api.allowedMethods());
 if(assets.serve){
+  const mount = require('koa-mount');
+  const statics = require('koa-static');
   app.use(mount('/dist',statics(assets.root)));
 }
-app.use(function *(){
-  yield send(this, assets.index,{root: assets.root});
+
+app.use(jade.middleware({
+  debug: false,
+  locals: {
+    versions: {
+      angular: '1.4.3',
+      bootstrap: '3.3.5',
+      d3: '3.5.6',
+      fontAwesome: '4.4.0',
+      lodash: '3.10.1',
+      restangular: '1.5.1',
+      vega: '2.0.6'
+    },
+    env: process.env.NODE_ENV || 'development',
+    basename: path.basename(__dirname)
+  }
+}))
+.use(function *(){
+  this.render(assets.index);
 })
 .listen(server.port,server.host,function(){
   console.log(`listening on ${server.host}:${server.port}`);

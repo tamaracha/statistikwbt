@@ -14,5 +14,5 @@ download:
 assets:
   serve: true
   root: ./dist
-  index: index.html
+  index: index
 logging: true

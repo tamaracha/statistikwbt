@@ -86,7 +86,6 @@ gulp.task('images',function(){
 gulp.task('dev',gulp.series([
   'clean',
   gulp.parallel([
-    'jade_dev',
     'webpack_dev',
     'images'
   ])
@@ -94,9 +93,7 @@ gulp.task('dev',gulp.series([
 gulp.task('default',gulp.series([
   'clean',
   gulp.parallel([
-    'jade_prod',
     'webpack_prod',
     'images'
-  ]),
-  'compress'
+  ])
 ]));
