@@ -12,6 +12,7 @@ jwtConfig.secret=config.secret;
 const jwt=require('koa-jwt')(jwtConfig);
 const log=require('./middleware/log');
 const roles = require('./middleware/roles');
+const auth = require('./middleware/auth');
 
 api.use(body,roles.middleware());
 
@@ -32,7 +33,7 @@ users.get('/:user',ctrl.user.show);
 users.patch('/:user',ctrl.user.update);
 users.delete('/:user',ctrl.user.destroy);
 api.use('/users',users.routes());
-api.get('/tokens/new',ctrl.token.new);
+api.get('/tokens/new',auth,ctrl.token.new);
 
 let tests=new Router();
 tests.get('/',jwt,roles.can('access content'),ctrl.test.index);
