@@ -41,7 +41,9 @@ app.use(jade.middleware({
   }
 }))
 .use(function *(){
-  this.render(assets.index);
+  if(!this.url.startsWith('/dist/')){
+    this.render(assets.index);
+  }
 })
 .listen(server.port,server.host,function(){
   console.log(`listening on ${server.host}:${server.port}`);
