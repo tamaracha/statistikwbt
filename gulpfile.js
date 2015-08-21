@@ -78,7 +78,7 @@ gulp.task('compress',function(){
 });
 
 gulp.task('images',function(){
-  gulp.src('src/images/*')
+  return gulp.src('src/images/*')
   .pipe($.imagemin({progressive: true}))
   .pipe(gulp.dest('dist/images'));
 });
@@ -95,5 +95,6 @@ gulp.task('default',gulp.series([
   gulp.parallel([
     'webpack_prod',
     'images'
-  ])
+  ]),
+  'compress'
 ]));
