@@ -2,7 +2,6 @@
 const koa=require('koa');
 const path = require('path');
 const jade = require('koa-jade');
-const helmet=require('koa-helmet');
 const mongoose=require('mongoose');
 const api=require('./api');
 const config=require('config');
@@ -15,8 +14,7 @@ require('koa-onerror')(app);
 if(config.get('logging')){
   app.use(require('koa-morgan').middleware('dev'));
 }
-app.use(helmet())
-.use(api.routes())
+app.use(api.routes())
 .use(api.allowedMethods());
 if(assets.serve){
   const mount = require('koa-mount');
