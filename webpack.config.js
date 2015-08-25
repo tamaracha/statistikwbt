@@ -1,5 +1,4 @@
-var WebpackNotifierPlugin = require('webpack-notifier');
-
+'use strict';
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -16,7 +15,7 @@ module.exports = {
       },
       {
         loader: 'style!css',
-        test: /\.css$/,
+        test: /\.css$/
       },
       {
         loader: `jade-html?doctype=html&basedir=${__dirname}/src`,
@@ -30,9 +29,6 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new WebpackNotifierPlugin()
-  ],
   externals: {
     angular: 'angular',
     lodash: '_',

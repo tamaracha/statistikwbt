@@ -5,7 +5,7 @@ const validate=require('../services/validate');
 const ObjectId=mongoose.Schema.Types.ObjectId;
 const DoneSchema = require('./done');
 
-const UserSchema=new mongoose.Schema({
+const UserSchema = module.exports = new mongoose.Schema({
   email: {
     type: String,
     required: true,
@@ -75,5 +75,3 @@ UserSchema.methods.validatePassword=function(password){
     bcrypt.compare(password,user.password,cb);
   };
 };
-
-module.exports=mongoose.model('User',UserSchema);
