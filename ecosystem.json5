@@ -1,0 +1,35 @@
+{
+  apps : [
+    {
+      name      : "statistikwbt",
+      script    : "index.js",
+      node_args : "--es-staging",
+      env_production : {
+        NODE_ENV: "production",
+        port: "3000"
+      },
+      env_development : {
+        NODE_ENV: "development",
+        port: "3001"
+      }
+    },
+  ],
+  deploy : {
+    production : {
+      user : "git",
+      host : "t-cook.de",
+      ref  : "origin/master",
+      repo : "https://github.com/tamaracha/statistikwbt.git",
+      path : "/var/node/statistikwbt",
+      "post-deploy" : "npm i && npm prune && pm2 startOrRestart ecosystem.json5 --env production"
+    },
+    dev : {
+      user : "git",
+      host : "t-cook.de",
+      ref  : "origin/develop",
+      repo : "https://github.com/tamaracha/statistikwbt.git",
+      path : "/var/node/statistikwbt_dev",
+      "post-deploy" : "npm i --production && npm prune --production && pm2 startOrRestart ecosystem.json5 --env dev"
+    }
+  }
+}

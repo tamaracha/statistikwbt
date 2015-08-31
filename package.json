@@ -79,23 +79,5 @@
     "mongoose-json-patch": "^1.1.0",
     "mongoose-validator": "^1.2.4",
     "nodemailer": "^1.4.0"
-  },
-  "apps": [
-    {
-      "name": "statistikwbt",
-      "post_update": [
-        "echo updating deps",
-        "npm i --production",
-        "npm prune --production"
-      ]
-    },
-    {
-      "name": "statistikwbt_dev",
-      "post_update": [
-        "echo updating deps",
-        "npm i --production",
-        "npm prune --production"
-      ]
-    }
-  ]
+  }
 }
