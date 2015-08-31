@@ -78,8 +78,7 @@
     "mongoose": "^4.1.3",
     "mongoose-json-patch": "^1.1.0",
     "mongoose-validator": "^1.2.4",
-    "nodemailer": "^1.4.0",
-    "wbt-text": "tamaracha/wbt-text"
+    "nodemailer": "^1.4.0"
   },
   "apps": [
     {
