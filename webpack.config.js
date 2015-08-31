@@ -4,7 +4,8 @@ const compression = require('compression-webpack-plugin');
 const html = require('html-webpack-plugin');
 const jade = require('jade');
 const prod = process.env.NODE_ENV === 'production';
-const base = prod ? '/statistikwbt/' : '/statistikwbt_dev/';
+const basename = require('path').basename(__dirname);
+const base = prod ? `/${basename}/` : `/${basename}_dev/`;
 const config = {
   entry: {
     app: './src',
