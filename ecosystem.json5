@@ -4,13 +4,14 @@
       name      : "statistikwbt",
       script    : "index.js",
       node_args : "--es-staging",
-      env_production : {
-        NODE_ENV: "production",
+      env: {
         port: "3000"
+      }
+      env_production : {
+        NODE_ENV: "production"
       },
       env_development : {
-        NODE_ENV: "development",
-        port: "3001"
+        NODE_ENV: "development"
       }
     },
   ],
@@ -28,7 +29,7 @@
       host : "t-cook.de",
       ref  : "origin/develop",
       repo : "https://github.com/tamaracha/statistikwbt.git",
-      path : "/var/node/statistikwbt_dev",
+      path : "/var/node/statistikwbt",
       "post-deploy" : "npm i --production && npm prune --production && pm2 startOrRestart ecosystem.json5 --env dev"
     }
   }
