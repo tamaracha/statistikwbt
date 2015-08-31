@@ -4,8 +4,8 @@
       name      : "statistikwbt",
       script    : "index.js",
       node_args : "--es-staging",
-      env: {
-        port: "3000"
+      "env": {
+        "port": "3000"
       }
       env_production : {
         NODE_ENV: "production"
