@@ -29,7 +29,7 @@
       ref  : "origin/develop",
       repo : "https://github.com/tamaracha/statistikwbt.git",
       path : "/var/node/statistikwbt_dev",
-      "post-deploy" : "PATH=/usr/local/node/bin:$PATH npm i --production && npm prune --production && pm2 startOrRestart ecosystem.json5 --env dev"
+      "post-deploy" : "npm i --production && npm prune --production && pm2 startOrRestart ecosystem.json5 --env dev"
     }
   }
 }
