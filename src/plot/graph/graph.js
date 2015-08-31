@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import angular from 'angular';
+import template from './graph.jade';
 /*@ngInject*/class GraphCtrl{
   constructor($http,opencpu){
     this.$http = $http;
@@ -50,7 +51,7 @@ export default /*@ngInject*/function(){
     controller: GraphCtrl,
     controllerAs: 'graph',
     bindToController: true,
-    template: require('./graph.jade'),
+    templateUrl: template,
     link
   };
 }

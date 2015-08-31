@@ -3,7 +3,7 @@ import controller from './new-controller';
 export default {
   name: 'new',
   url: '/new',
-  template,
+  templateUrl: template,
   controller,
   controllerAs: 'new'
 };

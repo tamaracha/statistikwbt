@@ -2,7 +2,7 @@ import template from './akzeptanz.jade';
 import controller from './akzeptanz-controller.js';
 
 export default {
-  template,
+  templateUrl: template,
   controller,
   controllerAs: 'akzeptanz',
   animation: false,

@@ -4,7 +4,7 @@ import controller from './topic-controller.js';
 export default {
   name: 'topic',
   url: '/:topic',
-  template,
+  templateUrl: template,
   controller,
   controllerAs: 'topic',
   resolve: {

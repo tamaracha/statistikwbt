@@ -17,7 +17,7 @@ export /*@ngInject*/function config($locationProvider,$compileProvider,$httpProv
   formlyConfigProvider.setType(types);
 }
 
-export /*@ngInject*/function run($rootScope,$state,$stateParams,Permission,user,modals,formlyValidationMessages){
+export /*@ngInject*/function run($rootScope,$state,$stateParams,Permission,user,formlyValidationMessages){
   $rootScope.$on('$stateChangeStart',function(event,toState,toParams,fromState,fromParams){
     $rootScope.prevState = fromState;
     $rootScope.prevParams = fromParams;
@@ -26,7 +26,7 @@ export /*@ngInject*/function run($rootScope,$state,$stateParams,Permission,user,
     console.error(error); // eslint-disable-line no-console
   });
   $rootScope.$on('$stateChangePermissionDenied',function(event,toState,toParams){
-    modals.login()
+    user.login()
     .result.then(() => {
       $state.go(toState.name,toParams);
     },() => {

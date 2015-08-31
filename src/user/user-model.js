@@ -1,11 +1,13 @@
-const _ = require('lodash');
+import _ from 'lodash';
+import loginModal from './login';
 export default /*@ngInject*/class user{
-  constructor(Restangular,$localStorage,$window,$q){
+  constructor(Restangular,$localStorage,$window,$q,$modal){
     this.Users = Restangular.all('users');
     this.Token = Restangular.one('tokens','new');
     this.$storage = $localStorage;
     this.$q = $q;
     this.$window = $window;
+    this.$modal = $modal;
     this.data = null;
     this.init();
   }
@@ -100,5 +102,8 @@ export default /*@ngInject*/class user{
   remove(){
     return this.data.remove()
     .then(() => this.inauthenticate());
+  }
+  login(){
+    return this.$modal.open(loginModal);
   }
 }

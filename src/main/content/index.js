@@ -5,7 +5,7 @@ import unit from './unit';
 export default {
   name: 'content',
   url: '/content',
-  template,
+  templateUrl: template,
   controller,
   controllerAs: 'content',
   data: {

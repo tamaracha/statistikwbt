@@ -4,7 +4,7 @@ import controller from './register-controller.js';
 export default {
   name: 'register',
   url: '/register',
-  template,
+  templateUrl: template,
   controller,
   controllerAs: 'register'
 };

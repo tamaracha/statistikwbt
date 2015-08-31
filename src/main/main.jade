@@ -21,7 +21,7 @@ nav.navbar.navbar-inverse.navbar-static-top(role="navigation"): .container-fluid
       +menu-item(".software","Statistiksoftware","calculator")
       +menu-item(".contact","Kontakt","support")
     ul.nav.navbar-nav.navbar-right(ng-if="!main.user.authenticated")
-      li: button(type="button" data-ng-click="main.modals.login()")
+      li: button(type="button" ng-click="main.user.login()")
         span.fa.fa-sign-in
         |  Anmelden
       +menu-item(".register","registrieren","user-plus")

@@ -4,7 +4,7 @@ import controller from './basics-controller';
 export default {
   name: 'basics',
   url: '',
-  template,
+  templateUrl: template,
   controller,
   controllerAs: 'basics',
   ncyBreadcrumb: {

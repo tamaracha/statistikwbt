@@ -6,7 +6,7 @@ import vega from './vega';
 export default {
   name: 'author',
   url: '/author',
-  template,
+  templateUrl: template,
   data: {
     permissions: {
       except: ['anonymous']

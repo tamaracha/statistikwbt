@@ -6,7 +6,7 @@ import unit from './unit';
 export default {
   name: 'units',
   url: '/units',
-  template,
+  templateUrl: template,
   controller,
   controllerAs: 'units',
   abstract: true,

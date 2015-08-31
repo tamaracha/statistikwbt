@@ -3,7 +3,7 @@ import controller from './download-controller.js';
 export default {
   name: 'download',
   url: '/download',
-  template,
+  templateUrl: template,
   controller,
   controllerAs: 'download',
   data: {

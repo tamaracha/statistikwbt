@@ -4,7 +4,7 @@ import controller from './test-controller.js';
 export default {
   name: 'test',
   url: '/test',
-  template,
+  templateUrl: template,
   controller,
   controllerAs: 'test',
   resolve: {

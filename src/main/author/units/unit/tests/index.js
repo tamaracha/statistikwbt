@@ -4,7 +4,7 @@ import controller from './tests-controller.js';
 export default {
   name: 'tests',
   url: '/tests',
-  template,
+  templateUrl: template,
   controller,
   controllerAs: 'tests',
   ncyBreadcrumb: {

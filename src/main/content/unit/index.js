@@ -9,7 +9,7 @@ import topic from './topic';
 export default {
   name: 'unit',
   url: '/:unit',
-  template,
+  templateUrl: template,
   controller,
   controllerAs: 'unit',
   abstract: true,

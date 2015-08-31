@@ -5,7 +5,7 @@ import topic from './topic';
 export default {
   name: 'topics',
   url: '/topics',
-  template,
+  templateUrl: template,
   controller,
   controllerAs: 'topics',
   abstract: true,

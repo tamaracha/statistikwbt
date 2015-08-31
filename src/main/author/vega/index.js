@@ -3,7 +3,7 @@ import controller from './vega-controller';
 export default {
   name: 'vega',
   url: '/vega',
-  template,
+  templateUrl: template,
   controller,
   controllerAs: 'vega',
   resolve: {

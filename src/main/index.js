@@ -12,7 +12,7 @@ export default {
   name: 'main',
   url: '',
   abstract: true,
-  template,
+  templateUrl: template,
   controller,
   controllerAs: 'main',
   children: [

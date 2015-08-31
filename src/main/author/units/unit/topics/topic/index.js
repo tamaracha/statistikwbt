@@ -6,7 +6,7 @@ import extras from './extras';
 export default {
   name: 'topic',
   url: '/:topic',
-  template,
+  templateUrl: template,
   controller,
   controllerAs: 'topic',
   abstract: true,

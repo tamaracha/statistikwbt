@@ -1,4 +1,4 @@
-export default /*@ngInject*/class LoginCtrl{
+export default /*@ngInject*/class LoginController{
   constructor(user,$modalInstance){
     this.user = user;
     this.$modalInstance = $modalInstance;
