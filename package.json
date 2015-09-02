@@ -13,7 +13,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/tamaracha/statistikwbt.git"
+    "url": "https://github.com/tamaracha/statistikwbt.git"
   },
   "devDependencies": {
     "angular": "^1.4.5",
