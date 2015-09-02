@@ -10,6 +10,7 @@
   },
   "author": "Tamara Cook <tamara.cook@icloud.com>",
   "license": "MIT",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git://github.com/tamaracha/statistikwbt.git"
