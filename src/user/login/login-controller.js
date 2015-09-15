@@ -42,12 +42,15 @@ export default /*@ngInject*/class LoginController{
   }
   login(){
     return this.user.authenticate(this.data,true)
-    .then((data) => {
-      return this.$modalInstance.close(data);
-    },(e) => {
-      this.message = e.data;
-      return e;
-    });
+    .then(
+      (data) => {
+        return this.$modalInstance.close(data);
+      },
+      (e) => {
+        this.message = e.data;
+        return e;
+      }
+    );
   }
   cancel(){
     this.$modalInstance.dismiss('cancel');

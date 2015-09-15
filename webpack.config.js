@@ -65,13 +65,13 @@ const config = {
       base,
       prod,
       versions: {
-        angular: '1.4.4',
+        angular: '1.4.5',
         bootstrap: '3.3.5',
         d3: '3.5.6',
         fontAwesome: '4.4.0',
         lodash: '3.10.1',
         restangular: '1.5.1',
-        vega: '2.0.6'
+        vega: '2.2.4'
       }
     })
   ],

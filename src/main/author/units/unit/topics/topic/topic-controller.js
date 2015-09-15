@@ -52,13 +52,16 @@ export default /*@ngInject*/class TopicCtrl{
       this.patches = jsonpatch.compare(oldVal,val);
       if(this.patches.length > 0){
         return topic.patch(this.patches)
-        .then(() => {
-          this.patches = [];
-          this.error = null;
-        },(e) => {
-          this.error = e;
-          this.recover = oldVal;
-        });
+        .then(
+          () => {
+            this.patches = [];
+            this.error = null;
+          },
+          (e) => {
+            this.error = e;
+            this.recover = oldVal;
+          }
+        );
       }
     },true);
   }

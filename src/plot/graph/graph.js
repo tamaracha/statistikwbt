@@ -14,12 +14,14 @@ import template from './graph.jade';
   }
   getData(){
     return this.$http(this.source)
-    .then((data) => {
-      this.data = angular.fromJson(data);
-    },
-    (e) => {
-      this.error = e;
-    });
+    .then(
+      (data) => {
+        this.data = angular.fromJson(data);
+      },
+      (e) => {
+        this.error = e;
+      }
+    );
   }
   getSpecFields(){
     return this.$http.get('api/vega/' + this.value)

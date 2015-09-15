@@ -27,13 +27,16 @@ export /*@ngInject*/function run($rootScope,$state,$stateParams,Permission,user,
   });
   $rootScope.$on('$stateChangePermissionDenied',function(event,toState,toParams){
     user.login()
-    .result.then(() => {
-      $state.go(toState.name,toParams);
-    },() => {
-      if($rootScope.prevState.name === ''){
-        $state.go('main.home');
+    .result.then(
+      () => {
+        $state.go(toState.name,toParams);
+      },
+      () => {
+        if($rootScope.prevState.name === ''){
+          $state.go('main.home');
+        }
       }
-    });
+    );
   });
   Permission.defineRole('anonymous',function(){
     if(!user.authenticated){

@@ -97,30 +97,39 @@ export default /*@ngInject*/class TestsCtrl{
   }
   create(){
     return this.tests.post(this.newTest)
-    .then((data) => {
-      this.tests.push(data);
-      this.newTest = this.newDefaults;
-      this.newTestForm.$setPristine();
-    }, (e) => {
-      this.error = e;
-    });
+    .then(
+      (data) => {
+        this.tests.push(data);
+        this.newTest = this.newDefaults;
+        this.newTestForm.$setPristine();
+      },
+      (e) => {
+        this.error = e;
+      }
+    );
   }
   update(){
     return this.selected.clone().put()
-    .then((data) => {
-      _.merge(this.selected,data);
-      this.testForm.$setPristine();
-    },(e) => {
-      this.error = e;
-    });
+    .then(
+      (data) => {
+        _.merge(this.selected,data);
+        this.testForm.$setPristine();
+      },
+      (e) => {
+        this.error = e;
+      }
+    );
   }
   remove(){
     return this.selected.remove()
-    .then(() => {
-      _.remove(this.tests,{_id: this.selected._id});
-      this.selected = null;
-    },(e) => {
-      this.error = e;
-    });
+    .then(
+      () => {
+        _.remove(this.tests,{_id: this.selected._id});
+        this.selected = null;
+      },
+      (e) => {
+        this.error = e;
+      }
+    );
   }
 }

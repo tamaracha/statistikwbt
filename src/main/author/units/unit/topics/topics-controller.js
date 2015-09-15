@@ -34,14 +34,16 @@ export default /*@ngInject*/class TopicsCtrl{
   remove(){
     if(this.selected){
       return this.selected.remove()
-      .then(() => {
-        this.lodash.remove(this.topics,{_id: this.selected._id});
-        this.selected = null;
-        this.select();
-      },
-      (e) => {
-        this.error = e;
-      });
+      .then(
+        () => {
+          this.lodash.remove(this.topics,{_id: this.selected._id});
+          this.selected = null;
+          this.select();
+        },
+        (e) => {
+          this.error = e;
+        }
+      );
     }
   }
   moveUp(){

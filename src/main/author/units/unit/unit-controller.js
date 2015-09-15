@@ -9,13 +9,16 @@ export default /*@ngInject*/class UnitCtrl{
         return;
       }
       return unit.patch(this.patches)
-      .then(() => {
-        this.patches = [];
-        this.error = null;
-      },(e) => {
-        this.error = e;
-        this.recover = oldVal;
-      });
+      .then(
+        () => {
+          this.patches = [];
+          this.error = null;
+        },
+        (e) => {
+          this.error = e;
+          this.recover = oldVal;
+        }
+      );
     },true);
   }
 }

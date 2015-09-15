@@ -122,23 +122,27 @@ export default /*@ngInject*/class VegaCtrl{
   save(){
     if(!this.selected){
       this.specs.post(this.model)
-      .then((data) => {
-        this.model = data;
-        this.specs.push(data);
-        this.selected = data._id;
-      },
-      (e) => {
-        this.error = e;
-      });
+      .then(
+        (data) => {
+          this.model = data;
+          this.specs.push(data);
+          this.selected = data._id;
+        },
+        (e) => {
+          this.error = e;
+        }
+      );
     }
     else{
       this.model.put()
-      .then((data) => {
-        this.model = data;
-      },
-      (e) => {
-        this.error = e;
-      });
+      .then(
+        (data) => {
+          this.model = data;
+        },
+        (e) => {
+          this.error = e;
+        }
+      );
     }
   }
   getSpec(){
@@ -149,25 +153,29 @@ export default /*@ngInject*/class VegaCtrl{
     }
     else{
       this.specs.get(this.selected)
-      .then((data) => {
-        this.model = data;
-      },
-      (e) => {
-        this.error = e;
-      });
+      .then(
+        (data) => {
+          this.model = data;
+        },
+        (e) => {
+          this.error = e;
+        }
+      );
     }
   }
   remove(){
     if(this.selected){
       this.model.remove()
-      .then(() => {
-        _.remove(this.specs,{_id: this.selected});
-        this.selected = '';
-        this.model = {};
-      },
-      (e) => {
-        this.error = e;
-      });
+      .then(
+        () => {
+          _.remove(this.specs,{_id: this.selected});
+          this.selected = '';
+          this.model = {};
+        },
+        (e) => {
+          this.error = e;
+        }
+      );
     }
   }
 }

@@ -143,13 +143,16 @@ export default /*@ngInject*/class RegisterCtrl{
   }
   register(){
     return this.user.create(this.model)
-    .then(() => {
-      return this.user.authenticate(this.model,false)
-      .then(() => {
-        this.$state.go('^.home');
-      });
-    },(e) => {
-      this.error = e;
-    });
+    .then(
+      () => {
+        return this.user.authenticate(this.model,false)
+        .then(() => {
+          this.$state.go('^.home');
+        });
+      },
+      (e) => {
+        this.error = e;
+      }
+    );
   }
 }
