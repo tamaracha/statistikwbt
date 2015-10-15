@@ -6,7 +6,7 @@ db:
   database: MyDatabase
 jwt:
   options:
-    expiresInMinutes: 60*24*7
+    expiresIn: 7d
     subject: authenticate
 download:
   cwd: ./
