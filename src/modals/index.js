@@ -2,13 +2,13 @@ import fsk from './fsk';
 import akzeptanz from './akzeptanz';
 
 export default /*@ngInject*/class modals{
-  constructor($modal){
-    this.$modal = $modal;
+  constructor($uibModal){
+    this.$uibModal = $uibModal;
   }
   fsk(){
-    return this.$modal.open(fsk);
+    return this.$uibModal.open(fsk);
   }
   akzeptanz(){
-    return this.$modal.open(akzeptanz);
+    return this.$uibModal.open(akzeptanz);
   }
 }

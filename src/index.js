@@ -14,7 +14,7 @@ import 'angular-permission';
 
 import {config, run} from './config.js';
 import modals from './modals';
-import plot from './plot';
+//import plot from './plot';
 import * as user from './user';
 
 export default angular.module('wbt',[
@@ -29,8 +29,8 @@ export default angular.module('wbt',[
   ocLazyLoad,
   formly,
   formlyBootstrap,
-  'permission',
-  plot
+  'permission'
+  //plot
 ])
 .constant('lodash',lodash)
 .config(config)
