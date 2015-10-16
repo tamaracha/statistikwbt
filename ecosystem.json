@@ -4,7 +4,7 @@
       "name": "statistikwbt",
       "script": "index.js",
       "node_args": "--es-staging",
-      "cwd": "/var/node/statistikwbt",
+      "cwd": "/srv/node/statistikwbt",
       "env": {
         "NODE_ENV": "production"
       },
