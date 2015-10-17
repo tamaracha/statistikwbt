@@ -1,0 +1,8 @@
+.modal-header
+  h3 Löschen von Inhalten
+.modal-body
+  p(ng-if="main.$state.is('main.author.units.unit.basics')") Möchtest du wirklich das Kapitel „{{units.selected.title}}“ löschen?
+  p(ng-if="main.$state.is('main.author.units.unit.topics.topic.basics')") Möchtest du wirklich das Subkapitel „{{topics.selected.title}}“ löschen?
+.modal-footer
+  input(type="button" ng-click="$close()" value="Ja")
+  input(type="button" ng-click="$dismiss()" value="Nein")

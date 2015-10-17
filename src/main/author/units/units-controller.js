@@ -1,8 +1,11 @@
 import _ from 'lodash';
+import removeModal from './remove-modal';
 export default /*@ngInject*/class UnitsController{
-  constructor(units,$state){
+  constructor(units,$scope,$state, $uibModal){
     this.units = units;
     this.$state = $state;
+    this.$uibModal = $uibModal;
+    this.removeModal = removeModal($scope);
     this.collapse = false;
     this.init();
   }
@@ -31,7 +34,11 @@ export default /*@ngInject*/class UnitsController{
     });
   }
   remove(){
-    return this.selected.remove()
+    return this.$uibModal.open(this.removeModal)
+    .result
+    .then(() => {
+      return this.selected.remove();
+    })
     .then(() => {
       _.remove(this.units,{_id: this.selected._id});
       this.selected = null;

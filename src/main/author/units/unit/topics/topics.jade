@@ -1,5 +1,5 @@
 button.btn.btn-default(type="button" ng-click="topics.collapse=!topics.collapse" ng-bind="topics.collapse ? 'Subkapitelübersicht einblenden' : 'Subkapitelübersicht ausblenden'")
-div(collapse="topics.collapse"): form.form-horizontal(novalidate name="topics.form")
+div(uib-collapse="topics.collapse"): form.form-horizontal(novalidate name="topics.form")
   .form-group
     label.col-xs-2.control-label(for="selectTopic") Subkapitel
     .col-xs-10

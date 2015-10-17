@@ -1,15 +1,18 @@
+import _ from 'lodash';
+import removeModal from '../../remove-modal';
 export default /*@ngInject*/class TopicsCtrl{
-  constructor(topics,$state,lodash){
+  constructor(topics,$state,$scope, $uibModal){
     this.topics = topics;
     this.$state = $state;
-    this.lodash = lodash;
+    this.$uibModal = $uibModal;
+    this.removeModal = removeModal($scope);
     this.selected = null;
     this.collapse = false;
     this.init();
   }
   init(){
     if(this.$state.params.topic){
-      this.selected = this.lodash.find(this.topics,{_id: this.$state.params.topic});
+      this.selected = _.find(this.topics,{_id: this.$state.params.topic});
     }
   }
   select(){
@@ -20,7 +23,7 @@ export default /*@ngInject*/class TopicsCtrl{
       );
     }
     else{
-      this.$state.go('main.author.units.topics.topic.new');
+      this.$state.go('main.author.units.unit.topics.new');
     }
   }
   save(newTopic){
@@ -33,10 +36,14 @@ export default /*@ngInject*/class TopicsCtrl{
   }
   remove(){
     if(this.selected){
-      return this.selected.remove()
+      return this.$uibModal.open(this.removeModal)
+      .result
+      .then(() => {
+        return this.selected.remove();
+      })
       .then(
         () => {
-          this.lodash.remove(this.topics,{_id: this.selected._id});
+          _.remove(this.topics,{_id: this.selected._id});
           this.selected = null;
           this.select();
         },
