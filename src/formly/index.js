@@ -83,13 +83,13 @@ export const types = [
       return {
         ngModelAttrs: {
           [typeahead]: {
-            value: 'typeahead'
+            value: 'uib-typeahead'
           },
           'options.templateOptions.tws': {
-            value: 'typeahead-wait-ms'
+            value: 'uib-typeahead-wait-ms'
           },
           'options.templateOptions.tml': {
-            value: 'typeahead-min-length'
+            value: 'uib-typeahead-min-length'
           }
         }
       };
