@@ -1,6 +1,6 @@
 {
   "name": "statistik-wbt",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "Ein WBT über psychologische Statistik",
   "main": "index.js",
   "scripts": {
