@@ -5,5 +5,8 @@ export default {
   url: '/:image',
   templateUrl: template,
   controller,
-  controllerAs: 'image'
+  controllerAs: 'image',
+  ncyBreadcrumb: {
+    label: '{{image.image.name}}'
+  }
 };
