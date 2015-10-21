@@ -1,0 +1,8 @@
+h3 Neues Bild hochladen
+form(novalidate name="new.form" role="form")
+  upload-button.btn.btn-upload(
+    url="/api/images"
+    param="file"
+    accept="image/*"
+    on-success="new.onSuccess(response)"
+  ) Bild auswählen und hochladen

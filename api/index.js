@@ -6,7 +6,7 @@ const config=require('config').get('jwt');
 const ctrl=require('./controllers');
 
 // middleware
-const body=require('koa-body')();
+const body=require('koa-body')({multipart: true});
 const jwtConfig=config.options;
 jwtConfig.secret=config.secret;
 const jwt=require('koa-jwt')(jwtConfig);
@@ -92,7 +92,13 @@ guesses.post('/:guess/responses',ctrl.guess.createResponse);
 api.use('/guesses',jwt,roles.can('access content'),guesses.routes());
 
 api.post('/ratings',jwt,jwt,roles.can('access content'),ctrl.rating.create);
-api.post('/comments',jwt,jwt,roles.can('access content'),ctrl.comment.create);
+api.post('/comments',jwt,roles.can('access content'),ctrl.comment.create);
+
+// images
+api.get('/images',jwt,roles.can('access content'),ctrl.image.index);
+api.get('/images/:image',ctrl.image.show);
+api.post('/images',jwt,roles.can('edit content'),ctrl.image.create);
+
 api.get('/downloads',
   ctrl.download.getToken,
   jwt,

@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const files = [
   'comment',
   'guess',
+  'image',
   'rating',
   'subject',
   'test',

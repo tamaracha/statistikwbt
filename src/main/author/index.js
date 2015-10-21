@@ -1,7 +1,7 @@
 import template from './author.jade';
 
 import units from './units';
-import vega from './vega';
+import images from './images';
 
 export default {
   name: 'author',
@@ -35,6 +35,6 @@ export default {
   },
   children: [
     units,
-    vega
+    images
   ]
 };
