@@ -18,7 +18,7 @@ export default {
         });
       });
     },
-    images: function(Restangular){
+    images: /*@ngInject*/function(Restangular){
       return Restangular.all('images').getList();
     }
   },
