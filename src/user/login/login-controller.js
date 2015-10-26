@@ -1,7 +1,7 @@
 export default /*@ngInject*/class LoginController{
-  constructor(user,$modalInstance){
+  constructor(user,$uibModalInstance){
     this.user = user;
-    this.$modalInstance = $modalInstance;
+    this.$uibModalInstance = $uibModalInstance;
     this.data = {};
     this.loginFields = [{
       key: 'email',
@@ -44,7 +44,7 @@ export default /*@ngInject*/class LoginController{
     return this.user.authenticate(this.data,true)
     .then(
       (data) => {
-        return this.$modalInstance.close(data);
+        return this.$uibModalInstance.close(data);
       },
       (e) => {
         this.message = e.data;
@@ -53,6 +53,6 @@ export default /*@ngInject*/class LoginController{
     );
   }
   cancel(){
-    this.$modalInstance.dismiss('cancel');
+    this.$uibModalInstance.dismiss('cancel');
   }
 }
