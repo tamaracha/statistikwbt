@@ -1,5 +1,4 @@
 'use strict';
-const models = require('../models');
 const bluebird = require('bluebird');
 const mongoose = require('mongoose');
 const conn = mongoose.connection;
