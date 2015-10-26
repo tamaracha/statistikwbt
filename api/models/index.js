@@ -4,16 +4,14 @@ const mongoose = require('mongoose');
 const files = [
   'comment',
   'guess',
-  'image',
   'rating',
   'subject',
   'test',
   'unit',
   'user',
-  'vega',
   'view'
 ];
-module.exports = _.transform(files,function(models,value){
+const models = module.exports = _.transform(files,function(models,value){
   const name = _.capitalize(value);
   const schema = require('./'+value);
   const model = mongoose.model(name,schema);
