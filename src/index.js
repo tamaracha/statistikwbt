@@ -1,15 +1,14 @@
 // libraries
 import angular from 'angular';
-import lodash from 'lodash';
 import uiRouter from 'angular-ui-router';
-import 'ng-annotate?add=true!angular-ui-router.stateHelper';
+import 'angular-ui-router.statehelper';
 import uiBootstrap from 'angular-ui-bootstrap';
-import 'ngstorage';
+import ngStorage from 'ngstorage';
 import ocLazyLoad from 'oclazyload';
 import apiCheck from 'api-check';
 apiCheck.globalConfig.disabled = true;
 import formly from 'angular-formly';
-import formlyBootstrap from 'source-map!angular-formly-templates-bootstrap';
+import formlyBootstrap from 'angular-formly-templates-bootstrap';
 import 'angular-permission';
 
 import {config, run} from './config.js';
@@ -25,14 +24,12 @@ export default angular.module('wbt',[
   'ngMessages',
   'ngAria',
   'ngAnimate',
-  'ngStorage',
+  ngStorage.name,
   ocLazyLoad,
   formly,
   formlyBootstrap,
   'permission'
-  //plot
 ])
-.constant('lodash',lodash)
 .config(config)
 .run(run)
 .factory('userInterceptor',user.interceptor)

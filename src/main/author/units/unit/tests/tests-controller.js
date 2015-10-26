@@ -73,10 +73,16 @@ export default /*@ngInject*/class TestsCtrl{
     },
     {
       key: 'tags',
-      template: '<tags-input ng-model="model[options.key]"></tags-input>',
-      wrapper: ['horizontalBootstrapLabel','bootstrapHasError'],
+      type: 'horizontalInput',
       templateOptions: {
-        label: 'Tags'
+        label: 'Tags',
+        type: 'text',
+        list: true
+      },
+      ngModelAttrs: {
+        list: {
+          attribute: 'ng-list'
+        }
       }
     }];
     this.fields = [{

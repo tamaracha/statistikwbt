@@ -16,7 +16,7 @@ const config = {
       'oclazyload',
       'api-check',
       'angular-formly',
-      'source-map!angular-formly-templates-bootstrap',
+      'angular-formly-templates-bootstrap',
       'angular-permission',
       'ngstorage'
     ]
@@ -27,6 +27,15 @@ const config = {
     publicPath: base+'dist/'
   },
   module: {
+    preLoaders: [
+      {
+        loader: 'source-map',
+        include: [/angular-file-upload/]
+      }
+    ],
+    noParse: [
+      /angular-file-upload/
+    ],
     loaders: [
       {
         loader: 'ng-annotate?add!babel!eslint',
@@ -71,9 +80,10 @@ const config = {
       }
     })
   ],
+  devtool: 'source-map',
   devServer: {
     port: 9000,
-    host: 'localhost',
+    host: '0.0.0.0',
     proxy: {
       '*': {
         target: 'http://localhost:3000',
