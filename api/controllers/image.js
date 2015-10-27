@@ -71,16 +71,17 @@ $.update = function *(){
   const file = this.request.body.files.file;
   this.assert(file,400);
   const saved = yield gfs.findOneAsync({
-    _id: this.params._id,
+    _id: this.params.image,
     root: 'images'
   });
+  this.assert(saved,404);
   if(file.hash === saved.md5){
     this.body = saved;
   }
   else{
-    yield gfs.removeAsync({_id: this.params._id});
+    yield gfs.removeAsync({_id: this.params.image});
     const upload = yield gfs.fromFileAsync({
-      _id: this.params._id,
+      _id: this.params.image,
       filename: file.name,
       content_type: file.type,
       root: 'images',
