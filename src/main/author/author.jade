@@ -3,9 +3,9 @@
   h2 Authorenmodus
   ul(ng-hide="main.user.data.role==='user'").nav.nav-tabs
     li(ui-sref-active="active"): a(ui-sref=".units.new") Kapitel
-    li(ui-sref-active="active"): a(ui-sref=".images.new") Bilder
+    li(ui-sref-active="active"): a(ui-sref=".images") Bilder
   div(ui-view)
-    p.text-warning(ng-if="!main.user.authenticated") Willkommen beim Autorenmodus. Der Autorenmodus kann nur genutzt werden, wenn man angemeldet und Autor ist. Du bist gerade nicht angemeldet.
+    p.text-danger(ng-if="!main.user.authenticated") Willkommen beim Autorenmodus. Der Autorenmodus kann nur genutzt werden, wenn man angemeldet und Autor ist. Du bist gerade nicht angemeldet.
     ng-switch(on="main.user.data.role")
       p.text-success(ng-switch-when="author") Willkommen beim Autorenmodus. Du gehörst zu den Autoren dieses WBT und kannst hier seine Inhalte editieren.
       p.text-warning(ng-switch-when="user") Willkommen beim Autorenmodus. Du bist leider kein Autor und kannst keine Inhalte bearbeiten. Bitte wende dich an uns, falls du Autor werden möchtest.

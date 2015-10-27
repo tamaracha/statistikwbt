@@ -1,7 +1,7 @@
 .modal-header
   h3 Löschen von Inhalten
 .modal-body
-  p(ng-if="main.$state.includes('main.author.images')") Bild wirklich löschen?
+  p(ng-if="main.$state.includes('main.author.images')") Möchtest du dieses Bild wirklich vom Server löschen? Falls ja, entferne es bitte ggf. auch umgehend aus den Texten des WBT.
   p(ng-if="main.$state.is('main.author.units.unit.basics')") Möchtest du wirklich das Kapitel „{{units.selected.title}}“ löschen?
   p(ng-if="main.$state.is('main.author.units.unit.topics.topic.basics')") Möchtest du wirklich das Subkapitel „{{topics.selected.title}}“ löschen?
 .modal-footer

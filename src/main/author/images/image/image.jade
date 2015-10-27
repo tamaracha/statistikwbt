@@ -1,7 +1,25 @@
-h3(ng-bind="image.image.name")
-figure
-  img(ng-src="api/images/{{image.image.name}}")
-  figcaption Eine Beispielunterschrift
-h4 Bild einbinden
-code
-  pre {{image.template}}
+h3(ng-bind="image.image.filename")
+.form-inline: .checkbox
+  label
+    input(type="checkbox" ng-model="image.caption")
+    |  mit Unterschrift
+div(markdown="image.caption ? image.mdfigcaption : image.mdfig")
+uib-accordion
+  uib-accordion-group(heading="Bild einbinden" is-open="true")
+    dl.dl-horizontal
+      dt mit Bildunterschrift
+      dd: pre(ng-bind="image.mdfigcaption")
+      dt normal
+      dd: pre(ng-bind="image.mdfig")
+  uib-accordion-group(heading="Bild editieren")
+    form.form-horizontal(novalidate name="image.form")
+      .form-group
+        label.col-xs-2(for="imageInput") Bild ersetzen
+        .col-xs-10
+          input#imageInput(type="file" nv-file-select uploader="image.uploader" name="imageInput")
+          span.help-block(ng-if="image.uploader.queue.length>0" ng-bind="image.uploader.queue[image.uploader.queue.length-1].file.name")
+      .form-group
+        .col-xs-offset-2.col-xs-10
+          .btn-group
+            button.btn.btn-primary(ng-if="image.uploader.queue.length>0" ng-click="image.uploader.uploadItem(image.uploader.queue.length-1)") Bild updaten
+            button.btn.btn-warning(ng-click="image.remove()") Bild löschen

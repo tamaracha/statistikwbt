@@ -6,7 +6,12 @@ export default {
   templateUrl: template,
   controller,
   controllerAs: 'image',
+  resolve: {
+    image: /*@ngInject*/function(Restangular,$stateParams){
+      return Restangular.all('images').get($stateParams.image,{metadata: true});
+    }
+  },
   ncyBreadcrumb: {
-    label: '{{image.image.name}}'
+    label: '{{image.image.filename}}'
   }
 };
