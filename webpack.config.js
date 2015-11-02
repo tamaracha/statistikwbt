@@ -38,7 +38,7 @@ const config = {
     ],
     loaders: [
       {
-        loader: 'ng-annotate?add!babel!eslint',
+        loader: 'ng-annotate?add!babel?presets[]=es2015!eslint',
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/
       },

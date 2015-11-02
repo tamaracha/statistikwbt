@@ -1,7 +1,7 @@
 import main from './main';
 import {types, wrappers} from './formly';
 
-export /*@ngInject*/function config($locationProvider,$compileProvider,$httpProvider,$urlRouterProvider,RestangularProvider,stateHelperProvider,formlyConfigProvider){
+export /*@ngInject*/function config($locationProvider,$compileProvider,$httpProvider,$urlRouterProvider,stateHelperProvider,formlyConfigProvider,RestangularProvider){
   $locationProvider.html5Mode(true);
   $compileProvider.debugInfoEnabled(false);
   $httpProvider.interceptors.push('userInterceptor');
