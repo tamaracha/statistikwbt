@@ -1,6 +1,8 @@
 'use strict';
 const mongoose=require('mongoose');
+const bluebird = require('bluebird');
 const bcrypt = require('bcrypt-nodejs');
+bluebird.promisifyAll(bcrypt);
 const validate=require('../services/validate');
 const ObjectId=mongoose.Schema.Types.ObjectId;
 const DoneSchema = require('./done');
@@ -71,7 +73,5 @@ UserSchema.pre('save',function(cb){
 });
 UserSchema.methods.validatePassword=function(password){
   const user = this;
-  return function(cb){
-    bcrypt.compare(password,user.password,cb);
-  };
+  return bcrypt.compareAsync(password,user.password);
 };
