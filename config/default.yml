@@ -3,7 +3,7 @@ server:
   host: localhost
 db:
   host: localhost
-  database: MyDatabase
+  database: statistikwbt
 jwt:
   options:
     expiresIn: 7d
