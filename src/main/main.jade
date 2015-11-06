@@ -1,5 +1,4 @@
-include /mixins/menu-item.jade
-
+include /mixins/menu-item
 nav.navbar.navbar-inverse.navbar-static-top(role="navigation"): .container-fluid
   .navbar-header
     button.navbar-toggle.collapsed(
@@ -11,15 +10,14 @@ nav.navbar.navbar-inverse.navbar-static-top(role="navigation"): .container-fluid
     )
       span.fa.fa-bars
     a.navbar-brand(data-ui-sref=".home")
-      span.fa.fa-home
-      |  Statistik für Jedermann
+      span.fa(ng-class="main.items.home.icon || 'fa-home'")
+      |  {{main.items.home.menu || 'Statistik für Jedermann'}}
   #mainnav.collapse.navbar-collapse(uib-collapse="main.menuCollapse")
     ul.nav.navbar-nav.navbar-left
-      +menu-item(".content","Inhalte","book")
-      +menu-item(".author","Authorenmodus","pencil")
-      +menu-item(".download","Download","download")
-      +menu-item(".software","Statistiksoftware","calculator")
-      +menu-item(".contact","Kontakt","support")
+      li(ui-sref-active="active" ng-repeat="i in main.meta | filter : {_id: '!home', active: true}")
+        a(ui-sref=".{{i._id}}")
+          span.fa(ng-if="i.icon" ng-class="'fa'+i.icon")
+          span( ng-bind="i.menu")
     ul.nav.navbar-nav.navbar-right(ng-if="!main.user.authenticated")
       li: button(type="button" ng-click="main.user.login()")
         span.fa.fa-sign-in

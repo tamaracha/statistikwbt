@@ -1,5 +1,6 @@
 import template from './author.jade';
 
+import meta from './meta';
 import units from './units';
 import images from './images';
 
@@ -13,14 +14,6 @@ export default {
     }
   },
   resolve: {
-    markdown: /*@ngInject*/function($q,$ocLazyLoad){
-      return $q(function(resolve){
-        require.ensure([],function(){
-          const md = require('wbt-text');
-          return resolve($ocLazyLoad.inject(md));
-        });
-      });
-    },
     breadcrumb: /*@ngInject*/function($q,$ocLazyLoad){
       return $q(function(resolve){
         require.ensure([],function(){
@@ -34,6 +27,7 @@ export default {
     label: 'Autorentool'
   },
   children: [
+    meta,
     units,
     images
   ]

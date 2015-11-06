@@ -1,5 +1,6 @@
+import _ from 'lodash';
 export default /*@ngInject*/class MainCtrl{
-  constructor($state,$stateParams,user,modals){
+  constructor($state,$stateParams,user,modals, meta){
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.user = user;
@@ -11,5 +12,7 @@ export default /*@ngInject*/class MainCtrl{
         blur: 0
       }
     };
+    this.meta = meta;
+    this.items = _.indexBy(meta,'_id');
   }
 }

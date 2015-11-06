@@ -22,8 +22,17 @@ const auth = require('./middleware/auth');
 api.use(roles.middleware());
 
 /* routes */
+// meta
+const meta = new Router();
+meta.get('/',ctrl.meta.index);
+meta.post('/',ctrl.meta.create);
+meta.get('/:meta',ctrl.meta.show);
+meta.patch('/:meta',body,ctrl.meta.update);
+meta.delete('/:meta',ctrl.meta.destroy);
+api.use('/meta',meta.routes());
+
 // users
-let users=new Router();
+const users=new Router();
 users.use('/:user',jwt,roles.can('access user'));
 const done = new Router();
 done.get('/',ctrl.done.index);

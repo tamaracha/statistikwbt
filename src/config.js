@@ -18,6 +18,8 @@ export /*@ngInject*/function config($locationProvider,$compileProvider,$httpProv
 }
 
 export /*@ngInject*/function run($rootScope,$state,$stateParams,Permission,user,formlyValidationMessages){
+  $rootScope.$state = $state;
+  $rootScope.$stateParams = $stateParams;
   $rootScope.$on('$stateChangeStart',function(event,toState,toParams,fromState,fromParams){
     $rootScope.prevState = fromState;
     $rootScope.prevParams = fromParams;

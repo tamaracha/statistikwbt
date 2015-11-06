@@ -1,7 +1,6 @@
 export default /*@ngInject*/class DownloadController{
-  constructor(units,lodash){
+  constructor(units){
     this.units = units.plain();
-    this.lodash = lodash;
     this.data = {
       contents: ['body'],
       format: 'rtf'
@@ -73,7 +72,7 @@ export default /*@ngInject*/class DownloadController{
     }];
   }
   selectUnits(val){
-    this.data.units = val ? this.lodash.map(this.units,'_id') : [];
+    this.data.units = val ? this._.map(this.units,'_id') : [];
   }
   selectContents(val){
     this.data.contents = val ? ['body','examples','extras'] : [];

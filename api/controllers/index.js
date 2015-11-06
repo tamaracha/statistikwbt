@@ -6,6 +6,7 @@ const files = [
   'download',
   'guess',
   'image',
+  'meta',
   'rating',
   'subject',
   'summary',
