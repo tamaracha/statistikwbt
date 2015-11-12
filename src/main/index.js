@@ -22,7 +22,7 @@ export default {
     markdown: /*@ngInject*/function($q,$ocLazyLoad){
       return $q(function(resolve){
         require.ensure([],function(){
-          const md = require('wbt-text');
+          const md = require('../markdown');
           return resolve($ocLazyLoad.inject(md));
         });
       });

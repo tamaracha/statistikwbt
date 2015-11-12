@@ -40,7 +40,7 @@ export default /*@ngInject*/class ItemController{
       {
         key: 'body',
         type: 'horizontalMarkdownArea',
-        hide: _.includes(['content','download','author'],this.item._id),
+        hide: _.includes(['download','author'],this.item._id),
         templateOptions: {
           label: 'Inhalt'
         }
