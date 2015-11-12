@@ -23,6 +23,7 @@ export default angular.module('wbt',[
   'ngMessages',
   'ngAria',
   'ngAnimate',
+  'ngSanitize',
   ngStorage.name,
   ocLazyLoad,
   formly,
