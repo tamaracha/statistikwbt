@@ -1,29 +1,35 @@
 - _id: home
   title: WBT-Framework
+  position: 0
   menu: WBT-Framework
   icon: home
   active: true
 - _id: content
   title: Inhalte
+  position: 1
   menu: Inhalte
   icon: book
   active: true
 - _id: download
   title: Download
+  position: 2
   menu: Download
   icon: download
   active: true
 - _id: author
   title: Autorenmodus
+  position: 3
   menu: Autorenmodus
   icon: pencil
   active: true
 - _id: contact
   title: Kontakt
+  position: 4
   menu: Kontakt
   icon: support
   active: true
 - _id: impressum
   title: Impressum
+  position: 5
   menu: Impressum
   active: true

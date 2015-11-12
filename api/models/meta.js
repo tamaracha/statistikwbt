@@ -11,6 +11,7 @@ module.exports = new mongoose.Schema({
   menu: String,
   icon: String,
   title: String,
+  position: Number,
   active: Boolean,
   body: String
 });

@@ -10,7 +10,7 @@ const $ = module.exports = {};
 setup();
 
 $.index = function *index(){
-  const meta = yield models.Meta.find({},'-body').exec();
+  const meta = yield models.Meta.find({},'-body').sort('position').lean().exec();
   this.assert(meta,404);
   this.body = meta;
 };
