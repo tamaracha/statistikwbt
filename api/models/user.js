@@ -22,7 +22,9 @@ const UserSchema = module.exports = new mongoose.Schema({
   },
   role: {
     type: String,
-    required: true
+    required: true,
+    default: 'user',
+    enum: ['user','author']
   },
   profile: {
     nickname: String,
@@ -41,7 +43,7 @@ const UserSchema = module.exports = new mongoose.Schema({
     },
     reasons: [{
       type: String,
-      enum: ['interesse','langeweile','klausur']
+      enum: ['interesse','langeweile','klausur', 'author']
     }]
   },
   akzeptanz: {
