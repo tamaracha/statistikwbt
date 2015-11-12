@@ -22,6 +22,7 @@ export default /*@ngInject*/class user{
   set authenticated(data){
     this.$storage.token = data.token;
     this.$storage._id = data._id;
+    this.$storage.role = data.role;
   }
   get _id(){
     return this.$storage._id;
@@ -29,36 +30,43 @@ export default /*@ngInject*/class user{
   get token(){
     return this.$storage.token;
   }
+  get role(){
+    return this.$storage.role;
+  }
   init(){
-    return this.$q((resolve,reject) => {
-      if(!this.authenticated){
+    if(!this.authenticated){
+      return this.inauthenticate();
+    }
+    return this.Users.get(this.$storage._id)
+    .then(
+      (data) => {
+        this.data = data;
+        return data;
+      },
+      (e) => {
         this.inauthenticate();
-        return reject('inauthenticated');
+        return e;
       }
-      return resolve(this.Users.get(this.$storage._id));
-    })
-    .then((data) => {
-      this.data = data;
-      return data;
-    });
+    );
+  }
+  basicAuth(form){
+    const name = form.email;
+    const pass = form.password;
+    if(!name || !pass){
+      throw Error('missing credentials');
+    }
+    const str = this.$window.btoa(`${name}:${pass}`);
+    return `basic ${str}`;
   }
   authenticate(form,init){
-    return this.$q((resolve,reject) => {
-      const name = form.email;
-      const pass = form.password;
-      if(!name || !pass){
-        return reject('missing credentials');
-      }
-      const str = this.$window.btoa(`${name}:${pass}`);
-      const authorization = `basic ${str}`;
-      return resolve(this.Token.get(null,{authorization}));
-    })
+    const Authorization = this.basicAuth(form);
+    return this.Token.get(null,{Authorization})
     .then((data) => {
       this.authenticated = data;
-      if(init){
-        return this.init();
+      if(!init){
+        return data;
       }
-      return data;
+      return this.init();
     });
   }
   inauthenticate(){
@@ -104,6 +112,11 @@ export default /*@ngInject*/class user{
     .then(() => this.inauthenticate());
   }
   login(){
-    return this.$uibModal.open(loginModal);
+    return this.$uibModal.open(loginModal)
+    .result.then((data) => {
+      console.log(data);
+    },(e) => {
+      console.log(e);
+    });
   }
 }
