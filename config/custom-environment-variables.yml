@@ -3,3 +3,5 @@ server:
   host: host
 jwt:
   secret: jwt_secret
+db:
+  database: database
