@@ -40,11 +40,14 @@ export /*@ngInject*/function run($rootScope,$state,$stateParams,Permission,user,
       }
     );
   });
-  Permission.defineRole('anonymous',function(){
-    if(!user.authenticated){
-      return true;
-    }
-    return false;
+  Permission.defineRole('anonymous',() => {
+    return !user.authenticated;
+  });
+  Permission.defineRole('user',() => {
+    return user.role === 'user';
+  });
+  Permission.defineRole('author',() => {
+    return user.role === 'author' ? true : false;
   });
   formlyValidationMessages.addStringMessage('json','JSON ist invalid');
   formlyValidationMessages.addTemplateOptionValueMessage('minlength','minlength','Bitte mindestens','Zeichen eingeben');

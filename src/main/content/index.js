@@ -20,6 +20,9 @@ export default {
         options: {sort: 'position'}
       };
       return Restangular.all('units').getList(query);
+    },
+    meta: /*@ngInject*/function(Restangular){
+      return Restangular.one('meta','content').get();
     }
   },
   children: [

@@ -10,7 +10,7 @@ export default {
   templateUrl: template,
   data: {
     permissions: {
-      except: ['anonymous']
+      only: ['author']
     }
   },
   resolve: {
