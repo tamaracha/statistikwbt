@@ -1,7 +1,9 @@
 import _ from 'lodash';
 import removeModal from '../../remove-modal';
 export default /*@ngInject*/class TopicsCtrl{
-  constructor(topics,$state,$scope, $uibModal){
+  constructor(topics,$state,$scope, $uibModal, Restangular,unit){
+    this.Restangular = Restangular;
+    this.unit = unit;
     this.topics = topics;
     this.$state = $state;
     this.$uibModal = $uibModal;
@@ -60,7 +62,7 @@ export default /*@ngInject*/class TopicsCtrl{
       topic: this.selected._id
     })
     .then((topics) => {
-      this.topics = topics;
+      this.topics = this.Restangular.restangularizeCollection(this.unit,topics,'topics');
     },
     (e) => {
       this.error = e;
@@ -73,7 +75,7 @@ export default /*@ngInject*/class TopicsCtrl{
       topic: this.selected._id
     })
     .then((topics) => {
-      this.topics = topics;
+      this.topics = this.Restangular.restangularizeCollection(this.unit,topics,'topics');
     },
     (e) => {
       this.error = e;
