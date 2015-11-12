@@ -52,6 +52,10 @@ const config = {
         exclude: /(node_modules|bower_components)/
       },
       {
+        loader: 'json',
+        test: /\.json$/
+      },
+      {
         loader: 'json!yaml',
         test: /\.yml$/,
         exclude: /(node_modules|bower_components)/
@@ -66,7 +70,7 @@ const config = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
     new html({
-      title: 'Statistik für Jedermann',
+      title: 'WBT-Framework',
       templateContent: jade.compileFile(__dirname+'/src/index.jade'),
       inject: 'head',
       base,
