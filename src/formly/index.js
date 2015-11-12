@@ -85,10 +85,10 @@ export const types = [
           [typeahead]: {
             value: 'uib-typeahead'
           },
-          'options.templateOptions.tws': {
+          'tws': {
             value: 'uib-typeahead-wait-ms'
           },
-          'options.templateOptions.tml': {
+          'tml': {
             value: 'uib-typeahead-min-length'
           }
         }
