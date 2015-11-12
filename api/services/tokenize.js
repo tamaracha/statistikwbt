@@ -1,6 +1,8 @@
 'use strict';
+const bluebird = require('bluebird');
 const jwt=require('jsonwebtoken');
 const config=require('config').get('jwt');
+const verify = bluebird.promisify(jwt.verify);
 
 module.exports.sign = function(user){
   return jwt.sign(
@@ -14,9 +16,7 @@ module.exports.sign = function(user){
 };
 
 module.exports.verify = function(token){
-  return function(cb){
-    return jwt.verify(token,config.secret,config.options,cb);
-  };
+  return verify(token,config.secret,config.options);
 };
 
 module.exports.decode = function(token){
