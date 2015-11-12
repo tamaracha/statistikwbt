@@ -1,7 +1,7 @@
 {
-  "name": "statistik-wbt",
+  "name": "wbt-framework",
   "version": "1.7.0",
-  "description": "Ein WBT über psychologische Statistik",
+  "description": "Ein WBT-Framework",
   "main": "index.js",
   "scripts": {
     "start": "node --es_staging index.js",
@@ -13,7 +13,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/tamaracha/statistikwbt.git"
+    "url": "https://github.com/tamaracha/wbt-framework.git"
   },
   "devDependencies": {
     "angular": "^1.4.5",
