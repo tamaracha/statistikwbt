@@ -137,6 +137,10 @@ export default /*@ngInject*/class RegisterCtrl{
         {
           name: 'Vor- oder Nachbereitung für Klausur/Vorlesung',
           value: 'klausur'
+        },
+        {
+          name: 'Ich bin Autor',
+          value: 'author'
         }]
       }
     }];
