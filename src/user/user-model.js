@@ -112,11 +112,6 @@ export default /*@ngInject*/class user{
     .then(() => this.inauthenticate());
   }
   login(){
-    return this.$uibModal.open(loginModal)
-    .result.then((data) => {
-      console.log(data);
-    },(e) => {
-      console.log(e);
-    });
+    return this.$uibModal.open(loginModal);
   }
 }
