@@ -1,9 +1,11 @@
 'use strict';
+const _ = require('lodash');
 const bluebird = require('bluebird');
 const fs = require('fs');
 bluebird.promisifyAll(fs);
 const path = require('path');
 const yaml = require('js-yaml');
+const assets = require('config').get('assets');
 const models = require('../models');
 const jsonpatch=require('fast-json-patch');
 const $ = module.exports = {};
@@ -54,6 +56,11 @@ function setup(){
   })
   .then((file) => {
     const docs = yaml.load(file);
+    const home = _.findIndex(docs,{_id: 'home'});
+    if(home >= -1){
+      docs[home].title = assets.title;
+      docs[home].menu = assets.title;
+    }
     return models.Meta.create(docs);
   })
   .then(
