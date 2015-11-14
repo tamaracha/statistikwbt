@@ -21,7 +21,7 @@ export default /*@ngInject*/class RegisterCtrl{
         label: 'E-Mail-Adresse',
         type: 'email',
         required: true,
-        maxlength: 30,
+        maxlength: 50,
         placeholder: 'name@provider.com'
       },
       ngModelAttrs: {

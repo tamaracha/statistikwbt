@@ -11,7 +11,7 @@ export default /*@ngInject*/class LoginController{
         label: 'E-Mail',
         required: true,
         placeholder: 'name@provider.com',
-        maxlength: 20
+        maxlength: 50
       },
       validation: {
         messages: {
