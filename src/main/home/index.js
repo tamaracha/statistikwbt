@@ -8,7 +8,7 @@ export default {
   },
   controllerAs: 'home',
   resolve: {
-    meta: function(Restangular){
+    meta: /*@ngInject*/function(Restangular){
       return Restangular.one('meta','home').get();
     }
   }
