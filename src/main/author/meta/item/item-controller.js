@@ -1,6 +1,13 @@
 import _ from 'lodash';
 export default /*@ngInject*/class ItemController{
   constructor(item, $scope, jsonpatch){
+    const modelOptions = {
+      updateOn: 'default blur',
+      debounce: {
+        default: 500,
+        blur: 0
+      }
+    };
     this.item = item.plain();
     this.patches = [];
     this.error = null;
@@ -8,6 +15,7 @@ export default /*@ngInject*/class ItemController{
       {
         type: 'horizontalInput',
         key: 'title',
+        modelOptions,
         templateOptions: {
           label: 'Titel',
           type: 'text',
@@ -17,6 +25,7 @@ export default /*@ngInject*/class ItemController{
       {
         key: 'menu',
         type: 'horizontalInput',
+        modelOptions,
         templateOptions: {
           label: 'Menüeintrag',
           type: 'text',
@@ -26,6 +35,7 @@ export default /*@ngInject*/class ItemController{
       {
         key: 'icon',
         type: 'horizontalInput',
+        modelOptions,
         templateOptions: {
           label: 'Menü-Icon'
         }
@@ -33,6 +43,7 @@ export default /*@ngInject*/class ItemController{
       {
         key: 'active',
         type: 'horizontalCheckbox',
+        modelOptions,
         templateOptions: {
           label: 'Im Menü anzeigen'
         }
@@ -41,6 +52,7 @@ export default /*@ngInject*/class ItemController{
         key: 'body',
         type: 'horizontalMarkdownArea',
         hide: _.includes(['download','author'],this.item._id),
+        modelOptions,
         templateOptions: {
           label: 'Inhalt'
         }
