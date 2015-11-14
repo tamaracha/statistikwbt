@@ -3,7 +3,7 @@ server:
   host: localhost
 db:
   host: localhost
-  database: statistikwbt
+  database: wbt-framework
 jwt:
   options:
     expiresIn: 7d
@@ -13,6 +13,13 @@ download:
   dest: .tmp
 assets:
   serve: true
-  root: ./dist
-  index: index.html
+  root: /dist
+  title: WBT Framework
+  base: wbt-framework
+  versions:
+    angular: 1.4.7
+    bootstrap: 3.3.5
+    fontAwesome: 4.4.0
+    lodash: 3.10.1
+    restangular: 1.5.1
 logging: true

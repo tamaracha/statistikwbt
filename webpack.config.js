@@ -1,11 +1,7 @@
 'use strict';
 const webpack=require('webpack');
 const compression = require('compression-webpack-plugin');
-const html = require('html-webpack-plugin');
-const jade = require('jade');
 const prod = process.env.NODE_ENV === 'production';
-const basename = require('path').basename(__dirname);
-const base = prod ? `/${basename}/` : `/${basename}_dev/`;
 const config = {
   entry: {
     app: './src',
@@ -24,7 +20,7 @@ const config = {
   output: {
     filename: 'app.js',
     path: './dist',
-    publicPath: base+'dist/'
+    publicPath: 'dist/'
   },
   module: {
     preLoaders: [
@@ -68,35 +64,9 @@ const config = {
     MathJax: 'MathJax'
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
-    new html({
-      title: 'WBT-Framework',
-      templateContent: jade.compileFile(__dirname+'/src/index.jade'),
-      inject: 'head',
-      base,
-      prod,
-      versions: {
-        angular: '1.4.7',
-        bootstrap: '3.3.5',
-        fontAwesome: '4.4.0',
-        lodash: '3.10.1',
-        restangular: '1.5.1',
-      }
-    })
+    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
   ],
-  devtool: 'source-map',
-  devServer: {
-    port: 9000,
-    host: '0.0.0.0',
-    proxy: {
-      '*': {
-        target: 'http://localhost:3000',
-        rewrite: function(req){
-          req.url = req.url.replace(base,'/');
-        }
-      }
-    }
-  }
+  devtool: 'source-map'
 };
 if(prod){
   config.plugins.push(
