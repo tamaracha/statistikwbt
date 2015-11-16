@@ -18,7 +18,7 @@
     "angular": "^1.4.5",
     "angular-breadcrumb": "^0.4.1",
     "angular-file-upload": "^2.2.0",
-    "angular-formly": "^7.3.2",
+    "angular-formly": "^7.3.3",
     "angular-formly-templates-bootstrap": "^6.0.0",
     "angular-permission": "^1.1.1",
     "angular-ui-bootstrap": "^0.14.3",
