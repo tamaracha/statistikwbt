@@ -1,0 +1,11 @@
+{
+  "source": {
+    "include": ["src"]
+  },
+  "opts": {
+    "template": "node_modules/ink-docstrap/template",
+    "destination": "docs",
+    "package": "package.json"
+  },
+  "plugins": ["node_modules/jsdoc-babel"]
+}
