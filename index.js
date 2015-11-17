@@ -7,9 +7,7 @@ const koa=require('koa');
 const unless = require('koa-unless');
 const Jade = require('koa-jade');
 const mount = require('koa-mount');
-const fs = require('fs');
-const yaml = require('js-yaml');
-const swaggerSpec = yaml.load(fs.readFileSync('./api/swagger.yml','utf8'));
+const send = require('koa-send');
 const jade = new Jade({
   viewPath: 'src/',
   locals: {
@@ -24,7 +22,7 @@ function *render(){
 }
 render.unless = unless;
 function *swagger(){
-  this.body = swaggerSpec;
+  yield send(this,'/api/swagger.yml',{root: __dirname});
 }
 const api=require('./api');
 const app=koa();
@@ -39,7 +37,7 @@ if(assets.serve){
   .use(mount('/docs',koaStatic(__dirname+'/docs')))
   .use(mount('/swagger',koaStatic(__dirname+'/swagger-ui/dist')));
 }
-app.use(mount('/api-docs.json',swagger))
+app.use(mount('/api-docs.yml',swagger))
 .use(api.routes())
 .use(api.allowedMethods())
 .use(jade.middleware)
