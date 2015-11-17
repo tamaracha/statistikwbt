@@ -22,7 +22,7 @@ function *render(){
 }
 render.unless = unless;
 function *swagger(){
-  yield send(this,'/api/swagger.yml',{root: __dirname});
+  yield send(this,'/api/swagger.json',{root: __dirname});
 }
 const api=require('./api');
 const app=koa();
@@ -37,7 +37,7 @@ if(assets.serve){
   .use(mount('/docs',koaStatic(__dirname+'/docs')))
   .use(mount('/swagger',koaStatic(__dirname+'/swagger-ui/dist')));
 }
-app.use(mount('/api-docs.yml',swagger))
+app.use(mount('/api-docs.json',swagger))
 .use(api.routes())
 .use(api.allowedMethods())
 .use(jade.middleware)
