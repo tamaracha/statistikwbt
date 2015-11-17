@@ -11,7 +11,7 @@ gulp.task('eslint',function(){
 });
 
 gulp.task('yamlValidate',function(){
-  return gulp.src(['./config/*.{yaml,yml}'])
+  return gulp.src(['api/*.yml','config/*.{yaml,yml}'])
   .pipe($.yamlValidate());
 });
 
