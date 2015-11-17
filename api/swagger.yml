@@ -1,0 +1,107 @@
+swagger: '2.0'
+info:
+  title: WBT-API
+  description: |
+    Verarbeitet AJAX-Requests vom Frontend, liefert Inhalte aus, regelt Benutzeranmeldung, überwacht Benutzeraktivitäten
+  version: '1.0'
+  contact:
+    name: Tamara Cook
+    email: tamara.cook@psychol.uni-giessen.de
+basePath: /api
+consumes:
+  - application/json
+produces:
+  - application/json
+  - text/html
+  - text/plain
+paths:
+  /meta:
+    get:
+      summary: Get list of meta items
+      parameters:
+        - $ref: '#/parameters/conditions'
+        - $ref: '#/parameters/projections'
+        - $ref: '#/parameters/options'
+      responses:
+        200:
+          description: A list of meta items
+          schema:
+            type: array
+            items: {$ref: '#/definitions/Meta'}
+  /meta/{_id}:
+    parameters:
+      - {$ref: '#/parameters/_id'}
+    get:
+      summary: Get a meta item based on its _id
+      responses:
+        200:
+          description: A complete meta item
+          schema: {$ref: '#/definitions/Meta'}
+definitions:
+  ObjectId:
+    type: string
+    pattern: /^[0-9a-fA-F]{24}$/
+  Meta:
+    type: object
+    required:
+      - _id
+      - title
+      - menu
+      - active
+    properties:
+      _id: {$ref: '#/definitions/ObjectId'}
+      title: {type: string}
+      menu: {type: string}
+      active: {type: boolean}
+      body: {type: string}
+parameters:
+  _id:
+    name: _id
+    type: string
+    in: path
+    required: true
+    description: Mongodb _id
+  conditions:
+    name: conditions
+    in: query
+    type: string
+    required: false
+    description: Item filtering for mongoose
+  projections:
+    name: projections
+    in: query
+    type: string
+    required: false
+    description: Field filtering for mongoose
+  options:
+    name: options
+    in: query
+    type: string
+    required: false
+    default: sort=position
+    description: Options for mongoose
+responses:
+  ok:
+    description: Success
+  illegalInput:
+    description: Some parameter was incorrect
+  unauthenticated:
+    description: Action only allowed for authenticated users
+  forbidden:
+    description: Action not allowed for this user
+  notFound:
+    description: Requested item(s) not found
+  generalError:
+    description: Any internal server error
+securityDefinitions:
+  basic:
+    type: basic
+    description: Login with email and password, fetch a JWT token
+  jwt:
+    type: apiKey
+    description: JWT Authentication
+    in: header
+    name: Authorization
+security:
+  - jwt: []
+  - basic: []
