@@ -8,8 +8,8 @@ export default {
   },
   controllerAs: 'impressum',
   resolve: {
-    meta: /*@ngInject*/function(Restangular){
-      return Restangular.one('meta','impressum').get();
+    meta: /*@ngInject*/function(api){
+      return api.getMetaBy_id({_id: 'impressum'});
     }
   }
 };

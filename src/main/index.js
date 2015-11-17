@@ -16,9 +16,6 @@ export default {
   controller,
   controllerAs: 'main',
   resolve: {
-    meta: /*@ngInject*/function(Restangular){
-      return Restangular.all('meta').getList();
-    },
     markdown: /*@ngInject*/function($q,$ocLazyLoad){
       return $q(function(resolve){
         require.ensure([],function(){
@@ -26,6 +23,9 @@ export default {
           return resolve($ocLazyLoad.inject(md));
         });
       });
+    },
+    meta: /*@ngInject*/function(api){
+      return api.getMeta();
     }
   },
   children: [

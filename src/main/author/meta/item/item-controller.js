@@ -1,6 +1,6 @@
 import _ from 'lodash';
 export default /*@ngInject*/class ItemController{
-  constructor(item, $scope, jsonpatch){
+  constructor(item, $scope, jsonpatch, api){
     const modelOptions = {
       updateOn: 'default blur',
       debounce: {
@@ -8,7 +8,7 @@ export default /*@ngInject*/class ItemController{
         blur: 0
       }
     };
-    this.item = item.plain();
+    this.item = item;
     this.patches = [];
     this.error = null;
     this.fields = [
@@ -63,7 +63,10 @@ export default /*@ngInject*/class ItemController{
       if(this.patches.length === 0){
         return;
       }
-      return item.patch(this.patches)
+      return api.patchMetaBy_id({
+        _id: item._id,
+        patches: this.patches
+      })
       .then(
         () => {
           this.patches = [];

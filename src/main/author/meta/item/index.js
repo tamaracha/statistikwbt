@@ -18,8 +18,8 @@ export default {
         });
       });
     },
-    item: /*@ngInject*/function(Restangular,$stateParams){
-      return Restangular.one('meta',$stateParams.meta).get();
+    item: /*@ngInject*/function(api,$stateParams){
+      return api.getMetaBy_id({_id: $stateParams.meta});
     }
   }
 };

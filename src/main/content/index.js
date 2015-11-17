@@ -14,15 +14,15 @@ export default {
     }
   },
   resolve: {
-    units: /*@ngInject*/function(Restangular){
+    units: /*@ngInject*/function(api){
       const query = {
         projections: 'title requires',
         options: {sort: 'position'}
       };
-      return Restangular.all('units').getList(query);
+      return api.getUnits(query);
     },
-    meta: /*@ngInject*/function(Restangular){
-      return Restangular.one('meta','content').get();
+    meta: /*@ngInject*/function(api){
+      return api.getMetaBy_id({_id: 'content'});
     }
   },
   children: [

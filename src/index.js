@@ -10,6 +10,7 @@ apiCheck.globalConfig.disabled = true;
 import formly from 'angular-formly';
 import formlyBootstrap from 'angular-formly-templates-bootstrap';
 import 'angular-permission';
+import './api';
 
 import {config, run} from './config.js';
 import * as user from './user';
@@ -28,10 +29,14 @@ export default angular.module('wbt',[
   ocLazyLoad,
   formly,
   formlyBootstrap,
-  'permission'
+  'permission',
+  'api'
 ])
 .config(config)
 .run(run)
+.factory('api',/*@ngInject*/(API) => {
+  return new API('api');
+})
 .factory('userInterceptor',user.interceptor)
 .service('user',user.model)
 .directive('userCheck',user.validator)

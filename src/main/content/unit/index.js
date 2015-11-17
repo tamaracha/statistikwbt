@@ -14,11 +14,12 @@ export default {
   controllerAs: 'unit',
   abstract: true,
   resolve: {
-    unit: /*@ngInject*/function(Restangular,$stateParams){
+    unit: /*@ngInject*/function(api,$stateParams){
       const query = {
-        projections: 'title subtitle description requires topics._id topics.title'
+        projections: 'title subtitle description requires topics._id topics.title',
+        _id: $stateParams.unit
       };
-      return Restangular.one('units',$stateParams.unit).get(query);
+      return api.getUnitsBy_id(query);
     }
   },
   children: [

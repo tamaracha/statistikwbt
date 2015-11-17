@@ -8,8 +8,8 @@ export default {
   },
   controllerAs: 'contact',
   resolve: {
-    meta: /*@ngInject*/function(Restangular){
-      return Restangular.one('meta','contact').get();
+    meta: /*@ngInject*/function(api){
+      return api.getMetaBy_id({_id: 'contact'});
     }
   }
 };

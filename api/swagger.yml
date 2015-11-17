@@ -28,15 +28,97 @@ paths:
           schema:
             type: array
             items: {$ref: '#/definitions/Meta'}
+    post:
+      parameters:
+        - name: meta
+          in: body
+          required: true
+          schema: {$ref: '#/definitions/Meta'}
+          description: A meta item to create
+      responses:
+        200: {$ref: '#/responses/ok'}
+        400: {$ref: '#/responses/illegalInput'}
+        401: {$ref: '#/responses/unauthenticated'}
+        403: {$ref: '#/responses/forbidden'}
+        500: {$ref: '#/responses/generalError'}
   /meta/{_id}:
     parameters:
-      - {$ref: '#/parameters/_id'}
+      - name: _id
+        type: string
+        in: path
+        required: true
+        description: A meta item _id, which is a string
     get:
       summary: Get a meta item based on its _id
       responses:
         200:
           description: A complete meta item
           schema: {$ref: '#/definitions/Meta'}
+        404: {$ref: '#/responses/notFound'}
+    patch:
+      summary: Update a meta item based on its _id
+      parameters:
+        - {$ref: '#/parameters/patches'}
+      responses:
+        200: {$ref: '#/responses/ok'}
+        400: {$ref: '#/responses/illegalInput'}
+        401: {$ref: '#/responses/unauthenticated'}
+        403: {$ref: '#/responses/forbidden'}
+        404: {$ref: '#/responses/notFound'}
+        500: {$ref: '#/responses/generalError'}
+    delete:
+      summary: Remove a meta item based on its _id
+      responses:
+        200: {$ref: '#/responses/ok'}
+        400: {$ref: '#/responses/illegalInput'}
+        401: {$ref: '#/responses/unauthenticated'}
+        403: {$ref: '#/responses/forbidden'}
+        404: {$ref: '#/responses/notFound'}
+        500: {$ref: '#/responses/generalError'}
+  /units:
+    get:
+      summary: Get list of units
+      parameters:
+        - {$ref: '#/parameters/conditions'}
+        - {$ref: '#/parameters/projections'}
+        - {$ref: '#/parameters/options'}
+      responses:
+        200:
+          description: A list of unit documents
+          schema:
+            type: array
+            items: {$ref: '#/definitions/Unit'}
+    post:
+      description: Create a new unit
+      parameters:
+        - name: unit
+          in: body
+          required: true
+          description: A new unit document to store
+          schema: {$ref: '#/definitions/Unit'}
+      responses:
+        200:
+          description: The newly created unit document
+          schema: {$ref: '#/definitions/Unit'}
+  /units/{_id}:
+    parameters:
+      - {$ref: '#/parameters/_id'}
+    get:
+      summary: Get a unit based on its _id
+      responses:
+        200:
+          description: A unit document
+          schema: {$ref: '#/definitions/Unit'}
+    patch:
+      summary: Update a unit based on its _id
+      parameters:
+        - {$ref: '#/parameters/patches'}
+      responses:
+        200: {$ref: '#/responses/ok'}
+    delete:
+      summary: Remove a unit based on its _id
+      responses:
+        200: {$ref: '#/responses/ok'}
 definitions:
   ObjectId:
     type: string
@@ -46,14 +128,58 @@ definitions:
     required:
       - _id
       - title
+      - position
       - menu
       - active
     properties:
-      _id: {$ref: '#/definitions/ObjectId'}
+      _id: {type: string}
       title: {type: string}
+      position: {type: integer}
       menu: {type: string}
       active: {type: boolean}
       body: {type: string}
+  PatchDocuments:
+    type: array
+    items: {$ref: '#/definitions/PatchDocument'}
+  PatchDocument:
+    type: object
+    description: A JSONPatch document as defined by RFC 6902
+    required:
+      - op
+      - path
+    properties:
+      op:
+        type: string
+        description: The operation to be performed
+        enum:
+          - add
+          - remove
+          - replace
+          - move
+          - copy
+          - test
+      path:
+        type: string
+        description: A JSON-Pointer
+      value:
+        type: object
+        description: The value to be used within the operations.
+      from:
+        type: string
+        description: A string containing a JSON Pointer value.
+  Unit:
+    type: object
+    description: A unit document
+    required:
+      - _id
+      - title
+      - description
+    properties:
+      _id: {$ref: '#/definitions/ObjectId'}
+      title: {type: string}
+      subtitle: {type: string}
+      description: {type: string}
+      position: {type: integer}
 parameters:
   _id:
     name: _id
@@ -80,6 +206,12 @@ parameters:
     required: false
     default: sort=position
     description: Options for mongoose
+  patches:
+    name: patches
+    in: body
+    required: true
+    description: An array of JSON patch documents
+    schema: {$ref: '#/definitions/PatchDocuments'}
 responses:
   ok:
     description: Success
