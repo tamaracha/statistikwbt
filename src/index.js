@@ -16,6 +16,9 @@ import {config, run} from './config.js';
 import * as user from './user';
 import modals from './modals';
 
+/**
+ * @module wbt
+ */
 export default angular.module('wbt',[
   'restangular',
   uiRouter,
