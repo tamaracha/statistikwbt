@@ -8,16 +8,13 @@ jwt:
   options:
     expiresIn: 7d
     subject: authenticate
-download:
-  cwd: ./
-  dest: .tmp
 assets:
   serve: true
   root: /dist
   title: WBT Framework
   base: wbt-framework
   versions:
-    angular: 1.4.7
+    angular: 1.4.8
     bootstrap: 3.3.5
     fontAwesome: 4.4.0
     lodash: 3.10.1
