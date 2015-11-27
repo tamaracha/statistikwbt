@@ -1,3 +1,4 @@
+import _ from 'lodash';
 export default /*@ngInject*/class DownloadController{
   constructor(units){
     this.units = units.plain();
@@ -72,10 +73,9 @@ export default /*@ngInject*/class DownloadController{
     }];
   }
   selectUnits(val){
-    this.data.units = val ? this._.map(this.units,'_id') : [];
+    this.data.units = val ? _.map(this.units,'_id') : [];
   }
   selectContents(val){
     this.data.contents = val ? ['body','examples','extras'] : [];
   }
-  
 }

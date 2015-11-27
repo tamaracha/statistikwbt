@@ -13,7 +13,9 @@ form.form-horizontal(
     .col-xs-10: .toolbar(role="toolbar")
       .btn-group
         button.btn.btn-default#showunits(
-          ng-click="download.show.units=!download.show.units" aria-expanded="{{download.show.units}}"
+          type="button"
+          ng-click="download.show.units=!download.show.units"
+          aria-expanded="{{download.show.units}}"
         )
           | Kapitel
           span.fa(
@@ -25,10 +27,17 @@ form.form-horizontal(
           role="group"
           aria-labelledby="showunits"
         )
-          button.btn.btn-default(ng-click="download.selectUnits(true)") Alle
-          button.btn.btn-default(ng-click="download.selectUnits(false)") keine
+          button.btn.btn-default(
+            type="button"
+            ng-click="download.selectUnits(true)"
+          ) Alle
+          button.btn.btn-default(
+            type="button"
+            ng-click="download.selectUnits(false)"
+          ) keine
       .btn-group
         button.btn.btn-default#showcontent(
+          type="button"
           ng-click="download.show.contents=!download.show.contents"
           aria-expanded="{{download.show.contents}}"
         )
@@ -42,7 +51,13 @@ form.form-horizontal(
           role="group"
           aria-labelledby="showcontent"
         )
-          button.btn.btn-default(ng-click="download.selectContents(true)") Alle
-          button.btn.btn-default(ng-click="download.selectContents(false)") keine
+          button.btn.btn-default(
+            type="button"
+            ng-click="download.selectContents(true)"
+          ) Alle
+          button.btn.btn-default(
+            type="button"
+            ng-click="download.selectContents(false)"
+          ) keine
   formly-form(model="download.data" fields="download.fields" form="download.form")
     +submit('Download')

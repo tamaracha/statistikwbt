@@ -2,26 +2,50 @@
 const models = require('../models');
 const _=require('lodash');
 const fs=require('fs');
+const os = require('os');
 const path=require('path');
-const pandoc=require('../services/pandoc');
+const spawn=require('child_process').spawn;
+const crypto = require('crypto');
 const template=fs.readFileSync(__dirname+'/download.md','utf8');
 const compiled=_.template(template,null,{variable: 'data', imports: {_: _}});
 const send=require('koa-send');
-const download=require('config').get('download');
-let cwd=download.cwd;
-let dest=download.dest;
-if(!path.isAbsolute(download.cwd)){
-  cwd=path.join(process.cwd(),download.cwd);
-}
-if(!path.isAbsolute(download.dest)){
-  dest=path.join(process.cwd(),download.dest);
-}
+const mime = require('mime');
 const binary=['docx','epub'];
+const bluebird = require('bluebird');
+const mongoose = require('mongoose');
+const Grid = require('gridfs');
+Grid.mongo = mongoose.mongo;
+const conn = mongoose.connection;
+let gfs;
+conn.once('open',function(){
+  gfs = new Grid(conn.db);
+  bluebird.promisifyAll(gfs);
+});
 const $=module.exports={};
+function hash(val){
+  return crypto.createHash('sha1')
+  .update(val)
+  .digest('hex');
+}
+
+function getFilename(){
+  return new Promise(function(resolve,reject){
+    return crypto.randomBytes(16,function(e,buf){
+      if(e){return reject(e);}
+      if(buf){
+        let name = 'download_';
+        for (let i = 0; i < buf.length; ++i) {
+          name += ('0' + buf[i].toString(16)).slice(-2);
+        }
+        return resolve(name);
+      }
+    });
+  });
+}
 
 $.getToken=function *getToken(next){
   if(!this.query.token){
-    this.throw('no token found');
+    this.throw('no token found',401);
   }
   else{
     this.request.headers.authorization='bearer '+this.query.token;
@@ -46,28 +70,55 @@ $.getUnits=function *getUnits(next){
 };
 
 $.getMarkdown=function *getMarkdown(next){
-  let md=compiled({units: this.state.units,contents: this.query.contents});
+  const md=compiled({units: this.state.units,contents: this.query.contents});
   this.assert(md,'markdown not compiled');
-  this.response.type=this.query.format;
-  this.attachment('statistikwbt.'+this.query.format);
+  const mimeType = mime.lookup(this.query.format);
+  this.response.type=mimeType;
+  this.attachment('WBT.'+this.query.format);
   if(this.query.format==='markdown'||this.query.format==='md'){
     this.body=md;
   }
   else{
     this.state.md=md;
+    this.state.mimeType = mimeType;
+    this.state.filename = yield getFilename();
     yield next;
   }
 };
 
-$.getFile=function *getFile(){
-  if(_.includes(binary,this.query.format)){
-    let fileName=`${this.state.user._id}.${this.query.format}`;
-    let filePath=path.join(dest,fileName);
-    yield pandoc(this.state.md,'markdown',this.query.format,['-s','-o',filePath],{cwd: cwd});
-    yield send(this,fileName,{root: dest});
+$.getFile=function *getFile(next){
+  const mdHash = hash(this.state.md);
+  const props = {
+    'metadata.mdHash': mdHash,
+    contentType: this.state.mimeType,
+    root: 'download'
+  };
+  const exists = yield gfs.findOneAsync(props);
+  if(exists){
+    const data = yield gfs.readFileAsync({
+      _id: exists._id,
+      root: 'download'
+    });
+    this.body = data;
+    yield next;
   }
   else{
-    let doc=yield pandoc(this.state.md,'markdown',this.query.format,['-s'],{cwd: cwd});
-    this.body=doc;
+    const filename = this.state.filename+'.'+this.query.format;
+    const pathname = path.join(os.tmpDir(),filename);
+    const child = spawn('pandoc',['-f','markdown','-t',this.query.format,'-s','-o',filename],{cwd: os.tmpDir()});
+    child.stdin.end(this.state.md,'utf8');
+    yield child.on.bind(child,'exit');
+    yield send(this,filename,{root: os.tmpDir()});
+    yield next;
+    yield gfs.fromFileAsync({
+      metadata: {
+        mdHash,
+        author: this.state.user._id
+      },
+      filename,
+      content_type: this.state.mimeType,
+      mode: 'w',
+      root: 'download'
+    },pathname);
   }
 };
