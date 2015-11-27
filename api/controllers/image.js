@@ -1,10 +1,9 @@
 'use strict';
 const bluebird = require('bluebird');
 const mongoose = require('mongoose');
-const conn = mongoose.connection;
-const fs = require('fs');
 const Grid = require('gridfs');
 Grid.mongo = mongoose.mongo;
+const conn = mongoose.connection;
 let gfs;
 conn.once('open',function(){
   gfs = new Grid(conn.db);
