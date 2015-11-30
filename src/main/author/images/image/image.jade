@@ -1,16 +1,8 @@
 h3(ng-bind="image.image.filename")
-.form-inline: .checkbox
-  label
-    input(type="checkbox" ng-model="image.caption")
-    |  mit Unterschrift
-div(markdown="image.caption ? image.mdfigcaption : image.mdfig")
+div(markdown="image.mdfig")
 uib-accordion
   uib-accordion-group(heading="Bild einbinden" is-open="true")
-    dl.dl-horizontal
-      dt mit Bildunterschrift
-      dd: pre(ng-bind="image.mdfigcaption")
-      dt normal
-      dd: pre(ng-bind="image.mdfig")
+    pre(ng-bind="image.mdfig")
   uib-accordion-group(heading="Bild editieren")
     form.form-horizontal(novalidate name="image.form")
       .form-group

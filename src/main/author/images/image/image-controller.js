@@ -21,7 +21,6 @@ export default /*@ngInject*/class NewController{
       }
     });
     this.mdfig = `![Alt-Text](api/images/${this.image._id})`;
-    this.mdfigcaption = `~[Beispielunterschrift](api/images/${this.image._id})`;
     this.$uibModal = $uibModal;
     this.removeModal = removeModal($scope);
     this.$state = $state;
