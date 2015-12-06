@@ -10,6 +10,7 @@ apiCheck.globalConfig.disabled = true;
 import formly from 'angular-formly';
 import formlyBootstrap from 'angular-formly-templates-bootstrap';
 import 'angular-permission';
+import wbtText from 'wbt-text';
 import './api';
 
 import {config, run} from './config.js';
@@ -33,6 +34,7 @@ export default angular.module('wbt',[
   formly,
   formlyBootstrap,
   'permission',
+  wbtText,
   'api'
 ])
 .config(config)

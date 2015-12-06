@@ -16,14 +16,6 @@ export default {
   controller,
   controllerAs: 'main',
   resolve: {
-    markdown: /*@ngInject*/function($q,$ocLazyLoad){
-      return $q(function(resolve){
-        require.ensure([],function(){
-          const md = require('../markdown');
-          return resolve($ocLazyLoad.inject(md));
-        });
-      });
-    },
     meta: /*@ngInject*/function(api){
       return api.getMeta();
     }
