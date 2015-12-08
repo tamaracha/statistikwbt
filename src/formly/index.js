@@ -1,3 +1,4 @@
+
 // wrappers
 export const wrappers = [
   {
@@ -72,7 +73,7 @@ export const types = [
   {
     name: 'repeatSection',
     templateUrl: require('./types/repeat-section.jade'),
-    controller: require('./types/repeat-section-controller.js')
+    controller: require('./types/repeat-section-controller').default
   },
   {
     name: 'horizontalTypeahead',

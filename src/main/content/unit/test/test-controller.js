@@ -36,6 +36,7 @@ export default /*@ngInject*/class TestCtrl{
     this.init();
     this.form.$setPristine();
     this.form.$submitted = false;
+    this.input = null;
   }
   get max(){
     return this.originalTests.length;

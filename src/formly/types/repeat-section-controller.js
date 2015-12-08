@@ -1,5 +1,5 @@
 import angular from 'angular';
-export default /*@ngInject*/function($scope) {
+export default /*@ngInject*/function repeatSectionController($scope){
   function copyFields(fields) {
     return angular.copy(fields);
   }

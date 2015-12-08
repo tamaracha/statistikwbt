@@ -20,10 +20,8 @@ const TestSchema = module.exports = new mongoose.Schema({
     index: true
   },
   tags: [{
-    text: {
-      type: String,
-      index: true
-    }
+    type: String,
+    index: true
   }]
 });
 TestSchema.path('choices').validate($.notEmpty);
