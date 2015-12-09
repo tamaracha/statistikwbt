@@ -1,7 +1,9 @@
 export default /*@ngInject*/class RegisterCtrl{
-  constructor(user,$state,$q,Restangular){
+  constructor(user,$state,$q, api){
     function getSubjects(val){
-      return Restangular.all('subjects').getList({search: val});
+      return api.getSubjects({
+        search: val
+      });
     }
     this.user = user;
     this.$state = $state;
