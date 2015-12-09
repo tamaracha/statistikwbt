@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import loginModal from './login';
+import changePasswordModal from './change-password';
 export default /*@ngInject*/class user{
   constructor(Restangular,$localStorage,$window,$q,$uibModal){
     this.Users = Restangular.all('users');
@@ -113,5 +114,8 @@ export default /*@ngInject*/class user{
   }
   login(){
     return this.$uibModal.open(loginModal);
+  }
+  changePassword(){
+    return this.$uibModal.open(changePasswordModal);
   }
 }
