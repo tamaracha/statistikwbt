@@ -15,7 +15,7 @@ assets:
   base: wbt-framework
   versions:
     angular: 1.4.8
-    bootstrap: 3.3.5
+    bootstrap: 3.3.6
     fontAwesome: 4.4.0
     lodash: 3.10.1
     restangular: 1.5.1
