@@ -84,7 +84,7 @@
     "koa-static": "^1.5.2",
     "koa-unless": "0.0.1",
     "lodash": "^3.10.1",
-    "mongoose": "^4.2.10",
+    "mongoose": "^4.3.0",
     "mongoose-json-patch": "^1.1.1",
     "mongoose-validator": "^1.2.4",
     "range-parser": "^1.0.3"
