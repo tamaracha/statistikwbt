@@ -128,10 +128,135 @@ paths:
       summary: Remove a unit based on its _id
       responses:
         200: {$ref: '#/responses/ok'}
+  /users:
+    head:
+      summary: Check if a user exists
+      parameters:
+        - name: email
+          description: The email to check for existence
+          in: query
+          required: true
+          type: string
+      responses:
+        200: {$ref: '#/responses/ok'}
+        404: {$ref: '#/responses/notFound'}
+    post:
+      summary: Register a new user
+      parameters:
+        - name: user
+          in: body
+          required: true
+          description: A new user document to store
+          schema: {$ref: '#/definitions/User'}
+      responses:
+        200: {$ref: '#/responses/ok'}
+  /users/{_id}:
+    parameters:
+      - {$ref: '#/parameters/_id'}
+    get:
+      summary: Get user data by its _id
+      responses:
+        200:
+          description: A user document
+          schema: {$ref: '#/definitions/User'}
+    patch:
+      summary: Update a user's data based on its _id
+      parameters:
+        - {$ref: '#/parameters/patches'}
+      responses:
+        200: {$ref: '#/responses/ok'}
+    delete:
+      summary: Remove a user based on its _id
+      responses:
+        200: {$ref: '#/responses/ok'}
+  /subjects:
+    get:
+      summary: Get a list of subjects
+      parameters:
+        - name: search
+          description: a string to search for
+          in: query
+          type: string
+      responses:
+        200:
+          description: A list of subject documents
+          schema:
+            type: array
+            items: {$ref: '#/definitions/Subject'}
 definitions:
   ObjectId:
     type: string
     pattern: /^[0-9a-fA-F]{24}$/
+  Subject:
+    type: object
+    description: A subject document
+    required:
+      - _id
+      - group
+      - name
+    properties:
+      _id: {$ref: '#/definitions/ObjectId'}
+      group: {type: string}
+      name: {type: string}
+  User:
+    type: object
+    description: A user document
+    required:
+      - _id
+      - email
+      - role
+      - profile
+    properties:
+      _id: {$ref: '#/definitions/ObjectId'}
+      email: {type: string}
+      role:
+        type: string
+        enum:
+          - user
+          - author
+      password: {type: string}
+      profile:
+        type: object
+        required:
+          - age
+          - sex
+          - subject
+        properties:
+          nickname: {type: string}
+          age: {type: integer}
+          sex:
+            type: string
+            enum:
+              - male
+              - female
+          subject: {type: string}
+          reasons:
+            type: array
+            items:
+              type: string
+              enum:
+                - interesse
+                - langeweile
+                - klausur
+                - author
+      akzeptanz:
+        type: object
+        required:
+          - comments
+          - ratings
+        properties:
+          ratings:
+            type: array
+            items: {$ref: '#/definitions/ObjectId'}
+          comments:
+            type: array
+            items: {$ref: '#/definitions/ObjectId'}
+      views:
+        type: array
+        items: {$ref: '#/definitions/ObjectId'}
+      done:
+        type: array
+        items: {$ref: '#/definitions/ObjectId'}
   Meta:
     type: object
     required:
@@ -211,7 +336,7 @@ definitions:
         type: object
         required:
           - comments
-          - akzeptanz
+          - ratings
         properties:
           comments:
             type: array
