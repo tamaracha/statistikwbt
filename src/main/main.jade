@@ -24,7 +24,7 @@ nav.navbar.navbar-inverse.navbar-static-top(role="navigation"): .container-fluid
         |  Anmelden
       +menu-item(".register","registrieren","user-plus")
     ul.nav.navbar-nav.navbar-right(data-ng-if="main.user.authenticated")
-      li
+      li: a(ui-sref="main.user")
         span.fa.fa-user
         |  {{main.user.data.profile.nickname||main.user.data.email}}
       li: button(type="button" data-ng-click="::main.user.inauthenticate()")

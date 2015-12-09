@@ -1,0 +1,9 @@
+h3 Profil
+form.form-horizontal(novalidate name="profile.form")
+  formly-form(model="main.user.data" fields="profile.fields" form="profile.form")
+    .form-group
+      .col-xs-offset-2.col-xs-10
+        input.btn.btn-warning(type="button" ng-click="main.user.changePassword()" value="Passwort ändern")
+  .alert.alert-success(ng-if="profile.patches.length===0" role="alert") alles aktualisiert
+  .alert.alert-info(ng-if="profile.patches.length>0" role="alert") aktualisiere…
+  .alert.alert-danger(ng-if="profile.error" role="alert") Fehler beim Aktualisieren

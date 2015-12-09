@@ -6,6 +6,7 @@ import impressum from './impressum';
 import content from './content';
 import download from './download';
 import register from './register';
+import user from './user';
 import author from './author';
 
 export default {
@@ -27,6 +28,7 @@ export default {
     content,
     download,
     register,
+    user,
     author
   ]
 };
