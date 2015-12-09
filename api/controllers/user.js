@@ -1,5 +1,6 @@
 'use strict';
 const models = require('../models');
+const jsonpatch = require('fast-json-patch');
 const $=module.exports={};
 
 $.check=function *(){
@@ -22,8 +23,14 @@ $.show=function *(){
 $.update=function *(){
   const user = yield models.User.findById(this.params.user).exec();
   this.assert(user,'user not found',404);
-  user=yield user.patch(this.request.body);
-  this.status=200;
+  const patch = jsonpatch.apply(user,this.request.body);
+  if(patch===true){
+    yield user.save();
+    this.status=200;
+  }
+  else{
+    this.throw('patch not successful');
+  }
 };
 
 $.destroy=function *(){
