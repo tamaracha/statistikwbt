@@ -48,3 +48,11 @@ gulp.task('swaggercode',function(){
 
 gulp.task('swagger',gulp.parallel(['swaggerspec','swaggercode']));
 
+gulp.task('templates', function() {
+  gulp.src('./src/index.jade')
+    .pipe($.jade({
+      client: true
+    }))
+    .pipe($.jadeJstConcat('index.js'))
+    .pipe(gulp.dest('./dist/'))
+});

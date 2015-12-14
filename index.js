@@ -5,22 +5,18 @@ const db=config.get('db');
 const assets=config.get('assets');
 const koa=require('koa');
 const unless = require('koa-unless');
-const Jade = require('koa-jade');
 const mount = require('koa-mount');
 const send = require('koa-send');
-const jade = new Jade({
-  viewPath: 'src/',
-  locals: {
-    title: assets.title,
-    base: assets.base,
-    prod: process.env.NODE_ENV,
-    versions: assets.versions
-  }
+const indexPage = require('./dist/index.js').index({
+  title: assets.title,
+  base: assets.base,
+  prod: process.env.NODE_ENV,
+  versions: assets.versions
 });
-function *render(){
-  this.render('index');
+function *index(){
+  this.body = indexPage;
 }
-render.unless = unless;
+index.unless = unless;
 function *swagger(){
   yield send(this,'/api/swagger.json',{root: __dirname});
 }
@@ -40,8 +36,7 @@ if(assets.serve){
 app.use(mount('/api-docs.json',swagger))
 .use(api.routes())
 .use(api.allowedMethods())
-.use(jade.middleware)
-.use(render.unless({path: [/api/,new RegExp(assets.root), /docs/, /swagger/]}))
+.use(index.unless({path: [/api/,new RegExp(assets.root), /docs/, /swagger/]}))
 .listen(server.port,server.host,function(){
   console.log(`listening on ${server.host}:${server.port}`);
 });
