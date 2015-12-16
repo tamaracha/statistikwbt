@@ -169,6 +169,38 @@ paths:
       summary: Remove a user based on its _id
       responses:
         200: {$ref: '#/responses/ok'}
+  /users/{_id}/emails/{type}:
+    parameters:
+      - {$ref: '#/parameters/_id'}
+      - name: type
+        description: Email type
+        required: true
+        type: string
+        in: path
+    get:
+      summary: Send email to user by ID and type
+      responses:
+        200: {$ref: '#/responses/ok'}
+  /users/{_id}/password:
+    parameters:
+      - {$ref: '#/parameters/_id'}
+    put:
+      summary: Change the user's password
+      parameters:
+        - name: data
+          description: old and new password
+          in: body
+          schema:
+            type: object
+            required:
+              - old
+              - new
+            properties:
+              old: {type: string}
+              new: {type: string}
+            description: An object with current and new password
+      responses:
+        200: {$ref: '#/responses/ok'}
   /subjects:
     get:
       summary: Get a list of subjects
