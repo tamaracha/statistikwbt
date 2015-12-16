@@ -1,7 +1,7 @@
 'use strict';
 const mongoose=require('mongoose');
 const ObjectId=mongoose.Schema.Types.ObjectId;
-const _=require('lodash');
+const findIndex = require('lodash.findindex');
 const TopicSchema = require('./topic');
 const UnitSchema = module.exports = new mongoose.Schema({
   position: Number,
@@ -40,7 +40,7 @@ UnitSchema.methods.move=function(arr,_id,dir){
   unit=this;
   return new Promise(function(resolve,reject){
     if(!unit[arr]){return reject('array not found');}
-    a=_.findIndex(unit[arr],{_id: mongoose.Types.ObjectId(_id)});
+    a = findIndex(unit[arr],{_id: mongoose.Types.ObjectId(_id)});
     if(a===-1){return reject('item not found');}
     switch(dir){
     case 'up':

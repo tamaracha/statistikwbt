@@ -1,7 +1,7 @@
 'use strict';
 const models = require('../models');
 const ObjectId=require('mongoose').Types.ObjectId;
-const _=require('lodash');
+const transform = require('lodash.transform');
 const $=module.exports={};
 
 $.guesses=function *(){
@@ -24,12 +24,17 @@ $.guesses=function *(){
       }
     }
   ]).exec();
+  const data = transform(guesses,function(result,value){
+    result[value._id] = value.response;
+  },{});
+  /*
   let data=_.chain(guesses)
   .indexBy('_id')
   .transform(function(result,value,key){
     result[key]=value.response;
   })
   .value();
+  */
   this.body=data;
 };
 
@@ -52,12 +57,17 @@ $.akzeptanz = function *(){
       }
     }
   ]).exec();
+  ratings = transform(ratings,function(result,value){
+    result[value._id] = value.value;
+  },{});
+  /*
   ratings = _.chain(ratings)
   .indexBy('_id')
   .transform(function(result,value,key){
     result[key]=value.value;
   })
   .value();
+  */
   const comment = yield models.Comment.findOne({
     user: this.state.user._id,
     unit: this.params.unit

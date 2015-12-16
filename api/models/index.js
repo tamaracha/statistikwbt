@@ -1,5 +1,6 @@
 'use strict';
-const _ = require('lodash');
+const capitalize = require('lodash.capitalize');
+const transform = require('lodash.transform');
 const mongoose = require('mongoose');
 const files = [
   'comment',
@@ -12,8 +13,8 @@ const files = [
   'user',
   'view'
 ];
-const models = module.exports = _.transform(files,function(models,value){
-  const name = _.capitalize(value);
+const models = module.exports = transform(files,function(models,value){
+  const name = capitalize(value);
   const schema = require('./'+value);
   const model = mongoose.model(name,schema);
   models[name] = model;

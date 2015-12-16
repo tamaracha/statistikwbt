@@ -1,6 +1,5 @@
 'use strict';
 const models = require('../models');
-const _=require('lodash');
 const jsonpatch=require('fast-json-patch');
 const $=module.exports={};
 
@@ -52,8 +51,8 @@ $.destroy=function *(){
 };
 
 $.edit=function *(){
-  this.assert(_.isString(this.request.body.action),'action is no string');
-  this.assert(_.isString(this.request.body.dir),'dir is no string');
+  this.assert(typeof this.request.body.action === 'string', 'action is no string', 400);
+  this.assert(typeof this.request.body.dir === 'string', 'dir is no string', 400);
   const unit = yield models.Unit.findById(this.params.unit,'topics').exec();
   this.assert(unit,'unit not found',404);
   switch(this.request.body.action){
