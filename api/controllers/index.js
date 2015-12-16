@@ -15,7 +15,8 @@ const files = [
   'token',
   'topic',
   'unit',
-  'user'
+  'user',
+  'video'
 ];
 module.exports = transform(files,function(ctrl,f){
   ctrl[f] = require('./'+f);
