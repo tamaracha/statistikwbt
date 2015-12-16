@@ -20,3 +20,17 @@ assets:
     lodash: 3.10.1
     restangular: 1.5.1
 logging: true
+mail:
+  transport: nodemailer-stub-transport
+  jwt:
+    subject: mail
+    expiresIn: 1h
+  defaults:
+    from: wbt-framework@iim.de
+  templates:
+    verify: |
+      Hallo ${data.user.profile.nickname},
+      
+      bitte bestätige deine E-Mail-Adresse, indem du auf den folgenden Link klickst:
+      
+      ${data.token}
