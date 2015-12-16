@@ -1,5 +1,6 @@
 h3 Profil
-form.form-horizontal(novalidate name="profile.form")
+p(ng-if="!main.user.authenticated") Nicht angemeldet
+form.form-horizontal(novalidate name="profile.form" ng-if="main.user.authenticated")
   formly-form(model="main.user.data" fields="profile.fields" form="profile.form")
     .form-group
       .col-xs-offset-2.col-xs-10
