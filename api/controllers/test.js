@@ -1,6 +1,8 @@
 'use strict';
 const models = require('../models');
-const _ = require('lodash');
+const find = require('lodash.find');
+const map = require('lodash.map');
+const transform = require('lodash.transform');
 const jsonpatch = require('fast-json-patch');
 const $ = module.exports={};
 
@@ -11,14 +13,14 @@ $.index=function *(){
       this.query.projections||null,
       this.query.options||null
     );
-    const ids = _.map(tests,'_id');
+    const ids = map(tests,'_id');
     const guesses = yield models.Guess.find({
       user: this.state.user._id
     })
     .in('test',ids)
     .lean().exec();
-    this.body = _.transform(tests,function(result,t,i){
-      const g = _.find(guesses,{test: t._id});
+    this.body = transform(tests,function(result,t,i){
+      const g = find(guesses,{test: t._id});
       const test = {
         item: t
       };

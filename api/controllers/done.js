@@ -1,6 +1,6 @@
 'use strict';
 const models = require('../models');
-const _ = require('lodash');
+const find = require('lodash.find');
 const ObjectId = require('mongoose').Types.ObjectId;
 const $ = module.exports = {};
 $.index = function *index(){
@@ -12,7 +12,7 @@ $.index = function *index(){
 $.create = function *create(){
   const user = yield models.User.findById(this.params.user).exec();
   this.assert(user,'user not found',404);
-  const isDone = _.find(user.done,{unit: new ObjectId(this.request.body.unit)});
+  const isDone = find(user.done,{unit: new ObjectId(this.request.body.unit)});
   if(isDone){
     this.body = isDone;
   }

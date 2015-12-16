@@ -1,5 +1,5 @@
 'use strict';
-const _=require('lodash');
+const transform=require('lodash.transform');
 const files = [
   'comment',
   'done',
@@ -16,6 +16,6 @@ const files = [
   'unit',
   'user'
 ];
-module.exports = _.transform(files,function(ctrl,f){
+module.exports = transform(files,function(ctrl,f){
   ctrl[f] = require('./'+f);
 },{});

@@ -1,16 +1,16 @@
 'use strict';
 const models = require('../models');
-const _=require('lodash');
+const template = require('lodash.template');
 const fs=require('fs');
 const os = require('os');
 const path=require('path');
 const spawn=require('child_process').spawn;
 const crypto = require('crypto');
-const template=fs.readFileSync(__dirname+'/download.md','utf8');
-const compiled=_.template(template,null,{variable: 'data', imports: {_: _}});
-const send=require('koa-send');
+const md = fs.readFileSync(__dirname+'/download.md','utf8');
+const compiled = template(md, {variable: 'data'});
+const send = require('koa-send');
 const mime = require('mime-types');
-const binary=['docx','epub'];
+const binary = ['docx','epub'];
 const bluebird = require('bluebird');
 const mongoose = require('mongoose');
 const Grid = require('gridfs');
@@ -54,10 +54,10 @@ $.getToken=function *getToken(next){
 };
 
 $.getUnits=function *getUnits(next){
-  if(_.isString(this.query.units)){
+  if(typeof this.query.units === 'string'){
     this.query.units=[this.query.units];
   }
-  if(_.isString(this.query.contents)){
+  if(typeof this.query.contents === 'string'){
     this.query.contents=[this.query.contents];
   }
   const query = models.Unit.find()
@@ -95,7 +95,7 @@ $.getFile=function *getFile(next){
   };
   const exists = yield gfs.findOneAsync(props);
   if(exists){
-    const data = yield gfs.readFileAsync({
+    const data = gfs.createReadStream({
       _id: exists._id,
       root: 'download'
     });

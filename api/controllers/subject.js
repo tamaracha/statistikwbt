@@ -1,9 +1,8 @@
 'use strict';
 const models = require('../models');
-const _ = require('lodash');
 const $ = module.exports = {};
 $.index = function *index(){
-  this.assert(this.query.search && _.isString(this.query.search),'no search string');
+  this.assert(this.query.search && typeof this.query.search === 'string','no search string',400);
   const subjects = yield models.Subject.find({
     name: new RegExp(this.query.search,'i')
   }).lean().exec();

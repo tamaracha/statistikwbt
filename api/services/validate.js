@@ -1,6 +1,6 @@
 'use strict';
 const $=require('mongoose-validator');
-const _=require('lodash');
+const some = require('lodash.some');
 
 module.exports={
   passwordValidator: $({
@@ -19,7 +19,7 @@ module.exports={
     message: 'must contain at least one option'
   },{
     validator: function(options){
-      return _.any(options,'correct');
+      return some(options,'correct');
     },
     message: 'at least one option must be correct'
   })
