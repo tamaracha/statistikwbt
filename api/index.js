@@ -107,6 +107,15 @@ images.put('/:image',jwt,roles.can('edit content'),multi,ctrl.image.update);
 images.delete('/:image',jwt,roles.can('edit content'),ctrl.image.destroy);
 api.use('/images',images.routes());
 
+// videos
+const videos = new Router();
+videos.get('/',jwt,roles.can('access content'),ctrl.video.index);
+videos.post('/',jwt,roles.can('edit content'),multi,ctrl.video.create);
+videos.get('/:image',ctrl.video.show);
+videos.put('/:image',jwt,roles.can('edit content'),multi,ctrl.video.update);
+videos.delete('/:image',jwt,roles.can('edit content'),ctrl.video.destroy);
+api.use('/videos',videos.routes());
+
 api.get('/downloads',
   ctrl.download.getToken,
   jwt,
