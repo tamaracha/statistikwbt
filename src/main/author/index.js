@@ -3,6 +3,7 @@ import template from './author.jade';
 import meta from './meta';
 import units from './units';
 import images from './images';
+import videos from './videos';
 
 export default {
   name: 'author',
@@ -29,6 +30,7 @@ export default {
   children: [
     meta,
     units,
-    images
+    images,
+    videos
   ]
 };
