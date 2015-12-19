@@ -1,7 +1,5 @@
-h3 Beschreibung
 div(markdown="unit.unit.description" math-jax)
-h4 Voraussetzungen
-p(ng-if="unit.unit.requires.length===0") Es gibt keine Voraussetzungen.
-ul.list-unstyled(ng-if="unit.unit.requires.length>0")
+h4(ng-hide="unit.unit.requires.length===0") Voraussetzungen
+ul.list-unstyled(ng-hide="unit.unit.requires.length===0")
   li(ng-repeat="r in unit.requires track by r._id")
     a(ng-bind="r.title" ui-sref=".({unit: r._id})")

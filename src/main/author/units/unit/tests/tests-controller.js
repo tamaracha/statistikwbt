@@ -47,7 +47,7 @@ export default /*@ngInject*/class TestsCtrl{
             templateOptions: {
               type: 'text',
               label: 'Antwort',
-              placeholder: 'Lösung',
+              placeholder: 'Antwort',
               required: true
             }
           },
@@ -65,7 +65,7 @@ export default /*@ngInject*/class TestsCtrl{
               label: 'Feedback',
               type: 'text',
               required: true,
-              placeholder: '*lob*'
+              placeholder: 'Information über Korrektheit dieser Antwort, welche Antwort sonst korrekt wäre und warum diese Antwort (nicht) korrekt ist'
             }
           }
         ]
