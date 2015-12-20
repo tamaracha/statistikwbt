@@ -61,6 +61,7 @@
     "script-loader": "^0.6.1",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.0",
+    "swagger-tools": "^0.9.9",
     "template-html-loader": "0.0.3",
     "wbt-text": "github:tamaracha/wbt-text",
     "webpack": "^1.12.9",

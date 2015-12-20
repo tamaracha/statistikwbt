@@ -215,10 +215,86 @@ paths:
           schema:
             type: array
             items: {$ref: '#/definitions/Subject'}
+  /videos:
+    get:
+      summary: Get list of video files
+      parameters:
+        - name: search
+          description: a string to search for in filenames
+          in: query
+          type: string
+        - name: me
+          description: Search only in files created by current user
+          in: query
+          type: boolean
+      responses:
+        200:
+          description: A list of video file items
+          schema:
+            type: array
+            items: {$ref: '#/definitions/File'}
+    post:
+      summary: Upload a new video file
+      parameters:
+        - name: video
+          in: formData
+          type: file
+          required: true
+      consumes:
+        - multipart/form-data
+      responses:
+        200: {$ref: '#/responses/ok'}
+  /videos/{_id}:
+    parameters:
+      - {$ref: '#/parameters/_id'}
+    get:
+      summary: Get video file by _id
+      parameters:
+        - name: metadata
+          description: Return gridfs file object
+          in: query
+          type: boolean
+        - name: range
+          description: A range header
+          in: header
+          type: string
+          required: true
+      responses:
+        200:
+          description: A gridfs file object
+          schema: {$ref: '#/definitions/File'}
+        206:
+          description: A partial video file requested by range header
+          schema: {type: string}
+      produces:
+        - video/*
 definitions:
   ObjectId:
     type: string
     pattern: /^[0-9a-fA-F]{24}$/
+  File:
+    type: object
+    description: A mongodb gridfs file object
+    required:
+      - _id
+      - length
+      - chunkSize
+      - uploadDate
+      - md5
+    properties:
+      _id: {$ref: '#/definitions/ObjectId'}
+      length: {type: number}
+      chunkSize: {type: number}
+      uploadDate:
+        type: string
+        format: date
+      md5: {type: string}
+      filename: {type: string}
+      contentType: {type: string}
+      aliases:
+        type: array
+        items: {type: string}
+      metadata: {type: object}
   Subject:
     type: object
     description: A subject document
