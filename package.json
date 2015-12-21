@@ -48,7 +48,7 @@
     "gulp-swagger": "0.0.7",
     "gulp-sym": "0.0.14",
     "gulp-yaml-validate": "^1.0.2",
-    "ink-docstrap": "^1.0.5",
+    "ink-docstrap": "^1.1.0",
     "jade": "^1.11.0",
     "jsdoc": "^3.4.0",
     "json-loader": "^0.5.4",
