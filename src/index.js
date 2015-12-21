@@ -11,7 +11,7 @@ import formly from 'angular-formly';
 import formlyBootstrap from 'angular-formly-templates-bootstrap';
 import 'angular-permission';
 import wbtText from 'wbt-text';
-import './api';
+import 'swagger?className=API!../api/swagger.yml';
 
 import {config, run} from './config.js';
 import * as user from './user';

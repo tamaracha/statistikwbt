@@ -7,6 +7,8 @@ const koa=require('koa');
 const unless = require('koa-unless');
 const mount = require('koa-mount');
 const send = require('koa-send');
+const bluebird = require('bluebird');
+const mongoose=require('mongoose');
 const indexPage = require('./dist/index.js').index({
   title: assets.title,
   base: assets.base,
@@ -18,7 +20,7 @@ function *index(){
 }
 index.unless = unless;
 function *swagger(){
-  yield send(this,'/api/swagger.json',{root: __dirname});
+  yield send(this, '/api/swagger.yml',{root: __dirname});
 }
 const api=require('./api');
 const app=koa();
@@ -33,12 +35,11 @@ if(assets.serve){
   .use(mount('/docs',koaStatic(__dirname+'/docs')))
   .use(mount('/swagger',koaStatic(__dirname+'/swagger-ui/dist')));
 }
-app.use(mount('/api-docs.json',swagger))
+app.use(mount('/api-docs.yml',swagger))
 .use(api.routes())
 .use(api.allowedMethods())
 .use(index.unless({path: [/api/,new RegExp(assets.root), /docs/, /swagger/]}))
 .listen(server.port,server.host,function(){
   console.log(`listening on ${server.host}:${server.port}`);
 });
-const mongoose=require('mongoose');
 mongoose.connect(`mongodb://${db.host}:27017/${db.database}`);
