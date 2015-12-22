@@ -28,26 +28,6 @@ gulp.task('hooks',function(){
   ));
 });
 
-gulp.task('swaggerspec',function(){
-  return gulp.src('api/swagger.yml')
-  .pipe($.swagger('swagger.json'))
-  .pipe(gulp.dest('api'));
-});
-
-gulp.task('swaggercode',function(){
-  return gulp.src('api/swagger.yml')
-  .pipe($.swagger({
-    filename: 'api.js',
-    codegen: {
-      type: 'angular',
-      moduleName: 'api'
-    }
-  }))
-  .pipe(gulp.dest('src'));
-});
-
-gulp.task('swagger',gulp.parallel(['swaggerspec','swaggercode']));
-
 gulp.task('templates', function() {
   gulp.src('./src/index.jade')
     .pipe($.jade({
