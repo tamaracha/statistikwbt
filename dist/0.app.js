@@ -1,4 +1,4 @@
-webpackJsonp([0],{6:function(e,t,r){/*!
+webpackJsonp([0],{5:function(e,t,r){/*!
 	* https://github.com/Starcounter-Jack/JSON-Patch
 	* json-patch-duplex.js version: 0.5.4
 	* (c) 2013 Joachim Wester
