@@ -11,7 +11,8 @@ import formly from 'angular-formly';
 import formlyBootstrap from 'angular-formly-templates-bootstrap';
 import 'angular-permission';
 import wbtText from 'wbt-text';
-import 'swagger?className=API!../api/swagger.yml';
+import 'swagger?type=angular&className=API&esnext=true!../api/swagger.yml';
+import youtube from './youtube';
 
 import {config, run} from './config.js';
 import * as user from './user';
@@ -35,12 +36,15 @@ export default angular.module('wbt',[
   formlyBootstrap,
   'permission',
   wbtText,
-  'api'
+  'api',
+  youtube
 ])
 .config(config)
 .run(run)
-.factory('api',/*@ngInject*/(API) => {
-  return new API('api');
+.factory('api',/*@ngInject*/(API, $localStorage) => {
+  const api = new API('api');
+  api.setToken($localStorage.token);
+  return api;
 })
 .factory('userInterceptor',user.interceptor)
 .service('user',user.model)

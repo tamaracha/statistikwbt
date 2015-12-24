@@ -11,7 +11,8 @@ const files = [
   'test',
   'unit',
   'user',
-  'view'
+  'view',
+  'watch'
 ];
 const models = module.exports = transform(files,function(models,value){
   const name = capitalize(value);

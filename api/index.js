@@ -81,7 +81,7 @@ summaries.get('/akzeptanz',ctrl.summary.akzeptanz);
 units.use('/:unit/summaries',roles.can('access content'),summaries.routes());
 api.use('/units',jwt,units.routes());
 
-let subjects=new Router();
+const subjects=new Router();
 subjects.get('/',ctrl.subject.index);
 subjects.post('/',jwt,roles.can('edit content'),body,ctrl.subject.create);
 subjects.get('/:subject',ctrl.subject.show);
@@ -97,6 +97,7 @@ api.use('/guesses',jwt,roles.can('access content'),guesses.routes());
 
 api.post('/ratings',jwt,roles.can('access content'),body,ctrl.rating.create);
 api.post('/comments',jwt,roles.can('access content'),body,ctrl.comment.create);
+api.post('/watches',jwt,body,ctrl.watch.create);
 
 // images
 const images = new Router();
@@ -108,6 +109,7 @@ images.delete('/:image',jwt,roles.can('edit content'),ctrl.image.destroy);
 api.use('/images',images.routes());
 
 // videos
+/*
 const videos = new Router();
 videos.get('/',jwt,roles.can('access content'),ctrl.video.index);
 videos.post('/',jwt,roles.can('edit content'),multi,ctrl.video.create);
@@ -115,6 +117,7 @@ videos.get('/:video',ctrl.video.show);
 videos.put('/:video',jwt,roles.can('edit content'),multi,ctrl.video.update);
 videos.delete('/:video',jwt,roles.can('edit content'),ctrl.video.destroy);
 api.use('/videos',videos.routes());
+*/
 
 api.get('/downloads',
   ctrl.download.getToken,

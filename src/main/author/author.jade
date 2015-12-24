@@ -5,7 +5,6 @@
     li(ui-sref-active="active"): a(ui-sref=".meta") Meta
     li(ui-sref-active="active"): a(ui-sref=".units.new") Kapitel
     li(ui-sref-active="active"): a(ui-sref=".images") Bilder
-    li(ui-sref-active="active"): a(ui-sref=".videos") Videos
   div(ui-view)
     p.text-danger(ng-if="!main.user.authenticated") Willkommen beim Autorenmodus. Der Autorenmodus kann nur genutzt werden, wenn man angemeldet und Autor ist. Du bist gerade nicht angemeldet.
     ng-switch(on="main.user.data.role")
