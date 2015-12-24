@@ -2,7 +2,8 @@ import _ from 'lodash';
 import loginModal from './login';
 import changePasswordModal from './change-password';
 export default /*@ngInject*/class user{
-  constructor(Restangular,$localStorage,$window,$q,$uibModal){
+  constructor(Restangular,$localStorage,$window,$q,$uibModal, api){
+    this.api = api;
     this.Users = Restangular.all('users');
     this.Token = Restangular.one('tokens','new');
     this.$storage = $localStorage;
@@ -24,6 +25,7 @@ export default /*@ngInject*/class user{
     this.$storage.token = data.token;
     this.$storage._id = data._id;
     this.$storage.role = data.role;
+    this.api.setToken(data.token);
   }
   get _id(){
     return this.$storage._id;
@@ -73,6 +75,7 @@ export default /*@ngInject*/class user{
   inauthenticate(){
     this.$storage.$reset();
     this.data = null;
+    this.api.token.value = null;
   }
   create(form){
     return this.Users.post(form)

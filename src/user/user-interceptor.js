@@ -1,10 +1,10 @@
 export default /*@ngInject*/function userInterceptor($localStorage){
   function request(config){
-    if(config.headers.authorization){
+    if(config.headers.Authorization){
       return config;
     }
     if($localStorage.token){
-      config.headers.authorization = 'bearer ' + $localStorage.token;
+      config.headers.Authorization = 'bearer ' + $localStorage.token;
     }
     return config;
   }
