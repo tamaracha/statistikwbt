@@ -9,13 +9,6 @@ export default /*@ngInject*/class BasicsController{
       }
     };
     this.fields = [{
-      key: '_id',
-      type: 'horizontalStatic',
-      templateOptions: {
-        label: 'ID'
-      }
-    },
-    {
       key: 'title',
       type: 'horizontalInput',
       modelOptions,
@@ -47,6 +40,20 @@ export default /*@ngInject*/class BasicsController{
       }
     },
     {
+      key: 'test.active',
+      type: 'horizontalCheckbox',
+      templateOptions: {
+        label: 'Test für dieses Kapitel aktivieren'
+      }
+    },
+    {
+      key: 'test.shuffle',
+      type: 'horizontalCheckbox',
+      templateOptions: {
+        label: 'Testaufgaben in zufälliger Reihenfolge darbieten'
+      }
+    },
+    {
       key: 'description',
       type: 'horizontalMarkdownArea',
       modelOptions,
@@ -57,7 +64,7 @@ export default /*@ngInject*/class BasicsController{
       }
     }];
     $scope.$watchCollection('units.units',(val) => {
-      this.fields[3].templateOptions.options = _.reject(val,{_id: unit._id});
+      this.fields[2].templateOptions.options = _.reject(val,{_id: unit._id});
     },true);
   }
 }

@@ -21,7 +21,9 @@ export default {
       });
     },
     unit: /*@ngInject*/function(Restangular,$stateParams){
-      const query = {projections: 'title subtitle description requires'};
+      const query = {
+        projections: 'title subtitle description requires test'
+      };
       return Restangular.one('units',$stateParams.unit).get(query);
     }
   },

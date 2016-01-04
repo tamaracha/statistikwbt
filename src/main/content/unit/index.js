@@ -16,7 +16,7 @@ export default {
   resolve: {
     unit: /*@ngInject*/function(api,$stateParams){
       const query = {
-        projections: 'title subtitle description requires topics._id topics.title',
+        projections: 'title subtitle description requires topics._id topics.title test',
         _id: $stateParams.unit
       };
       return api.getUnitsBy_id(query);

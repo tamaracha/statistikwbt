@@ -10,5 +10,5 @@ header.row
         ui-sref=".topic({topic: topic._id})"
         ng-bind="topic.title"
       )
-    li(data-ui-sref-active="active"): a(data-ui-sref="main.content.unit.test") Test
+    li(ng-if="unit.unit.test.active" data-ui-sref-active="active"): a(data-ui-sref="main.content.unit.test") Test
   main.col-sm-8.subkapitel(data-ui-view)
