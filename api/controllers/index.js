@@ -9,6 +9,7 @@ const files = [
   'meta',
   'password',
   'rating',
+  'response',
   'subject',
   'summary',
   'test',
