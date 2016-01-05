@@ -4,5 +4,9 @@ module.exports = new mongoose.Schema({
   value: {
     type: mongoose.Schema.Types.Mixed,
     required: true
+  },
+  run: {
+    type: Number,
+    required: true
   }
 });
