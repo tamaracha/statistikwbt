@@ -70,20 +70,6 @@ export default /*@ngInject*/class TestsCtrl{
           }
         ]
       }
-    },
-    {
-      key: 'tags',
-      type: 'horizontalInput',
-      templateOptions: {
-        label: 'Tags',
-        type: 'text',
-        list: true
-      },
-      ngModelAttrs: {
-        list: {
-          attribute: 'ng-list'
-        }
-      }
     }];
     this.fields = [{
       key: '_id',
