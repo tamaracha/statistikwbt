@@ -1,53 +1,79 @@
 h3 Testaufgaben
-div(uib-collapse="test.intro" ng-init="test.intro=true")
-  p Es folgen ein paar Testaufgaben, mit deren Hilfe du dein erworbenes Wissen über dieses Kapitel prüfen und festigen kannst. Es gibt mehrere Aufgabentypen:
-  dl.dl-horizontal
-    dt Einfachauswahl
-    dd Eine der angebotenen Antwortmöglichkeiten ist korrekt. Für die korrekte Beantwortung bekommst du einen Punkt.
-    dt Mehrfachauswahl
-    dd Jede der angebotenen Aussagen ist entweder korrekt oder falsch und muss explizit mittels Kontrollkästchen beantwortet werden. Jede korrekt ab- bzw. angewählte Aussage bringt dir einen Punkt, man kann also maximal so viele Punkte bekommen wie es Aussagen in einer Aufgabe gibt. Punktabzug bei Fehlern gibt es nicht.
-    dt Ausfüllen
-    dd Es gibt keine Antwortoptionen, sondern du musst eine kurze Lösung selbst generieren, z.B. eine Rechenaufgabe usw.
-  p Auf deine Antwort bekommst du ein Feedback. Bei Auswahl-Aufgaben kannst du auch dann noch die anderen Antworten anwählen um deren Feedback zu sehen, dies wird dann aber nicht mehr als deine Antwort gewertet.
-.toolbar(role="toolbar")
-  button.btn.btn-info(ng-class="{'active': !test.intro}" ng-click="test.intro=!test.intro" aria-pressed="{{!test.intro}}") Info
-  button.btn.btn-default(ng-click="test.reset()") Test neu starten
-.progress
-  .progress-bar.progress-bar-info(
-    aria-valuenow="{{test.done}}"
-    aria-valuemin="0"
-    aria-valuemax="{{test.max}}"
-    role="progressbar"
-    ng-style="{'width': test.done/test.max*100+'%'}"
-  ) bearbeitet: {{test.done}}/{{test.max}}
-  .progress-bar.progress-bar-success(
-    aria-valuenow="{{test.sumPoints}}"
-    aria-valuemin="0"
-    aria-valuemax="{{test.maxPoints}}"
-    role="progressbar"
-    ng-style="{'width': test.sumPoints/test.maxPoints*100+'%'}"
-  ) Punkte: {{test.sumPoints}}/{{test.maxPoints}}
-p(ng-hide="test.current") Es gibt noch keine Testaufgaben für dieses Kapitel.
-form(novalidate name="test.form" ng-show="test.current" ng-submit="test.submit()" ng-switch="test.current.type")
-  .form-group(ng-switch-when="input" ng-class="{'has-success': test.form.$submitted&&test.form.item.$valid, 'has-error': test.form.$submitted&&test.form.item.$invalid}")
-    label.control-label(for="item" ng-bind="test.current.text")
-    input#item.form-control(type="text" name="item" ng-model="test.input")
-    p.help-block(ng-bind="test.output")
-  .form-group(ng-switch-when="single" ng-class="{'has-success': test.form.$submitted&&test.form.item.$valid, 'has-error': test.form.$submitted&&test.form.item.$invalid}")
-    label(ng-bind="test.current.text")
-    .radio(ng-repeat="c in test.current.choices track by c._id")
-      label
-        input(type="radio" name="item" ng-value="c" ng-model="test.input")
-        |  {{c.text}}
-    p.help-block(ng-bind="test.input.feedback" ng-show="test.form.$submitted")
-  .form-group(ng-switch-when="multiple")
-    label(ng-bind="test.current.text")
-    div(ng-repeat="c in test.current.choices track by c._id" ng-class="{'has-success': test.form.$submitted&&!!c.checked===c.correct, 'has-error': test.form.$submitted&&!!c.checked!==c.correct}")
-      .checkbox
-        label
-          input(type="checkbox" name="item" ng-model="c.checked")
-          |  {{c.text}}
-      p.help-block(ng-bind="c.feedback" ng-show="test.form.$submitted")
-  .form-group
-    input(type="submit" value="Antwort abschicken" ng-hide="test.form.$submitted")
-    input(type="button" value="Nächste Aufgabe" ng-click="test.next()" ng-show="test.form.$submitted&&test.done<test.max")
+uib-progressbar(
+  type="info"
+  value="test.count"
+  max="test.tests.length"
+  title="Fortschritt"
+) {{test.count}}/{{test.tests.length}}
+uib-progressbar(
+  type="success"
+  value="test.score.runs[test.run-1]"
+  max="test.score.max"
+  title="Punkte"
+) {{test.score.runs[test.run-1]}}/{{test.score.max}}
+uib-tabset(justified="true")
+  uib-tab(heading="Aufgaben"  active="true")
+    h4 Aufgabe {{test.form.$submitted ? test.count : test.count+1}}, Durchgang {{test.run}}
+    form(novalidate name="test.form" ng-switch="test.tests[test.item].item.type" ng-submit="test.submit()")
+      .form-group(ng-switch-when="input" ng-class="{'has-success': test.form.$submitted&&test.output.correct, 'has-error': test.form.$submitted&&!test.output.correct}")
+        label.control-label(for="item" ng-bind="test.tests[test.item].item.text")
+        input#item.form-control(type="text" name="item" ng-model="test.response")
+        p.help-block(ng-bind="test.output.feedback")
+      .form-group(ng-switch-when="single" ng-class="{'has-success': test.form.$submitted&&test.response.correct, 'has-error': test.form.$submitted&&!test.response.correct}")
+        label(ng-bind="test.tests[test.item].item.text")
+        .radio(ng-repeat="c in test.tests[test.item].item.choices track by c._id")
+          label
+            input(type="radio" name="item" ng-value="c" ng-model="test.response")
+            |  {{c.text}}
+        p.help-block(ng-bind="test.response.feedback" ng-show="test.form.$submitted")
+      .form-group(ng-switch-when="multiple")
+        label(ng-bind="test.tests[test.item].item.text")
+        div(ng-repeat="c in test.tests[test.item].item.choices track by c._id" ng-class="{'has-success': test.form.$submitted&&!!test.response[c._id]===c.correct, 'has-error': test.form.$submitted&&!!test.response[c._id]!==c.correct}")
+          .checkbox
+            label
+              input(type="checkbox" name="{{'item'+$index}}" ng-model="test.response[c._id]")
+              |  {{c.text}}
+          p.help-block(ng-bind="c.feedback" ng-show="test.form.$submitted")
+      .form-group
+        button.btn(
+          type="submit"
+          ng-if="!test.form.$submitted"
+          ng-class="{'btn-primary': test.form.$valid, 'btn-disabled': test.form.$invalid}"
+          ng-disabled="test.form.$invalid"
+        ) Antwort abschicken
+        button.btn.btn-default(
+          type="button"
+          ng-if="test.form.$submitted"
+          ng-click="test.next()"
+          ng-bind="test.count === test.tests.length ? 'Test wiederholen' : 'Nächste Aufgabe'"
+        )
+  uib-tab(heading="Verlauf")
+    table.table
+      thead
+        tr
+          th Durchgang
+          th Punkte
+      tbody
+        tr
+          th(colspan="2") Abgeschlossen
+        tr(ng-if="test.run > 1" ng-repeat="i in test.score.runs | limitTo : test.run-1 track by $index")
+          th(ng-bind="$index+1")
+          td(ng-bind="i")
+        tr(ng-if="test.count > 0")
+          th(colspan="2") Aktuell ({{test.count}} Aufgaben abgeschlossen)
+        tr(ng-if="test.count > 0")
+          th(ng-bind="test.run")
+          td(ng-bind="test.score.runs[test.run-1]")
+        tr(ng-if="test.count + test.run === 1")
+          td(colspan="2") Du hast diesen Test noch nie gestartet.
+  uib-tab(heading="Infos")
+    h4 Aufgabentypen
+    dl.dl-horizontal
+      dt Einfachauswahl
+      dd Eine der angebotenen Antwortmöglichkeiten ist korrekt. Für die korrekte Beantwortung bekommst du einen Punkt.
+      dt Mehrfachauswahl
+      dd Jede der angebotenen Aussagen ist entweder korrekt oder falsch und muss explizit mittels Kontrollkästchen beantwortet werden. Jede korrekt ab- bzw. angewählte Aussage bringt dir einen Punkt, man kann also maximal so viele Punkte bekommen wie es Aussagen in einer Aufgabe gibt. Punktabzug bei Fehlern gibt es nicht.
+      dt Ausfüllen
+      dd Es gibt keine Antwortoptionen, sondern du musst eine kurze Lösung selbst generieren, z.B. eine Rechenaufgabe usw.
+    h4 Feedback
+    p Auf deine Antwort bekommst du ein Feedback. Bei Auswahl-Aufgaben kannst du auch dann noch die anderen Antworten anwählen um deren Feedback zu sehen, dies wird dann aber nicht mehr als deine Antwort gewertet.

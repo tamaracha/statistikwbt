@@ -8,12 +8,8 @@ export default {
   controller,
   controllerAs: 'test',
   resolve: {
-    tests: /*@ngInject*/function(Restangular,$stateParams){
-      const query = {
-        conditions: {unit: $stateParams.unit},
-        mode: 'exercise'
-      };
-      return Restangular.all('tests').getList(query);
+    tests: /*@ngInject*/function(Restangular, $stateParams){
+      return Restangular.one('units',$stateParams.unit).all('summaries').get('test');
     }
   }
 };
