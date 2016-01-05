@@ -17,6 +17,7 @@ import youtube from './youtube';
 import {config, run} from './config.js';
 import * as user from './user';
 import modals from './modals';
+import test from './test-service';
 
 /**
  * @module wbt
@@ -50,4 +51,5 @@ export default angular.module('wbt',[
 .service('user',user.model)
 .directive('userCheck',user.validator)
 .service('modals',modals)
+.factory('test',test)
 .name;
