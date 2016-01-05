@@ -17,6 +17,7 @@ assets:
     angular: 1.4.8
     bootstrap: 3.3.6
     fontAwesome: 4.4.0
+    jquery: 2.1.4
     lodash: 3.10.1
     restangular: 1.5.1
 logging: true
