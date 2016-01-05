@@ -1,6 +1,6 @@
 export default /*@ngInject*/class NewController{
   constructor($scope){
-    this.unit = {};
+    this.unit = {test: {}};
     this.fields = [{
       key: 'title',
       type: 'horizontalInput',
@@ -27,6 +27,30 @@ export default /*@ngInject*/class NewController{
         label: 'Voraussetzungen',
         labelProp: 'title',
         valueProp: '_id'
+      }
+    },
+    {
+      key: 'test.active',
+      type: 'horizontalCheckbox',
+      templateOptions: {
+        label: 'Test für dieses Kapitel aktivieren'
+      }
+    },
+    {
+      key: 'test.shuffle',
+      type: 'horizontalMultiCheckbox',
+      templateOptions: {
+        label: 'Zufällige Reihenfolge',
+        options: [
+          {
+            name: 'Aufgaben',
+            value: 'items'
+          },
+          {
+            name: 'Antwortoptionen bei Wahlaufgaben',
+            value: 'choices'
+          }
+        ]
       }
     },
     {

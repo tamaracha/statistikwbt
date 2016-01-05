@@ -1,6 +1,5 @@
 'use strict';
 const mongoose = require('mongoose');
-const shuffle = require('lodash.shuffle');
 const $ = require('../services/validate');
 const ChoiceSchema = require('./choice');
 const TestSchema = module.exports = new mongoose.Schema({
@@ -18,28 +17,6 @@ const TestSchema = module.exports = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'units',
     index: true
-  },
-  tags: [{
-    type: String,
-    index: true
-  }]
+  }
 });
 TestSchema.path('choices').validate($.notEmpty);
-TestSchema.statics.shuffle = function(conditions,projections,options){
-  return this.find(
-    conditions || null,
-    projections || null,
-    options || null
-  ).lean().exec()
-  .then(function(tests){
-    if(tests.length > 1){
-      tests=shuffle(tests);
-    }
-    tests.forEach(function(test){
-      if(test.choices.length > 1){
-        test.choices = shuffle(test.choices);
-      }
-    });
-    return tests;
-  });
-};

@@ -40,17 +40,33 @@ export default /*@ngInject*/class BasicsController{
       }
     },
     {
-      key: 'test.active',
+      key: 'active',
+      model: $scope.unit.unit.test,
       type: 'horizontalCheckbox',
+      modelOptions,
       templateOptions: {
         label: 'Test für dieses Kapitel aktivieren'
       }
     },
     {
-      key: 'test.shuffle',
-      type: 'horizontalCheckbox',
+      key: 'shuffle',
+      model: $scope.unit.unit.test,
+      type: 'horizontalMultiCheckbox',
+      modelOptions,
       templateOptions: {
-        label: 'Testaufgaben in zufälliger Reihenfolge darbieten'
+        label: 'Zufällige Reihenfolge',
+        valueProp: 'value',
+        labelProp: 'name',
+        options: [
+          {
+            name: 'Aufgaben',
+            value: 'items'
+          },
+          {
+            name: 'Antwortoptionen bei Wahlaufgaben',
+            value: 'choices'
+          }
+        ]
       }
     },
     {

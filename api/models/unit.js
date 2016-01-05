@@ -20,6 +20,16 @@ const UnitSchema = module.exports = new mongoose.Schema({
     ref: 'unit'
   }],
   topics: [TopicSchema],
+  test: {
+    active: {
+      type: Boolean,
+      default: false
+    },
+    shuffle: [{
+      type: String,
+      enum: ['items','choices']
+    }]
+  },
   views: [{
     type: ObjectId,
     ref: 'view'
