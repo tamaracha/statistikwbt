@@ -52,7 +52,7 @@ users.delete('/:user',ctrl.user.destroy);
 api.use('/users',users.routes());
 api.get('/tokens/new',auth,ctrl.token.new);
 
-let tests=new Router();
+const tests=new Router();
 tests.get('/',roles.can('access content'),ctrl.test.index);
 tests.post('/',roles.can('edit content'),body,ctrl.test.create);
 tests.get('/:test',roles.can('access content'),ctrl.test.show);
@@ -75,8 +75,8 @@ topics.get('/:topic',roles.can('access content'),ctrl.topic.show);
 topics.patch('/:topic',roles.can('edit content'),body,ctrl.topic.update);
 topics.delete('/:topic',roles.can('edit content'),ctrl.topic.destroy);
 units.use('/:unit/topics',topics.routes());
-let summaries=new Router();
-summaries.get('/guesses',ctrl.summary.guesses);
+const summaries=new Router();
+summaries.get('/test',ctrl.summary.test);
 summaries.get('/akzeptanz',ctrl.summary.akzeptanz);
 units.use('/:unit/summaries',roles.can('access content'),summaries.routes());
 api.use('/units',jwt,units.routes());
@@ -92,7 +92,7 @@ api.use('/subjects',subjects.routes());
 // guesses
 const guesses = new Router();
 guesses.post('/',body,ctrl.guess.create);
-guesses.post('/:guess/responses',body,ctrl.guess.createResponse);
+guesses.post('/:guess/responses',body,ctrl.response.create);
 api.use('/guesses',jwt,roles.can('access content'),guesses.routes());
 
 api.post('/ratings',jwt,roles.can('access content'),body,ctrl.rating.create);

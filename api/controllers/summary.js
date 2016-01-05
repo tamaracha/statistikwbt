@@ -1,41 +1,32 @@
 'use strict';
 const models = require('../models');
 const ObjectId=require('mongoose').Types.ObjectId;
+const find = require('lodash.find');
+const map = require('lodash.map');
 const transform = require('lodash.transform');
 const $=module.exports={};
 
-$.guesses=function *(){
-  const guesses = yield models.Guess.aggregate([
-    {
-      $match: {
-        user: new ObjectId(this.state.user._id),
-        unit: new ObjectId(this.params.unit)
-      }
-    },
-    {
-      $sort: {
-        _id: -1
-      }
-    },
-    {
-      $group: {
-        _id: '$item',
-        response: {$first: '$response'}
-      }
-    }
-  ]).exec();
-  const data = transform(guesses,function(result,value){
-    result[value._id] = value.response;
-  },{});
-  /*
-  let data=_.chain(guesses)
-  .indexBy('_id')
-  .transform(function(result,value,key){
-    result[key]=value.response;
+$.test = function *test(){
+  const tests = yield models.Test.find({
+    unit: this.params.unit
+  }).lean().exec();
+  this.assert(tests.length > 0, 404, 'no tests found for this unit');
+  const ids = map(tests,'_id');
+  const guesses = yield models.Guess.find({
+    user: this.state.user._id
   })
-  .value();
-  */
-  this.body=data;
+  .in('test',ids)
+  .lean().exec();
+  if(tests.length === 0){this.body = tests;}
+  else{
+    this.body = transform(tests,function(result,t,i){
+      const g = find(guesses,{test: t._id});
+      result[i] = {
+        item: t,
+        guess: g || null
+      };
+    },[],this);
+  }
 };
 
 $.akzeptanz = function *(){
