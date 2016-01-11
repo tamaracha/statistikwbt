@@ -29,19 +29,12 @@ const UserSchema = module.exports = new mongoose.Schema({
   },
   profile: {
     nickname: String,
-    age: {
-      type: Number,
-      required: true
-    },
+    age: Number,
     sex: {
       type: String,
-      required: true,
       enum: ['male','female']
     },
-    subject: {
-      type: String,
-      required: true
-    },
+    subject: String,
     reasons: [{
       type: String,
       enum: ['interesse','langeweile','klausur', 'author']
