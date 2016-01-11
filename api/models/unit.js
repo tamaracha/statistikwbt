@@ -44,7 +44,7 @@ const UnitSchema = module.exports = new mongoose.Schema({
       ref: 'comment'
     }]
   }
-});
+}, {timestamps: true});
 UnitSchema.methods.move=function(arr,_id,dir){
   let unit,a,b,tmp;
   unit=this;
@@ -68,4 +68,3 @@ UnitSchema.methods.move=function(arr,_id,dir){
     });
   });
 };
-UnitSchema.plugin(require('../plugins/date'));

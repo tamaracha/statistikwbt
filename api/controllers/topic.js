@@ -1,6 +1,7 @@
 'use strict';
 const models = require('../models');
 const jsonpatch=require('fast-json-patch');
+const debug = require('debug')('app:topic controller');
 const $=module.exports={};
 
 $.index=function *(){
@@ -34,11 +35,13 @@ $.update=function *(){
   const unit = yield models.Unit.findById(this.params.unit).exec();
   this.assert(unit,'unit not found',404);
   const topic = unit.topics.id(this.params.topic);
-  this.assert(topic,'not found',404);
+  this.assert(topic,'topic not found',404);
+  this.assert(topic.updatedAt.toISOString() === this.header['if-unmodified-since'], 'topic has been changed after last fetch',412);
   const index = unit.topics.indexOf(topic);
   const patch=jsonpatch.apply(unit.topics[index],this.request.body,true);
-  this.assert(patch,'patch not successful',500);
+  this.assert(patch === true, 'patch not successful');
   yield unit.save();
+  this.set('last-modified', unit.topics[index].updatedAt.toISOString());
   this.status=200;
 };
 

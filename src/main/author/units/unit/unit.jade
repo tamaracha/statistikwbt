@@ -1,4 +1,8 @@
-h3(ng-bind="unit.unit.title")
+uib-alert(type="info" ng-if="unit.patches.length>0 && !unit.unit.error" role="alert")
+  span.fa.fa-spinner.fa-spin
+  span lade Änderungen hoch…
+uib-alert(ng-if="unit.error && unit.error.status === 404") Dieses Kapitel konnte nicht gefunden werden. Es wurde möglicherweise von einem anderen Autor gelöscht.
+uib-alert(ng-if="unit.error && unit.error.status === 412" role="alert") Dieses Kapitel wurde zwischenzeitlich von einem anderen Autor geändert. Mittels Refresh erhältst du die aktuelle Version.
 ul.nav.nav-tabs
   li(ui-sref-active="active"): a(ui-sref=".basics") Grunddaten
   li(ui-sref-active="active"): a(ui-sref=".topics.new") Subkapitel

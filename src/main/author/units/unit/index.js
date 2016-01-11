@@ -20,11 +20,11 @@ export default {
         });
       });
     },
-    unit: /*@ngInject*/function(Restangular,$stateParams){
+    unit: /*@ngInject*/function($http, $stateParams){
       const query = {
-        projections: 'title subtitle description requires test'
+        projections: '-comments -topics -views -akzeptanz'
       };
-      return Restangular.one('units',$stateParams.unit).get(query);
+      return $http.get('api/units/'+$stateParams.unit, query);
     }
   },
   children: [

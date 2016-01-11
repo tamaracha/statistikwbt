@@ -1,17 +1,18 @@
 'use strict';
 const mongoose=require('mongoose');
-const ObjectId=mongoose.Schema.Types.ObjectId;
+const ObjectId = mongoose.Schema.Types.ObjectId;
 const ResponseSchema = require('./response');
+
 module.exports = new mongoose.Schema({
   user: {
     type: ObjectId,
     required: true,
     ref: 'users'
   },
-  test: {
+  unit: {
     type: ObjectId,
-    required: true,
-    ref: 'tests'
+    ref: 'units',
+    required: true
   },
   responses: [ResponseSchema]
-});
+}, {timestamps: true});

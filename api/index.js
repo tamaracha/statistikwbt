@@ -91,7 +91,9 @@ api.use('/subjects',subjects.routes());
 
 // guesses
 const guesses = new Router();
+guesses.get('/', ctrl.guess.index);
 guesses.post('/',body,ctrl.guess.create);
+guesses.get('/:guess', ctrl.guess.show);
 guesses.post('/:guess/responses',body,ctrl.response.create);
 api.use('/guesses',jwt,roles.can('access content'),guesses.routes());
 

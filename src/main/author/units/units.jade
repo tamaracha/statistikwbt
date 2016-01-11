@@ -1,10 +1,4 @@
-h3
-  button.btn.btn-default(type="button" ng-click="units.collapse=!units.collapse")
-    span.fa(ng-class="units.collapse ? 'fa-toggle-off' : 'fa-toggle-on'" aria-hidden="true")
-    |  {{units.collapse ? 'einblenden' : 'ausblenden'}}
-  br
-  span Kapitelübersicht
-div(uib-collapse="units.collapse"): form.form-horizontal(novalidate name="unitsForm")
+div(uib-collapse="units.collapse"): form.form-horizontal(novalidate name="units.form")
   .form-group
     label.col-xs-2.control-label(for="selectUnit") Kapitel
     .col-xs-10
@@ -17,7 +11,13 @@ div(uib-collapse="units.collapse"): form.form-horizontal(novalidate name="unitsF
         option(value="") Neues Kapitel
   .form-group(ng-if="units.selected")
     .col-xs-offset-2.col-xs-10: .button-group
-      a.btn.btn-primary(ui-sref="main.content.unit.description({unit: units.selected._id})") Anschauen
-      //- a.btn.btn-default(ui-sref=".unit.basics({unit: units.selected._id})") Bearbeiten
-      button.btn.btn-danger(type="button" ng-click="units.remove()") Löschen
+      a.btn.btn-link(ui-sref="main.content.unit.description({unit: units.selected._id})") Anschauen
+      button.btn.btn-danger(type="button" ng-click="units.remove()")
+        span.fa.fa-times
+        span Löschen
+h3
+  span(ng-bind="units.selected ? units.selected.title : 'Neues Kapitel anlegen'")
+  button.btn.btn-default(type="button" ng-click="units.collapse=!units.collapse")
+    span.fa(ng-class="units.collapse ? 'fa-toggle-off' : 'fa-toggle-on'" aria-hidden="true")
+    | Übersicht {{units.collapse ? 'einblenden' : 'ausblenden'}}
 div(ui-view)

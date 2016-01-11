@@ -3,67 +3,37 @@ export default /*@ngInject*/class TestCtrl{
   constructor(test, $http, tests, unit){
     this.$http = $http;
     this.test = test;
-    this.tests = tests;
-    this.shuffle = this.test.shuffle(unit);
-    this.count = 0;
-    const position = this.test.position(this.tests);
-    this.run = position[0];
-    this.item = this.test.item(this.tests, this.run);
-    this.count = position[1];
-    if(this.shuffle.items){
-      this.tests = _.shuffle(this.tests);
-    }
-    if(this.shuffle.choices && this.tests[this.item].item.type !== 'input'){
-      this.tests[this.item].item.choices = _.shuffle(this.tests[this.item].item.choices);
+    this.unit = unit;
+    this.shuffle = test.shuffle(unit);
+    this.init(tests);
+  }
+  init(tests){
+    this.tests = tests.data.tests;
+    if(this.shuffle.items){this.tests = _.shuffle(this.tests);}
+    this.guess = tests.data.guess;
+    this.run = tests.data.run;
+    this.count = this.guess.responses.length;
+    this.item = this.test.item(this.tests, this.guess);
+    if(this.shuffle.choices){
+      this.tests[this.item].choices = _.shuffle(this.tests[this.item].choices);
     }
     this.score = {
-      max: 0,
-      runs: []
+      max: _.sum(this.tests, this.test.maxPoints) || 0,
+      current: this.test.runPoints(this.tests, this.guess)
     };
-    this.score.max = _.chain(this.tests).map('item').sum(this.test.maxPoints).value();
-    for(let i = 0; i < this.run; i++){
-      this.score.runs[i] = this.test.runPoints(this.tests, i+1);
-    }
-    this.response = this.test.input(this.tests[this.item].item);
+    this.response = this.test.input(this.tests[this.item]);
     this.output = null;
   }
   submit(){
     const item = this.tests[this.item];
-    const response = this.test.response(item.item.type, this.response, this.run);
-    let p;
-    if(!item.guess){
-      const guess = {
-        test: item.item._id,
-        responses: [response]
-      };
-      p = this.$http.post('api/guesses',guess)
-      .then(
-        (res) => {
-          this.tests[this.item].guess = res.data;
-          return res;
-        },
-        (e) => {
-          return e;
-        }
-      );
-    }
-    else{
-      p = this.$http.post(`api/guesses/${item.guess._id}/responses`,response)
-      .then(
-        (res) => {
-          this.tests[this.item].guess.responses.push(res.data);
-          return res;
-        },
-        (e) => {
-          return e;
-        }
-      );
-    }
-    return p.then(
-      () => {
-        this.score.runs[this.run-1] += this.test.points(item.item, response.value);
-        if(item.item.type === 'input'){
-          this.output = _.find(item.item.choices,{text: response.value});
+    const response = this.test.response(item, this.response);
+    return this.$http.post(`api/guesses/${this.guess._id}/responses`,response)
+    .then(
+      (res) => {
+        this.guess.responses.push(res.data);
+        this.score.current += this.test.points(item, response.value);
+        if(item.type === 'input'){
+          this.output = _.find(item.choices,{text: response.value});
           if(!this.output){
             this.output = {
               correct: false,
@@ -72,28 +42,37 @@ export default /*@ngInject*/class TestCtrl{
           }
         }
         this.count+=1;
+        return res;
       },
       (e) => {
-        this.e = e;
+        this.error = e;
+        return e;
       }
     );
   }
   next(){
-    if(this.count === this.tests.length){
-      this.run += 1;
-      this.score.runs[this.run-1] = 0;
-      this.count = 0;
-      if(this.shuffle.items){
-        this.tests = _.shuffle(this.tests);
-      }
-    }
-    this.item = this.test.item(this.tests, this.run);
-    if(this.shuffle.choices && this.tests[this.item].item.type !== 'input'){
-      this.tests[this.item].item.choices = _.shuffle(this.tests[this.item].item.choices);
-    }
-    this.response = this.test.input(this.tests[this.item].item);
-    this.output = null;
     this.form.$submitted = false;
     this.form.$setPristine();
+    if(this.count === this.tests.length){
+      return this.$http.get('api/units/'+this.unit._id+'/summaries/test')
+      .then(
+        (res) => {
+          this.init(res);
+          return res;
+        },
+        (e) => {
+          this.error = e;
+          return e;
+        }
+      );
+    }
+    else{
+      this.item = this.test.item(this.tests, this.guess);
+      if(this.shuffle.choices){
+        this.tests[this.item].choices = _.shuffle(this.tests[this.item].choices);
+      }
+      this.response = this.test.input(this.tests[this.item]);
+      this.output = null;
+    }
   }
 }

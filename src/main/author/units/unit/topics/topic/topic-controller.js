@@ -1,65 +1,25 @@
-export default /*@ngInject*/class TopicCtrl{
-  constructor($scope,jsonpatch,topic){
-    const modelOptions = {
-      updateOn: 'default blur',
-      debounce: {
-        default: 500,
-        blur: 0
-      }
-    };
-    this.topic = topic.plain();
+import _ from 'lodash';
+export default /*@ngInject*/class TopicController{
+  constructor($scope,jsonpatch,topic, $http, $stateParams){
+    this.topic = topic.data;
     this.patches = [];
     this.error = null;
-    this.topicFields = [{
-      key: '_id',
-      type: 'horizontalStatic',
-      templateOptions: {
-        label: 'ID'
-      }
-    },
-    {
-      key: 'title',
-      type: 'horizontalInput',
-      templateOptions: {
-        type: 'text',
-        required: true,
-        label: 'Titel',
-        placeholder: 'Titel des Subkapitels'
-      },
-      modelOptions
-    },
-    {
-      key: 'subtitle',
-      type: 'horizontalInput',
-      templateOptions: {
-        type: 'text',
-        label: 'Untertitel',
-        placeholder: 'Untertitel des Subkapitels'
-      },
-      modelOptions
-    },
-    {
-      key: 'body',
-      type: 'horizontalMarkdownArea',
-      templateOptions: {
-        required: true,
-        label: 'Text',
-        placeholder: 'Hier Text des Subkapitels eingeben'
-      },
-      modelOptions
-    }];
-    $scope.$watch('topic.topic',(val,oldVal) => {
+    function watcher(){
+      return _.omit($scope.topic.topic, 'updatedAt');
+    }
+    $scope.$watch(watcher,(val,oldVal) => {
       this.patches = jsonpatch.compare(oldVal,val);
       if(this.patches.length > 0){
-        return topic.patch(this.patches)
+        return $http.patch(`api/units/${$stateParams.unit}/topics/${$stateParams.topic}`,this.patches, {headers: {'if-unmodified-since': this.topic.updatedAt}})
         .then(
-          () => {
+          (res) => {
             this.patches = [];
             this.error = null;
+            const lmh = res.headers('last-modified');
+            if(lmh){this.topic.updatedAt = lmh;}
           },
           (e) => {
             this.error = e;
-            this.recover = oldVal;
           }
         );
       }

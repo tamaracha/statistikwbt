@@ -1,4 +1,4 @@
-h3 Testaufgaben
+h3 Testaufgaben, Durchgang {{test.run}}
 uib-progressbar(
   type="info"
   value="test.count"
@@ -7,28 +7,27 @@ uib-progressbar(
 ) {{test.count}}/{{test.tests.length}}
 uib-progressbar(
   type="success"
-  value="test.score.runs[test.run-1]"
+  value="test.score.current"
   max="test.score.max"
   title="Punkte"
-) {{test.score.runs[test.run-1]}}/{{test.score.max}}
+) {{test.score.current}}/{{test.score.max}}
 uib-tabset(justified="true")
   uib-tab(heading="Aufgaben"  active="true")
-    h4 Aufgabe {{test.form.$submitted ? test.count : test.count+1}}, Durchgang {{test.run}}
-    form(novalidate name="test.form" ng-switch="test.tests[test.item].item.type" ng-submit="test.submit()")
+    h4 Aufgabe {{test.form.$submitted ? test.count : test.count+1}}
+    div(markdown="test.tests[test.item].text")
+    form(novalidate name="test.form" ng-switch="test.tests[test.item].type" ng-submit="test.submit()")
       .form-group(ng-switch-when="input" ng-class="{'has-success': test.form.$submitted&&test.output.correct, 'has-error': test.form.$submitted&&!test.output.correct}")
-        label.control-label(for="item" ng-bind="test.tests[test.item].item.text")
+        label(for="item") Antwort
         input#item.form-control(type="text" name="item" ng-model="test.response")
         p.help-block(ng-bind="test.output.feedback")
       .form-group(ng-switch-when="single" ng-class="{'has-success': test.form.$submitted&&test.response.correct, 'has-error': test.form.$submitted&&!test.response.correct}")
-        label(ng-bind="test.tests[test.item].item.text")
-        .radio(ng-repeat="c in test.tests[test.item].item.choices track by c._id")
+        .radio(ng-repeat="c in test.tests[test.item].choices track by c._id")
           label
             input(type="radio" name="item" ng-value="c" ng-model="test.response")
             |  {{c.text}}
         p.help-block(ng-bind="test.response.feedback" ng-show="test.form.$submitted")
       .form-group(ng-switch-when="multiple")
-        label(ng-bind="test.tests[test.item].item.text")
-        div(ng-repeat="c in test.tests[test.item].item.choices track by c._id" ng-class="{'has-success': test.form.$submitted&&!!test.response[c._id]===c.correct, 'has-error': test.form.$submitted&&!!test.response[c._id]!==c.correct}")
+        div(ng-repeat="c in test.tests[test.item].choices track by c._id" ng-class="{'has-success': test.form.$submitted&&!!test.response[c._id]===c.correct, 'has-error': test.form.$submitted&&!!test.response[c._id]!==c.correct}")
           .checkbox
             label
               input(type="checkbox" name="{{'item'+$index}}" ng-model="test.response[c._id]")
@@ -47,7 +46,7 @@ uib-tabset(justified="true")
           ng-click="test.next()"
           ng-bind="test.count === test.tests.length ? 'Test wiederholen' : 'Nächste Aufgabe'"
         )
-  uib-tab(heading="Verlauf")
+  uib-tab(heading="Verlauf" onselect="test.guesses()")
     table.table
       thead
         tr

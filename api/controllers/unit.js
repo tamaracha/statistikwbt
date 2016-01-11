@@ -1,7 +1,8 @@
 'use strict';
 const models = require('../models');
-const $=module.exports={};
+//const debug = require('debug')('app:unit controller');
 const jsonpatch=require('fast-json-patch');
+const $=module.exports={};
 
 $.index=function *(){
   const units = yield models.Unit.find(
@@ -23,22 +24,21 @@ $.show=function *(){
     this.params.unit,
     this.query.projections||null,
     this.query.options||null
-  ).lean().exec();
+  ).exec();
   this.assert(unit,'unit not found',404);
+  this.set('last-modified', unit.updatedAt.toISOString());
   this.body=unit;
 };
 
 $.update=function *(){
   const unit = yield models.Unit.findById(this.params.unit).exec();
   this.assert(unit,'unit not found',404);
+  this.assert(unit.updatedAt.toISOString() === this.header['if-unmodified-since'], 412, 'unit has been updated since last fetch');
   const patch = jsonpatch.apply(unit,this.request.body);
-  if(patch===true){
-    yield unit.save();
-    this.status=200;
-  }
-  else{
-    this.throw('patch not successful');
-  }
+  this.assert(patch===true, 'patch not successful');
+  yield unit.save();
+  this.set('last-modified',unit.updatedAt.toISOString());
+  this.status=200;
 };
 
 $.destroy=function *(){

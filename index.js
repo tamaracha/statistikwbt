@@ -1,4 +1,5 @@
 'use strict';
+const debug = require('debug')('app:server');
 const config=require('config');
 const server=config.get('server');
 const db=config.get('db');
@@ -27,9 +28,6 @@ const api=require('./api');
 const app=koa();
 require('koa-qs')(app);
 require('koa-onerror')(app);
-if(config.get('logging')){
-  app.use(require('koa-morgan').middleware('dev'));
-}
 if(assets.serve){
   const koaStatic = require('koa-static');
   app.use(mount(assets.root,koaStatic(__dirname+'/dist')))
@@ -41,6 +39,8 @@ app.use(mount('/api-docs.yml',swagger))
 .use(api.allowedMethods())
 .use(index.unless({path: [/api/,new RegExp(assets.root), /docs/, /swagger/]}))
 .listen(server.port,server.host,function(){
-  console.log(`listening on ${server.host}:${server.port}`);
+  debug(`listening on ${server.host}:${server.port}`);
 });
-mongoose.connect(`mongodb://${db.host}:27017/${db.database}`);
+mongoose.connect(`mongodb://${db.host}:27017/${db.database}`, function(){
+  debug('connected to mongodb');
+});

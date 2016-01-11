@@ -10,9 +10,9 @@ export default {
   controllerAs: 'topics',
   abstract: true,
   resolve: {
-    topics: /*@ngInject*/function(Restangular,$stateParams){
+    topics: /*@ngInject*/function($http, $stateParams){
       const query = {projections: 'topics.title topics._id'};
-      return Restangular.one('units',$stateParams.unit).all('topics').getList(query);
+      return $http.get('api/units/'+$stateParams.unit+'/topics', query);
     }
   },
   children: [

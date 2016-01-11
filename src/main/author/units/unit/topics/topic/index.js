@@ -11,8 +11,8 @@ export default {
   controllerAs: 'topic',
   abstract: true,
   resolve: {
-    topic: /*@ngInject*/function(Restangular,$stateParams){
-      return Restangular.one('units',$stateParams.unit).one('topics',$stateParams.topic).get();
+    topic: /*@ngInject*/function($http,$stateParams){
+      return $http.get(`api/units/${$stateParams.unit}/topics/${$stateParams.topic}`);
     }
   },
   children: [

@@ -8,8 +8,8 @@ export default {
   controller,
   controllerAs: 'test',
   resolve: {
-    tests: /*@ngInject*/function(Restangular, $stateParams){
-      return Restangular.one('units',$stateParams.unit).all('summaries').get('test');
+    tests: /*@ngInject*/function($http, $stateParams){
+      return $http.get(['api','units',$stateParams.unit,'summaries','test'].join('/'));
     }
   }
 };

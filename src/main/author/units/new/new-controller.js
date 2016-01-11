@@ -1,69 +1,22 @@
 export default /*@ngInject*/class NewController{
-  constructor($scope){
+  constructor($scope, $http){
+    this.$scope = $scope;
+    this.$http = $http;
     this.unit = {test: {}};
-    this.fields = [{
-      key: 'title',
-      type: 'horizontalInput',
-      templateOptions: {
-        type: 'text',
-        label: 'Titel',
-        placeholder: 'Titel des Kapitels',
-        required: true
+    $scope.units.fields[3].model = this.unit.test;
+    $scope.units.fields[4].model = this.unit.test;
+  }
+  save(){
+    return this.$http.post('api/units', this.unit)
+    .then(
+      (res) => {
+        this.$scope.units.units.push(res.data);
+        this.$scope.units.selected = res.data;
+        this.$scope.units.select();
+      },
+      (e) => {
+        this.error = e;
       }
-    },
-    {
-      key: 'subtitle',
-      type: 'horizontalInput',
-      templateOptions: {
-        type: 'text',
-        label: 'Untertitel',
-        placeholder: 'Untertitel des Kapitels'
-      }
-    },
-    {
-      key: 'requires',
-      type: 'horizontalMultiCheckbox',
-      templateOptions: {
-        label: 'Voraussetzungen',
-        labelProp: 'title',
-        valueProp: '_id'
-      }
-    },
-    {
-      key: 'test.active',
-      type: 'horizontalCheckbox',
-      templateOptions: {
-        label: 'Test für dieses Kapitel aktivieren'
-      }
-    },
-    {
-      key: 'test.shuffle',
-      type: 'horizontalMultiCheckbox',
-      templateOptions: {
-        label: 'Zufällige Reihenfolge',
-        options: [
-          {
-            name: 'Aufgaben',
-            value: 'items'
-          },
-          {
-            name: 'Antwortoptionen bei Wahlaufgaben',
-            value: 'choices'
-          }
-        ]
-      }
-    },
-    {
-      key: 'description',
-      type: 'horizontalMarkdownArea',
-      templateOptions: {
-        label: 'Beschreibung',
-        required: true,
-        placeholder: 'hier Beschreibungstext eingeben'
-      }
-    }];
-    $scope.$watchCollection('units.units',(val) => {
-      this.fields[2].templateOptions.options = val;
-    },true);
+    );
   }
 }

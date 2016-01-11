@@ -23,70 +23,46 @@ export default /*@ngInject*/function test(){
     case 'input': return 1;
     }
   }
-  function runPoints(tests, run){
+  function runPoints(tests, guess){
     return _.sum(tests, function(t){
-      if(!t.guess){return 0;}
-      const response = _.find(t.guess.responses, {run});
+      if(guess.length === 0){return 0;}
+      const response = _.find(guess.responses, {test: t._id});
       if(!response){return 0;}
-      return points(t.item, response.value);
+      return points(t, response.value);
     });
   }
-  function position(tests){
-    const pos = [];
-    pos[0] = _.chain(tests)
-    .map(function(t){
-      if(!t.guess || !t.guess.responses || t.guess.responses.length === 0){return 0;}
-      return _.chain(t.guess.responses).map('run').max().value();
-    })
-    .max()
-    .value();
-    if(pos[0] === 0){
-      pos[0] = 1;
-      pos[1] = 0;
-    }
-    else{
-      pos[1] = _.sum(tests, function(t){
-        return _.chain(t.guess.responses).map('run').include(pos[0]).value() ? 1 : 0;
-      });
-      if(pos[1] === tests.length){
-        pos[0] += 1;
-        pos[1] = 0;
-      }
-    }
-    return pos;
-  }
-  function item(tests, run){
+  function item(tests, guess){
     return _.findIndex(tests, function(t){
-      if(!t.guess){return true;}
-      return !_.chain(t.guess.responses).map('run').include(run).value();
+      const response = _.find(guess.responses, {test: t._id});
+      return response ? false : true;
     });
   }
-  function response(type, response, run){
-    switch(type){
+  function response(test, response){
+    switch(test.type){
     case 'single':
       return {
-        value: response._id,
-        run
+        test: test._id,
+        value: response._id
       };
     case 'multiple':
       const value = _.transform(response, function(ac, val, key){
         if(val === true){ac.push(key);}
       }, []);
       return {
-        value,
-        run
+        test: test._id,
+        value
       };
     case 'input':
       return {
-        value: response,
-        run
+        test: test._id,
+        value: response
       };
     }
   }
-  function input(item){
-    switch(item.type){
+  function input(test){
+    switch(test.type){
     case 'single': return null;
-    case 'multiple': return _.transform(item.choices, function(o, c){
+    case 'multiple': return _.transform(test.choices, function(o, c){
       o[c._id] = false;
     },{});
     case 'input': return '';
@@ -101,7 +77,6 @@ export default /*@ngInject*/function test(){
     points,
     maxPoints,
     runPoints,
-    position,
     item,
     response,
     input,

@@ -11,12 +11,12 @@ export default {
   controllerAs: 'units',
   abstract: true,
   resolve: {
-    units: /*@ngInject*/function(Restangular){
+    units: /*@ngInject*/function($http){
       const query = {
         projections: 'title',
         options: {sort: 'position'}
       };
-      return Restangular.all('units').getList(query);
+      return $http.get('api/units', query);
     }
   },
   children: [

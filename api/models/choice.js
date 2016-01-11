@@ -2,15 +2,14 @@
 const mongoose = require('mongoose');
 module.exports = new mongoose.Schema({
   text: {
-    required: true,
-    type: String
+    type: String,
+    required: true
   },
   correct: {
     type: Boolean,
     default: false
   },
-  feedback: {
-    type: String,
-    required: true
-  }
+  feedback: String,
+  feedback_right: String,
+  feedback_wrong: String
 });

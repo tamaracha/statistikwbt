@@ -1,33 +1,25 @@
 export default /*@ngInject*/class NewController{
-  constructor(){
+  constructor($scope, $http, $state){
+    this.$scope = $scope;
+    this.$http = $http;
+    this.$state = $state;
     this.topic = {};
-    this.fields = [{
-      key: 'title',
-      type: 'horizontalInput',
-      templateOptions: {
-        type: 'text',
-        label: 'titel',
-        required: true,
-        placeholder: 'Titel des Subkapitels'
+  }
+  save(){
+    return this.$http.post(`api/units/${this.$state.params.unit}/topics`, this.topic)
+    .then(
+      (topic) => {
+        this.$scope.topics.topics.push(topic.data);
+        this.$scope.topics.selected = topic.data;
+        this.$state.go(
+          'main.author.units.unit.topics.topic.basics',
+          {topic: topic.data._id}
+        );
+        this.error = null;
+      },
+      (e) => {
+        this.error = e;
       }
-    },
-    {
-      key: 'subtitle',
-      type: 'horizontalInput',
-      templateOptions: {
-        type: 'text',
-        label: 'Untertitel',
-        placeholder: 'Untertitel des Subkapitels'
-      }
-    },
-    {
-      key: 'body',
-      type: 'horizontalMarkdownArea',
-      templateOptions: {
-        label: 'Text',
-        required: true,
-        placeholder: 'hier Text des Subkapitels eingeben'
-      }
-    }];
+    );
   }
 }

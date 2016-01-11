@@ -11,6 +11,7 @@ const UserSchema = module.exports = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    maxlength: 50,
     validate: validate.emailValidator,
     unique: true
   },
@@ -18,7 +19,7 @@ const UserSchema = module.exports = new mongoose.Schema({
     type: String,
     select: false,
     required: true,
-    validate: validate.passwordValidator
+    minLength: 8
   },
   role: {
     type: String,
@@ -61,14 +62,12 @@ const UserSchema = module.exports = new mongoose.Schema({
     type: ObjectId,
     ref: 'views'
   }]
-});
+}, {timestamps: true});
 UserSchema.pre('save',function(cb){
   const user = this;
   if(!user.isModified('password')){return cb();}
   bcrypt.hash(user.password,null,null,function(err,hash){
-    if(err){
-      return cb(err);
-    }
+    if(err){return cb(err);}
     user.password = hash;
     return cb();
   });

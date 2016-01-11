@@ -14,4 +14,4 @@ module.exports = new mongoose.Schema({
   position: Number,
   active: Boolean,
   body: String
-});
+}, {timestamps: true});

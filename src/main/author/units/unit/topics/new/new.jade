@@ -1,5 +1,4 @@
 include /mixins/submit
-h3 Neues Subkapitel anlegen
-form.form-horizontal(novalidate name="new.form" ng-submit="topics.save(new.topic)")
-  formly-form(model="new.topic" fields="new.fields" form="new.form")
+form.form-horizontal(novalidate name="new.form" ng-submit="new.save()")
+  formly-form(model="new.topic" fields="topics.fields" form="new.form")
     +submit('Erstellen','new.form')

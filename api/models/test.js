@@ -13,10 +13,12 @@ const TestSchema = module.exports = new mongoose.Schema({
     enum: ['multiple','single','input']
   },
   choices: [ChoiceSchema],
+  feedback_right: String,
+  feedback_wrong: String,
   unit: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'units',
     index: true
   }
-});
+}, {timestamps: true});
 TestSchema.path('choices').validate($.notEmpty);

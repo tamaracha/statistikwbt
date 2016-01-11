@@ -5,8 +5,7 @@ const ExtraSchema = require('./extra');
 module.exports = new mongoose.Schema({
   title: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   subtitle: String,
   body: {
@@ -15,4 +14,4 @@ module.exports = new mongoose.Schema({
   },
   examples: [ExampleSchema],
   extras: [ExtraSchema]
-});
+}, {timestamps: true});

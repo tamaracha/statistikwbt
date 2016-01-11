@@ -1,12 +1,9 @@
-import template from './basics.jade';
-import controller from './basics-controller';
+import templateUrl from './basics.jade';
 
 export default {
   name: 'basics',
   url: '',
-  templateUrl: template,
-  controller,
-  controllerAs: 'basics',
+  templateUrl,
   ncyBreadcrumb: {
     label: '{{unit.unit.title}} — Grunddaten'
   }
