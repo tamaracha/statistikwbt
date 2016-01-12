@@ -12,7 +12,13 @@ export default /*@ngInject*/class UnitCtrl{
     $scope.$watch(watcher,(val, oldVal) => {
       this.patches = jsonpatch.compare(oldVal,val);
       if(this.patches.length === 0){return;}
-      return $http.patch('api/units/'+this.unit._id,this.patches,{headers: {'if-unmodified-since': this.unit.updatedAt}})
+      const config = {
+        method: 'PATCH',
+        url: 'api/units/'+this.unit._id,
+        data: this.patches,
+        headers: {'if-unmodified-since': this.unit.updatedAt}
+      };
+      return $http(config)
       .then(
         (res) => {
           this.patches = [];
