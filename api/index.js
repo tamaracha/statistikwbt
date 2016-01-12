@@ -56,7 +56,7 @@ const tests=new Router();
 tests.get('/',roles.can('access content'),ctrl.test.index);
 tests.post('/',roles.can('edit content'),body,ctrl.test.create);
 tests.get('/:test',roles.can('access content'),ctrl.test.show);
-tests.put('/:test',roles.can('edit content'),body,ctrl.test.update);
+tests.patch('/:test',roles.can('edit content'),body,ctrl.test.update);
 tests.delete('/:test',roles.can('edit content'),ctrl.test.destroy);
 api.use('/tests',jwt,tests.routes());
 

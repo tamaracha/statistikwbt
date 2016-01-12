@@ -1,13 +1,23 @@
 import _ from 'lodash';
 export default /*@ngInject*/class TestsCtrl{
-  constructor(tests,$stateParams, $http){
+  constructor(tests,$stateParams, $http, jsonpatch, $scope){
+    const modelOptions = {
+      updateOn: 'default blur',
+      debounce: {
+        default: 500,
+        blur: 0
+      }
+    };
     this.$stateParams = $stateParams;
     this.tests = tests.data;
     this.$http = $http;
+    this.jsonpatch = jsonpatch;
     this.newTest = this.newDefaults;
     this.error = null;
+    this.patches = [];
     this.fields = [{
       type: 'horizontalMarkdownArea',
+      modelOptions,
       key: 'text',
       templateOptions: {
         label: 'Aufgabenstamm',
@@ -18,6 +28,7 @@ export default /*@ngInject*/class TestsCtrl{
     {
       type: 'horizontalRadioInline',
       key: 'type',
+      modelOptions,
       templateOptions: {
         label: 'Aufgabenformat',
         options: [{
@@ -38,6 +49,7 @@ export default /*@ngInject*/class TestsCtrl{
     {
       key: 'feedback_right',
       type: 'horizontalInput',
+      modelOptions,
       templateOptions: {
         label: 'Feedback (korrekt)',
         placeholder: 'Feedback für korrekte Beantwortung der Aufgabe'
@@ -47,6 +59,7 @@ export default /*@ngInject*/class TestsCtrl{
     {
       key: 'feedback_wrong',
       type: 'horizontalInput',
+      modelOptions,
       templateOptions: {
         label: 'Feedback (inkorrekt)',
         placeholder: 'Feedback für inkorrekte Beantwortung der Aufgabe'
@@ -63,6 +76,7 @@ export default /*@ngInject*/class TestsCtrl{
           {
             type: 'horizontalInput',
             key: 'text',
+            modelOptions,
             templateOptions: {
               type: 'text',
               label: 'Antwort',
@@ -73,6 +87,7 @@ export default /*@ngInject*/class TestsCtrl{
           {
             key: 'correct',
             type: 'horizontalCheckbox',
+            modelOptions,
             templateOptions: {
               label: 'Korrekt'
             }
@@ -80,6 +95,7 @@ export default /*@ngInject*/class TestsCtrl{
           {
             key: 'feedback',
             type: 'horizontalInput',
+            modelOptions,
             templateOptions: {
               label: 'Elaboriertes Feedback',
               type: 'text',
@@ -89,6 +105,7 @@ export default /*@ngInject*/class TestsCtrl{
           {
             key: 'feedback_right',
             type: 'horizontalInput',
+            modelOptions,
             templateOptions: {
               label: 'Elaboriertes Feedback (korrekt)',
               type: 'text',
@@ -98,6 +115,7 @@ export default /*@ngInject*/class TestsCtrl{
           {
             key: 'feedback_wrong',
             type: 'horizontalInput',
+            modelOptions,
             templateOptions: {
               label: 'Elaboriertes Feedback (inkorrekt)',
               type: 'text',
@@ -107,6 +125,37 @@ export default /*@ngInject*/class TestsCtrl{
         ]
       }
     }];
+    function watcher(){
+      if(!$scope.tests.selected){return;}
+      return _.omit($scope.tests.selected, 'updatedAt');
+    }
+    $scope.$watch(watcher, (val, oldVal) => {
+      if(val === oldVal || !val || !oldVal){return;}
+      this.patches = jsonpatch.compare(oldVal,val);
+      if(this.patches.length === 0){return;}
+      const config = {
+        method: 'PATCH',
+        url: 'api/tests/'+this.selected._id,
+        data: this.patches,
+        headers: {'if-unmodified-since': this.selected.updatedAt}
+      };
+      return $http(config)
+      .then(
+        (res) => {
+          this.patches = [];
+          const lmh = res.headers('last-modified');
+          if(lmh){
+            this.selected.updatedAt = lmh;
+          }
+          this.error = null;
+          return res;
+        },
+        (e) => {
+          this.error = e;
+          return e;
+        }
+      );
+    }, true);
   }
   get newDefaults(){
     return {
@@ -118,22 +167,10 @@ export default /*@ngInject*/class TestsCtrl{
   create(){
     return this.$http.post('api/tests',this.newTest)
     .then(
-      (data) => {
-        this.tests.push(data);
+      (res) => {
+        this.tests.push(res.data);
         this.newTest = this.newDefaults;
         this.newTestForm.$setPristine();
-      },
-      (e) => {
-        this.error = e;
-      }
-    );
-  }
-  update(){
-    return this.$http.put('api/tests/'+this.selected._id, this.selected)
-    .then(
-      (res) => {
-        this.selected = res.data;
-        this.testForm.$setPristine();
       },
       (e) => {
         this.error = e;
@@ -149,6 +186,20 @@ export default /*@ngInject*/class TestsCtrl{
       },
       (e) => {
         this.error = e;
+      }
+    );
+  }
+  onChange(){
+    if(!this.selected){return;}
+    return this.$http.get('api/tests/'+this.selected._id)
+    .then(
+      (res) => {
+        _.assign(this.selected, res.data);
+        return res;
+      },
+      (e) => {
+        this.error = e;
+        return e;
       }
     );
   }

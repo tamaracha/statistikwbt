@@ -18,7 +18,8 @@ export default {
         params: {
           conditions: {
             unit: $stateParams.unit
-          }
+          },
+          projections: 'text'
         }
       };
       return $http(config);
