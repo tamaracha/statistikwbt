@@ -4,7 +4,9 @@ const jsonpatch=require('fast-json-patch');
 const $ = module.exports = {};
 
 $.index = function *index(){
-  const meta = yield models.Meta.find({},'-body').sort('position').lean().exec();
+  const meta = yield models.Meta.find(null,'-body')
+  .sort('position')
+  .lean().exec();
   this.assert(meta,404);
   this.body = meta;
 };
@@ -25,13 +27,9 @@ $.update = function *update(){
   const meta = yield models.Meta.findById(this.params.meta);
   this.assert(meta,404);
   const patch = jsonpatch.apply(meta,this.request.body);
-  if(patch===true){
-    yield meta.save();
-    this.status=200;
-  }
-  else{
-    this.throw('patch not successful',400);
-  }
+  this.assert(patch === true, 'patch not successful');
+  yield meta.save();
+  this.status=200;
 };
 
 $.destroy = function *destroy(){

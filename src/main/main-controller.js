@@ -1,6 +1,6 @@
 import _ from 'lodash';
 export default /*@ngInject*/class MainCtrl{
-  constructor($state,$stateParams,user,modals, meta){
+  constructor($scope, $state,$stateParams,user,modals, meta){
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.user = user;
@@ -14,5 +14,8 @@ export default /*@ngInject*/class MainCtrl{
     };
     this.meta = meta;
     this.items = _.indexBy(meta,'_id');
+    $scope.$watch('main.user.role', (val) => {
+      this.items.author.active = val === 'author';
+    });
   }
 }
