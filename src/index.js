@@ -1,5 +1,6 @@
 // libraries
 import angular from 'angular';
+import './angular-locale_de-de';
 import uiRouter from 'angular-ui-router';
 import 'angular-ui-router.statehelper';
 import uiBootstrap from 'angular-ui-bootstrap';

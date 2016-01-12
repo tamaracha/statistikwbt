@@ -14,7 +14,8 @@ const config = {
       'angular-formly',
       'angular-formly-templates-bootstrap',
       'angular-permission',
-      'ngstorage'
+      'ngstorage',
+      './src/angular-locale_de-de'
     ]
   },
   output: {
@@ -36,7 +37,7 @@ const config = {
       {
         loader: 'ng-annotate?add!babel?presets[]=es2015!eslint',
         test: /\.js$/,
-        exclude: /(node_modules|bower_components|api.js)/
+        exclude: /(node_modules|bower_components|api.js|angular-locale)/
       },
       {
         loader: 'style!css',
