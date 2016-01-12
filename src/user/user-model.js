@@ -2,10 +2,9 @@ import _ from 'lodash';
 import loginModal from './login';
 import changePasswordModal from './change-password';
 export default /*@ngInject*/class user{
-  constructor(Restangular,$localStorage,$window,$q,$uibModal, api){
+  constructor($http,$localStorage,$window,$q,$uibModal, api){
     this.api = api;
-    this.Users = Restangular.all('users');
-    this.Token = Restangular.one('tokens','new');
+    this.$http = $http;
     this.$storage = $localStorage;
     this.$q = $q;
     this.$window = $window;
@@ -14,9 +13,13 @@ export default /*@ngInject*/class user{
     this.init();
   }
   check(name,value){
-    const query = {};
-    query[name] = value;
-    return this.Users.head(query);
+    const config = {
+      method: 'HEAD',
+      url: 'api/users',
+      params: {}
+    };
+    config.params[name] = value;
+    return this.$http(config);
   }
   get authenticated(){
     return this.$storage._id && this.$storage.token ? true : false;
@@ -40,11 +43,11 @@ export default /*@ngInject*/class user{
     if(!this.authenticated){
       return this.inauthenticate();
     }
-    return this.Users.get(this.$storage._id)
+    return this.$http.get('api/users/'+this.$storage._id)
     .then(
-      (data) => {
-        this.data = data;
-        return data;
+      (res) => {
+        this.data = res.data;
+        return res;
       },
       (e) => {
         this.inauthenticate();
@@ -62,12 +65,17 @@ export default /*@ngInject*/class user{
     return `basic ${str}`;
   }
   authenticate(form,init){
-    const Authorization = this.basicAuth(form);
-    return this.Token.get(null,{Authorization})
-    .then((data) => {
-      this.authenticated = data;
+    const authorization = this.basicAuth(form);
+    const config = {
+      method: 'GET',
+      url: 'api/tokens/new',
+      headers: {authorization}
+    };
+    return this.$http(config)
+    .then((res) => {
+      this.authenticated = res.data;
       if(!init){
-        return data;
+        return res.data;
       }
       return this.init();
     });
@@ -78,10 +86,10 @@ export default /*@ngInject*/class user{
     this.api.token.value = null;
   }
   create(form){
-    return this.Users.post(form)
-    .then((data) => {
-      this.data = data;
-      return data;
+    return this.$http.post('api/users', form)
+    .then((res) => {
+      this.data = res.data;
+      return res;
     });
   }
   addUnit(id){
@@ -92,9 +100,9 @@ export default /*@ngInject*/class user{
     const item = {
       unit: id
     };
-    this.data.all('done').post(item)
-    .then((data) => {
-      this.data.done.push(data);
+    this.$http.post('api/users/'+this.data._id+'/done', item)
+    .then((res) => {
+      this.data.done.push(res.data);
     });
   }
   complete(unit){
@@ -112,7 +120,7 @@ export default /*@ngInject*/class user{
     },this);
   }
   remove(){
-    return this.data.remove()
+    return this.$http.delete('api/users/'+this.data._id)
     .then(() => this.inauthenticate());
   }
   login(){
