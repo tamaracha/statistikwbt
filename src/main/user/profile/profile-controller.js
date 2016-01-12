@@ -1,10 +1,5 @@
 export default /*@ngInject*/class ProfileController{
   constructor(api, user, $scope, jsonpatch){
-    function getSubjects(val){
-      return api.getSubjects({
-        search: val
-      });
-    }
     const modelOptions = {
       updateOn: 'default blur',
       debounce: {
@@ -23,49 +18,6 @@ export default /*@ngInject*/class ProfileController{
           type: 'text',
           label: 'Nickname',
           maxlength: 20
-        }
-      },
-      {
-        key: 'profile.age',
-        type: 'horizontalInput',
-        modelOptions,
-        templateOptions: {
-          type: 'number',
-          label: 'Alter',
-          min: 20,
-          max: 100,
-          step: 1
-        }
-      },
-      {
-        key: 'profile.sex',
-        type: 'horizontalRadioInline',
-        modelOptions,
-        templateOptions: {
-          label: 'Geschlecht',
-          options: [
-            {
-              name: 'männlich',
-              value: 'male'
-            },
-            {
-              name: 'weiblich',
-              value: 'female'
-            }
-          ]
-        }
-      },
-      {
-        key: 'profile.subject',
-        type: 'horizontalTypeahead',
-        modelOptions,
-        templateOptions: {
-          type: 'text',
-          label: 'Studiengang',
-          options: getSubjects,
-          tml: 3,
-          tws: 300,
-          typeahead: 'subject.name for subject in to.options($viewValue)'
         }
       }
     ];
