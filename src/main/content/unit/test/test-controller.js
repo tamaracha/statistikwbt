@@ -1,11 +1,16 @@
 import _ from 'lodash';
 export default /*@ngInject*/class TestCtrl{
-  constructor(test, $http, tests, unit){
+  constructor(test, $http, tests, unit, $window){
     this.$http = $http;
     this.test = test;
     this.unit = unit;
     this.shuffle = test.shuffle(unit);
+    this.$window = $window;
     this.init(tests);
+    this.feedback = {
+      right: 'Korrekt',
+      wrong: 'Leider nicht korrekt'
+    };
   }
   init(tests){
     this.tests = tests.data.tests;
@@ -27,10 +32,13 @@ export default /*@ngInject*/class TestCtrl{
   submit(){
     const item = this.tests[this.item];
     const response = this.test.response(item, this.response);
-    return this.$http.post(`api/guesses/${this.guess._id}/responses`,response)
+    return this.$http.post(`api/guesses/${this.guess._id}/responses`, response, {
+      headers: {'if-unmodified-since': this.guess.updatedAt}
+    })
     .then(
       (res) => {
         this.guess.responses.push(res.data);
+        this.guess.updatedAt = res.headers('last-modified');
         this.score.current += this.test.points(item, response.value);
         if(item.type === 'input'){
           this.output = _.find(item.choices,{text: response.value});
@@ -46,6 +54,7 @@ export default /*@ngInject*/class TestCtrl{
       },
       (e) => {
         this.error = e;
+        this.form.$submitted = false;
         return e;
       }
     );
@@ -74,5 +83,28 @@ export default /*@ngInject*/class TestCtrl{
       this.response = this.test.input(this.tests[this.item]);
       this.output = null;
     }
+  }
+  getGuesses(){
+    const query = {
+      conditions: {unit: this.unit._id},
+      options: {sort: {_id: 1}}
+    };
+    return this.$http.get('api/guesses',query)
+    .then(
+      (res) => {
+        this.guesses = res.data;
+        _.each(this.guesses, function(guess, i){
+          this.guesses[i].score = this.test.runPoints(this.tests, guess);
+        },this);
+        return res;
+      },
+      (e) => {
+        this.error = e;
+        return e;
+      }
+    );
+  }
+  reload(){
+    return this.$window.location.reload();
   }
 }

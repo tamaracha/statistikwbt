@@ -1,11 +1,12 @@
 import _ from 'lodash';
 export default /*@ngInject*/class TestsCtrl{
-  constructor(tests,$stateParams){
+  constructor(tests,$stateParams, $http){
     this.$stateParams = $stateParams;
-    this.tests = tests;
+    this.tests = tests.data;
+    this.$http = $http;
     this.newTest = this.newDefaults;
     this.error = null;
-    this.newFields = [{
+    this.fields = [{
       type: 'horizontalMarkdownArea',
       key: 'text',
       templateOptions: {
@@ -20,12 +21,12 @@ export default /*@ngInject*/class TestsCtrl{
       templateOptions: {
         label: 'Aufgabenformat',
         options: [{
-          name: 'Multiple-Choice',
-          value: 'multiple'
-        },
-        {
           name: 'Single-Choice',
           value: 'single'
+        },
+        {
+          name: 'Multiple-Choice',
+          value: 'multiple'
         },
         {
           name: 'Eingabe',
@@ -33,6 +34,24 @@ export default /*@ngInject*/class TestsCtrl{
         }],
         required: true
       }
+    },
+    {
+      key: 'feedback_right',
+      type: 'horizontalInput',
+      templateOptions: {
+        label: 'Feedback (korrekt)',
+        placeholder: 'Feedback für korrekte Beantwortung der Aufgabe'
+      },
+      hideExpression: 'model.type === "multiple"'
+    },
+    {
+      key: 'feedback_wrong',
+      type: 'horizontalInput',
+      templateOptions: {
+        label: 'Feedback (inkorrekt)',
+        placeholder: 'Feedback für inkorrekte Beantwortung der Aufgabe'
+      },
+      hideExpression: 'model.type === "multiple"'
     },
     {
       type: 'repeatSection',
@@ -62,33 +81,42 @@ export default /*@ngInject*/class TestsCtrl{
             key: 'feedback',
             type: 'horizontalInput',
             templateOptions: {
-              label: 'Feedback',
+              label: 'Elaboriertes Feedback',
               type: 'text',
-              required: true,
-              placeholder: 'Information über Korrektheit dieser Antwort, welche Antwort sonst korrekt wäre und warum diese Antwort (nicht) korrekt ist'
+              placeholder: 'Bei Single-Choice und Eingabe elaboriertes Feedback für diese Antwortoption, bei Multiple-Choice Feedback für korrekt und inkorrekt gewählte Option'
+            }
+          },
+          {
+            key: 'feedback_right',
+            type: 'horizontalInput',
+            templateOptions: {
+              label: 'Elaboriertes Feedback (korrekt)',
+              type: 'text',
+              placeholder: 'Nur für Multiple-Choice, wird bei korrekter Wahl statt obigem Feedback angezeigt'
+            }
+          },
+          {
+            key: 'feedback_wrong',
+            type: 'horizontalInput',
+            templateOptions: {
+              label: 'Elaboriertes Feedback (inkorrekt)',
+              type: 'text',
+              placeholder: 'Nur für Multiple-Choice, wird bei inkorrekter Wahl statt obigem Feedback angezeigt'
             }
           }
         ]
       }
     }];
-    this.fields = [{
-      key: '_id',
-      type: 'horizontalStatic',
-      templateOptions: {
-        label: 'ID'
-      }
-    }];
-    this.fields = this.fields.concat(this.newFields);
   }
   get newDefaults(){
     return {
-      tags: [],
+      type: 'single',
       choices: [],
       unit: this.$stateParams.unit
     };
   }
   create(){
-    return this.tests.post(this.newTest)
+    return this.$http.post('api/tests',this.newTest)
     .then(
       (data) => {
         this.tests.push(data);
@@ -101,10 +129,10 @@ export default /*@ngInject*/class TestsCtrl{
     );
   }
   update(){
-    return this.selected.clone().put()
+    return this.$http.put('api/tests/'+this.selected._id, this.selected)
     .then(
-      (data) => {
-        _.merge(this.selected,data);
+      (res) => {
+        this.selected = res.data;
         this.testForm.$setPristine();
       },
       (e) => {
@@ -113,7 +141,7 @@ export default /*@ngInject*/class TestsCtrl{
     );
   }
   remove(){
-    return this.selected.remove()
+    return this.$http.delete('api/tests/'+this.selected)
     .then(
       () => {
         _.remove(this.tests,{_id: this.selected._id});
