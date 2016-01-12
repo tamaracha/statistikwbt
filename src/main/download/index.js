@@ -12,11 +12,13 @@ export default {
     }
   },
   resolve: {
-    units: /*@ngInject*/function(Restangular){
-      const query = {
-        projections: 'title'
+    units: /*@ngInject*/function($http){
+      const config = {
+        method: 'GET',
+        url: 'api/units',
+        params: {projections: 'title'}
       };
-      return Restangular.all('units').getList(query);
+      return $http(config);
     }
   }
 };

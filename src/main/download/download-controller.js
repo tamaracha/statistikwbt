@@ -1,7 +1,7 @@
 import _ from 'lodash';
 export default /*@ngInject*/class DownloadController{
   constructor(units){
-    this.units = units.plain();
+    this.units = units.data;
     this.data = {
       contents: ['body'],
       format: 'rtf'
