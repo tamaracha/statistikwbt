@@ -21,10 +21,14 @@ export default {
       });
     },
     unit: /*@ngInject*/function($http, $stateParams){
-      const query = {
-        projections: '-comments -topics -views -akzeptanz'
+      const config = {
+        method: 'GET',
+        url: 'api/units/'+$stateParams.unit,
+        params: {
+          projections: '-comments -topics -views -akzeptanz'
+        }
       };
-      return $http.get('api/units/'+$stateParams.unit, query);
+      return $http(config);
     }
   },
   children: [

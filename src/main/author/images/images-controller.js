@@ -1,6 +1,6 @@
 export default /*@ngInject*/class ImagesController{
-  constructor($scope, FileUploader, Restangular, $localStorage){
-    this.images = Restangular.all('images');
+  constructor($scope, FileUploader, $http, $localStorage){
+    this.$http = $http;
     this.searchTerms = {};
     this.uploader = new FileUploader({
       url: 'api/images',
@@ -33,16 +33,20 @@ export default /*@ngInject*/class ImagesController{
         }
       }
     ];
-    $scope.$watchCollection('images.searchTerms',(val,oldVal) => {
-      if(val === oldVal){return;}
-      this.search();
+    $scope.$watchCollection('images.searchTerms',(val) => {
+      this.search(val);
     });
   }
-  search(){
-    return this.images.getList(this.searchTerms)
-    .then((data) => {
-      this.images = data;
-      return data;
+  search(val){
+    const config = {
+      method: 'GET',
+      url: 'api/images',
+      params: val
+    };
+    return this.$http(config)
+    .then((res) => {
+      this.images = res.data;
+      return res;
     });
   }
 }

@@ -7,8 +7,13 @@ export default {
   controller,
   controllerAs: 'image',
   resolve: {
-    image: /*@ngInject*/function(Restangular,$stateParams){
-      return Restangular.all('images').get($stateParams.image,{metadata: true});
+    image: /*@ngInject*/function($http, $stateParams){
+      const config = {
+        method: 'GET',
+        url: 'api/images/'+$stateParams.image,
+        params: {metadata: true}
+      };
+      return $http(config);
     }
   },
   ncyBreadcrumb: {

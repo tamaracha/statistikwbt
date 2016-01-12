@@ -11,8 +11,12 @@ export default {
   abstract: true,
   resolve: {
     topics: /*@ngInject*/function($http, $stateParams){
-      const query = {projections: 'topics.title topics._id'};
-      return $http.get('api/units/'+$stateParams.unit+'/topics', query);
+      const config = {
+        method: 'GET',
+        url: 'api/units/'+$stateParams.unit+'/topics',
+        params: {projections: 'topics.title topics._id'}
+      };
+      return $http(config);
     }
   },
   children: [

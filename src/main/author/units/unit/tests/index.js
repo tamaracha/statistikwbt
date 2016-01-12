@@ -11,13 +11,17 @@ export default {
     label: '{{unit.unit.title}} — Testaufgaben'
   },
   resolve: {
-    tests: /*@ngInject*/function(Restangular,$stateParams){
-      const query = {
-        conditions: {
-          unit: $stateParams.unit
+    tests: /*@ngInject*/function($http, $stateParams){
+      const config = {
+        method: 'GET',
+        url: 'api/tests',
+        params: {
+          conditions: {
+            unit: $stateParams.unit
+          }
         }
       };
-      return Restangular.all('tests').getList(query);
+      return $http(config);
     }
   }
 };

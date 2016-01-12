@@ -1,9 +1,10 @@
 import _ from 'lodash';
 import removeModal from '../../units/remove-modal';
 export default /*@ngInject*/class NewController{
-  constructor(image, FileUploader, $localStorage, $scope, $uibModal, $state){
-    this.image = image;
+  constructor(image, FileUploader, $localStorage, $scope, $uibModal, $state, $http){
+    this.image = image.data;
     this.$scope = $scope;
+    this.$http = $http;
     this.uploader = new FileUploader({
       url: `api/images/${image._id}`,
       method: 'PUT',
@@ -29,7 +30,7 @@ export default /*@ngInject*/class NewController{
     return this.$uibModal.open(this.removeModal)
     .result
     .then(() => {
-      return this.image.remove();
+      return this.$http.delete('api/images/'+this.image._id);
     })
     .then(() => {
       _.remove(this.$scope.images.images,{_id: this.image._id});

@@ -12,11 +12,15 @@ export default {
   abstract: true,
   resolve: {
     units: /*@ngInject*/function($http){
-      const query = {
-        projections: 'title',
-        options: {sort: 'position'}
+      const config = {
+        method: 'GET',
+        url: 'api/units',
+        params: {
+          projections: 'title',
+          options: {sort: 'position'}
+        }
       };
-      return $http.get('api/units', query);
+      return $http(config);
     }
   },
   children: [
