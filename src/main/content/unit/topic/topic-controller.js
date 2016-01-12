@@ -1,5 +1,5 @@
 export default /*@ngInject*/class topicCtrl{
   constructor(topic){
-    this.topic = topic;
+    this.topic = topic.data;
   }
 }
