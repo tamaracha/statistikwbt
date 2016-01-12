@@ -10,19 +10,17 @@ $.test = function *test(){
   }).lean().exec();
   this.assert(tests.length > 0, 404, 'no tests found for this unit');
   this.body = {tests};
-  let guess = yield models.Guess.findOne({
+  const guessQuery = {
     user: this.state.user._id,
     unit: this.params.unit
-  })
+  };
+  let guess = yield models.Guess.findOne(guessQuery)
   .sort({_id: -1})
   .lean().exec();
   if(!guess || guess.responses.length === tests.length){
-    guess = yield models.Guess.create({
-      unit: this.params.unit,
-      user: this.state.user._id
-    });
+    guess = yield models.Guess.create(guessQuery);
   }
-  const run = yield models.Guess.count();
+  const run = yield models.Guess.count(guessQuery);
   this.body.guess = guess;
   this.body.run = run;
 };
