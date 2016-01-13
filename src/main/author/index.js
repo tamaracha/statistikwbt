@@ -13,19 +13,6 @@ export default {
       only: ['author']
     }
   },
-  resolve: {
-    breadcrumb: /*@ngInject*/function($q,$ocLazyLoad){
-      return $q(function(resolve){
-        require.ensure([],function(){
-          require('angular-breadcrumb');
-          return resolve($ocLazyLoad.inject('ncy-angular-breadcrumb'));
-        });
-      });
-    }
-  },
-  ncyBreadcrumb: {
-    label: 'Autorentool'
-  },
   children: [
     meta,
     units,
