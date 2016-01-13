@@ -8,14 +8,15 @@ export default /*@ngInject*/class NewController{
   save(){
     return this.$http.post(`api/units/${this.$state.params.unit}/topics`, this.topic)
     .then(
-      (topic) => {
-        this.$scope.topics.topics.push(topic.data);
-        this.$scope.topics.selected = topic.data;
+      (res) => {
+        this.error = null;
+        this.$scope.topics.topics.push(res.data);
+        this.$scope.topics.selected = res.data;
+        this.$scope.unit.unit.updatedAt = res.headers('x-updated-unit');
         this.$state.go(
           'main.author.units.unit.topics.topic.basics',
-          {topic: topic.data._id}
+          {topic: res.data._id}
         );
-        this.error = null;
       },
       (e) => {
         this.error = e;

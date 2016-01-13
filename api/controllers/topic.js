@@ -20,6 +20,7 @@ $.create=function *(){
   const topic = unit.topics.create(this.request.body);
   unit.topics.push(topic);
   yield unit.save();
+  this.set('x-updated-unit', unit.updatedAt);
   this.body=topic;
 };
 
@@ -42,6 +43,7 @@ $.update=function *(){
   this.assert(patch === true, 'patch not successful');
   yield unit.save();
   this.set('last-modified', unit.topics[index].updatedAt.toISOString());
+    this.set('x-updated-unit', unit.updatedAt.toISOString());
   this.status=200;
 };
 
@@ -56,11 +58,14 @@ $.destroy=function *(){
 $.edit=function *(){
   this.assert(typeof this.request.body.action === 'string', 'action is no string', 400);
   this.assert(typeof this.request.body.dir === 'string', 'dir is no string', 400);
-  const unit = yield models.Unit.findById(this.params.unit,'topics').exec();
+  const unit = yield models.Unit.findById(this.params.unit).exec();
   this.assert(unit,'unit not found',404);
   switch(this.request.body.action){
   case 'move':
     yield unit.move('topics',this.request.body.topic,this.request.body.dir);
+    const topic = unit.topics.id(this.request.body.topic);
+    if(topic){this.set('last-modified', topic.updatedAt.toISOString());}
+    this.set('x-updated-unit', unit.updatedAt.toISOString());
   }
   this.body = unit.topics;
 };

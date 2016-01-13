@@ -143,10 +143,7 @@ export default /*@ngInject*/class TestsCtrl{
       .then(
         (res) => {
           this.patches = [];
-          const lmh = res.headers('last-modified');
-          if(lmh){
-            this.selected.updatedAt = lmh;
-          }
+          this.selected.updatedAt = res.headers('last-modified');
           this.error = null;
           return res;
         },

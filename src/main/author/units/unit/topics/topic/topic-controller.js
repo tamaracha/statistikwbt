@@ -9,20 +9,28 @@ export default /*@ngInject*/class TopicController{
     }
     $scope.$watch(watcher,(val,oldVal) => {
       this.patches = jsonpatch.compare(oldVal,val);
-      if(this.patches.length > 0){
-        return $http.patch(`api/units/${$stateParams.unit}/topics/${$stateParams.topic}`,this.patches, {headers: {'if-unmodified-since': this.topic.updatedAt}})
-        .then(
-          (res) => {
-            this.patches = [];
-            this.error = null;
-            const lmh = res.headers('last-modified');
-            if(lmh){this.topic.updatedAt = lmh;}
-          },
-          (e) => {
-            this.error = e;
-          }
-        );
-      }
+      if(this.patches.length === 0){return;}
+      const config = {
+        method: 'PATCH',
+        url: `api/units/${$stateParams.unit}/topics/${$stateParams.topic}`,
+        data: this.patches,
+        headers: {'if-unmodified-since': this.topic.updatedAt}
+      };
+      return $http(config)
+      .then(
+        (res) => {
+          this.patches = [];
+          this.error = null;
+          this.topic.updatedAt = res.headers('last-modified');
+          $scope.unit.unit.updatedAt = res.headers('x-updated-unit');
+        },
+        (e) => {
+          this.error = e;
+        }
+      );
     },true);
+    $scope.$on('topic moved', (ev, args) => {
+      this.topic.updatedAt = args.updatedAt;
+    });
   }
 }

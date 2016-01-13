@@ -7,6 +7,7 @@ export default /*@ngInject*/class TopicsCtrl{
     this.$state = $state;
     this.$uibModal = $uibModal;
     this.removeModal = removeModal($scope);
+    this.$scope = $scope;
     this.selected = null;
     this.collapse = false;
     this.init();
@@ -82,11 +83,15 @@ export default /*@ngInject*/class TopicsCtrl{
       dir,
       topic: this.selected._id
     })
-    .then((topics) => {
-      this.topics = topics.data;
-    },
-    (e) => {
-      this.error = e;
-    });
+    .then(
+      (res) => {
+        this.topics = res.data;
+        this.$scope.$broadcast('topic moved', {updatedAt: res.headers('last-modified')});
+        this.$scope.unit.unit.updatedAt = res.headers('x-updated-unit');
+      },
+      (e) => {
+        this.error = e;
+      }
+    );
   }
 }
