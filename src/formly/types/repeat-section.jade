@@ -1,5 +1,5 @@
 h4(ng-bind="to.label")
-.repeatsection(ng-repeat="element in model[options.key]" ng-init="fields = copyFields(to.fields)")
+.repeatsection(ng-repeat="element in model[options.key] track by element._id" ng-init="fields = copyFields(to.fields)")
   formly-form(
     fields="fields"
     model="element"

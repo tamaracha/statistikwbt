@@ -1,4 +1,5 @@
 import angular from 'angular';
+import objectid from 'objectid-browser';
 export default /*@ngInject*/function repeatSectionController($scope){
   function copyFields(fields) {
     return angular.copy(fields);
@@ -7,7 +8,7 @@ export default /*@ngInject*/function repeatSectionController($scope){
     $scope.model[$scope.options.key] = $scope.model[$scope.options.key] || [];
     const repeatsection = $scope.model[$scope.options.key];
     //let lastSection = repeatsection[repeatsection.length - 1];
-    const newsection = {};
+    const newsection = {_id: objectid()};
     repeatsection.push(newsection);
   }
   $scope.formOptions = {formState: $scope.formState};
