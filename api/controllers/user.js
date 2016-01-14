@@ -4,13 +4,14 @@ const jsonpatch = require('fast-json-patch');
 const $=module.exports={};
 
 $.check=function *(){
-  const users = yield models.User.find(this.query).lean().exec();
-  this.assert(users.length>0,'no users found',404);
+  const users = yield models.User.count(this.query).exec();
+  this.assert(users>0,'no users found',404);
   this.status=200;
 };
 
 $.create=function *(){
   const user = yield models.User.create(this.request.body);
+  this.assert(user, 404, 'user not created');
   this.body=user;
 };
 
