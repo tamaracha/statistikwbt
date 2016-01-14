@@ -145,6 +145,7 @@ export default /*@ngInject*/class TestsCtrl{
           this.patches = [];
           this.selected.updatedAt = res.headers('last-modified');
           this.error = null;
+          this.testForm.$setPristine();
           return res;
         },
         (e) => {
