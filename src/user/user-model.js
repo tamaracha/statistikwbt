@@ -58,7 +58,7 @@ export default /*@ngInject*/class user{
     );
   }
   basicAuth(form){
-    const name = form.username;
+    const name = form[this.username];
     const pass = form.password;
     if(!name || !pass){
       throw Error('missing credentials');

@@ -4,11 +4,12 @@ export default /*@ngInject*/class LoginController{
     this.$uibModalInstance = $uibModalInstance;
     this.data = {};
     this.loginFields = [{
-      key: 'username',
+      key: user.username,
       type: 'horizontalInput',
       validation: {
         messages: {
-          'userCheck': '$viewValue+" ist kein registrierter Benutzer"'
+          'userCheck': '$viewValue+" ist kein registrierter Benutzer"',
+          'pattern': '"keine gültige S- oder G-Kennung"'
         }
       },
       ngModelAttrs: {
@@ -48,7 +49,8 @@ export default /*@ngInject*/class LoginController{
         placeholder: 'sx1234',
         required: true,
         minlength: 6,
-        maxlength: 6
+        maxlength: 6,
+        pattern: '^[sg]{1}[a-zA-z]{1}[0-9]{4}$'
       };
     }
   }

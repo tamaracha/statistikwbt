@@ -59,7 +59,7 @@ if(username === 'email'){
     unique: true
   });
 }
-if(username === 'Kennung'){
+if(username === 'kennung'){
   UserSchema.path('kennung',{
     type: String,
     required: true,

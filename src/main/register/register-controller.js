@@ -12,7 +12,7 @@ export default /*@ngInject*/class RegisterCtrl{
       profile: {}
     };
     this.fields = [{
-      key: 'username',
+      key: user.username,
       type: 'horizontalInput',
       ngModelAttrs: {
         'available': {
@@ -21,7 +21,8 @@ export default /*@ngInject*/class RegisterCtrl{
       },
       validation: {
         messages: {
-          'userCheck': '$viewValue+" wurde schon registriert"'
+          'userCheck': '$viewValue+" wurde schon registriert"',
+          'pattern': '"keine gültige S- oder G-Kennung"'
         }
       },
       modelOptions: {
@@ -80,6 +81,7 @@ export default /*@ngInject*/class RegisterCtrl{
         required: true,
         minlength: 6,
         maxlength: 6,
+        pattern: '^[sg]{1}[a-zA-z]{1}[0-9]{4}$',
         placeholder: 'sx1234'
       };
     }
