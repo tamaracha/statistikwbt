@@ -8,3 +8,4 @@ db:
 assets:
   base: assets_base
   title: assets_title
+username: username

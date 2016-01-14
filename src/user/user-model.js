@@ -1,3 +1,4 @@
+import $ from '$';
 import _ from 'lodash';
 import loginModal from './login';
 import changePasswordModal from './change-password';
@@ -10,15 +11,16 @@ export default /*@ngInject*/class user{
     this.$window = $window;
     this.$uibModal = $uibModal;
     this.data = null;
+    this.username = $('body').attr('username');
     this.init();
   }
-  check(name,value){
+  check(value){
     const config = {
       method: 'HEAD',
       url: 'api/users',
       params: {}
     };
-    config.params[name] = value;
+    config.params[this.username] = value;
     return this.$http(config);
   }
   get authenticated(){
@@ -56,7 +58,7 @@ export default /*@ngInject*/class user{
     );
   }
   basicAuth(form){
-    const name = form.email;
+    const name = form.username;
     const pass = form.password;
     if(!name || !pass){
       throw Error('missing credentials');

@@ -4,15 +4,8 @@ export default /*@ngInject*/class LoginController{
     this.$uibModalInstance = $uibModalInstance;
     this.data = {};
     this.loginFields = [{
-      key: 'email',
+      key: 'username',
       type: 'horizontalInput',
-      templateOptions: {
-        type: 'email',
-        label: 'E-Mail',
-        required: true,
-        placeholder: 'name@provider.com',
-        maxlength: 50
-      },
       validation: {
         messages: {
           'userCheck': '$viewValue+" ist kein registrierter Benutzer"'
@@ -39,6 +32,25 @@ export default /*@ngInject*/class LoginController{
         minlength: 8
       }
     }];
+    if(user.username === 'email'){
+      this.loginFields[0].templateOptions = {
+        type: 'email',
+        label: 'E-Mail',
+        required: true,
+        placeholder: 'name@provider.com',
+        maxlength: 50
+      };
+    }
+    if(user.username === 'kennung'){
+      this.loginFields[0].templateOptions = {
+        type: 'text',
+        label: 'S- oder G-Kennung',
+        placeholder: 'sx1234',
+        required: true,
+        minlength: 6,
+        maxlength: 6
+      };
+    }
   }
   login(){
     return this.user.authenticate(this.data,true)

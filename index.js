@@ -15,7 +15,8 @@ const indexPage = require('./dist/index.js').index({
   title: assets.title,
   base: assets.base,
   prod: process.env.NODE_ENV,
-  versions: assets.versions
+  versions: assets.versions,
+  username: config.get('username')
 });
 function *index(){
   this.body = indexPage;

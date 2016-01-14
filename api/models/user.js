@@ -1,5 +1,6 @@
 'use strict';
 const mongoose=require('mongoose');
+const username = require('config').get('username');
 const bluebird = require('bluebird');
 const bcrypt = require('bcrypt-nodejs');
 bluebird.promisifyAll(bcrypt);
@@ -8,13 +9,6 @@ const ObjectId=mongoose.Schema.Types.ObjectId;
 const DoneSchema = require('./done');
 
 const UserSchema = module.exports = new mongoose.Schema({
-  email: {
-    type: String,
-    required: true,
-    maxlength: 50,
-    validate: validate.emailValidator,
-    unique: true
-  },
   password: {
     type: String,
     select: false,
@@ -56,6 +50,24 @@ const UserSchema = module.exports = new mongoose.Schema({
     ref: 'views'
   }]
 }, {timestamps: true});
+if(username === 'email'){
+  UserSchema.path('email', {
+    type: String,
+    required: true,
+    maxlength: 50,
+    validate: validate.emailValidator,
+    unique: true
+  });
+}
+if(username === 'Kennung'){
+  UserSchema.path('kennung',{
+    type: String,
+    required: true,
+    minlength: 6,
+    maxlength: 6,
+    unique: true
+  });
+}
 UserSchema.pre('save',function(cb){
   const user = this;
   if(!user.isModified('password')){return cb();}

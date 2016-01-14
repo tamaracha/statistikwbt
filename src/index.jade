@@ -28,7 +28,7 @@ html(lang="de" ng-app="wbt" strict-di)
       script(src="https://cdnjs.cloudflare.com/ajax/libs/restangular/#{locals.versions.restangular}/restangular.js")
     script(src="dist/vendors.js")
     script(src="dist/app.js")
-  body(ng-cloak)
+  body(ng-cloak username=locals.username)
     ui-view
     script(src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML")
     script.

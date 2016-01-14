@@ -12,15 +12,8 @@ export default /*@ngInject*/class RegisterCtrl{
       profile: {}
     };
     this.fields = [{
-      key: 'email',
+      key: 'username',
       type: 'horizontalInput',
-      templateOptions: {
-        label: 'E-Mail-Adresse',
-        type: 'email',
-        required: true,
-        maxlength: 50,
-        placeholder: 'name@provider.com'
-      },
       ngModelAttrs: {
         'available': {
           value: 'user-check'
@@ -71,6 +64,25 @@ export default /*@ngInject*/class RegisterCtrl{
         maxlength: 20
       }
     }];
+    if(user.username === 'email'){
+      this.fields[0].templateOptions = {
+        label: 'E-Mail-Adresse',
+        type: 'email',
+        required: true,
+        maxlength: 50,
+        placeholder: 'name@provider.com'
+      };
+    }
+    if(user.username === 'kennung'){
+      this.fields[0].templateOptions = {
+        label: 'S- oder G-Kennung',
+        type: 'text',
+        required: true,
+        minlength: 6,
+        maxlength: 6,
+        placeholder: 'sx1234'
+      };
+    }
   }
   register(){
     return this.user.create(this.model)

@@ -62,7 +62,8 @@ const config = {
   externals: {
     angular: 'angular',
     lodash: '_',
-    MathJax: 'MathJax'
+    MathJax: 'MathJax',
+    $: '$'
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
