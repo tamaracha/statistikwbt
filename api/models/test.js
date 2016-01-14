@@ -5,7 +5,7 @@ const ChoiceSchema = require('./choice');
 const TestSchema = module.exports = new mongoose.Schema({
   text: {
     type: String,
-    required: true
+    required: true,
   },
   type: {
     type: String,
@@ -21,4 +21,4 @@ const TestSchema = module.exports = new mongoose.Schema({
     index: true
   }
 }, {timestamps: true});
-TestSchema.path('choices').validate($.notEmpty);
+//TestSchema.path('choices').validate($.notEmpty);
