@@ -1,0 +1,60 @@
+<doctype html>
+<html lang="de" ng-app="wbt" strict-di>
+<head>
+<title>{{=it.title}}</title>
+<meta charset="utf-8"/>
+<base href="{{=it.base}}"/>
+{{
+var versions = {
+  angular: '1.4.8',
+  bootstrap: '3.3.6',
+  fontAwesome: '4.4.0',
+  jquery: '2.1.4',
+  lodash: '3.10.1',
+  restangular: '1.5.1'
+};
+var styles = [
+  'https://maxcdn.bootstrapcdn.com/bootstrap/'+versions.bootstrap+'/css/bootstrap',
+  'https://maxcdn.bootstrapcdn.com/font-awesome/'+versions.fontAwesome+'/css/font-awesome'
+];
+var scripts = [
+  'https://ajax.googleapis.com/ajax/libs/jquery/'+versions.jquery+'/jquery',
+  'https://ajax.googleapis.com/ajax/libs/angularjs/'+versions.angular+'/angular',
+  'https://ajax.googleapis.com/ajax/libs/angularjs/'+versions.angular+'/angular-messages',
+  'https://ajax.googleapis.com/ajax/libs/angularjs/'+versions.angular+'/angular-aria',
+  'https://ajax.googleapis.com/ajax/libs/angularjs/'+versions.angular+'/angular-animate',
+  'https://ajax.googleapis.com/ajax/libs/angularjs/'+versions.angular+'/angular-sanitize',
+  'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/'+versions.lodash+'/lodash',
+  'https://cdnjs.cloudflare.com/ajax/libs/restangular/'+versions.restangular+'/restangular'
+];
+}}
+{{~ styles : s }}
+{{? !it.prod}}
+<link href="{{=s}}.css" rel="stylesheet"/>
+{{?? true }}
+<link href="{{=s}}.min.css" rel="stylesheet"/>
+{{?}}
+{{~}}
+{{~ scripts : s }}
+{{? !it.prod}}
+<script src="{{=s}}.js"></script>
+{{?? true }}
+<script src="{{=s}}.min.js"></script>
+{{?}}
+{{~}}
+<script src="dist/vendors.js"></script>
+<script src="dist/app.js"></script>
+</head>
+<body ng-cloak username="{{=it.username}}">
+<ui-view></ui-view>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    }
+  });
+</script>
+</body>
+</html>

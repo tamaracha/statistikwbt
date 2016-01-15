@@ -11,11 +11,10 @@ const send = require('koa-send');
 const bluebird = require('bluebird');
 const mongoose=require('mongoose');
 mongoose.Promise = bluebird;
-const indexPage = require('./dist/index.js').index({
+const indexPage = require('./dist/index')({
   title: assets.title,
   base: assets.base,
   prod: process.env.NODE_ENV,
-  versions: assets.versions,
   username: config.get('username')
 });
 function *index(){
