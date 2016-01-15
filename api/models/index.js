@@ -14,7 +14,7 @@ const files = [
   'view',
   'watch'
 ];
-const models = module.exports = transform(files,function(models,value){
+module.exports = transform(files,function(models,value){
   const name = capitalize(value);
   const schema = require('./'+value);
   const model = mongoose.model(name,schema);

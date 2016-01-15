@@ -1,7 +1,6 @@
 'use strict';
 const models = require('../models');
 const jsonpatch=require('fast-json-patch');
-const debug = require('debug')('app:topic controller');
 const $=module.exports={};
 
 $.index=function *(){
@@ -43,7 +42,7 @@ $.update=function *(){
   this.assert(patch === true, 'patch not successful');
   yield unit.save();
   this.set('last-modified', unit.topics[index].updatedAt.toISOString());
-    this.set('x-updated-unit', unit.updatedAt.toISOString());
+  this.set('x-updated-unit', unit.updatedAt.toISOString());
   this.status=200;
 };
 

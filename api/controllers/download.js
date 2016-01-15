@@ -10,7 +10,6 @@ const md = fs.readFileSync(__dirname+'/download.md','utf8');
 const compiled = template(md, {variable: 'data'});
 const send = require('koa-send');
 const mime = require('mime-types');
-const binary = ['docx','epub'];
 const bluebird = require('bluebird');
 const mongoose = require('mongoose');
 const Grid = require('gridfs');

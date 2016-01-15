@@ -21,7 +21,7 @@ $.index = function *(){
   }
   const images = yield gfs.collection('images').find(query,{filename: true}).toArray();
   this.body = images;
-}
+};
 
 $.create = function *(){
   const file = this.request.body.files.file;

@@ -1,6 +1,11 @@
 'use strict';
 const gulp=require('gulp');
 const $=require('gulp-load-plugins')();
+const del = require('del');
+
+gulp.task('clean', function(cb){
+  return del('./dist/**', cb);
+});
 
 gulp.task('eslint',function(){
   return gulp.src(['*.js','api/**/*.js'])
@@ -20,19 +25,17 @@ gulp.task('lint',gulp.parallel([
   'yamlValidate'
 ]));
 
-gulp.task('hooks',function(){
-  return gulp.src(['.git-hooks/pre-commit','.git-hooks/post-merge'])
-  .pipe($.sym(
-    ['.git/hooks/pre-commit','.git/hooks/post-merge'],
-    {relative: true,force: true}
-  ));
+gulp.task('templates', function() {
+  return gulp.src('./src/index.jade')
+  .pipe($.jade({
+    client: true
+  }))
+  .pipe($.jadeJstConcat('index.js'))
+  .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('templates', function() {
-  gulp.src('./src/index.jade')
-    .pipe($.jade({
-      client: true
-    }))
-    .pipe($.jadeJstConcat('index.js'))
-    .pipe(gulp.dest('./dist/'))
-});
+gulp.task('default',gulp.series([
+  'lint',
+  'clean',
+  'templates'
+]));

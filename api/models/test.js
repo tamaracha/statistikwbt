@@ -1,11 +1,10 @@
 'use strict';
 const mongoose = require('mongoose');
-const $ = require('../services/validate');
 const ChoiceSchema = require('./choice');
-const TestSchema = module.exports = new mongoose.Schema({
+module.exports = new mongoose.Schema({
   text: {
     type: String,
-    required: true,
+    required: true
   },
   type: {
     type: String,
@@ -21,4 +20,3 @@ const TestSchema = module.exports = new mongoose.Schema({
     index: true
   }
 }, {timestamps: true});
-//TestSchema.path('choices').validate($.notEmpty);
