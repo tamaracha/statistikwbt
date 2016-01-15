@@ -95,14 +95,18 @@ export default /*@ngInject*/class user{
     });
   }
   addUnit(id){
-    const included = _.includes(this.data.done,id);
-    if(included){
+    if(_.some(this.data.done,{unit: id})){
       return;
     }
     const item = {
       unit: id
     };
-    this.$http.post('api/users/'+this.data._id+'/done', item)
+    const config = {
+      method: 'POST',
+      url: `api/users/${this.data._id}/done`,
+      data: item
+    };
+    this.$http(config)
     .then((res) => {
       this.data.done.push(res.data);
     });
@@ -117,9 +121,9 @@ export default /*@ngInject*/class user{
     if(!this.authenticated){
       return false;
     }
-    return _.every(requires,function(val){
+    return _.every(requires, _.bind(function(val){
       return _.some(this.data.done,{unit: val});
-    },this);
+    },this));
   }
   remove(){
     return this.$http.delete('api/users/'+this.data._id)
