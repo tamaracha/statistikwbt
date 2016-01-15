@@ -33,6 +33,7 @@ bluebird.promisifyAll(fs);
 const path = require('path');
 const yaml = require('js-yaml');
 const mongoose = require('mongoose');
+mongoose.Promise = bluebird;
 const models = require('../api/models');
 mongoose.connect(`mongodb://${userArgs.host}:27017/${userArgs.db}`);
 mongoose.connection.once('open',function(){
