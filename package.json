@@ -10,6 +10,9 @@
     "build:index": "dottojs -s src -d dist",
     "build:js": "NODE_ENV=production webpack -p",
     "build": "npm run build:js && npm run build:index",
+    "preversion": "npm run lint && npm run build && git add ./dist",
+    "version": "npm run docs && git add ./docs",
+    "postversion": "git push && git push --tags"
     "docs": "jsdoc -c jsdoc.json"
   },
   "author": "Tamara Cook <tamara.cook@icloud.com>",
@@ -20,7 +23,8 @@
     "url": "https://github.com/tamaracha/wbt-framework.git"
   },
   "bin": {
-    "wbt-setup": "./bin/wbt-setup.js"
+    "wbt-setup": "./bin/wbt-setup.js",
+    "update-db": "./bin/update-db.js"
   },
   "devDependencies": {
     "angular": "^1.4.5",
