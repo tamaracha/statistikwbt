@@ -1,11 +1,12 @@
 import _ from 'lodash';
 export default /*@ngInject*/class TestCtrl{
-  constructor(test, $http, tests, unit, $window){
+  constructor(test, $http, tests, unit, $window, user){
     this.$http = $http;
     this.test = test;
     this.unit = unit;
     this.shuffle = test.shuffle(unit);
     this.$window = $window;
+    this.user = user;
     this.init(tests);
     this.feedback = {
       right: 'Korrekt',
@@ -32,9 +33,13 @@ export default /*@ngInject*/class TestCtrl{
   submit(){
     const item = this.tests[this.item];
     const response = this.test.response(item, this.response);
-    return this.$http.post(`api/guesses/${this.guess._id}/responses`, response, {
+    const config = {
+      method: 'POST',
+      url: `api/guesses/${this.guess._id}/responses`,
+      data: response,
       headers: {'if-unmodified-since': this.guess.updatedAt}
-    })
+    };
+    return this.$http(config)
     .then(
       (res) => {
         this.guess.responses.push(res.data);
@@ -50,6 +55,9 @@ export default /*@ngInject*/class TestCtrl{
           }
         }
         this.count+=1;
+        if(this.count === this.tests.length){
+          return this.user.addUnit(this.unit._id);
+        }
         return res;
       },
       (e) => {
@@ -85,17 +93,24 @@ export default /*@ngInject*/class TestCtrl{
     }
   }
   getGuesses(){
-    const query = {
-      conditions: {unit: this.unit._id},
-      options: {sort: {_id: 1}}
+    const config = {
+      method: 'GET',
+      url: 'api/guesses',
+      params: {
+        conditions: {unit: this.unit._id}
+      }
     };
-    return this.$http.get('api/guesses',query)
+    return this.$http(config)
     .then(
       (res) => {
         this.guesses = res.data;
-        _.each(this.guesses, function(guess, i){
+        function points(guess, i){
           this.guesses[i].score = this.test.runPoints(this.tests, guess);
-        },this);
+        }
+        _.each(this.guesses, _.bind(points, this));
+        if(this.guesses[this.guesses.length-1].responses.length < this.tests.length){
+          this.guesses.pop();
+        }
         return res;
       },
       (e) => {

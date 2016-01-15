@@ -9,6 +9,7 @@ $.index = function *index(){
     this.query.options || null
   )
   .where('user', this.state.user._id)
+  .sort('createdAt')
   .lean().exec();
   this.body = guesses;
 };

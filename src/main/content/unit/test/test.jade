@@ -48,7 +48,8 @@ uib-tabset(justified="true")
           ng-bind="test.count === test.tests.length ? 'Test wiederholen' : 'Nächste Aufgabe'"
         )
   uib-tab(heading="Verlauf" select="test.getGuesses()")
-    table.table
+    uib-alert(ng-if="test.guesses.length===0" type="info") Es liegen noch keine abgeschlossenen Testdurchgänge vor.
+    table.table(ng-if="test.guesses.length>0")
       thead
         tr
           th Durchgang
