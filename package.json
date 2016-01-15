@@ -12,7 +12,7 @@
     "build": "npm run build:js && npm run build:index",
     "preversion": "npm run lint && npm run build && git add ./dist",
     "version": "npm run docs && git add ./docs",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
     "docs": "jsdoc -c jsdoc.json"
   },
   "author": "Tamara Cook <tamara.cook@icloud.com>",
