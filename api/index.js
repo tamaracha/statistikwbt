@@ -34,21 +34,13 @@ api.use('/meta',meta.routes());
 // users
 const users=new Router();
 users.use('/:user',jwt,roles.can('access user'));
-const done = new Router();
-done.get('/',ctrl.done.index);
-done.post('/',body,ctrl.done.create);
-done.get('/:done',ctrl.done.show);
-done.put('/:done',body,ctrl.done.update);
-done.delete('/:done',ctrl.done.destroy);
-const password = new Router();
-password.put('/',body,ctrl.password.change);
-users.use('/:user/password',password.routes());
-users.use('/:user/done',done.routes());
 users.head('/',ctrl.user.check);
 users.post('/',body,ctrl.user.create);
 users.get('/:user',ctrl.user.show);
 users.patch('/:user',body,ctrl.user.update);
 users.delete('/:user',ctrl.user.destroy);
+users.post('/:user/done',body,ctrl.done.create);
+users.put('/:user/password',body,ctrl.password.change);
 api.use('/users',users.routes());
 api.get('/tokens/new',auth,ctrl.token.new);
 
@@ -61,13 +53,13 @@ tests.delete('/:test',roles.can('edit content'),ctrl.test.destroy);
 api.use('/tests',jwt,tests.routes());
 
 // units
-let units=new Router();
+const units=new Router();
 units.get('/',roles.can('access content'),ctrl.unit.index);
 units.post('/',roles.can('edit content'),body,ctrl.unit.create);
 units.get('/:unit',roles.can('access content'),log,ctrl.unit.show);
 units.patch('/:unit',roles.can('edit content'),body,ctrl.unit.update);
 units.delete('/:unit',roles.can('edit content'),ctrl.unit.destroy);
-let topics=new Router();
+const topics=new Router();
 topics.get('/',roles.can('access content'),ctrl.topic.index);
 topics.post('/',roles.can('edit content'),body,ctrl.topic.create);
 topics.patch('/',roles.can('edit content'),body,ctrl.topic.edit);
@@ -80,14 +72,6 @@ summaries.get('/test',ctrl.summary.test);
 summaries.get('/akzeptanz',ctrl.summary.akzeptanz);
 units.use('/:unit/summaries',roles.can('access content'),summaries.routes());
 api.use('/units',jwt,units.routes());
-
-const subjects=new Router();
-subjects.get('/',ctrl.subject.index);
-subjects.post('/',jwt,roles.can('edit content'),body,ctrl.subject.create);
-subjects.get('/:subject',ctrl.subject.show);
-subjects.put('/:subject',jwt,roles.can('edit content'),body,ctrl.subject.update);
-subjects.delete('/:subject',jwt,roles.can('edit content'),ctrl.subject.destroy);
-api.use('/subjects',subjects.routes());
 
 // guesses
 const guesses = new Router();
@@ -110,17 +94,6 @@ images.put('/:image',jwt,roles.can('edit content'),multi,ctrl.image.update);
 images.delete('/:image',jwt,roles.can('edit content'),ctrl.image.destroy);
 api.use('/images',images.routes());
 
-// videos
-/*
-const videos = new Router();
-videos.get('/',jwt,roles.can('access content'),ctrl.video.index);
-videos.post('/',jwt,roles.can('edit content'),multi,ctrl.video.create);
-videos.get('/:video',ctrl.video.show);
-videos.put('/:video',jwt,roles.can('edit content'),multi,ctrl.video.update);
-videos.delete('/:video',jwt,roles.can('edit content'),ctrl.video.destroy);
-api.use('/videos',videos.routes());
-*/
-
 api.get('/downloads',
   ctrl.download.getToken,
   jwt,
@@ -129,3 +102,11 @@ api.get('/downloads',
   ctrl.download.getMarkdown,
   ctrl.download.getFile
 );
+
+const subjects=new Router();
+subjects.get('/',ctrl.subject.index);
+subjects.post('/',jwt,roles.can('edit content'),body,ctrl.subject.create);
+subjects.get('/:subject',ctrl.subject.show);
+subjects.put('/:subject',jwt,roles.can('edit content'),body,ctrl.subject.update);
+subjects.delete('/:subject',jwt,roles.can('edit content'),ctrl.subject.destroy);
+api.use('/subjects',subjects.routes());

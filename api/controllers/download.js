@@ -1,23 +1,19 @@
 'use strict';
 const models = require('../models');
-const template = require('lodash.template');
-const fs=require('fs');
 const os = require('os');
 const path=require('path');
 const spawn=require('child_process').spawn;
 const crypto = require('crypto');
-const md = fs.readFileSync(__dirname+'/download.md','utf8');
-const compiled = template(md, {variable: 'data'});
+const download = require('../../dist/download');
 const send = require('koa-send');
 const mime = require('mime-types');
 const bluebird = require('bluebird');
 const mongoose = require('mongoose');
 const Grid = require('gridfs');
 Grid.mongo = mongoose.mongo;
-const conn = mongoose.connection;
 let gfs;
-conn.once('open',function(){
-  gfs = new Grid(conn.db);
+mongoose.connection.once('open',function(){
+  gfs = new Grid(mongoose.connection.db);
   bluebird.promisifyAll(gfs);
 });
 const $=module.exports={};
@@ -69,7 +65,7 @@ $.getUnits=function *getUnits(next){
 };
 
 $.getMarkdown=function *getMarkdown(next){
-  const md=compiled({units: this.state.units,contents: this.query.contents});
+  const md=download({units: this.state.units,contents: this.query.contents});
   this.assert(md,'markdown not compiled');
   const mimeType = mime.lookup(this.query.format);
   this.response.type=mimeType;
