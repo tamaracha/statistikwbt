@@ -5,12 +5,8 @@ const server=config.get('server');
 const db=config.get('db');
 const assets=config.get('assets');
 const koa=require('koa');
-const unless = require('koa-unless');
-const mount = require('koa-mount');
-const send = require('koa-send');
-const bluebird = require('bluebird');
 const mongoose=require('mongoose');
-mongoose.Promise = bluebird;
+mongoose.Promise = require('bluebird');
 const indexPage = require('./dist/index')({
   title: assets.title,
   base: assets.base,
@@ -20,22 +16,15 @@ const indexPage = require('./dist/index')({
 function *index(){
   this.body = indexPage;
 }
-index.unless = unless;
-function *swagger(){
-  yield send(this, '/api/swagger.yml',{root: __dirname});
-}
+index.unless = require('koa-unless');
 const api=require('./api');
 const app=koa();
 require('koa-qs')(app);
 require('koa-onerror')(app);
 if(assets.serve){
-  const koaStatic = require('koa-static');
-  app.use(mount(assets.root,koaStatic(__dirname+'/dist')))
-  .use(mount('/docs',koaStatic(__dirname+'/docs')))
-  .use(mount('/swagger',koaStatic(__dirname+'/swagger-ui/dist')));
+  app.use(require('koa-mount')(assets.root, require('koa-static')(__dirname+'/dist')))
 }
-app.use(mount('/api-docs.yml',swagger))
-.use(api.routes())
+app.use(api.routes())
 .use(api.allowedMethods())
 .use(index.unless({path: [/api/,new RegExp(assets.root), /docs/, /swagger/]}))
 .listen(server.port,server.host,function(){
