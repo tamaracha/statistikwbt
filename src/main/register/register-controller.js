@@ -81,7 +81,7 @@ export default /*@ngInject*/class RegisterCtrl{
         required: true,
         minlength: 6,
         maxlength: 6,
-        pattern: '^[sg]{1}[a-zA-z]{1}[0-9]{4}$',
+        pattern: '^[sg]{1}[a-zA-z0-9]{5}$',
         placeholder: 'sx1234'
       };
     }
