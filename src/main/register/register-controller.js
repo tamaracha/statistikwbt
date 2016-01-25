@@ -79,9 +79,7 @@ export default /*@ngInject*/class RegisterCtrl{
         label: 'S- oder G-Kennung',
         type: 'text',
         required: true,
-        minlength: 6,
         maxlength: 6,
-        pattern: '^[sg]{1}[a-zA-z0-9]{5}$',
         placeholder: 'sx1234'
       };
     }

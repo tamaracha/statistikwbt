@@ -63,7 +63,6 @@ if(username === 'kennung'){
   UserSchema.path('kennung',{
     type: String,
     required: true,
-    minlength: 6,
     maxlength: 6,
     unique: true
   });
