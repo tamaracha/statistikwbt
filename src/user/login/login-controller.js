@@ -48,9 +48,7 @@ export default /*@ngInject*/class LoginController{
         label: 'S- oder G-Kennung',
         placeholder: 'sx1234',
         required: true,
-        minlength: 6,
-        maxlength: 6,
-        pattern: '^[sg]{1}[a-zA-z0-9]{5}$'
+        maxlength: 6
       };
     }
   }
