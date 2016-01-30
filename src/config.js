@@ -13,7 +13,7 @@ export /*@ngInject*/function config($locationProvider,$compileProvider,$httpProv
   formlyConfigProvider.setType(types);
 }
 
-export /*@ngInject*/function run($rootScope,$state,$stateParams,Permission,user,formlyValidationMessages){
+export /*@ngInject*/function run($rootScope,$state,$stateParams,PermissionStore,user,formlyValidationMessages){
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
   $rootScope.$on('$stateChangeStart',function(event,toState,toParams,fromState,fromParams){
@@ -36,13 +36,13 @@ export /*@ngInject*/function run($rootScope,$state,$stateParams,Permission,user,
       }
     );
   });
-  Permission.defineRole('anonymous',() => {
+  PermissionStore.definePermission('anonymous',() => {
     return !user.authenticated;
   });
-  Permission.defineRole('user',() => {
+  PermissionStore.definePermission('user',() => {
     return user.role === 'user';
   });
-  Permission.defineRole('author',() => {
+  PermissionStore.definePermission('author',() => {
     return user.role === 'author' ? true : false;
   });
   formlyValidationMessages.addStringMessage('json','JSON ist invalid');
