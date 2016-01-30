@@ -13,7 +13,7 @@ export default /*@ngInject*/class MainCtrl{
       }
     };
     this.meta = meta;
-    this.items = _.indexBy(meta,'_id');
+    this.items = _.keyBy(meta,'_id');
     $scope.$watch('main.user.role', (val) => {
       this.items.author.active = val === 'author';
     });

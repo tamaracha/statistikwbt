@@ -24,7 +24,7 @@ export default /*@ngInject*/class TestCtrl{
       this.tests[this.item].choices = _.shuffle(this.tests[this.item].choices);
     }
     this.score = {
-      max: _.sum(this.tests, this.test.maxPoints) || 0,
+      max: _.sumBy(this.tests, this.test.maxPoints) || 0,
       current: this.test.runPoints(this.tests, this.guess)
     };
     this.response = this.test.input(this.tests[this.item]);

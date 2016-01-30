@@ -24,7 +24,6 @@ import test from './test-service';
  * @module wbt
  */
 export default angular.module('wbt',[
-  'restangular',
   uiRouter,
   'ui.router.stateHelper',
   uiBootstrap,
@@ -54,3 +53,7 @@ export default angular.module('wbt',[
 .service('modals',modals)
 .factory('test',test)
 .name;
+
+angular.element(document).ready(function(){
+  angular.bootstrap(document, ['wbt'], {strictDi: true});
+});

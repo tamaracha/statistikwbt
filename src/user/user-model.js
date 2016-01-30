@@ -10,8 +10,8 @@ export default /*@ngInject*/class user{
     this.$q = $q;
     this.$window = $window;
     this.$uibModal = $uibModal;
-    this.data = null;
     this.username = $('body').attr('username');
+    this.data = null;
     this.init();
   }
   check(value){
