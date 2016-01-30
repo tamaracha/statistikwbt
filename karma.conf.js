@@ -4,12 +4,16 @@ const path = require('path');
 const webpackConfig = require('./webpack.config.js');
 webpackConfig.entry = undefined;
 webpackConfig.output = undefined;
-
+webpackConfig.isparta = {
+  babel: {
+    presets: ['es2015']
+  }
+};
 webpackConfig.module.preLoaders.push(
   {
     test: /\.js$/,
     exclude: [/(tests\/client|node_modules|bower_components)\//, /(api.js|angular-locale)/],
-    loader: 'isparta-instrumenter-loader?{"babel":{"presets":["es2015"]}}!eslint'
+    loader: 'isparta!eslint'
   }
 );
 webpackConfig.module.loaders.shift();
