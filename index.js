@@ -10,7 +10,7 @@ mongoose.Promise = require('bluebird');
 const indexPage = require('./dist/index')({
   title: assets.title,
   base: assets.base,
-  prod: process.env.NODE_ENV,
+  env: process.env.NODE_ENV,
   username: config.get('username')
 });
 function *index(){
