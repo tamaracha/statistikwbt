@@ -20,20 +20,18 @@ uib-tabset(justified="true")
       .form-group(ng-switch-when="input" ng-class="{'has-success': test.output.correct === true, 'has-error': test.output.correct === false}")
         label.control-label(for="item") Antwort
         input#item.form-control(type="text" required autocomplete="off" name="item" ng-model="test.response")
-        p.help-block(ng-bind="test.output.feedback || (test.output.correct ? test.tests[test.item].feedback_right||test.feedback.right : test.tests[test.item].feedback_wrong||test.feedback.wrong)" ng-show="test.form.$submitted")
+        p.help-block(markdown="test.output.feedback || (test.output.correct ? test.tests[test.item].feedback_right||test.feedback.right : test.tests[test.item].feedback_wrong||test.feedback.wrong)" ng-show="test.form.$submitted")
       .form-group(ng-switch-when="single" ng-class="{'has-success': test.form.$submitted&&test.response.correct, 'has-error': test.form.$submitted&&!test.response.correct}")
         .radio(ng-repeat="c in test.tests[test.item].choices track by c._id")
-          label
-            input(type="radio" required name="item" ng-value="c" ng-model="test.response")
-            |  {{c.text}}
-        p.help-block(ng-bind="test.response.feedback || (test.response.correct ? test.tests[test.item].feedback_right||test.feedback.right : test.tests[test.item].feedback_wrong||test.feedback.wrong)" ng-show="test.form.$submitted")
+          input(type="radio" id="{{'item'+$index}}" required name="item" ng-value="c" ng-model="test.response")
+          label(for="{{'item'+$index" markdown="c.text")
+        p.help-block(markdown="test.response.feedback || (test.response.correct ? test.tests[test.item].feedback_right||test.feedback.right : test.tests[test.item].feedback_wrong||test.feedback.wrong)" ng-show="test.form.$submitted")
       .form-group(ng-switch-when="multiple")
         div(ng-repeat="c in test.tests[test.item].choices track by c._id" ng-class="{'has-success': test.form.$submitted&&!!test.response[c._id]===c.correct, 'has-error': test.form.$submitted&&!!test.response[c._id]!==c.correct}")
           .checkbox
-            label
-              input(type="checkbox" name="item" ng-model="test.response[c._id]")
-              |  {{c.text}}
-          p.help-block(ng-bind="!!test.response[c._id] === c.correct ? (c.feedback_right || c.feedback || test.feedback.right) : (c.feedback_wrong || c.feedback || test.feedback.wrong)" ng-show="test.form.$submitted")
+            input(type="checkbox" id="{{'item'+$index}}" name="item" ng-model="test.response[c._id]")
+            label(for="{{'item'+$index}}" markdown="c.text")
+          p.help-block(markdown="!!test.response[c._id] === c.correct ? (c.feedback_right || c.feedback || test.feedback.right) : (c.feedback_wrong || c.feedback || test.feedback.wrong)" ng-show="test.form.$submitted")
       .form-group
         button.btn(
           type="submit"
