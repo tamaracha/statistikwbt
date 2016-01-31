@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import removeModal from '../../remove-modal';
-export default /*@ngInject*/class TopicsCtrl{
+export default class TopicsCtrl{
   constructor(topics,$state,$scope, $uibModal, $http){
     this.$http = $http;
     this.topics = topics.data;
@@ -95,3 +95,4 @@ export default /*@ngInject*/class TopicsCtrl{
     );
   }
 }
+TopicsCtrl.$inject = ['topics', '$state', '$scope', '$uibModal', '$http'];
