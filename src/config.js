@@ -22,11 +22,21 @@ export function run($rootScope,$state,$stateParams, user, Permission, formlyVali
     $rootScope.prevState = fromState;
     $rootScope.prevParams = fromParams;
   });
+  $rootScope.$on('$stateChangePermissionDenied',function(event,toState,toParams){
+    user.login()
+    .result.then(
+      () => {
+        $state.go(toState.name,toParams);
+      },
+      () => {
+        if($rootScope.prevState.name === ''){
+          $state.go('main.home');
+        }
+      }
+    );
+  });
   Permission.defineManyRoles(['anonymous', 'user', 'author'], function(params, role){
     return user.role === role;
-  });
-  $rootScope.$on('$stateChangePermissionDenied', function(ev){
-    console.log(ev);
   });
   formlyValidationMessages.addStringMessage('json','JSON ist invalid');
   formlyValidationMessages.addTemplateOptionValueMessage('minlength','minlength','Bitte mindestens','Zeichen eingeben');
