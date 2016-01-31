@@ -4,19 +4,20 @@ const path = require('path');
 const webpackConfig = require('./webpack.config.js');
 webpackConfig.entry = undefined;
 webpackConfig.output = undefined;
+webpackConfig.plugins = undefined;
 webpackConfig.isparta = {
   babel: {
     presets: ['es2015']
   }
 };
-webpackConfig.module.preLoaders.push(
+webpackConfig.module.loaders.shift();
+webpackConfig.module.preLoaders.unshift(
   {
     test: /\.js$/,
-    exclude: [/(tests\/client|node_modules|bower_components)\//, /(api.js|angular-locale)/],
+    exclude: [/(node_modules|bower_components)\//, /(.spec.js|api.js|angular-locale)/],
     loader: 'isparta!eslint'
   }
 );
-webpackConfig.module.loaders.shift();
 
 module.exports = function(config) {
   config.set({
@@ -38,6 +39,8 @@ module.exports = function(config) {
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/angular-aria/angular-aria.js',
       'node_modules/angular-animate/angular-animate.js',
+      'node_modules/angular-messages/angular-messages.js',
+      'node_modules/angular-sanitize/angular-sanitize.js',
       'tests/client/index.js'
     ],
 
@@ -71,7 +74,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_WARN,
+    logLevel: config.LOG_INFO,
 
 
     // enable / disable watching file and executing tests whenever any file changes

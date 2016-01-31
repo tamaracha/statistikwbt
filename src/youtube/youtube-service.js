@@ -1,4 +1,4 @@
-export default /*@ngInject*/function youtubeService($q, $window) {
+export default function youtubeService($q, $window){
   var deferred = $q.defer();
   var apiReady = deferred.promise;
   $window.onYouTubeIframeAPIReady = function() {
@@ -10,3 +10,4 @@ export default /*@ngInject*/function youtubeService($q, $window) {
     }
   };   
 }
+youtubeService.$inject = ['$q', '$window'];

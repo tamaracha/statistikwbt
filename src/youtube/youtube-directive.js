@@ -1,4 +1,4 @@
-export default /*@ngInject*/function youtubeDirective($window, youtube, api){
+export default function youtubeDirective($window, youtube, api){
   function link(scope, element){
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
@@ -77,3 +77,4 @@ export default /*@ngInject*/function youtubeDirective($window, youtube, api){
     link
   };
 }
+youtubeDirective.$inject = ['$window', 'youtube', 'api'];

@@ -2,7 +2,7 @@ import $ from '$';
 import _ from 'lodash';
 import loginModal from './login';
 import changePasswordModal from './change-password';
-export default /*@ngInject*/class user{
+export default class user{
   constructor($http,$localStorage,$window,$q,$uibModal, api){
     this.api = api;
     this.$http = $http;
@@ -39,6 +39,7 @@ export default /*@ngInject*/class user{
     return this.$storage.token;
   }
   get role(){
+    if(!this.authenticated){return 'anonymous';}
     return this.$storage.role;
   }
   init(){
@@ -49,6 +50,7 @@ export default /*@ngInject*/class user{
     .then(
       (res) => {
         this.data = res.data;
+        this.$storage.role = res.data.role;
         return res;
       },
       (e) => {
@@ -136,3 +138,4 @@ export default /*@ngInject*/class user{
     return this.$uibModal.open(changePasswordModal);
   }
 }
+user.$inject = ['$http', '$localStorage', '$window', '$q', '$uibModal', 'api'];

@@ -1,4 +1,4 @@
-export default /*@ngInject*/function userCheckValidator($q,user){
+export default function userCheckValidator($q,user){
   function link(scope,el,attrs,c){
     c.$parsers.push(function(value){
       return value.toLowerCase();
@@ -23,3 +23,4 @@ export default /*@ngInject*/function userCheckValidator($q,user){
     link
   };
 }
+userCheckValidator.$inject = ['$q', 'user'];

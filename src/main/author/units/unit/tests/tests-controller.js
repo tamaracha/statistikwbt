@@ -1,5 +1,5 @@
 import _ from 'lodash';
-export default /*@ngInject*/class TestsCtrl{
+export default class TestsCtrl{
   constructor(tests,$stateParams, $http, jsonpatch, $scope){
     const modelOptions = {
       updateOn: 'default blur',
@@ -202,3 +202,4 @@ export default /*@ngInject*/class TestsCtrl{
     );
   }
 }
+TestsCtrl.$inject = ['tests', '$stateParams', '$http', 'jsonpatch', '$scope'];

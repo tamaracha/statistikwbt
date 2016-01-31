@@ -8,8 +8,8 @@ export default {
   controller,
   controllerAs: 'test',
   resolve: {
-    tests: /*@ngInject*/function($http, $stateParams){
+    tests: ['$http', '$stateParams', function($http, $stateParams){
       return $http.get(['api','units',$stateParams.unit,'summaries','test'].join('/'));
-    }
+    }]
   }
 };

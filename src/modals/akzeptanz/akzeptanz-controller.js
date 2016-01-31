@@ -1,4 +1,4 @@
-class /*@ngInject*/RatingCtrl{
+class RatingCtrl{
   constructor($scope,Restangular,$stateParams){
     $scope.rate = function(){
       const rating = {
@@ -77,3 +77,4 @@ export default /*@ngInject*/class akzeptanzCtrl{
     return this.$modalInstance.dismiss('cancel');
   }
 }
+RatingCtrl.$inject = ['$scope', 'Restangular', '$stateParams'];

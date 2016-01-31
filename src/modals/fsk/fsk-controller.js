@@ -11,3 +11,4 @@ export default class FskCtrl{
     return this.$modalInstance.dismiss();
   }
 }
+FskCtrl.$inject = ['Restangular', '$modalInstance'];

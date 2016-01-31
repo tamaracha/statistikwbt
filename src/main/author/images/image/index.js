@@ -7,16 +7,13 @@ export default {
   controller,
   controllerAs: 'image',
   resolve: {
-    image: /*@ngInject*/function($http, $stateParams){
+    image: ['$http', '$stateParams', function($http, $stateParams){
       const config = {
         method: 'GET',
         url: 'api/images/'+$stateParams.image,
         params: {metadata: true}
       };
       return $http(config);
-    }
-  },
-  ncyBreadcrumb: {
-    label: '{{image.image.filename}}'
+    }]
   }
 };

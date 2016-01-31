@@ -1,4 +1,4 @@
-export default /*@ngInject*/class ProfileController{
+export default class ProfileController{
   constructor(api, user, $scope, jsonpatch){
     const modelOptions = {
       updateOn: 'default blur',
@@ -41,3 +41,4 @@ export default /*@ngInject*/class ProfileController{
     },true);
   }
 }
+ProfileController.$inject = ['api', 'user', '$scope', 'jsonpatch'];

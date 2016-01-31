@@ -1,5 +1,5 @@
 import _ from 'lodash';
-export default /*@ngInject*/function test(){
+export default function test(){
   function points(item, value){
     let choice;
     switch(item.type){

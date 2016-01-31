@@ -1,5 +1,5 @@
 import _ from 'lodash';
-export default /*@ngInject*/class TopicController{
+export default class TopicController{
   constructor($scope,jsonpatch,topic, $http, $stateParams){
     this.topic = topic.data;
     this.patches = [];
@@ -34,3 +34,4 @@ export default /*@ngInject*/class TopicController{
     });
   }
 }
+TopicController.$inject = ['$scope', 'jsonpatch', 'topic', '$http', '$stateParams'];

@@ -12,13 +12,13 @@ export default {
     }
   },
   resolve: {
-    units: /*@ngInject*/function($http){
+    units: ['$http', function($http){
       const config = {
         method: 'GET',
         url: 'api/units',
         params: {projections: 'title'}
       };
       return $http(config);
-    }
+    }]
   }
 };

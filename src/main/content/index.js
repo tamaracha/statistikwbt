@@ -1,11 +1,11 @@
-import template from './content.jade';
+import templateUrl from './content.jade';
 import controller from './content-controller.js';
 import unit from './unit';
 
 export default {
   name: 'content',
   url: '/content',
-  templateUrl: template,
+  templateUrl,
   controller,
   controllerAs: 'content',
   data: {
@@ -14,16 +14,16 @@ export default {
     }
   },
   resolve: {
-    units: /*@ngInject*/function(api){
+    units: ['api', function(api){
       const query = {
         projections: 'title requires',
         options: {sort: 'position'}
       };
       return api.getUnits(query);
-    },
-    meta: /*@ngInject*/function(api){
+    }],
+    meta: ['api', function(api){
       return api.getMetaBy_id({_id: 'content'});
-    }
+    }]
   },
   children: [
     unit

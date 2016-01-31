@@ -1,4 +1,4 @@
-export default /*@ngInject*/class RegisterCtrl{
+export default class RegisterCtrl{
   constructor(user,$state){
     this.user = user;
     this.$state = $state;
@@ -99,3 +99,4 @@ export default /*@ngInject*/class RegisterCtrl{
     );
   }
 }
+RegisterCtrl.$inject = ['user', '$state'];

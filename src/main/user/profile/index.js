@@ -8,13 +8,13 @@ export default {
   controller,
   controllerAs: 'profile',
   resolve: {
-    jsonpatch: /*@ngInject*/function($q){
+    jsonpatch: ['$q', function($q){
       return $q(function(resolve,reject){
         require.ensure([],function(){
           const jsonpatch = require('fast-json-patch');
           return jsonpatch ? resolve(jsonpatch) : reject('jsonpatch not loaded');
         });
       });
-    }
+    }]
   }
 };

@@ -22,7 +22,7 @@ const config = {
     ],
     loaders: [
       {
-        loader: 'ng-annotate?add!babel?presets[]=es2015!eslint',
+        loader: 'babel?presets[]=es2015!eslint',
         test: /\.js$/,
         exclude: /(node_modules|bower_components|api.js|angular-locale)/
       },
@@ -63,8 +63,8 @@ if(prod){
     'api-check',
     'angular-formly',
     'angular-formly-templates-bootstrap',
-    'angular-permission',
     'ngstorage',
+    'angular-permission',
     './src/angular-locale_de-de'
   ];
   config.plugins = [

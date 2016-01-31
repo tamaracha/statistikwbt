@@ -1,5 +1,5 @@
 import _ from 'lodash';
-export default /*@ngInject*/class TestCtrl{
+export default class TestCtrl{
   constructor(test, $http, tests, unit, $window, user){
     this.$http = $http;
     this.test = test;
@@ -123,3 +123,4 @@ export default /*@ngInject*/class TestCtrl{
     return this.$window.location.reload();
   }
 }
+TestCtrl.$inject = ['test', '$http', 'tests', 'unit', '$window', 'user'];

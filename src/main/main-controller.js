@@ -1,5 +1,5 @@
 import _ from 'lodash';
-export default /*@ngInject*/class MainCtrl{
+export default class MainCtrl{
   constructor($scope, $state,$stateParams,user,modals, meta){
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -19,3 +19,4 @@ export default /*@ngInject*/class MainCtrl{
     });
   }
 }
+MainCtrl.$inject = ['$scope', '$state', '$stateParams', 'user', 'modals', 'meta'];

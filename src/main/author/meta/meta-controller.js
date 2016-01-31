@@ -1,4 +1,4 @@
-export default /*@ngInject*/class MetaController{
+export default class MetaController{
   constructor(){
   }
 }

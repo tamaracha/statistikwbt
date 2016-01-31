@@ -1,5 +1,5 @@
 import _ from 'lodash';
-export default /*@ngInject*/class UnitCtrl{
+export default class UnitCtrl{
   constructor(unit,units){
     this.unit = unit;
     this.units = units;
@@ -10,3 +10,4 @@ export default /*@ngInject*/class UnitCtrl{
     }, this));
   }
 }
+UnitCtrl.$inject = ['unit', 'units'];

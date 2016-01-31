@@ -10,14 +10,14 @@ export default {
   controllerAs: 'topics',
   abstract: true,
   resolve: {
-    topics: /*@ngInject*/function($http, $stateParams){
+    topics: ['$http', '$stateParams', function($http, $stateParams){
       const config = {
         method: 'GET',
         url: 'api/units/'+$stateParams.unit+'/topics',
         params: {projections: 'topics.title topics._id'}
       };
       return $http(config);
-    }
+    }]
   },
   children: [
     newTopic,

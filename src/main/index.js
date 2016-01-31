@@ -17,9 +17,9 @@ export default {
   controller,
   controllerAs: 'main',
   resolve: {
-    meta: /*@ngInject*/function(api){
+    meta: ['api', function(api){
       return api.getMeta();
-    }
+    }]
   },
   children: [
     home,

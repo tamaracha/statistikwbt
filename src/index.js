@@ -10,10 +10,10 @@ import apiCheck from 'api-check';
 apiCheck.globalConfig.disabled = true;
 import formly from 'angular-formly';
 import formlyBootstrap from 'angular-formly-templates-bootstrap';
-import 'angular-permission';
 import wbtText from 'wbt-text';
 import 'swagger?type=angular&className=API&esnext=true!../api/swagger.yml';
 import youtube from './youtube';
+import 'angular-permission';
 
 import {config, run} from './config.js';
 import * as user from './user';
@@ -35,23 +35,26 @@ export default angular.module('wbt',[
   ocLazyLoad,
   formly,
   formlyBootstrap,
-  'permission',
   wbtText,
   'api',
-  youtube
+  youtube,
+  'permission'
 ])
 .config(config)
 .run(run)
-.factory('api',/*@ngInject*/(API, $localStorage) => {
+.factory('api', ['API', '$localStorage', (API, $localStorage) => {
   const api = new API('api');
   api.setToken($localStorage.token);
   return api;
-})
+}])
 .factory('userInterceptor',user.interceptor)
 .service('user',user.model)
 .directive('userCheck',user.validator)
 .service('modals',modals)
 .factory('test',test)
+.controller('MetaController', ['meta', function(meta){
+  this.meta = meta;
+}])
 .name;
 
 angular.element(document).ready(function(){

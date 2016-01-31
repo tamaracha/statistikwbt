@@ -3,13 +3,10 @@ export default {
   name: 'home',
   url: '/home',
   templateUrl,
-  controller: /*@ngInject*/function(meta){
-    this.meta = meta;
-  },
-  controllerAs: 'home',
+  controller: 'MetaController as home',
   resolve: {
-    meta: /*@ngInject*/function(api){
+    meta: ['api', function(api){
       return api.getMetaBy_id({_id: 'home'});
-    }
+    }]
   }
 };
