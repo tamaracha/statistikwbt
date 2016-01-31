@@ -1,6 +1,6 @@
 import angular from 'angular';
 import objectid from 'objectid-browser';
-export default /*@ngInject*/function repeatSectionController($scope){
+export default function repeatSectionController($scope){
   function copyFields(fields) {
     return angular.copy(fields);
   }
@@ -15,3 +15,4 @@ export default /*@ngInject*/function repeatSectionController($scope){
   $scope.addNew = addNew;
   $scope.copyFields = copyFields;
 }
+repeatSectionController.$inject = ['$scope'];
