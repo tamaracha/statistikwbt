@@ -20,4 +20,4 @@ export default class NewController{
     );
   }
 }
-NewController.$inject = ['scope', '$http'];
+NewController.$inject = ['$scope', '$http'];
