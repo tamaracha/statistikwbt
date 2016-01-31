@@ -1,4 +1,4 @@
-export default /*@ngInject*/class NewController{
+export default class NewController{
   constructor($scope, $http){
     this.$scope = $scope;
     this.$http = $http;
@@ -20,3 +20,4 @@ export default /*@ngInject*/class NewController{
     );
   }
 }
+NewController.$inject = ['$scope', '$http'];

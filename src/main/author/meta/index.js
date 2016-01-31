@@ -8,9 +8,6 @@ export default {
   templateUrl,
   controller,
   controllerAs: 'meta',
-  ncyBreadcrumb: {
-    label: 'Meta'
-  },
   children: [
     item
   ]

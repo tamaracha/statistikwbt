@@ -1,4 +1,4 @@
-export default /*@ngInject*/class ImagesController{
+export default class ImagesController{
   constructor($scope, FileUploader, $http, $localStorage){
     this.$http = $http;
     this.searchTerms = {};
@@ -50,3 +50,4 @@ export default /*@ngInject*/class ImagesController{
     });
   }
 }
+ImagesController.$inject = ['$scope', 'FileUploader', '$http', '$localStorage'];

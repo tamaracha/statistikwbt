@@ -1,31 +1,26 @@
 import main from './main';
 import {types, wrappers} from './formly';
 
-export /*@ngInject*/function config($locationProvider,$compileProvider,$httpProvider,$urlRouterProvider,stateHelperProvider,formlyConfigProvider,RestangularProvider){
+export function config($locationProvider,$compileProvider,$httpProvider,$urlRouterProvider,stateHelperProvider,formlyConfigProvider){
   $locationProvider.html5Mode(true);
   $compileProvider.debugInfoEnabled(false);
   $httpProvider.interceptors.push('userInterceptor');
   $httpProvider.defaults.paramSerializer = '$httpParamSerializerJQLike';
-  RestangularProvider.setBaseUrl('api');
-  RestangularProvider.setRestangularFields({
-    id: '_id'
-  });
   stateHelperProvider.state(main);
   $urlRouterProvider.otherwise('/home');
   formlyConfigProvider.disableWarnings = true;
   formlyConfigProvider.setWrapper(wrappers);
   formlyConfigProvider.setType(types);
 }
+config.$inject = ['$locationProvider', '$compileProvider', '$httpProvider', '$urlRouterProvider', 'stateHelperProvider', 'formlyConfigProvider'];
 
-export /*@ngInject*/function run($rootScope,$state,$stateParams,Permission,user,formlyValidationMessages){
+export function run($rootScope,$state,$stateParams, user, Permission, formlyValidationMessages){
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
+  $rootScope.$on('$stateChangeError',console.log.bind(console));
   $rootScope.$on('$stateChangeStart',function(event,toState,toParams,fromState,fromParams){
     $rootScope.prevState = fromState;
     $rootScope.prevParams = fromParams;
-  });
-  $rootScope.$on('$stateChangeError',function(event, toState, toParams, fromState, fromParams, error){
-    console.error(error); // eslint-disable-line no-console
   });
   $rootScope.$on('$stateChangePermissionDenied',function(event,toState,toParams){
     user.login()
@@ -40,14 +35,8 @@ export /*@ngInject*/function run($rootScope,$state,$stateParams,Permission,user,
       }
     );
   });
-  Permission.defineRole('anonymous',() => {
-    return !user.authenticated;
-  });
-  Permission.defineRole('user',() => {
-    return user.role === 'user';
-  });
-  Permission.defineRole('author',() => {
-    return user.role === 'author' ? true : false;
+  Permission.defineManyRoles(['anonymous', 'user', 'author'], function(params, role){
+    return user.role === role;
   });
   formlyValidationMessages.addStringMessage('json','JSON ist invalid');
   formlyValidationMessages.addTemplateOptionValueMessage('minlength','minlength','Bitte mindestens','Zeichen eingeben');
@@ -57,3 +46,4 @@ export /*@ngInject*/function run($rootScope,$state,$stateParams,Permission,user,
     return `${$viewValue} ist keine gültige E-Mail-Adresse`;
   };
 }
+run.$inject = ['$rootScope', '$state', '$stateParams', 'user', 'Permission', 'formlyValidationMessages'];

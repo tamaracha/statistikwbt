@@ -1,5 +1,5 @@
 import _ from 'lodash';
-export default /*@ngInject*/function test(){
+export default function test(){
   function points(item, value){
     let choice;
     switch(item.type){
@@ -7,7 +7,7 @@ export default /*@ngInject*/function test(){
       choice = _.find(item.choices,{_id: value});
       return choice.correct ? 1 : 0;
     case 'multiple':
-      return _.sum(item.choices, function(c){
+      return _.sumBy(item.choices, function(c){
         return _.include(value,c._id) === c.correct ? 1 : 0;
       });
     case 'input':
@@ -24,7 +24,7 @@ export default /*@ngInject*/function test(){
     }
   }
   function runPoints(tests, guess){
-    return _.sum(tests, function(t){
+    return _.sumBy(tests, function(t){
       if(guess.length === 0){return 0;}
       const response = _.find(guess.responses, {test: t._id});
       if(!response){return 0;}

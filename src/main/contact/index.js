@@ -3,13 +3,10 @@ export default {
   name: 'contact',
   url: '/contact',
   templateUrl: template,
-  controller: /*@ngInject*/function(meta){
-    this.meta = meta;
-  },
-  controllerAs: 'contact',
+  controller: 'MetaController as contact',
   resolve: {
-    meta: /*@ngInject*/function(api){
+    meta: ['api', function(api){
       return api.getMetaBy_id({_id: 'contact'});
-    }
+    }]
   }
 };

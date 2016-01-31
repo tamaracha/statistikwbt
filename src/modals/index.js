@@ -1,7 +1,7 @@
 import fsk from './fsk';
 import akzeptanz from './akzeptanz';
 
-export default /*@ngInject*/class modals{
+export default class modals{
   constructor($uibModal){
     this.$uibModal = $uibModal;
   }
@@ -12,3 +12,4 @@ export default /*@ngInject*/class modals{
     return this.$uibModal.open(akzeptanz);
   }
 }
+modals.$inject = ['$uibModal'];

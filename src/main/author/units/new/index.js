@@ -5,8 +5,5 @@ export default {
   url: '/new',
   controller,
   controllerAs: 'new',
-  templateUrl: template,
-  ncyBreadcrumb: {
-    label: 'Neues Kapitel'
-  }
+  templateUrl: template
 };

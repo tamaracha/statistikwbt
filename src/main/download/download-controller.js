@@ -1,5 +1,5 @@
 import _ from 'lodash';
-export default /*@ngInject*/class DownloadController{
+export default class DownloadController{
   constructor(units){
     this.units = units.data;
     this.data = {
@@ -79,3 +79,4 @@ export default /*@ngInject*/class DownloadController{
     this.data.contents = val ? ['body','examples','extras'] : [];
   }
 }
+DownloadController.$inject = ['units'];

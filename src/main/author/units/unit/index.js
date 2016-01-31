@@ -12,15 +12,15 @@ export default {
   controllerAs: 'unit',
   abstract: true,
   resolve: {
-    jsonpatch: /*@ngInject*/function($q){
+    jsonpatch: ['$q', function($q){
       return $q(function(resolve,reject){
         require.ensure([],function(){
           const jsonpatch = require('fast-json-patch');
           return jsonpatch ? resolve(jsonpatch) : reject('jsonpatch not loaded');
         });
       });
-    },
-    unit: /*@ngInject*/function($http, $stateParams){
+    }],
+    unit: ['$http', '$stateParams', function($http, $stateParams){
       const config = {
         method: 'GET',
         url: 'api/units/'+$stateParams.unit,
@@ -29,7 +29,7 @@ export default {
         }
       };
       return $http(config);
-    }
+    }]
   },
   children: [
     basics,

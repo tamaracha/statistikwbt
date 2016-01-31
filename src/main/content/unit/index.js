@@ -14,13 +14,13 @@ export default {
   controllerAs: 'unit',
   abstract: true,
   resolve: {
-    unit: /*@ngInject*/function(api,$stateParams){
+    unit: ['api', '$stateParams', function(api,$stateParams){
       const query = {
         projections: 'title subtitle description requires topics._id topics.title test',
         _id: $stateParams.unit
       };
       return api.getUnitsBy_id(query);
-    }
+    }]
   },
   children: [
     description,

@@ -1,4 +1,4 @@
-export default /*@ngInject*/class LoginController{
+export default class LoginController{
   constructor(user,$uibModalInstance){
     this.user = user;
     this.$uibModalInstance = $uibModalInstance;
@@ -68,3 +68,4 @@ export default /*@ngInject*/class LoginController{
     this.$uibModalInstance.dismiss('cancel');
   }
 }
+LoginController.$inject = ['user', '$uibModalInstance'];

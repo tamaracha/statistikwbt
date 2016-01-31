@@ -6,20 +6,17 @@ export default {
   templateUrl,
   controller,
   controllerAs: 'item',
-  ncyBreadcrumb: {
-    label: '{{main.items[$stateParams.meta].menu}}'
-  },
   resolve: {
-    jsonpatch: /*@ngInject*/function($q){
+    jsonpatch: ['$q', function($q){
       return $q(function(resolve,reject){
         require.ensure([],function(){
           const jsonpatch = require('fast-json-patch');
           return jsonpatch ? resolve(jsonpatch) : reject('jsonpatch not loaded');
         });
       });
-    },
-    item: /*@ngInject*/function(api,$stateParams){
+    }],
+    item: ['api', '$stateParams', function(api,$stateParams){
       return api.getMetaBy_id({_id: $stateParams.meta});
-    }
+    }]
   }
 };

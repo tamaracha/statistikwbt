@@ -7,11 +7,8 @@ export default {
   templateUrl: template,
   controller,
   controllerAs: 'tests',
-  ncyBreadcrumb: {
-    label: '{{unit.unit.title}} — Testaufgaben'
-  },
   resolve: {
-    tests: /*@ngInject*/function($http, $stateParams){
+    tests: ['$http', '$stateParams', function($http, $stateParams){
       const config = {
         method: 'GET',
         url: 'api/tests',
@@ -23,6 +20,6 @@ export default {
         }
       };
       return $http(config);
-    }
+    }]
   }
 };

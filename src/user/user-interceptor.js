@@ -1,4 +1,4 @@
-export default /*@ngInject*/function userInterceptor($localStorage){
+export default function userInterceptor($localStorage){
   function request(config){
     if(config.headers.Authorization){
       return config;
@@ -10,3 +10,4 @@ export default /*@ngInject*/function userInterceptor($localStorage){
   }
   return {request};
 }
+userInterceptor.$inject = ['$localStorage'];

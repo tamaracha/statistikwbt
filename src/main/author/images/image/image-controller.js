@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import removeModal from '../../units/remove-modal';
-export default /*@ngInject*/class NewController{
+export default class NewController{
   constructor(image, FileUploader, $localStorage, $scope, $uibModal, $state, $http){
     this.image = image.data;
     this.$scope = $scope;
@@ -38,3 +38,4 @@ export default /*@ngInject*/class NewController{
     });
   }
 }
+NewController.$inject = ['image', 'FileUploader', '$localStorage', '$scope', '$uibModal', '$state', '$http'];

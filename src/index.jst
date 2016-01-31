@@ -1,17 +1,16 @@
 <!doctype html>
-<html lang="de" ng-app="wbt" strict-di>
+<html lang="de">
 <head>
 <title>{{=it.title}}</title>
 <meta charset="utf-8"/>
 <base href="{{=it.base}}"/>
 {{
 var versions = {
-  angular: '1.4.8',
+  angular: '1.4.9',
   bootstrap: '3.3.6',
   fontAwesome: '4.4.0',
   jquery: '2.1.4',
-  lodash: '3.10.1',
-  restangular: '1.5.1'
+  lodash: '4.1.0'
 };
 var styles = [
   'https://maxcdn.bootstrapcdn.com/bootstrap/'+versions.bootstrap+'/css/bootstrap',
@@ -24,31 +23,28 @@ var scripts = [
   'https://ajax.googleapis.com/ajax/libs/angularjs/'+versions.angular+'/angular-aria',
   'https://ajax.googleapis.com/ajax/libs/angularjs/'+versions.angular+'/angular-animate',
   'https://ajax.googleapis.com/ajax/libs/angularjs/'+versions.angular+'/angular-sanitize',
-  'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/'+versions.lodash+'/lodash',
-  'https://cdnjs.cloudflare.com/ajax/libs/restangular/'+versions.restangular+'/restangular'
+  'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/'+versions.lodash+'/lodash'
 ];
 }}
 {{~ styles : s }}
-{{? !it.prod}}
+{{? it.env !== 'production'}}
 <link href="{{=s}}.css" rel="stylesheet"/>
-{{?? true }}
+{{?? it.env === 'production' }}
 <link href="{{=s}}.min.css" rel="stylesheet"/>
 {{?}}
 {{~}}
 {{~ scripts : s }}
-{{? !it.prod}}
+{{? it.env !== 'production'}}
 <script src="{{=s}}.js"></script>
-{{?? true }}
+{{?? it.env === 'production' }}
 <script src="{{=s}}.min.js"></script>
 {{?}}
 {{~}}
+{{? it.env === 'production'}}
 <script src="dist/vendors.js"></script>
+{{?}}
 <script src="dist/app.js"></script>
-</head>
-<body ng-cloak username="{{=it.username}}">
-<ui-view></ui-view>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
+<script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [['$','$'], ['\\(','\\)']],
@@ -56,5 +52,9 @@ var scripts = [
     }
   });
 </script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body ng-cloak username="{{=it.username}}">
+<ui-view></ui-view>
 </body>
 </html>

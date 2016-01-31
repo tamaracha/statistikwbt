@@ -11,9 +11,9 @@ export default {
   controllerAs: 'topic',
   abstract: true,
   resolve: {
-    topic: /*@ngInject*/function($http,$stateParams){
+    topic: ['$http', '$stateParams', function($http,$stateParams){
       return $http.get(`api/units/${$stateParams.unit}/topics/${$stateParams.topic}`);
-    }
+    }]
   },
   children: [
     basics,

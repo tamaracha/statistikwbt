@@ -11,7 +11,7 @@ export default {
   controllerAs: 'units',
   abstract: true,
   resolve: {
-    units: /*@ngInject*/function($http){
+    units: ['$http', function($http){
       const config = {
         method: 'GET',
         url: 'api/units',
@@ -21,7 +21,7 @@ export default {
         }
       };
       return $http(config);
-    }
+    }]
   },
   children: [
     newUnit,

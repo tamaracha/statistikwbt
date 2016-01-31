@@ -1,5 +1,5 @@
 import _ from 'lodash';
-export default /*@ngInject*/class ItemController{
+export default class ItemController{
   constructor(item, $scope, jsonpatch, api){
     const modelOptions = {
       updateOn: 'default blur',
@@ -81,3 +81,4 @@ export default /*@ngInject*/class ItemController{
     },true);
   }
 }
+ItemController.$inject = ['item', '$scope', 'jsonpatch', 'api'];

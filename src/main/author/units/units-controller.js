@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import removeModal from './remove-modal';
-export default /*@ngInject*/class UnitsController{
+export default class UnitsController{
   constructor(units,$scope,$state, $uibModal, $http){
     this.units = units.data;
     this.$state = $state;
@@ -126,3 +126,4 @@ export default /*@ngInject*/class UnitsController{
     );
   }
 }
+UnitsController.$inject = ['units', '$scope', '$state', '$uibModal', '$http'];

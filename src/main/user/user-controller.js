@@ -1,3 +1,3 @@
-export default /*@ngInject*/class UserController{
+export default class UserController{
   constructor(){}
 }

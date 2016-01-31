@@ -1,5 +1,5 @@
 import _ from 'lodash';
-export default /*@ngInject*/class UnitCtrl{
+export default class UnitController{
   constructor(jsonpatch,unit,$scope, $http){
     this.unit = unit.data;
     this.patches = [];
@@ -35,3 +35,4 @@ export default /*@ngInject*/class UnitCtrl{
     },true);
   }
 }
+UnitController.$inject = ['jsonpatch', 'unit', '$scope', '$http'];

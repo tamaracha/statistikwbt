@@ -1,5 +1,5 @@
 import _ from 'lodash';
-export default /*@ngInject*/class TestCtrl{
+export default class TestCtrl{
   constructor(test, $http, tests, unit, $window, user){
     this.$http = $http;
     this.test = test;
@@ -24,7 +24,7 @@ export default /*@ngInject*/class TestCtrl{
       this.tests[this.item].choices = _.shuffle(this.tests[this.item].choices);
     }
     this.score = {
-      max: _.sum(this.tests, this.test.maxPoints) || 0,
+      max: _.sumBy(this.tests, this.test.maxPoints) || 0,
       current: this.test.runPoints(this.tests, this.guess)
     };
     this.response = this.test.input(this.tests[this.item]);
@@ -123,3 +123,4 @@ export default /*@ngInject*/class TestCtrl{
     return this.$window.location.reload();
   }
 }
+TestCtrl.$inject = ['test', '$http', 'tests', 'unit', '$window', 'user'];
