@@ -1,7 +1,7 @@
 'use strict';
 const mongoose=require('mongoose');
 const ObjectId=mongoose.Schema.Types.ObjectId;
-const findIndex = require('lodash/findindex');
+const findIndex = require('lodash/findIndex');
 const TopicSchema = require('./topic');
 const UnitSchema = module.exports = new mongoose.Schema({
   position: Number,
