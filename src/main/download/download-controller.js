@@ -2,6 +2,18 @@ import _ from 'lodash';
 export default class DownloadController{
   constructor(units){
     this.units = units.data;
+    /*
+    this.units = [
+      {
+        _id: 'a',
+        title: 'b'
+      },
+      {
+        _id: 'x',
+        title: 'y'
+      }
+    ];
+    */
     this.data = {
       contents: ['body'],
       format: 'rtf'
@@ -15,7 +27,7 @@ export default class DownloadController{
       type: 'horizontalMultiCheckbox',
       templateOptions: {
         label: 'Kapitel',
-        options: units,
+        options: this.units,
         valueProp: '_id',
         labelProp: 'title'
       }
