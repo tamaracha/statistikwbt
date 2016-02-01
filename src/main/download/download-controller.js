@@ -15,7 +15,7 @@ export default class DownloadController{
       type: 'horizontalMultiCheckbox',
       templateOptions: {
         label: 'Kapitel',
-        options: units,
+        options: this.units,
         valueProp: '_id',
         labelProp: 'title'
       }

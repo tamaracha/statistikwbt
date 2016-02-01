@@ -1,6 +1,6 @@
 'use strict';
 const _=require('mongoose-validator');
-const some = require('lodash.some');
+const some = require('lodash/some');
 const $ = module.exports={};
 
 $.emailValidator = _({

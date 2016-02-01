@@ -4,7 +4,6 @@ const os = require('os');
 const path=require('path');
 const spawn=require('child_process').spawn;
 const crypto = require('crypto');
-const download = require('../../dist/download');
 const send = require('koa-send');
 const mime = require('mime-types');
 const bluebird = require('bluebird');
@@ -65,7 +64,7 @@ $.getUnits=function *getUnits(next){
 };
 
 $.getMarkdown=function *getMarkdown(next){
-  const md=download({units: this.state.units,contents: this.query.contents});
+  const md = this.render.templates.download({units: this.state.units,contents: this.query.contents});
   this.assert(md,'markdown not compiled');
   const mimeType = mime.lookup(this.query.format);
   this.response.type=mimeType;

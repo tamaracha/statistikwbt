@@ -1,7 +1,7 @@
 'use strict';
 const models = require('../models');
 const ObjectId=require('mongoose').Types.ObjectId;
-const transform = require('lodash.transform');
+const transform = require('lodash/transform');
 const $=module.exports={};
 
 $.test = function *test(){

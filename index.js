@@ -7,14 +7,13 @@ const assets=config.get('assets');
 const koa=require('koa');
 const mongoose=require('mongoose');
 mongoose.Promise = require('bluebird');
-const indexPage = require('./dist/index')({
-  title: assets.title,
-  base: assets.base,
-  env: process.env.NODE_ENV,
-  username: config.get('username')
-});
 function *index(){
-  this.body = indexPage;
+  yield this.render('index', {
+    title: assets.title,
+    base: assets.base,
+    env: process.env.NODE_ENV,
+    username: config.get('username')
+  });
 }
 index.unless = require('koa-unless');
 const api=require('./api');
@@ -24,7 +23,9 @@ require('koa-onerror')(app);
 if(assets.serve){
   app.use(require('koa-mount')(assets.root, require('koa-static')(__dirname+'/dist')))
 }
-app.use(api.routes())
+app
+.use(require('koa-dot')({path: __dirname+'/templates'}))
+.use(api.routes())
 .use(api.allowedMethods())
 .use(index.unless({path: [/api/,new RegExp(assets.root), /docs/, /swagger/]}))
 .listen(server.port,server.host,function(){
