@@ -8,7 +8,7 @@ export default function test(){
       return choice.correct ? 1 : 0;
     case 'multiple':
       return _.sumBy(item.choices, function(c){
-        return _.include(value,c._id) === c.correct ? 1 : 0;
+        return _.includes(value,c._id) === c.correct ? 1 : 0;
       });
     case 'input':
       choice = _.find(item.choices,{text: value});
