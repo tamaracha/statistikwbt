@@ -100,7 +100,7 @@
   "dependencies": {
     "basic-auth": "^1.0.3",
     "bcrypt-nodejs": "0.0.3",
-    "bluebird": "^3.1.5",
+    "bluebird": "^3.2.0",
     "config": "^1.19.0",
     "debug": "^2.2.0",
     "dot": "^1.0.3",
