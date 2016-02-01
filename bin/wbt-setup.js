@@ -26,7 +26,7 @@ const userArgs = require('yargs')
 })
 .argv;
 
-const findIndex = require('lodash.findindex');
+const findIndex = require('lodash/findindex');
 const bluebird = require('bluebird');
 const fs = require('fs');
 bluebird.promisifyAll(fs);

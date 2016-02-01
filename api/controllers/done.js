@@ -1,6 +1,6 @@
 'use strict';
 const models = require('../models');
-const find = require('lodash.find');
+const find = require('lodash/find');
 const ObjectId = require('mongoose').Types.ObjectId;
 const $ = module.exports = {};
 $.index = function *index(){

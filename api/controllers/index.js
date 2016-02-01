@@ -1,5 +1,5 @@
 'use strict';
-const transform=require('lodash.transform');
+const transform=require('lodash/transform');
 const files = [
   'comment',
   'done',
