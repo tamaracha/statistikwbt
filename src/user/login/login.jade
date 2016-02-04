@@ -2,7 +2,7 @@
   h3 Anmelden
 .modal-body
   form.form-horizontal(role="form" novalidate name="login.loginForm")
-    formly-form(model="login.data" fields="login.loginFields" form="login.loginForm")
+    formly-form(model="login.data" fields="login.loginFields" form="login.loginForm" options="login.formOptions")
 .modal-footer
   input.btn.btn-default(type="button" value="abbrechen" data-ng-click="login.cancel()")
   input.btn(type="button"  ng-click="login.login()" ng-class="{'btn-primary': login.loginForm.$valid, 'btn-danger': login.loginForm.$invalid}" value="anmelden" ng-disabled="login.loginForm.$invalid")

@@ -1,4 +1,3 @@
-import $ from '$';
 import _ from 'lodash';
 import loginModal from './login';
 import changePasswordModal from './change-password';
@@ -10,17 +9,16 @@ export default class user{
     this.$q = $q;
     this.$window = $window;
     this.$uibModal = $uibModal;
-    this.username = $('body').attr('username');
     this.data = null;
     this.init();
   }
-  check(value){
+  check(name, value){
     const config = {
       method: 'HEAD',
       url: 'api/users',
       params: {}
     };
-    config.params[this.username] = value;
+    config.params[name] = value;
     return this.$http(config);
   }
   get authenticated(){
@@ -59,8 +57,8 @@ export default class user{
       }
     );
   }
-  basicAuth(form){
-    const name = form[this.username];
+  basicAuth(form, username){
+    const name = form[username];
     const pass = form.password;
     if(!name || !pass){
       throw Error('missing credentials');
@@ -68,12 +66,15 @@ export default class user{
     const str = this.$window.btoa(`${name}:${pass}`);
     return `basic ${str}`;
   }
-  authenticate(form,init){
-    const authorization = this.basicAuth(form);
+  authenticate(form, username, init){
+    const authorization = this.basicAuth(form, username);
     const config = {
       method: 'GET',
       url: 'api/tokens/new',
-      headers: {authorization}
+      headers: {
+        authorization,
+        'x-username': username
+      }
     };
     return this.$http(config)
     .then((res) => {

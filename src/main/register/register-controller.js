@@ -4,6 +4,7 @@ export default class RegisterCtrl{
     this.$state = $state;
     this.formOptions = {
       formState: {
+        username: 'kennung',
         showPassword: false
       }
     };
@@ -12,8 +13,61 @@ export default class RegisterCtrl{
       profile: {}
     };
     this.fields = [{
-      key: user.username,
+      key: 'username',
+      model: this.formOptions.formState,
+      type: 'horizontalRadioInline',
+      templateOptions: {
+        label: 'Registrieren mit',
+        options: [{
+          name: 'S- oder G-Kennung',
+          value: 'kennung'
+        },
+        {
+          name: 'E-Mail',
+          value: 'email'
+        }]
+      }
+    },
+    {
+      key: 'email',
       type: 'horizontalInput',
+      templateOptions: {
+        label: 'E-Mail-Adresse',
+        type: 'email',
+        required: true,
+        maxlength: 50,
+        placeholder: 'name@provider.com'
+      },
+      hideExpression: 'formState.username !== "email"',
+      ngModelAttrs: {
+        'available': {
+          value: 'user-check'
+        }
+      },
+      validation: {
+        messages: {
+          'userCheck': '$viewValue+" wurde schon registriert"'
+        }
+      },
+      modelOptions: {
+        updateOn: 'default blur',
+        debounce: {
+          blur: 0,
+          default: 500
+        }
+      }
+    },
+    {
+      key: 'kennung',
+      type: 'horizontalInput',
+      templateOptions: {
+        label: 'S- oder G-Kennung',
+        type: 'text',
+        required: true,
+        maxlength: 6,
+        placeholder: 'sx1234'
+      },
+      hideExpression: 'formState.username !== "kennung"',
       ngModelAttrs: {
         'available': {
           value: 'user-check'
@@ -65,30 +119,12 @@ export default class RegisterCtrl{
         maxlength: 20
       }
     }];
-    if(user.username === 'email'){
-      this.fields[0].templateOptions = {
-        label: 'E-Mail-Adresse',
-        type: 'email',
-        required: true,
-        maxlength: 50,
-        placeholder: 'name@provider.com'
-      };
-    }
-    if(user.username === 'kennung'){
-      this.fields[0].templateOptions = {
-        label: 'S- oder G-Kennung',
-        type: 'text',
-        required: true,
-        maxlength: 6,
-        placeholder: 'sx1234'
-      };
-    }
   }
   register(){
     return this.user.create(this.model)
     .then(
       () => {
-        return this.user.authenticate(this.model,false)
+        return this.user.authenticate(this.model, this.formOptions.formState.username, false)
         .then(() => {
           this.$state.go('^.home');
         });
