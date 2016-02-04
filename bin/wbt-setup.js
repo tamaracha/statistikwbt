@@ -1,32 +1,7 @@
 #! /usr/bin/env node
 'use strict';
-const userArgs = require('yargs')
-.usage('Richtet ein neues WBT ein')
-.help('help','Zeigt diesen Hilfetext an')
-.version(function(){
-  return require('../package').version;
-})
-.option('db',{
-  alias: 'database',
-  demand: true,
-  type: 'string',
-  describe: 'Name der Datenbank'
-})
-.option('h',{
-  alias: 'host',
-  type: 'string',
-  default: 'localhost',
-  describe: 'Hostname der Datenbank'
-})
-.option('t',{
-  alias: 'title',
-  default: 'WBT Framework',
-  type: 'string',
-  describe: 'Der Name des WBT'
-})
-.argv;
-
-const findIndex = require('lodash/findindex');
+const find = require('lodash/find');
+const map = require('lodash/map');
 const bluebird = require('bluebird');
 const fs = require('fs');
 bluebird.promisifyAll(fs);
@@ -35,34 +10,79 @@ const yaml = require('js-yaml');
 const mongoose = require('mongoose');
 mongoose.Promise = bluebird;
 const models = require('../api/models');
-mongoose.connect(`mongodb://${userArgs.host}:27017/${userArgs.db}`);
-mongoose.connection.once('open',function(){
-  return setup(userArgs.title);
-});
 
-function setup(title){
-  return models.Meta.find().exec()
-  .then(function(meta){
-    if(meta.length > 0) throw Error('WBT wurde bereits eingerichtet');
-    return fs.readFileAsync(path.join(__dirname,'../api/meta.yml'),'utf8');
+function setup(yargs, args){
+mongoose.connect('mongodb://localhost:27017/wbt', function(){
+  return models.Wbt.findOne({path: args.p}).exec()
+  .then(function(wbt){
+    if(wbt) throw Error('WBT wurde bereits eingerichtet');
+    return fs.readFileAsync(path.join(__dirname,'./meta.yml'),'utf8');
   })
   .then(function(file){
     const docs = yaml.load(file);
-    const home = findIndex(docs,{_id: 'home'});
-    if(home >= -1){
-      docs[home].title = title;
-      docs[home].menu = title;
+    const home = find(docs,{path: 'home'});
+    if(home){
+      home.title = args.title;
+      home.menu = args.title;
     }
-    return models.Meta.create(docs);
+    return models.Page.create(docs);
   })
-  .then(
-    function(data){
-      console.log(`WBT mit dem Titel ${userArgs.title} wurde in der Datenbank ${userArgs.db} eingerichtet.`);
-      mongoose.connection.close();
-    },
-    function(e){
-      console.log(e);
-      mongoose.connection.close();
-    }
-  );
+  .then(function(data){
+    const pages = map(data, '_id');
+    return models.Wbt.create({
+      path: args.p,
+      title: args.t,
+      pages
+    });
+  })
+  .catch(function(e){
+    console.log(e);
+  })
+  .finally(function(){
+    mongoose.connection.close();
+  });
+});
 }
+
+function remove(yargs, args){
+  mongoose.connect('mongodb://localhost:27017/wbt', function(){
+    return models.Wbt.findOneAndRemove({path: args.p}).exec()
+    .then(function(wbt){
+      if(!wbt){throw Error('Dieses wBT existiert nicht.');}
+      return models.Page.remove()
+      .in('_id', wbt.pages)
+      .exec();
+    })
+    .catch(function(e){
+      console.log(e);
+    })
+    .finally(function(){
+      mongoose.connection.close();
+    });
+  });
+}
+
+require('yargs')
+.usage('Das Shell-Script zum Bearbeiten der WBT-Datenbank')
+.help('help','Zeigt diesen Hilfetext an')
+.version(function(){
+  return require('../package').version;
+})
+.command('setup', 'Richtet ein neues WBT ein', setup)
+.command('remove', 'Entfernt ein WBT aus der Datenbank', remove)
+.completion('completion', 'Generate Bash Completion Script')
+.option('p', {
+  alias: 'path',
+  default: '/statistikwbt/',
+  type: 'string',
+  describe: 'Die URL zum WBT'
+})
+.option('t',{
+  alias: 'title',
+  default: 'WBT Framework',
+  type: 'string',
+  describe: 'Der Name des WBT'
+})
+.example('$0 setup -p /test/ -t Test', 'Richtet ein WBT mit dem Titel "Test" und der URL "/test/" ein.')
+.example('remove -p /test/', 'Entfernt das WBT mit der URL "/test/" aus der Datenbank.')
+.argv;
