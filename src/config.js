@@ -1,8 +1,8 @@
+import _ from 'lodash';
 import main from './main';
 import {types, wrappers} from './formly';
 
-export function config($locationProvider,$compileProvider,$httpProvider,$urlRouterProvider,stateHelperProvider,formlyConfigProvider){
-  $locationProvider.html5Mode(true);
+export function config($compileProvider,$httpProvider,$urlRouterProvider,stateHelperProvider,formlyConfigProvider){
   $compileProvider.debugInfoEnabled(false);
   $httpProvider.interceptors.push('userInterceptor');
   $httpProvider.defaults.paramSerializer = '$httpParamSerializerJQLike';
@@ -12,12 +12,18 @@ export function config($locationProvider,$compileProvider,$httpProvider,$urlRout
   formlyConfigProvider.setWrapper(wrappers);
   formlyConfigProvider.setType(types);
 }
-config.$inject = ['$locationProvider', '$compileProvider', '$httpProvider', '$urlRouterProvider', 'stateHelperProvider', 'formlyConfigProvider'];
+config.$inject = ['$compileProvider', '$httpProvider', '$urlRouterProvider', 'stateHelperProvider', 'formlyConfigProvider'];
 
-export function run($rootScope,$state,$stateParams, user, Permission, formlyValidationMessages){
+export function run($rootScope,$state,$stateParams, user, wbt, Permission, formlyValidationMessages){
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
-  $rootScope.$on('$stateChangeError',console.log.bind(console));
+  $rootScope.user = user;
+  $rootScope.wbt = wbt;
+  $rootScope.pages = _.keyBy(wbt.pages, 'path');
+  //$rootScope.$on('$stateChangeError', console.log.bind(console));
+  $rootScope.$watch('user.role', (val) => {
+    $rootScope.pages.author.active = val === 'author';
+  });
   $rootScope.$on('$stateChangeStart',function(event,toState,toParams,fromState,fromParams){
     $rootScope.prevState = fromState;
     $rootScope.prevParams = fromParams;
@@ -46,4 +52,4 @@ export function run($rootScope,$state,$stateParams, user, Permission, formlyVali
     return `${$viewValue} ist keine gültige E-Mail-Adresse`;
   };
 }
-run.$inject = ['$rootScope', '$state', '$stateParams', 'user', 'Permission', 'formlyValidationMessages'];
+run.$inject = ['$rootScope', '$state', '$stateParams', 'user', 'wbt', 'Permission', 'formlyValidationMessages'];
