@@ -1,49 +1,67 @@
 <!doctype html>
 <html lang="de">
 <head>
-<title>{{=it.title}}</title>
+<title>{{=it.title || 'WBT-Framework'}}</title>
 <meta charset="utf-8"/>
-<base href="{{=it.base}}"/>
-{{
-var versions = {
+{{##def.base = config.get('base') #}}
+<base href="{{#def.base}}"/>
+{{##
+def.versions = {
   angular: '1.4.9',
   bootstrap: '3.3.6',
   fontAwesome: '4.4.0',
   jquery: '2.1.4',
   lodash: '4.1.0'
-};
-var styles = [
-  'https://maxcdn.bootstrapcdn.com/bootstrap/'+versions.bootstrap+'/css/bootstrap',
-  'https://maxcdn.bootstrapcdn.com/font-awesome/'+versions.fontAwesome+'/css/font-awesome'
-];
-var scripts = [
-  'https://ajax.googleapis.com/ajax/libs/jquery/'+versions.jquery+'/jquery',
-  'https://ajax.googleapis.com/ajax/libs/angularjs/'+versions.angular+'/angular',
-  'https://ajax.googleapis.com/ajax/libs/angularjs/'+versions.angular+'/angular-messages',
-  'https://ajax.googleapis.com/ajax/libs/angularjs/'+versions.angular+'/angular-aria',
-  'https://ajax.googleapis.com/ajax/libs/angularjs/'+versions.angular+'/angular-animate',
-  'https://ajax.googleapis.com/ajax/libs/angularjs/'+versions.angular+'/angular-sanitize',
-  'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/'+versions.lodash+'/lodash'
-];
-}}
-{{~ styles : s }}
-{{? it.env !== 'production'}}
-<link href="{{=s}}.css" rel="stylesheet"/>
-{{?? it.env === 'production' }}
-<link href="{{=s}}.min.css" rel="stylesheet"/>
-{{?}}
-{{~}}
-{{~ scripts : s }}
-{{? it.env !== 'production'}}
-<script src="{{=s}}.js"></script>
-{{?? it.env === 'production' }}
-<script src="{{=s}}.min.js"></script>
-{{?}}
-{{~}}
-{{? it.env === 'production'}}
-<script src="dist/vendors.js"></script>
-{{?}}
-<script src="dist/app.js"></script>
+}
+#}}
+
+{{##
+def.styles = [
+  'https://maxcdn.bootstrapcdn.com/bootstrap/'+def.versions.bootstrap+'/css/bootstrap',
+  'https://maxcdn.bootstrapcdn.com/font-awesome/'+def.versions.fontAwesome+'/css/font-awesome'
+]
+#}}
+
+{{##
+def.scripts = [
+  'https://ajax.googleapis.com/ajax/libs/jquery/'+def.versions.jquery+'/jquery',
+  'https://ajax.googleapis.com/ajax/libs/angularjs/'+def.versions.angular+'/angular',
+  'https://ajax.googleapis.com/ajax/libs/angularjs/'+def.versions.angular+'/angular-messages',
+  'https://ajax.googleapis.com/ajax/libs/angularjs/'+def.versions.angular+'/angular-aria',
+  'https://ajax.googleapis.com/ajax/libs/angularjs/'+def.versions.angular+'/angular-animate',
+  'https://ajax.googleapis.com/ajax/libs/angularjs/'+def.versions.angular+'/angular-sanitize',
+  'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/'+def.versions.lodash+'/lodash'
+]
+#}}
+{{##
+def.assets = '';
+var i;
+for(i = 0; i<def.styles.length; i++){
+  if(process.env.NODE_ENV === 'production'){
+    def.assets += '<link href="'+def.styles[i]+'.min.css" rel="stylesheet"/>';
+  }
+  else{
+    def.assets += '<link href="'+def.styles[i]+'.css" rel="stylesheet"/>';
+  }
+}
+for(i = 0; i<def.scripts.length; i++){
+  if(process.env.NODE_ENV === 'production'){
+    def.assets += '<script src="'+def.scripts[i]+'.min.js"></script>';
+  }
+  else{
+    def.assets += '<script src="'+def.scripts[i]+'.js"></script>';
+  }
+}
+if(process.env.NODE_ENV === 'production'){
+  def.assets += '<script src="/dist/vendors.js"></script>';
+}
+#}}
+{{#def.assets}}
+<script src="/dist/app.js"></script>
+<script>
+  angular.module('wbt')
+  .constant('wbt', {{=JSON.stringify(it)}});
+</script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -54,7 +72,7 @@ var scripts = [
 </script>
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
-<body ng-cloak username="{{=it.username}}">
+<body ng-cloak>
 <ui-view></ui-view>
 </body>
 </html>
