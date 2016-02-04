@@ -2,7 +2,8 @@
 const Router = require('koa-router');
 const api = module.exports = new Router({prefix: '/api'});
 
-const config = require('config').get('jwt');
+const config = require('config');
+const jwtConfig = config.get('jwt');
 const ctrl = require('./controllers');
 
 // middleware
@@ -12,9 +13,9 @@ const multi = Body({
   multipart: true,
   formidable: {hash: 'md5'}
 });
-const jwtConfig = config.options;
-jwtConfig.secret = config.secret;
-const jwt = require('koa-jwt')(jwtConfig);
+const jwtOptions = jwtConfig.options;
+jwtOptions.secret = jwtConfig.secret;
+const jwt = require('koa-jwt')(jwtOptions);
 const log = require('./middleware/log');
 const roles = require('./middleware/roles');
 const auth = require('./middleware/auth');
@@ -22,14 +23,14 @@ const auth = require('./middleware/auth');
 api.use(roles.middleware());
 
 /* routes */
-// meta
-const meta = new Router();
-meta.get('/',ctrl.meta.index);
-meta.post('/',ctrl.meta.create);
-meta.get('/:meta',ctrl.meta.show);
-meta.patch('/:meta',body,ctrl.meta.update);
-meta.delete('/:meta',ctrl.meta.destroy);
-api.use('/meta',meta.routes());
+// pages
+const pages = new Router();
+pages.get('/',ctrl.page.index);
+pages.post('/',ctrl.page.create);
+pages.get('/:page',ctrl.page.show);
+pages.patch('/:page',body,ctrl.page.update);
+pages.delete('/:page',ctrl.page.destroy);
+api.use('/pages',pages.routes());
 
 // users
 const users=new Router();
