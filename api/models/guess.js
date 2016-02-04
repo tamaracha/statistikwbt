@@ -3,7 +3,7 @@ const mongoose=require('mongoose');
 const ObjectId = mongoose.Schema.Types.ObjectId;
 const ResponseSchema = require('./response');
 
-module.exports = new mongoose.Schema({
+const GuessSchema = module.exports = new mongoose.Schema({
   user: {
     type: ObjectId,
     required: true,
@@ -16,3 +16,9 @@ module.exports = new mongoose.Schema({
   },
   responses: [ResponseSchema]
 }, {timestamps: true});
+GuessSchema.index(
+  {
+    unit: 1,
+    user: 1
+  }
+);

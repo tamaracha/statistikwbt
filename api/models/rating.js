@@ -1,18 +1,16 @@
 'use strict';
 const mongoose=require('mongoose');
 const ObjectId=mongoose.Schema.Types.ObjectId;
-module.exports = new mongoose.Schema({
+const RatingSchema = module.exports = new mongoose.Schema({
   unit: {
     type: ObjectId,
     required: true,
-    ref: 'units',
-    index: true
+    ref: 'units'
   },
   user: {
     type: ObjectId,
     required: true,
-    ref: 'users',
-    index: true
+    ref: 'users'
   },
   name: {
     type: String,
@@ -21,8 +19,7 @@ module.exports = new mongoose.Schema({
       'motivation',
       'success',
       'usability'
-    ],
-    index: true
+    ]
   },
   value: {
     type: Number,
@@ -31,3 +28,9 @@ module.exports = new mongoose.Schema({
     max: 5
   }
 });
+RatingSchema.index(
+  {
+    unit: 1,
+    user: 1
+  }
+);

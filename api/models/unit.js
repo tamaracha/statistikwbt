@@ -7,8 +7,7 @@ const UnitSchema = module.exports = new mongoose.Schema({
   position: Number,
   title: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   subtitle: String,
   description: {

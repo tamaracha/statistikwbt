@@ -1,6 +1,5 @@
 'use strict';
 const mongoose=require('mongoose');
-const username = require('config').get('username');
 const bluebird = require('bluebird');
 const bcrypt = require('bcrypt-nodejs');
 bluebird.promisifyAll(bcrypt);
@@ -9,6 +8,15 @@ const ObjectId=mongoose.Schema.Types.ObjectId;
 const DoneSchema = require('./done');
 
 const UserSchema = module.exports = new mongoose.Schema({
+  email: {
+    type: String,
+    maxlength: 50,
+    validate: validate.emailValidator
+  },
+  kennung: {
+    type: String,
+    maxlength: 6
+  },
   password: {
     type: String,
     select: false,
@@ -50,23 +58,18 @@ const UserSchema = module.exports = new mongoose.Schema({
     ref: 'views'
   }]
 }, {timestamps: true});
-if(username === 'email'){
-  UserSchema.path('email', {
-    type: String,
-    required: true,
-    maxlength: 50,
-    validate: validate.emailValidator,
-    unique: true
-  });
-}
-if(username === 'kennung'){
-  UserSchema.path('kennung',{
-    type: String,
-    required: true,
-    maxlength: 6,
-    unique: true
-  });
-}
+UserSchema.index(
+  {email: 1},
+  {unique: true, partialFilterExpression: {email: {$exists: true}}}
+);
+UserSchema.index(
+  {kennung: 1},
+  {unique: true, partialFilterExpression: {kennung: {$exists: true}}}
+);
+UserSchema.pre('validate', function(cb){
+  if(this.email || this.kennung){return cb();}
+  return next(Error('Neither email nor kennung is supplied'));
+});
 UserSchema.pre('save',function(cb){
   const user = this;
   if(!user.isModified('password')){return cb();}
