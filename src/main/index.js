@@ -16,11 +16,6 @@ export default {
   templateUrl: template,
   controller,
   controllerAs: 'main',
-  resolve: {
-    meta: ['api', function(api){
-      return api.getMeta();
-    }]
-  },
   children: [
     home,
     contact,

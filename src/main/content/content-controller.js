@@ -1,7 +1,6 @@
 export default class ContentCtrl{
-  constructor(units, meta){
-    this.units = units;
-    this.meta = meta;
+  constructor(page){
+    this.data = page.data;
   }
 }
-ContentCtrl.$inject = ['units', 'meta'];
+ContentCtrl.$inject = ['page'];

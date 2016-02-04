@@ -1,10 +1,5 @@
-import _ from 'lodash';
 export default class MainCtrl{
-  constructor($scope, $state,$stateParams,user,modals, meta){
-    this.$state = $state;
-    this.$stateParams = $stateParams;
-    this.user = user;
-    this.modals = modals;
+  constructor(){
     this.ngModelOptions = {
       updateOn: 'default blur',
       debounce: {
@@ -12,11 +7,5 @@ export default class MainCtrl{
         blur: 0
       }
     };
-    this.meta = meta;
-    this.items = _.keyBy(meta,'_id');
-    $scope.$watch('main.user.role', (val) => {
-      this.items.author.active = val === 'author';
-    });
   }
 }
-MainCtrl.$inject = ['$scope', '$state', '$stateParams', 'user', 'modals', 'meta'];

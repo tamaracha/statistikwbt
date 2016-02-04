@@ -1,11 +1,11 @@
-import templateUrl from './item.jade';
-import controller from './item-controller';
+import templateUrl from './page.jade';
+import controller from './page-controller';
 export default {
-  name: 'item',
-  url: '/:meta',
+  name: 'page',
+  url: '/:page',
   templateUrl,
   controller,
-  controllerAs: 'item',
+  controllerAs: 'page',
   resolve: {
     jsonpatch: ['$q', function($q){
       return $q(function(resolve,reject){
@@ -15,8 +15,8 @@ export default {
         });
       });
     }],
-    item: ['api', '$stateParams', function(api,$stateParams){
-      return api.getMetaBy_id({_id: $stateParams.meta});
+    page: ['$http', '$stateParams', function($http,$stateParams){
+      return $http.get('api/pages/'+$stateParams.page);
     }]
   }
 };

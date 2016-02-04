@@ -1,8 +1,7 @@
 .row: .col-xs-12
-  //div(ncy-breadcrumb)
   h2 Authorenmodus
   ul(ng-hide="main.user.data.role==='user'").nav.nav-tabs
-    li(ui-sref-active="active"): a(ui-sref=".meta") Meta
+    li(ui-sref-active="active"): a(ui-sref=".pages") Seiten
     li(ui-sref-active="active"): a(ui-sref=".units.new") Kapitel
     li(ui-sref-active="active"): a(ui-sref=".images") Bilder
   div(ui-view)

@@ -1,8 +1,7 @@
 import _ from 'lodash';
 import removeModal from './remove-modal';
 export default class UnitsController{
-  constructor(units,$scope,$state, $uibModal, $http){
-    this.units = units.data;
+  constructor($scope,$state, $uibModal, $http){
     this.$state = $state;
     this.$uibModal = $uibModal;
     this.removeModal = removeModal($scope);
@@ -84,7 +83,7 @@ export default class UnitsController{
       }
     }];
     function watcher(){
-      return $scope.units.selected ? _.reject($scope.units.units, {_id: $scope.units.selected._id}) : $scope.units.units;
+      return $scope.units.selected ? _.reject($scope.wbt.units, {_id: $scope.units.selected._id}) : $scope.wbt.units;
     }
     $scope.$watchCollection(watcher, (val) => {
       this.fields[2].templateOptions.options = val;
@@ -126,4 +125,4 @@ export default class UnitsController{
     );
   }
 }
-UnitsController.$inject = ['units', '$scope', '$state', '$uibModal', '$http'];
+UnitsController.$inject = ['$scope', '$state', '$uibModal', '$http'];

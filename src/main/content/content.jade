@@ -1,8 +1,10 @@
 nav.row(role="navigation"): .col-xs-12: ul.nav.nav-pills
-  li(ng-repeat="unit in content.units track by unit._id" ui-sref-active="active")
+  li(ng-repeat="unit in wbt.units track by unit._id" ui-sref-active="active")
     a(
       ui-sref=".unit.description({unit: unit._id})"
       ng-bind="unit.title"
-      ng-class="{'text-success': main.user.complete(unit._id), 'text-primary': main.user.requiresComplete(unit.requires)&&!main.user.complete(unit._id), 'text-warning': !main.user.requiresComplete(unit.requires)&&!main.user.complete(unit._id)}"
+      ng-class="{'text-success': user.complete(unit._id), 'text-primary': user.requiresComplete(unit.requires)&&!user.complete(unit._id), 'text-warning': !user.requiresComplete(unit.requires)&&!user.complete(unit._id)}"
     )
-section.row: .col-xs-12(ui-view): div(markdown="content.meta.body")
+section.row: .col-xs-12(ui-view)
+  h2(ng-bind="page.data.title")
+  div(markdown="page.data.body")

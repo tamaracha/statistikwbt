@@ -3,10 +3,10 @@ export default {
   name: 'home',
   url: '/home',
   templateUrl,
-  controller: 'MetaController as home',
+  controller: 'PageController as page',
   resolve: {
-    meta: ['api', function(api){
-      return api.getMetaBy_id({_id: 'home'});
+    page: ['$rootScope', '$http', function($rootScope, $http){
+      return $http.get('api/pages/'+$rootScope.pages.home._id);
     }]
   }
 };

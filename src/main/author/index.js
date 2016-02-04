@@ -1,6 +1,5 @@
 import template from './author.jade';
-
-import meta from './meta';
+import pages from './pages';
 import units from './units';
 import images from './images';
 
@@ -14,7 +13,7 @@ export default {
     }
   },
   children: [
-    meta,
+    pages,
     units,
     images
   ]

@@ -10,19 +10,6 @@ export default {
   controller,
   controllerAs: 'units',
   abstract: true,
-  resolve: {
-    units: ['$http', function($http){
-      const config = {
-        method: 'GET',
-        url: 'api/units',
-        params: {
-          projections: 'title',
-          options: {sort: 'position'}
-        }
-      };
-      return $http(config);
-    }]
-  },
   children: [
     newUnit,
     unit

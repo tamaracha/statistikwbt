@@ -5,7 +5,7 @@ div(uib-collapse="units.collapse"): form.form-horizontal(novalidate name="units.
       select.form-control#selectUnit(
         name="selectUnit"
         ng-model="units.selected"
-        ng-options="u.title for u in units.units track by u._id"
+        ng-options="u.title for u in wbt.units track by u._id"
         ng-change="units.select()"
       )
         option(value="") Neues Kapitel

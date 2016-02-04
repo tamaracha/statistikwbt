@@ -1,7 +1,7 @@
 import _ from 'lodash';
 export default class DownloadController{
-  constructor(units){
-    this.units = units.data;
+  constructor(wbt){
+    this.units = wbt.units;
     this.data = {
       contents: ['body'],
       format: 'rtf'
@@ -79,4 +79,4 @@ export default class DownloadController{
     this.data.contents = val ? ['body','examples','extras'] : [];
   }
 }
-DownloadController.$inject = ['units'];
+DownloadController.$inject = ['wbt'];

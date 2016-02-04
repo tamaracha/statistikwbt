@@ -1,6 +1,6 @@
 import _ from 'lodash';
-export default class ItemController{
-  constructor(item, $scope, jsonpatch, api){
+export default class PageController{
+  constructor(page, $scope, jsonpatch, $http){
     const modelOptions = {
       updateOn: 'default blur',
       debounce: {
@@ -8,7 +8,7 @@ export default class ItemController{
         blur: 0
       }
     };
-    this.item = item;
+    this.data = page.data;
     this.patches = [];
     this.error = null;
     this.fields = [
@@ -51,28 +51,23 @@ export default class ItemController{
       {
         key: 'body',
         type: 'horizontalMarkdownArea',
-        hide: _.includes(['download','author'],this.item._id),
+        hide: _.includes(['download','author'],this.data._id),
         modelOptions,
         templateOptions: {
           label: 'Inhalt'
         }
       }
     ];
-    $scope.$watch('item.item',(val,oldVal) => {
+    $scope.$watch('page.data',(val,oldVal) => {
       this.patches = jsonpatch.compare(oldVal, val);
-      if(this.patches.length === 0){
-        return;
-      }
-      return api.patchMetaBy_id({
-        _id: item._id,
-        patches: this.patches
-      })
+      if(this.patches.length === 0){return;}
+      return $http.patch('api/pages/'+this.data._id, this.patches)
       .then(
         () => {
           this.patches = [];
-          const index = _.findIndex($scope.main.meta,{_id: val._id});
-          $scope.main.meta[index] = val;
-          $scope.main.items[val._id] = val;
+          const index = _.findIndex($scope.wbt.pages,{_id: val._id});
+          $scope.wbt.pages[index] = val;
+          $scope.pages[val._id] = val;
         },
         (e) => {
           this.error = e;
@@ -81,4 +76,4 @@ export default class ItemController{
     },true);
   }
 }
-ItemController.$inject = ['item', '$scope', 'jsonpatch', 'api'];
+PageController.$inject = ['page', '$scope', 'jsonpatch', '$http'];

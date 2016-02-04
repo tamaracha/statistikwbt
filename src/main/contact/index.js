@@ -3,10 +3,10 @@ export default {
   name: 'contact',
   url: '/contact',
   templateUrl: template,
-  controller: 'MetaController as contact',
+  controller: 'PageController as page',
   resolve: {
-    meta: ['api', function(api){
-      return api.getMetaBy_id({_id: 'contact'});
+    page: ['$rootScope', '$http', function($rootScope, $http){
+      return $http.get('api/pages/'+$rootScope.pages.contact._id);
     }]
   }
 };

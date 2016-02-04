@@ -1,6 +1,6 @@
-h3 Meta
+h3 Seiten
 ul.nav.nav-tabs
-  li(ng-repeat="(i, v) in main.items" ui-sref-active="active")
-    a(ui-sref=".item({meta: i})" ng-bind="::v.menu")
+  li(ng-repeat="p in wbt.pages track by p._id" ui-sref-active="active")
+    a(ui-sref=".page({page: p._id})" ng-bind="::p.menu")
 div(ui-view)
   p Hier kannst du Metainformationen für das WBT anpassen. Startseite, Kontakthinweis und Impressum können hier angepasste Texte bekommen und in der Navigation aktiviert oder deaktiviert werden.

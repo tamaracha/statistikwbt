@@ -7,22 +7,15 @@ export default {
   url: '/content',
   templateUrl,
   controller,
-  controllerAs: 'content',
+  controllerAs: 'page',
   data: {
     permissions: {
       except: ['anonymous']
     }
   },
   resolve: {
-    units: ['api', function(api){
-      const query = {
-        projections: 'title requires',
-        options: {sort: 'position'}
-      };
-      return api.getUnits(query);
-    }],
-    meta: ['api', function(api){
-      return api.getMetaBy_id({_id: 'content'});
+    page: ['$rootScope', '$http', function($rootScope, $http){
+      return $http.get('api/pages/'+$rootScope.pages.content._id);
     }]
   },
   children: [

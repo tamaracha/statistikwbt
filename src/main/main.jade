@@ -9,24 +9,24 @@ nav.navbar.navbar-inverse.navbar-static-top(role="navigation"): .container-fluid
       aria-label="{{main.menuCollapse ? 'Menü ausklappen' : 'Menü einklappen'}}"
     )
       span.fa.fa-bars
-    a.navbar-brand(data-ui-sref=".home")
+    a.navbar-brand(ui-sref=".home")
       span.fa(ng-class="main.items.home.icon || 'fa-home'")
-      |  {{main.items.home.menu || 'Statistik für Jedermann'}}
+      |  {{pages.home.menu || 'WBT-Framework'}}
   #mainnav.collapse.navbar-collapse(uib-collapse="main.menuCollapse")
     ul.nav.navbar-nav.navbar-left
-      li(ui-sref-active="active" ng-repeat="i in main.meta | filter : {_id: '!home', active: true}")
-        a(ui-sref=".{{i._id}}")
+      li(ui-sref-active="active" ng-repeat="i in wbt.pages | filter : {path: '!home', active: true}")
+        a(ui-sref=".{{i.path}}")
           span.fa(ng-if="i.icon" ng-class="'fa'+i.icon")
           span( ng-bind="i.menu")
-    ul.nav.navbar-nav.navbar-right(ng-if="!main.user.authenticated")
-      li: button(type="button" ng-click="main.user.login()")
+    ul.nav.navbar-nav.navbar-right(ng-if="!user.authenticated")
+      li: button(type="button" ng-click="user.login()")
         span.fa.fa-sign-in
         |  Anmelden
       +menu-item(".register","registrieren","user-plus")
-    ul.nav.navbar-nav.navbar-right(data-ng-if="main.user.authenticated")
+    ul.nav.navbar-nav.navbar-right(ng-if="user.authenticated")
       li: a(ui-sref="main.user.profile")
         span.fa.fa-user
-        |  {{main.user.data.profile.nickname||main.user.data.email}}
+        |  {{user.data.profile.nickname||user.data.email}}
       li: button(type="button" data-ng-click="::main.user.inauthenticate()")
         span.fa.fa-sign-out(aria-hidden="true")
         |  Abmelden
