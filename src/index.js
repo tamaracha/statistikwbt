@@ -19,6 +19,7 @@ import {config, run} from './config.js';
 import * as user from './user';
 import modals from './modals';
 import test from './test-service';
+import PageController from './main/page-controller';
 
 /**
  * @module wbt
@@ -52,9 +53,7 @@ export default angular.module('wbt',[
 .directive('userCheck',user.validator)
 .service('modals',modals)
 .factory('test',test)
-.controller('MetaController', ['meta', function(meta){
-  this.meta = meta;
-}])
+.controller('PageController', PageController)
 .name;
 
 angular.element(document).ready(function(){
