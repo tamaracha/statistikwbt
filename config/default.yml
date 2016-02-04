@@ -1,17 +1,10 @@
 server:
   port: 3000
   host: localhost
-username: email
-db:
-  host: localhost
-  database: wbt-framework
+base: '/'
+assets: true
 jwt:
   options:
     expiresIn: 7d
     subject: authenticate
-assets:
-  serve: true
-  root: /dist
-  title: WBT Framework
-  base: wbt-framework
-logging: true
+apps: []

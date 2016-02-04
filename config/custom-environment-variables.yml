@@ -3,9 +3,3 @@ server:
   host: host
 jwt:
   secret: jwt_secret
-db:
-  database: database
-assets:
-  base: assets_base
-  title: assets_title
-username: username

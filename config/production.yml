@@ -1,3 +1,1 @@
-logging: false
-assets:
-  serve: false
+assets: false
