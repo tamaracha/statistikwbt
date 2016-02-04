@@ -4,7 +4,7 @@ export default function userCheckValidator($q,user){
       return value.toLowerCase();
     });
     c.$asyncValidators.userCheck = function(value){
-      const promise = user.check(value);
+      const promise = user.check(scope.formState.username, value);
       switch(attrs.userCheck){
       case 'available':
         return promise.then(() => {
