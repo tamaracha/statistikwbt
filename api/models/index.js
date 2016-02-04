@@ -5,14 +5,15 @@ const mongoose = require('mongoose');
 const files = [
   'comment',
   'guess',
-  'meta',
+  'page',
   'rating',
   'subject',
   'test',
   'unit',
   'user',
   'view',
-  'watch'
+  'watch',
+  'wbt'
 ];
 module.exports = transform(files,function(models,value){
   const name = capitalize(value);
