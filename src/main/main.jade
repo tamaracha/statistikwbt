@@ -27,7 +27,7 @@ nav.navbar.navbar-inverse.navbar-static-top(role="navigation"): .container-fluid
       li: a(ui-sref="main.user.profile")
         span.fa.fa-user
         |  {{user.data.profile.nickname||user.data.email}}
-      li: button(type="button" data-ng-click="::main.user.inauthenticate()")
+      li: button(type="button" ng-click="::user.inauthenticate()")
         span.fa.fa-sign-out(aria-hidden="true")
         |  Abmelden
 .container(ui-view)
