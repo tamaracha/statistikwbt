@@ -6,6 +6,11 @@ const server=config.get('server');
 const koa=require('koa');
 const mongoose=require('mongoose');
 mongoose.Promise = require('bluebird');
+
+function *index(){
+  yield this.render('index');
+}
+index.unless = require('koa-unless');
 const api = require('./api');
 const app=koa();
 require('koa-qs')(app);
@@ -15,7 +20,7 @@ if(config.get('assets') === true){
   app.use(require('koa-mount')('/dist', require('koa-static')(__dirname+'/dist')));
 }
 app
-.use(require('./api/pages'))
+.use(index.unless({path: [/\/dist\//, /\/api\//]}))
 .use(api.routes())
 .use(api.allowedMethods())
 .listen(server.port,server.host,function(){
