@@ -1,6 +1,8 @@
 'use strict';
 const mongoose = require('mongoose');
-const WbtSchema = module.exports = new mongoose.Schema({
+const PageSchema = require('./page');
+const UnitSchema = require('./unit');
+module.exports = new mongoose.Schema({
   path: {
     type: String,
     required: true,
@@ -10,12 +12,6 @@ const WbtSchema = module.exports = new mongoose.Schema({
     type: String,
     required: true
   },
-  pages: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Page'
-  }],
-  units: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Unit'
-  }]
+  pages: [PageSchema],
+  units: [UnitSchema]
 }, {timeStamps: true, collection: 'wbt'});
