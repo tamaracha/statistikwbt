@@ -1,10 +1,9 @@
 <!doctype html>
 <html lang="de">
 <head>
-<title>{{=it.title || 'WBT-Framework'}}</title>
+<title ng-bind="wbt.wbt.title"></title>
 <meta charset="utf-8"/>
-{{##def.base = config.get('base') #}}
-<base href="{{#def.base}}"/>
+<base href="{{=it.htmlWebpackPlugin.options.base}}"/>
 {{##
 def.versions = {
   angular: '1.5.0',
@@ -52,12 +51,8 @@ for(i = 0; i<def.scripts.length; i++){
     def.assets += '<script src="'+def.scripts[i]+'.js"></script>';
   }
 }
-if(process.env.NODE_ENV === 'production'){
-  def.assets += '<script src="/dist/vendors.js"></script>';
-}
 #}}
 {{#def.assets}}
-<script src="/dist/app.js"></script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {

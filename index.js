@@ -1,21 +1,20 @@
 'use strict';
 const debug = require('debug')('app:server');
 const config=require('config');
-global.config = config;
 const server=config.get('server');
 const koa=require('koa');
+const send = require('koa-send');
 const mongoose=require('mongoose');
 mongoose.Promise = require('bluebird');
 
 function *index(){
-  yield this.render('index');
+  yield send(this, 'index.html', {root: 'dist/'});
 }
 index.unless = require('koa-unless');
 const api = require('./api');
 const app=koa();
 require('koa-qs')(app);
 require('koa-onerror')(app);
-app.use(require('koa-dot')({path: __dirname+'/templates'}))
 if(config.get('assets') === true){
   app.use(require('koa-mount')('/dist', require('koa-static')(__dirname+'/dist')));
 }
