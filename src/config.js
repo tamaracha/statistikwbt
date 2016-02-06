@@ -1,12 +1,10 @@
-import _ from 'lodash';
-import main from './main';
+import wbt from './wbt';
 import {types, wrappers} from './formly';
 
 export function config($compileProvider,$httpProvider,$urlRouterProvider,stateHelperProvider,formlyConfigProvider){
   $compileProvider.debugInfoEnabled(false);
-  $httpProvider.interceptors.push('userInterceptor');
   $httpProvider.defaults.paramSerializer = '$httpParamSerializerJQLike';
-  stateHelperProvider.state(main);
+  stateHelperProvider.state(wbt);
   $urlRouterProvider.otherwise('/home');
   formlyConfigProvider.disableWarnings = true;
   formlyConfigProvider.setWrapper(wrappers);
@@ -14,16 +12,11 @@ export function config($compileProvider,$httpProvider,$urlRouterProvider,stateHe
 }
 config.$inject = ['$compileProvider', '$httpProvider', '$urlRouterProvider', 'stateHelperProvider', 'formlyConfigProvider'];
 
-export function run($rootScope,$state,$stateParams, user, wbt, PermissionStore, formlyValidationMessages){
+export function run($rootScope,$state,$stateParams, user, PermissionStore, formlyValidationMessages){
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
   $rootScope.user = user;
-  $rootScope.wbt = wbt;
-  $rootScope.pages = _.keyBy(wbt.pages, 'path');
-  //$rootScope.$on('$stateChangeError', console.log.bind(console));
-  $rootScope.$watch('user.role', (val) => {
-    $rootScope.pages.author.active = val === 'author';
-  });
+  $rootScope.$on('$stateChangeError', console.log.bind(console));
   $rootScope.$on('$stateChangeStart',function(event,toState,toParams,fromState,fromParams){
     $rootScope.prevState = fromState;
     $rootScope.prevParams = fromParams;
@@ -52,4 +45,4 @@ export function run($rootScope,$state,$stateParams, user, wbt, PermissionStore, 
     return `${$viewValue} ist keine gültige E-Mail-Adresse`;
   };
 }
-run.$inject = ['$rootScope', '$state', '$stateParams', 'user', 'wbt', 'PermissionStore', 'formlyValidationMessages'];
+run.$inject = ['$rootScope', '$state', '$stateParams', 'user', 'PermissionStore', 'formlyValidationMessages'];
