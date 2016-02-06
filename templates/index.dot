@@ -7,7 +7,7 @@
 <base href="{{#def.base}}"/>
 {{##
 def.versions = {
-  angular: '1.4.9',
+  angular: '1.5.0',
   bootstrap: '3.3.6',
   fontAwesome: '4.4.0',
   jquery: '2.1.4',
@@ -58,10 +58,6 @@ if(process.env.NODE_ENV === 'production'){
 #}}
 {{#def.assets}}
 <script src="/dist/app.js"></script>
-<script>
-  angular.module('wbt')
-  .constant('wbt', {{=JSON.stringify(it)}});
-</script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
