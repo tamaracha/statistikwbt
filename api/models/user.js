@@ -68,7 +68,7 @@ UserSchema.index(
 );
 UserSchema.pre('validate', function(cb){
   if(this.email || this.kennung){return cb();}
-  return next(Error('Neither email nor kennung is supplied'));
+  return cb(Error('Neither email nor kennung is supplied'));
 });
 UserSchema.pre('save',function(cb){
   const user = this;
@@ -80,6 +80,5 @@ UserSchema.pre('save',function(cb){
   });
 });
 UserSchema.methods.validatePassword=function(password){
-  const user = this;
-  return bcrypt.compareAsync(password,user.password);
+  return bcrypt.compareAsync(password,this.password);
 };
