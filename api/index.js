@@ -23,6 +23,16 @@ const auth = require('./middleware/auth');
 api.use(roles.middleware());
 
 /* routes */
+
+// wbt
+const wbt = new Router();
+wbt.get('/', ctrl.wbt.index)
+.post('/', body, ctrl.wbt.create)
+.get('/:wbt', ctrl.wbt.show)
+.patch('/:wbt', body, ctrl.wbt.update)
+.delete('/:wbt', ctrl.wbt.destroy);
+api.use('/wbt', wbt.routes());
+
 // pages
 const pages = new Router();
 pages.get('/',ctrl.page.index);
