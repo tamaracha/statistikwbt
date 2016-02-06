@@ -1,29 +1,32 @@
-- path: home
-  title: WBT-Framework
-  menu: WBT-Framework
-  icon: home
-  active: true
-- path: content
-  title: Inhalte
-  menu: Inhalte
-  icon: book
-  active: true
-- path: download
-  title: Download
-  menu: Download
-  icon: download
-  active: true
-- path: author
-  title: Autorenmodus
-  menu: Autorenmodus
-  icon: pencil
-  active: true
-- path: contact
-  title: Kontakt
-  menu: Kontakt
-  icon: support
-  active: true
-- path: impressum
-  title: Impressum
-  menu: Impressum
-  active: true
+title: WBT-Framework
+path: wbt
+pages:
+  - path: home
+    title: WBT-Framework
+    menu: WBT-Framework
+    icon: home
+    active: true
+  - path: content
+    title: Inhalte
+    menu: Inhalte
+    icon: book
+    active: true
+  - path: download
+    title: Download
+    menu: Download
+    icon: download
+    active: true
+  - path: author
+    title: Autorenmodus
+    menu: Autorenmodus
+    icon: pencil
+    active: true
+  - path: contact
+    title: Kontakt
+    menu: Kontakt
+    icon: support
+    active: true
+  - path: impressum
+    title: Impressum
+    menu: Impressum
+    active: true

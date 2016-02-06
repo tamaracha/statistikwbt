@@ -19,21 +19,15 @@ mongoose.connect('mongodb://localhost:27017/wbt', function(){
     return fs.readFileAsync(path.join(__dirname,'./meta.yml'),'utf8');
   })
   .then(function(file){
-    const docs = yaml.load(file);
-    const home = find(docs,{path: 'home'});
+    const wbt = yaml.load(file);
+    wbt.title = args.t;
+    wbt.path = args.p;
+    const home = wbt.pages[0];
     if(home){
-      home.title = args.title;
-      home.menu = args.title;
+      home.title = args.t;
+      home.menu = args.t;
     }
-    return models.Page.create(docs);
-  })
-  .then(function(data){
-    const pages = map(data, '_id');
-    return models.Wbt.create({
-      path: args.p,
-      title: args.t,
-      pages
-    });
+    return models.Wbt.create(wbt);
   })
   .catch(function(e){
     console.log(e);
@@ -47,12 +41,6 @@ mongoose.connect('mongodb://localhost:27017/wbt', function(){
 function remove(yargs, args){
   mongoose.connect('mongodb://localhost:27017/wbt', function(){
     return models.Wbt.findOneAndRemove({path: args.p}).exec()
-    .then(function(wbt){
-      if(!wbt){throw Error('Dieses wBT existiert nicht.');}
-      return models.Page.remove()
-      .in('_id', wbt.pages)
-      .exec();
-    })
     .catch(function(e){
       console.log(e);
     })
@@ -73,7 +61,7 @@ require('yargs')
 .completion('completion', 'Generate Bash Completion Script')
 .option('p', {
   alias: 'path',
-  default: '/statistikwbt/',
+  default: 'wbt-framework',
   type: 'string',
   describe: 'Die URL zum WBT'
 })
