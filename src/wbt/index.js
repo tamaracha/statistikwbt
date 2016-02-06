@@ -1,5 +1,5 @@
-import template from './main.jade';
-import controller from './main-controller.js';
+import templateUrl from './wbt.jade';
+import controller from './wbt-controller.js';
 import home from './home';
 import contact from './contact';
 import impressum from './impressum';
@@ -10,12 +10,12 @@ import user from './user';
 import author from './author';
 
 export default {
-  name: 'main',
-  url: '',
+  name: 'wbt',
+  url: '/:wbt',
   abstract: true,
-  templateUrl: template,
+  templateUrl,
   controller,
-  controllerAs: 'main',
+  controllerAs: 'wbt',
   children: [
     home,
     contact,

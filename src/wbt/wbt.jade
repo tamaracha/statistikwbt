@@ -3,18 +3,18 @@ nav.navbar.navbar-inverse.navbar-static-top(role="navigation"): .container-fluid
   .navbar-header
     button.navbar-toggle.collapsed(
       type="button"
-      ng-click="main.menuCollapse=!main.menuCollapse"
-      aria-controls="mainnav"
-      aria-expanded="{{!main.menuCollapse}}"
-      aria-label="{{main.menuCollapse ? 'Menü ausklappen' : 'Menü einklappen'}}"
+      ng-click="wbt.menuCollapse=!wbt.menuCollapse"
+      aria-controls="wbtnav"
+      aria-expanded="{{!wbt.menuCollapse}}"
+      aria-label="{{wbt.menuCollapse ? 'Menü ausklappen' : 'Menü einklappen'}}"
     )
       span.fa.fa-bars
     a.navbar-brand(ui-sref=".home")
-      span.fa(ng-class="main.items.home.icon || 'fa-home'")
+      span.fa(ng-class="wbt.items.home.icon || 'fa-home'")
       |  {{pages.home.menu || 'WBT-Framework'}}
-  #mainnav.collapse.navbar-collapse(uib-collapse="main.menuCollapse")
+  #wbtnav.collapse.navbar-collapse(uib-collapse="wbt.menuCollapse")
     ul.nav.navbar-nav.navbar-left
-      li(ui-sref-active="active" ng-repeat="i in wbt.pages | filter : {path: '!home', active: true}")
+      li(ui-sref-active="active" ng-repeat="i in wbt.wbt.pages | filter : {path: '!home', active: true}")
         a(ui-sref=".{{i.path}}")
           span.fa(ng-if="i.icon" ng-class="'fa'+i.icon")
           span( ng-bind="i.menu")
@@ -24,7 +24,7 @@ nav.navbar.navbar-inverse.navbar-static-top(role="navigation"): .container-fluid
         |  Anmelden
       +menu-item(".register","registrieren","user-plus")
     ul.nav.navbar-nav.navbar-right(ng-if="user.authenticated")
-      li: a(ui-sref="main.user.profile")
+      li: a(ui-sref="wbt.user.profile")
         span.fa.fa-user
         |  {{user.data.profile.nickname||user.data.email}}
       li: button(type="button" ng-click="::user.inauthenticate()")
