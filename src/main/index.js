@@ -17,8 +17,8 @@ export default {
   controller,
   controllerAs: 'main',
   resolve: {
-    meta: ['api', function(api){
-      return api.getMeta();
+    meta: ['$http', function($http){
+      return $http.get('api/meta');
     }]
   },
   children: [

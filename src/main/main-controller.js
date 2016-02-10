@@ -12,8 +12,8 @@ export default class MainCtrl{
         blur: 0
       }
     };
-    this.meta = meta;
-    this.items = _.keyBy(meta,'_id');
+    this.meta = meta.data;
+    this.items = _.keyBy(this.meta,'_id');
     $scope.$watch('main.user.role', (val) => {
       this.items.author.active = val === 'author';
     });
