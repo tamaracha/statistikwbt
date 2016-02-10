@@ -14,7 +14,7 @@ export function config($locationProvider,$compileProvider,$httpProvider,$urlRout
 }
 config.$inject = ['$locationProvider', '$compileProvider', '$httpProvider', '$urlRouterProvider', 'stateHelperProvider', 'formlyConfigProvider'];
 
-export function run($rootScope,$state,$stateParams, user, Permission, formlyValidationMessages){
+export function run($rootScope,$state,$stateParams, user, PermissionStore, formlyValidationMessages){
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
   $rootScope.$on('$stateChangeError',console.log.bind(console));
@@ -35,7 +35,7 @@ export function run($rootScope,$state,$stateParams, user, Permission, formlyVali
       }
     );
   });
-  Permission.defineManyRoles(['anonymous', 'user', 'author'], function(params, role){
+  PermissionStore.defineManyPermissions(['anonymous', 'user', 'author'], function(params, role){
     return user.role === role;
   });
   formlyValidationMessages.addStringMessage('json','JSON ist invalid');
@@ -46,4 +46,4 @@ export function run($rootScope,$state,$stateParams, user, Permission, formlyVali
     return `${$viewValue} ist keine gültige E-Mail-Adresse`;
   };
 }
-run.$inject = ['$rootScope', '$state', '$stateParams', 'user', 'Permission', 'formlyValidationMessages'];
+run.$inject = ['$rootScope', '$state', '$stateParams', 'user', 'PermissionStore', 'formlyValidationMessages'];
