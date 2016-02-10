@@ -13,5 +13,5 @@ assets:
   serve: true
   root: /dist
   title: WBT Framework
-  base: wbt-framework
+  base: /wbt-framework/
 logging: true

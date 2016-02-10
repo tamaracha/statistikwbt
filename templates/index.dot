@@ -3,7 +3,7 @@
 <head>
 <title>{{=it.title || 'WBT-Framework'}}</title>
 <meta charset="utf-8"/>
-<base href="{{#it.base}}"/>
+<base href="{{=it.base}}"/>
 {{##
 def.versions = {
   angular: '1.5.0',
@@ -33,30 +33,30 @@ def.scripts = [
 ]
 #}}
 {{##
-def.assets = '';
-var i;
-for(i = 0; i<def.styles.length; i++){
+  def.assets = '';
+  for(var i=0; i<def.styles.length; i++){
+    if(process.env.NODE_ENV === 'production'){
+      def.assets += `<link rel="stylesheet" href="${def.styles[i]}.min.css"/>`;
+    }
+    else{
+      def.assets += `<link rel="stylesheet" href="${def.styles[i]}.css"/>`;
+    }
+  }
+  for(var i=0; i<def.scripts.length; i++){
+    if(process.env.NODE_ENV === 'production'){
+      def.assets += `<script src="${def.scripts[i]}.min.js"></script>`;
+    }
+    else{
+      def.assets += `<script src="${def.scripts[i]}.js"></script>`;
+    }
+  }
   if(process.env.NODE_ENV === 'production'){
-    def.assets += '<link href="'+def.styles[i]+'.min.css" rel="stylesheet"/>';
+    def.assets += '<script src="dist/vendors.js"></script>';
   }
-  else{
-    def.assets += '<link href="'+def.styles[i]+'.css" rel="stylesheet"/>';
-  }
-}
-for(i = 0; i<def.scripts.length; i++){
-  if(process.env.NODE_ENV === 'production'){
-    def.assets += '<script src="'+def.scripts[i]+'.min.js"></script>';
-  }
-  else{
-    def.assets += '<script src="'+def.scripts[i]+'.js"></script>';
-  }
-}
-if(process.env.NODE_ENV === 'production'){
-  def.assets += '<script src="/dist/vendors.js"></script>';
-}
+  return def.assets;
 #}}
 {{#def.assets}}
-<script src="/dist/app.js"></script>
+<script src="dist/app.js"></script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -67,7 +67,7 @@ if(process.env.NODE_ENV === 'production'){
 </script>
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
-<body ng-cloak>
+<body ng-cloak username="{{=it.username}}">
 <ui-view></ui-view>
 </body>
 </html>
