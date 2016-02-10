@@ -11,6 +11,8 @@ const indexHtml = dots.index({
   username: config.get('username')
 });
 const koa=require('koa');
+const conditional = require('koa-conditional-get');
+const etag = require('koa-etag');
 const mongoose=require('mongoose');
 mongoose.Promise = require('bluebird');
 function *index(){
@@ -21,6 +23,9 @@ const api=require('./api');
 const app=koa();
 require('koa-qs')(app);
 require('koa-onerror')(app);
+app
+.use(conditional())
+.use(etag());
 if(assets.serve){
   app.use(require('koa-mount')(assets.root, require('koa-static')(__dirname+'/dist')))
 }
