@@ -12,6 +12,7 @@ const multi = Body({
   multipart: true,
   formidable: {hash: 'md5'}
 });
+const etag = require('koa-etag');
 const jwtConfig = config.options;
 jwtConfig.secret = config.secret;
 const jwt = require('koa-jwt')(jwtConfig);
@@ -19,7 +20,9 @@ const log = require('./middleware/log');
 const roles = require('./middleware/roles');
 const auth = require('./middleware/auth');
 
-api.use(roles.middleware());
+api
+.use(etag())
+.use(roles.middleware());
 
 /* routes */
 // meta
