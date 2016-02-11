@@ -14,9 +14,7 @@
     "build:compress": "zopfli dist/*.js",
     "build": "npm run build:js && npm run build:compress",
     "preversion": "npm run lint && npm test && npm run build && git add ./dist",
-    "version": "npm run docs && git add ./docs",
-    "postversion": "git push && git push --tags",
-    "docs": "jsdoc -c jsdoc.json"
+    "postversion": "git push && git push --tags"
   },
   "author": "Tamara Cook <tamara.cook@icloud.com>",
   "license": "MIT",
