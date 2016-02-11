@@ -80,7 +80,7 @@ if(prod){
     './src/angular-locale_de-de'
   ];
   config.plugins.push(
-    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
+    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.[hash].js'),
     new webpack.optimize.DedupePlugin()
   );
 }
