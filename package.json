@@ -11,7 +11,7 @@
     "lint": "eslint api",
     "prebuild": "rm -f dist/*",
     "build:js": "NODE_ENV=production webpack -p",
-    "build:compress": "zopfli dist/*.js",
+    "build:compress": "zopfli dist/*",
     "build": "npm run build:js && npm run build:compress",
     "preversion": "npm run lint && npm test && npm run build && git add ./dist",
     "postversion": "git push && git push --tags"
