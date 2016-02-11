@@ -50,13 +50,16 @@ def.scripts = [
       def.assets += `<script src="${def.scripts[i]}.js"></script>`;
     }
   }
-  if(process.env.NODE_ENV === 'production'){
-    def.assets += '<script src="dist/vendors.js"></script>';
-  }
   return def.assets;
 #}}
 {{#def.assets}}
-<script src="dist/app.js"></script>
+{{
+for(var a in it.assets){
+}}
+<script src="{{=it.assets[a].js}}"></script>
+{{
+}
+}}
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {

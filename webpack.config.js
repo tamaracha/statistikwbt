@@ -1,14 +1,20 @@
 'use strict';
+const path = require('path');
 const webpack=require('webpack');
+const assets = require('assets-webpack-plugin');
 const prod = process.env.NODE_ENV === 'production';
 const config = {
   entry: {
     app: './src'
   },
   output: {
-    filename: 'app.js',
-    path: './dist',
-    publicPath: 'dist/'
+    //filename: 'app.js',
+    //path: './dist',
+    //publicPath: 'dist/',
+    path: path.join(__dirname, "dist"),
+    publicPath: "dist/",
+    filename: "app.[hash].js",
+    chunkFilename: "chunk.[chunkhash].js"
   },
   module: {
     preLoaders: [
@@ -52,7 +58,13 @@ const config = {
     lodash: '_',
     $: '$'
   },
-  devtool: 'source-map'
+  devtool: 'source-map',
+  plugins: [
+    new assets({
+      path: 'dist',
+      filename: 'assets.json'
+    })
+  ]
 };
 if(prod){
   config.entry.vendors = [
@@ -67,9 +79,9 @@ if(prod){
     'angular-permission',
     './src/angular-locale_de-de'
   ];
-  config.plugins = [
+  config.plugins.push(
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
     new webpack.optimize.DedupePlugin()
-  ];
+  );
 }
 module.exports = config;

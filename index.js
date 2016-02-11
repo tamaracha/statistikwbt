@@ -4,20 +4,23 @@ const config=require('config');
 const server=config.get('server');
 const db=config.get('db');
 const assets=config.get('assets');
+const webpackAssets = require('./dist/assets.json');
+const etag = require('etag');
 const dots = require('dot').process({path: 'templates'});
 const indexHtml = dots.index({
   title: assets.title,
   base: assets.base,
-  username: config.get('username')
+  username: config.get('username'),
+  assets: webpackAssets
 });
-const indexDate = new Date;
 const koa=require('koa');
 const conditional = require('koa-conditional-get');
 const mongoose=require('mongoose');
 mongoose.Promise = require('bluebird');
+const indexEtag = etag(indexHtml);
 function *index(){
   this.body = indexHtml;
-  this.lastModified = indexDate;
+  this.etag = indexEtag;
 }
 index.unless = require('koa-unless');
 const api=require('./api');
