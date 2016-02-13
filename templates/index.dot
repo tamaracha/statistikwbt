@@ -52,14 +52,6 @@ def.scripts = [
   }
   return def.assets;
 #}}
-{{#def.assets}}
-{{
-for(var a in it.assets){
-}}
-<script src="{{=it.assets[a].js}}"></script>
-{{
-}
-}}
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -71,6 +63,15 @@ for(var a in it.assets){
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body ng-cloak username="{{=it.username}}">
+<div ng-if="false">loading…</div>
 <ui-view></ui-view>
+{{#def.assets}}
+{{
+for(var a in it.assets){
+}}
+<script src="{{=it.assets[a].js}}"></script>
+{{
+}
+}}
 </body>
 </html>
