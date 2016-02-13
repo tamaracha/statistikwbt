@@ -44,10 +44,10 @@ def.scripts = [
   }
   for(var i=0; i<def.scripts.length; i++){
     if(process.env.NODE_ENV === 'production'){
-      def.assets += `<script src="${def.scripts[i]}.min.js"></script>`;
+      def.assets += `<script defer src="${def.scripts[i]}.min.js"></script>`;
     }
     else{
-      def.assets += `<script src="${def.scripts[i]}.js"></script>`;
+      def.assets += `<script defer src="${def.scripts[i]}.js"></script>`;
     }
   }
   return def.assets;
@@ -69,7 +69,7 @@ def.scripts = [
 {{
 for(var a in it.assets){
 }}
-<script src="{{=it.assets[a].js}}"></script>
+<script defer src="{{=it.assets[a].js}}"></script>
 {{
 }
 }}
