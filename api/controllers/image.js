@@ -60,11 +60,10 @@ $.show = function *(){
     this.type = image.contentType;
     this.length = image.length;
     this.etag = image.md5;
-    const data = yield gfs.readFileAsync({
+    this.body = gfs.createReadStream({
       _id: image._id,
       root: 'images'
     });
-    this.body = data;
   }
 };
 
