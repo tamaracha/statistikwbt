@@ -58,6 +58,7 @@ $.show = function *(){
   }
   else{
     this.type = image.contentType;
+    this.length = image.length;
     this.etag = image.md5;
     const data = yield gfs.readFileAsync({
       _id: image._id,
