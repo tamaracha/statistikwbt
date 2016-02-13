@@ -60,7 +60,6 @@ def.scripts = [
     }
   });
 </script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body ng-cloak username="{{=it.username}}">
 <div ng-if="false">loading…</div>
@@ -73,5 +72,6 @@ for(var a in it.assets){
 {{
 }
 }}
+<script defer src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
