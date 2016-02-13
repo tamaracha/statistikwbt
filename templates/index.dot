@@ -36,10 +36,10 @@ def.scripts = [
   def.assets = '';
   for(var i=0; i<def.styles.length; i++){
     if(process.env.NODE_ENV === 'production'){
-      def.assets += `<link rel="stylesheet" ng-href="${def.styles[i]}.min.css"/>`;
+      def.assets += `<link rel="stylesheet" href="${def.styles[i]}.min.css" media="lazy"/>`;
     }
     else{
-      def.assets += `<link rel="stylesheet" ng-href="${def.styles[i]}.css"/>`;
+      def.assets += `<link rel="stylesheet" href="${def.styles[i]}.css" media="lazy"/>`;
     }
   }
   for(var i=0; i<def.scripts.length; i++){
