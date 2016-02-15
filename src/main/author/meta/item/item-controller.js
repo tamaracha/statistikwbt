@@ -72,7 +72,7 @@ export default class ItemController{
       };
       return $http(config)
       .then(
-        (res) => {
+        () => {
           this.patches = [];
           //this.lastModified = res.headers('last-modified');
           const index = _.findIndex($scope.main.meta,{_id: val._id});
