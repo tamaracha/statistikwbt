@@ -13,6 +13,7 @@ const multi = Body({
   formidable: {hash: 'md5'}
 });
 const etag = require('koa-etag');
+const lastModified = require('./middleware/last-modified');
 const jwtConfig = config.options;
 jwtConfig.secret = config.secret;
 const jwt = require('koa-jwt')(jwtConfig);
@@ -21,7 +22,7 @@ const roles = require('./middleware/roles');
 const auth = require('./middleware/auth');
 
 api
-.use(etag())
+.use(lastModified, etag())
 .use(roles.middleware());
 
 /* routes */
@@ -65,7 +66,6 @@ units.delete('/:unit',roles.can('edit content'),ctrl.unit.destroy);
 const topics=new Router();
 topics.get('/',roles.can('access content'),ctrl.topic.index);
 topics.post('/',roles.can('edit content'),body,ctrl.topic.create);
-topics.patch('/',roles.can('edit content'),body,ctrl.topic.edit);
 topics.get('/:topic',roles.can('access content'),ctrl.topic.show);
 topics.patch('/:topic',roles.can('edit content'),body,ctrl.topic.update);
 topics.delete('/:topic',roles.can('edit content'),ctrl.topic.destroy);
