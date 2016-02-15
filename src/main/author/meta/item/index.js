@@ -15,8 +15,8 @@ export default {
         });
       });
     }],
-    item: ['api', '$stateParams', function(api,$stateParams){
-      return api.getMetaBy_id({_id: $stateParams.meta});
+    item: ['$http', '$stateParams', function($http,$stateParams){
+      return $http.get('api/meta/'+$stateParams.meta);
     }]
   }
 };

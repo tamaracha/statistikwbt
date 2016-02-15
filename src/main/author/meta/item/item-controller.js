@@ -1,6 +1,6 @@
 import _ from 'lodash';
 export default class ItemController{
-  constructor(item, $scope, jsonpatch, api){
+  constructor(item, $scope, jsonpatch, $http){
     const modelOptions = {
       updateOn: 'default blur',
       debounce: {
@@ -8,7 +8,8 @@ export default class ItemController{
         blur: 0
       }
     };
-    this.item = item;
+    this.item = item.data;
+    //this.lastModified = item.headers('last-modified');
     this.patches = [];
     this.error = null;
     this.fields = [
@@ -63,13 +64,17 @@ export default class ItemController{
       if(this.patches.length === 0){
         return;
       }
-      return api.patchMetaBy_id({
-        _id: item._id,
-        patches: this.patches
-      })
+      const config = {
+        method: 'PATCH',
+        url: 'api/meta/'+this.item._id,
+        //headers: {'if-unmodified-since': this.lastModified},
+        data: this.patches
+      };
+      return $http(config)
       .then(
-        () => {
+        (res) => {
           this.patches = [];
+          //this.lastModified = res.headers('last-modified');
           const index = _.findIndex($scope.main.meta,{_id: val._id});
           $scope.main.meta[index] = val;
           $scope.main.items[val._id] = val;
@@ -80,5 +85,7 @@ export default class ItemController{
       );
     },true);
   }
+  static get $inject(){
+    return ['item', '$scope', 'jsonpatch', '$http'];
+  }
 }
-ItemController.$inject = ['item', '$scope', 'jsonpatch', 'api'];

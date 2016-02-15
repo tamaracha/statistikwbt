@@ -1,7 +1,7 @@
 import template from './unit.jade';
 import controller from './unit-controller';
 import basics from './basics';
-import topics from './topics';
+import topic from './topic';
 import tests from './tests';
 
 export default {
@@ -25,7 +25,7 @@ export default {
         method: 'GET',
         url: 'api/units/'+$stateParams.unit,
         params: {
-          projections: '-comments -topics -views -akzeptanz'
+          projections: 'title subtitle description requires topics._id topics.title test'
         }
       };
       return $http(config);
@@ -33,7 +33,7 @@ export default {
   },
   children: [
     basics,
-    topics,
-    tests
+    tests,
+    topic
   ]
 };

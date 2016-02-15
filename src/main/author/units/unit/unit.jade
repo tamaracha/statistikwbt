@@ -1,6 +1,5 @@
 ul.nav.nav-tabs
-  li(ui-sref-active="active"): a(ui-sref=".basics") Grunddaten
-  li(ui-sref-active="active"): a(ui-sref=".topics.new") Subkapitel
+  li(ui-sref-active="active"): a(ui-sref=".basics") Grunddaten und subkapitel
   li(ui-sref-active="active"): a(ui-sref=".tests") Testaufgaben
 div(ui-view)
 uib-alert(type="info" ng-if="unit.patches.length>0 && !unit.error" role="alert")

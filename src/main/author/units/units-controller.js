@@ -5,7 +5,7 @@ export default class UnitsController{
     this.units = units.data;
     this.$state = $state;
     this.$uibModal = $uibModal;
-    this.removeModal = removeModal($scope);
+    this.removeModal = removeModal('unit', $scope);
     this.$http = $http;
     this.collapse = false;
     this.init();

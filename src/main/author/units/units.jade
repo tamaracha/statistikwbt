@@ -10,7 +10,7 @@ div(uib-collapse="units.collapse"): form.form-horizontal(novalidate name="units.
       )
         option(value="") Neues Kapitel
   .form-group(ng-if="units.selected")
-    .col-xs-offset-2.col-xs-10: .button-group
+    .col-xs-offset-2.col-xs-10: .btn-group
       a.btn.btn-link(ui-sref="main.content.unit.description({unit: units.selected._id})") Anschauen
       button.btn.btn-danger(type="button" ng-click="units.remove()")
         span.fa.fa-times
