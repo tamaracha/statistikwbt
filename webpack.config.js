@@ -8,13 +8,9 @@ const config = {
     app: './src'
   },
   output: {
-    //filename: 'app.js',
-    //path: './dist',
-    //publicPath: 'dist/',
     path: path.join(__dirname, "dist"),
     publicPath: "dist/",
-    filename: "app.[hash].js",
-    chunkFilename: "chunk.[chunkhash].js"
+    filename: 'app.js'
   },
   module: {
     preLoaders: [
@@ -83,5 +79,7 @@ if(prod){
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.[hash].js'),
     new webpack.optimize.DedupePlugin()
   );
+  config.output.filename = 'app.[hash].js';
+  config.output.chunkFilename = 'chunk.[chunkhash].js';
 }
 module.exports = config;
