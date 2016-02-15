@@ -1,12 +1,5 @@
-.row: .col-xs-12
-  ul.nav.nav-tabs
-    li(ng-class="{'active': 'both'}[view]"): button.btn.btn-default(type="button" ng-click="view='markdown'" ng-init="view='markdown'") Markdown
-    li(ng-class="{'active': 'both'}[view]"): button.btn.btn-default(type="button" ng-click="view='preview'") Vorschau
-    li(ng-class="{'active': 'both'}[view]"): button.btn.btn-default(type="button" ng-click="view='both'") nebeneinander
-.row(ng-switch="view")
-  .col-xs-12(ng-switch-when="markdown")
-    textarea.form-control(ng-model="model[options.key]")
-  .col-xs-12(ng-switch-when="preview" markdown="model[options.key]" math-jax)
-  .col-xs-6(ng-switch-when="both")
-    textarea.form-control(ng-model="model[options.key]")
-  .col-xs-6(ng-switch-when="both" markdown="model[options.key]" math-jax)
+ul.nav.nav-tabs
+  li(ng-class="{'active': 'both'}[view]"): button.btn.btn-default(type="button" ng-click="view='markdown'" ng-init="view='markdown'") Markdown
+  li(ng-class="{'active': 'both'}[view]"): button.btn.btn-default(type="button" ng-click="view='preview'") Vorschau
+textarea.form-control(ng-if="view === 'markdown'" ng-model="model[options.key]")
+div(ng-if="view === 'preview'" markdown="model[options.key]" math-jax)
