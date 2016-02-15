@@ -1,8 +1,6 @@
-ul.nav.nav-tabs
-  li(ui-sref-active="active"): a(ui-sref=".basics") Grunddaten
-  li(ui-sref-active="active"): a(ui-sref=".examples") Beispiele
-  li(ui-sref-active="active"): a(ui-sref=".extras") Extras
-ui-view
+h3(ng-bind="topic.topic.title")
+form.form-horizontal(novalidate name="topic.form")
+  formly-form(model="topic.topic" fields="topic.fields" form="topic.form")
 uib-alert(type="info" ng-if="topic.patches.length>0 && !topic.error" role="alert")
   span.fa.fa-spinner.fa-spin
   span lade Änderungen hoch…
