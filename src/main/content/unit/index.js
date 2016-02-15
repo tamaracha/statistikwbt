@@ -14,12 +14,15 @@ export default {
   controllerAs: 'unit',
   abstract: true,
   resolve: {
-    unit: ['api', '$stateParams', function(api,$stateParams){
-      const query = {
-        projections: 'title subtitle description requires topics._id topics.title test',
-        _id: $stateParams.unit
+    unit: ['$http', '$stateParams', function($http,$stateParams){
+      const config = {
+        method: 'GET',
+        url: 'api/units/'+$stateParams.unit,
+        params: {
+          projections: 'title subtitle description requires topics._id topics.title test'
+        }
       };
-      return api.getUnitsBy_id(query);
+      return $http(config);
     }]
   },
   children: [

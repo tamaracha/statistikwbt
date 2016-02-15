@@ -14,15 +14,19 @@ export default {
     }
   },
   resolve: {
-    units: ['api', function(api){
-      const query = {
-        projections: 'title requires',
-        options: {sort: 'position'}
+    units: ['$http', function($http){
+      const config = {
+        method: 'GET',
+        url: 'api/units',
+        params: {
+          projections: 'title requires',
+          options: {sort: 'position'}
+        }
       };
-      return api.getUnits(query);
+      return $http(config);
     }],
-    meta: ['api', function(api){
-      return api.getMetaBy_id({_id: 'content'});
+    meta: ['$http', function($http){
+      return $http.get('api/meta/content');
     }]
   },
   children: [
