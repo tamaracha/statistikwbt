@@ -23,7 +23,7 @@ export default class NewController{
     });
     this.mdfig = `![Alt-Text](api/images/${this.image._id})`;
     this.$uibModal = $uibModal;
-    this.removeModal = removeModal($scope);
+    this.removeModal = removeModal('image', $scope);
     this.$state = $state;
   }
   remove(){
