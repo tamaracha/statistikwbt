@@ -25,25 +25,26 @@ $.show=function *(){
     this.params.unit,
     this.query.projections||null,
     this.query.options||null
-  ).exec();
+  )
+  .select('updatedAt')
+  .lean().exec();
   this.assert(unit,'unit not found',404);
-  this.lastModified = unit.updatedAt;
   this.body=unit;
 };
 
 $.update=function *(){
-  this.assert(this.header['if-match'], 403, 'no validation header supplied');
+  this.assert(this.header['if-unmodified-since'], 403, 'no validation header supplied');
   const unit = yield models.Unit.findById(this.params.unit).exec();
   this.assert(unit,'unit not found',404);
-  this.assert(unit.updatedAt.toISOString() === this.header['if-unmodified-since'], 412, 'unit has been updated since last fetch');
+  this.assert(unit.updatedAt.toUTCString() === this.header['if-unmodified-since'], 412, 'unit has been updated since last fetch');
   const patch = jsonpatch.apply(unit,this.request.body);
   this.assert(patch===true, 'patch not successful');
   yield unit.save();
   this.lastModified = unit.updatedAt;
-  this.status=200;
+  this.status=204;
 };
 
 $.destroy=function *(){
   yield models.Unit.findByIdAndRemove(this.params.unit);
-  this.status=202;
+  this.status=204;
 };
