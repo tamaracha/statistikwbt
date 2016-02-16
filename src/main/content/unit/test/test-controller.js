@@ -3,8 +3,8 @@ export default class TestCtrl{
   constructor(test, $http, tests, unit, $window, user){
     this.$http = $http;
     this.test = test;
-    this.unit = unit;
-    this.shuffle = test.shuffle(unit);
+    this.unit = unit.data;
+    this.shuffle = test.shuffle(unit.data);
     this.$window = $window;
     this.user = user;
     this.init(tests);
