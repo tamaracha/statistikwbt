@@ -137,13 +137,13 @@ export default class TestsCtrl{
         method: 'PATCH',
         url: 'api/tests/'+this.selected._id,
         data: this.patches,
-        headers: {'if-unmodified-since': this.selected.updatedAt}
+        headers: {'if-unmodified-since': this.lastModified}
       };
       return $http(config)
       .then(
         (res) => {
           this.patches = [];
-          this.selected.updatedAt = res.headers('last-modified');
+          this.lastModified = res.headers('last-modified');
           this.error = null;
           this.testForm.$setPristine();
           return res;
@@ -193,6 +193,7 @@ export default class TestsCtrl{
     .then(
       (res) => {
         _.assign(this.selected, res.data);
+        this.lastModified = res.headers('last-modified');
         return res;
       },
       (e) => {
@@ -201,5 +202,7 @@ export default class TestsCtrl{
       }
     );
   }
+  static get $inject(){
+    return ['tests', '$stateParams', '$http', 'jsonpatch', '$scope'];
+  }
 }
-TestsCtrl.$inject = ['tests', '$stateParams', '$http', 'jsonpatch', '$scope'];
