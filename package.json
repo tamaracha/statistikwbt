@@ -123,6 +123,6 @@
     "mongoose": "^4.4.3",
     "mongoose-json-patch": "^1.1.1",
     "mongoose-validator": "^1.2.4",
-    "yargs": "^3.32.0"
+    "yargs": "^4.1.0"
   }
 }
