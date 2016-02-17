@@ -44,7 +44,7 @@ export default function test(){
         test: test._id,
         value: response._id
       };
-    case 'multiple':
+    case 'multiple': {
       const value = _.transform(response, function(ac, val, key){
         if(val === true){ac.push(key);}
       }, []);
@@ -52,6 +52,7 @@ export default function test(){
         test: test._id,
         value
       };
+    }
     case 'input':
       return {
         test: test._id,
