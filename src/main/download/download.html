@@ -1,0 +1,34 @@
+
+<h2>Download</h2>
+<p>Falls du die Inhalte dieser Webseite gern als Textdokument archivieren möchtest, kannst du hier ein Dokument mit den von dir bearbeiteten Kapiteln herunterladen. Du kannst zwischen ein paar Formaten wählen und einstellen, welche Bestandteile du haben möchtest.</p>
+<form novalidate name="downloads.form" method="get" action="api/downloads" class="form-horizontal">
+  <input type="hidden" name="token" ng-value="main.user.token">
+  <div class="form-group">
+    <label class="col-xs-2">Schnellauswahl</label>
+    <div class="col-xs-10">
+      <div role="toolbar" class="toolbar">
+        <div class="btn-group">
+          <button id="showunits" type="button" ng-click="download.show.units=!download.show.units" aria-expanded="{{download.show.units}}" class="btn btn-default">Kapitel<span ng-class="download.show.units ? 'fa-caret-square-o-up' : 'fa-caret-square-o-down'" aria-hidden="true" class="fa"></span></button>
+          <div id="unitgroup" ng-show="download.show.units" role="group" aria-labelledby="showunits" class="btn-group">
+            <button type="button" ng-click="download.selectUnits(true)" class="btn btn-default">Alle</button>
+            <button type="button" ng-click="download.selectUnits(false)" class="btn btn-default">keine</button>
+          </div>
+        </div>
+        <div class="btn-group">
+          <button id="showcontent" type="button" ng-click="download.show.contents=!download.show.contents" aria-expanded="{{download.show.contents}}" class="btn btn-default">Inhalte<span ng-class="download.show.contents ? 'fa-caret-square-o-up' : 'fa-caret-square-o-down'" aria-hidden="true" class="fa"></span></button>
+          <div ng-show="download.show.contents" role="group" aria-labelledby="showcontent" class="btn-group">
+            <button type="button" ng-click="download.selectContents(true)" class="btn btn-default">Alle</button>
+            <button type="button" ng-click="download.selectContents(false)" class="btn btn-default">keine</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <formly-form model="download.data" fields="download.fields" form="download.form">
+    <div class="form-group">
+      <div class="col-xs-2-offset col-xs-10">
+        <input type="submit" value="Download" ng-class="{'btn-primary': undefined.$valid,'btn-danger': undefined.$invalid&&undefined.$touched}" ng-disabled="undefined.$invalid" class="btn">
+      </div>
+    </div>
+  </formly-form>
+</form>

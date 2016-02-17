@@ -1,4 +1,4 @@
-import templateUrl from './user.jade';
+import templateUrl from './user.html';
 import controller from './user-controller';
 import profile from './profile';
 

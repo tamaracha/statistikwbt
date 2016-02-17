@@ -1,7 +1,0 @@
-mixin radio-inline(name,label,options)
-  .form-group
-    label.col-xs-2=label
-    .col-xs-10: each option, key in options
-      label.radio-inline
-        input(type="radio" name=name value=key)&attributes(attributes)
-        |  #{option}

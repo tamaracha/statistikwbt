@@ -1,0 +1,17 @@
+
+<h2>Registrieren</h2>
+<form novalidate role="form" name="register.form" ng-submit="register.register()" class="form-horizontal">
+  <formly-form model="register.model" fields="register.fields" form="register.form" options="register.formOptions">
+    <p>Mit der Registrierung erklärst du dich mit folgenden Punkten einverstanden:</p>
+    <ul>
+      <li>Wir behandeln deine Eingaben anonym und vertraulich.</li>
+      <li>Neben deinen explizit gemachten Angaben werden deine Bewegungen teilweise mit erfasst um dich nicht zusätzlich nach deiner Verweildauer, den von dir angesurften Inhalten o.Ä. fragen zu müssen.</li>
+      <li>Zu Forschungszwecken werten wir alle Nutzerdaten wissenschaftlich aus.</li>
+    </ul>
+    <div class="form-group">
+      <div class="col-xs-2-offset col-xs-10">
+        <input type="submit" value="Registrieren" ng-class="{'btn-primary': undefined.$valid,'btn-danger': undefined.$invalid&&undefined.$touched}" ng-disabled="undefined.$invalid" class="btn">
+      </div>
+    </div>
+  </formly-form>
+</form>

@@ -1,4 +1,4 @@
-import template from './main.jade';
+import templateUrl from './main.html';
 import controller from './main-controller.js';
 import home from './home';
 import contact from './contact';
@@ -13,7 +13,7 @@ export default {
   name: 'main',
   url: '',
   abstract: true,
-  templateUrl: template,
+  templateUrl,
   controller,
   controllerAs: 'main',
   resolve: {

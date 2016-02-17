@@ -1,8 +1,8 @@
-import template from './fsk.jade';
+import templateUrl from './fsk.html';
 import controller from './fsk-controller.js';
 
 export default {
-  templateUrl: template,
+  templateUrl,
   controller,
   controllerAs: 'fsk',
   size: 'lg'

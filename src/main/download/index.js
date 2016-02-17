@@ -1,9 +1,9 @@
-import template from './download.jade';
+import templateUrl from './download.html';
 import controller from './download-controller.js';
 export default {
   name: 'download',
   url: '/download',
-  templateUrl: template,
+  templateUrl,
   controller,
   controllerAs: 'download',
   data: {

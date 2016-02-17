@@ -1,0 +1,24 @@
+
+<div uib-collapse="units.collapse">
+  <form novalidate name="units.form" class="form-horizontal">
+    <div class="form-group">
+      <label for="selectUnit" class="col-xs-2 control-label">Kapitel</label>
+      <div class="col-xs-10">
+        <select id="selectUnit" name="selectUnit" ng-model="units.selected" ng-options="u.title for u in units.units track by u._id" ng-change="units.select()" class="form-control">
+          <option value="">Neues Kapitel</option>
+        </select>
+      </div>
+    </div>
+    <div ng-if="units.selected" class="form-group">
+      <div class="col-xs-offset-2 col-xs-10">
+        <div class="btn-group"><a ui-sref="main.content.unit.description({unit: units.selected._id})" class="btn btn-link">Anschauen</a>
+          <button type="button" ng-click="units.remove()" class="btn btn-danger"><span class="fa fa-times"></span><span>Löschen</span></button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<h3><span ng-bind="units.selected ? units.selected.title : 'Neues Kapitel anlegen'"></span>
+  <button type="button" ng-click="units.collapse=!units.collapse" class="btn btn-default"><span ng-class="units.collapse ? 'fa-toggle-off' : 'fa-toggle-on'" aria-hidden="true" class="fa"></span>Übersicht {{units.collapse ? 'einblenden' : 'ausblenden'}}</button>
+</h3>
+<div ui-view></div>

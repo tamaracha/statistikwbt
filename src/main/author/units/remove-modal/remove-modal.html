@@ -1,0 +1,13 @@
+
+<div class="modal-header">
+  <h3>Löschen von Inhalten</h3>
+</div>
+<div ng-switch="kind" class="modal-body">
+  <p ng-switch-when="image">Möchtest du dieses Bild wirklich vom Server löschen? Falls ja, entferne es bitte ggf. auch umgehend aus den Texten des WBT.</p>
+  <p ng-switch-when="unit">Möchtest du wirklich das Kapitel „{{units.selected.title}}“ löschen?</p>
+  <p ng-switch-when="topic">Möchtest du wirklich das Subkapitel „{{unit.selected.title}}“ löschen?</p>
+</div>
+<div class="modal-footer">
+  <input type="button" ng-click="$close()" value="Ja">
+  <input type="button" ng-click="$dismiss()" value="Nein">
+</div>

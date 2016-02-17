@@ -1,4 +1,4 @@
-import templateUrl from './item.jade';
+import templateUrl from './item.html';
 import controller from './item-controller';
 export default {
   name: 'item',

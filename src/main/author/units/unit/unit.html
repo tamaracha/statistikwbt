@@ -1,0 +1,9 @@
+
+<ul class="nav nav-tabs">
+  <li ui-sref-active="active"><a ui-sref=".basics">Grunddaten und subkapitel</a></li>
+  <li ui-sref-active="active"><a ui-sref=".tests">Testaufgaben</a></li>
+</ul>
+<div ui-view></div>
+<uib-alert type="info" ng-if="unit.patches.length&gt;0 &amp;&amp; !unit.error" role="alert"><span class="fa fa-spinner fa-spin"></span><span>lade Änderungen hoch…</span></uib-alert>
+<uib-alert ng-if="unit.error &amp;&amp; unit.error.status === 404">Dieses Kapitel konnte nicht gefunden werden. Es wurde möglicherweise von einem anderen Autor gelöscht.</uib-alert>
+<uib-alert ng-if="unit.error &amp;&amp; unit.error.status === 412" role="alert">Dieses Kapitel wurde zwischenzeitlich von einem anderen Autor geändert. Mittels Refresh erhältst du die aktuelle Version.</uib-alert>

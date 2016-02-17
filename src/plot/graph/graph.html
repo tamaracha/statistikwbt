@@ -1,0 +1,9 @@
+
+<div class="row">
+  <div class="col-xs-4">
+    <formly-form model="graph.source.params" fields="graph.fields" form="graph.form"></formly-form>
+  </div>
+  <div class="col-xs-8">
+    <ng-vega vega-spec="graph.spec" vega-data="graph.data" vega-renderer="graph.renderer"></ng-vega>
+  </div>
+</div>

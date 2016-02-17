@@ -1,0 +1,15 @@
+
+<h3>Profil</h3>
+<p ng-if="!main.user.authenticated">Nicht angemeldet</p>
+<form novalidate name="profile.form" ng-if="main.user.authenticated" class="form-horizontal">
+  <formly-form model="main.user.data" fields="profile.fields" form="profile.form">
+    <div class="form-group">
+      <div class="col-xs-offset-2 col-xs-10">
+        <input type="button" ng-click="main.user.changePassword()" value="Passwort ändern" class="btn btn-warning">
+      </div>
+    </div>
+  </formly-form>
+  <div ng-if="profile.patches.length===0" role="alert" class="alert alert-success">alles aktualisiert</div>
+  <div ng-if="profile.patches.length&gt;0" role="alert" class="alert alert-info">aktualisiere…</div>
+  <div ng-if="profile.error" role="alert" class="alert alert-danger">Fehler beim Aktualisieren</div>
+</form>

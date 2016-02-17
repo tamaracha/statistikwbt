@@ -1,0 +1,30 @@
+
+<form novalidate name="unit.form" class="form-horizontal">
+  <formly-form model="unit.unit" fields="units.fields" form="unit.form"></formly-form>
+  <div class="form-group">
+    <label for="selectTopic" class="col-xs-2 control-label">Subkapitel</label>
+    <div class="col-xs-10">
+      <div class="input-group">
+        <select id="selectTopic" ng-options="t.title for t in unit.unit.topics track by t._id" ng-model="unit.selected" class="form-control"></select><span class="input-group-btn">
+          <button type="button" ng-click="unit.new()" class="btn btn-default">Hinzufügen</button></span>
+      </div>
+    </div>
+  </div>
+  <div ng-if="unit.selected" class="form-group">
+    <label for="move" class="control-label col-xs-2">Bewegen</label>
+    <div class="col-xs-10">
+      <div class="input-group"><span class="input-group-btn">
+          <button type="button" ng-click="unit.move(-1)" class="btn btn-default"><span aria-hidden="true" class="fa fa-arrow-up"></span><span>hoch</span></button></span>
+        <input id="move" type="number" ng-model="unit.step" min="1" max="{{unit.unit.topics.length}}" step="1" class="form-control"><span class="input-group-btn">
+          <button type="button" ng-click="unit.move(1)" class="btn btn-default"><span aria-hidden="true" class="fa fa-arrow-down"></span><span>runter</span></button></span>
+      </div>
+    </div>
+  </div>
+  <div ng-if="unit.selected" class="form-group">
+    <div class="col-xs-offset-2 col-xs-10">
+      <div class="btn-group"><a ui-sref="main.content.unit.topic({unit: units.selected._id, topic: unit.selected._id})" class="btn btn-link">Anschauen</a><a ui-sref="main.author.units.unit.topic({unit: units.selected._id, topic: unit.selected._id})" class="btn btn-link">Bearbeiten</a>
+        <button type="button" ng-click="unit.remove()" class="btn btn-danger"><span class="fa fa-times"></span><span>löschen</span></button>
+      </div>
+    </div>
+  </div>
+</form>

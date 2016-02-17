@@ -1,4 +1,4 @@
-import template from './units.jade';
+import templateUrl from './units.html';
 import controller from './units-controller.js';
 import newUnit from './new';
 import unit from './unit';
@@ -6,7 +6,7 @@ import unit from './unit';
 export default {
   name: 'units',
   url: '/units',
-  templateUrl: template,
+  templateUrl,
   controller,
   controllerAs: 'units',
   abstract: true,

@@ -1,13 +1,12 @@
-
 // wrappers
 export const wrappers = [
   {
     name: 'horizontalBootstrapLabel',
-    templateUrl: require('./wrappers/horizontal-bootstrap-label.jade')
+    templateUrl: require('./wrappers/horizontal-bootstrap-label.html')
   },
   {
     name: 'bootstrapHasError',
-    templateUrl: require('./wrappers/bootstrap-has-error.jade'),
+    templateUrl: require('./wrappers/bootstrap-has-error.html'),
     overwriteOk: true
   }
 ];
@@ -28,19 +27,19 @@ export const types = [
   {
     name: 'horizontalCheckbox',
     extends: 'checkbox',
-    templateUrl: require('./types/horizontal-checkbox.jade'),
+    templateUrl: require('./types/horizontal-checkbox.html'),
     wrapper: 'bootstrapHasError'
   },
   {
     name: 'horizontalMultiCheckbox',
     extends: 'multiCheckbox',
-    templateUrl: require('./types/horizontal-multi-checkbox.jade'),
+    templateUrl: require('./types/horizontal-multi-checkbox.html'),
     wrapper: ['horizontalBootstrapLabel','bootstrapHasError']
   },
   {
     name: 'horizontalMultiCheckboxInline',
     extends: 'horizontalMultiCheckbox',
-    templateUrl: require('./types/horizontal-multi-checkbox-inline.jade')
+    templateUrl: require('./types/horizontal-multi-checkbox-inline.html')
   },
   {
     name: 'horizontalTextarea',
@@ -58,7 +57,7 @@ export const types = [
   {
     name: 'horizontalMarkdownArea',
     extends: 'horizontalTextarea',
-    templateUrl: require('./types/horizontal-markdown-area.jade')
+    templateUrl: require('./types/horizontal-markdown-area.html')
   },
   {
     name: 'horizontalRadio',
@@ -68,19 +67,19 @@ export const types = [
   {
     name: 'horizontalRadioInline',
     extends: 'horizontalRadio',
-    templateUrl: require('./types/horizontal-radio-inline.jade')
+    templateUrl: require('./types/horizontal-radio-inline.html')
   },
   {
     name: 'repeatSection',
-    templateUrl: require('./types/repeat-section.jade'),
+    templateUrl: require('./types/repeat-section.html'),
     controller: require('./types/repeat-section-controller').default
   },
   {
     name: 'horizontalTypeahead',
     extends: 'horizontalInput',
-    templateUrl: require('./types/horizontal-typeahead.jade'),
+    templateUrl: require('./types/horizontal-typeahead.html'),
     defaultOptions(options) {
-      const typeahead = options.templateOptions.typeahead || `option[to.valueProp || 'value'] as option[to.labelProp || 'name'] for option in to.options | filter : $viewValue | limitTo: 8`;
+      const typeahead = options.templateOptions.typeahead || 'option[to.valueProp || "value"] as option[to.labelProp || "name"] for option in to.options | filter : $viewValue | limitTo: 8';
       return {
         ngModelAttrs: {
           [typeahead]: {
@@ -98,7 +97,7 @@ export const types = [
   },
   {
     name: 'horizontalRating',
-    templateUrl: require('./types/horizontal-rating.jade'),
+    templateUrl: require('./types/horizontal-rating.html'),
     wrapper: ['bootstrapHasError'],
     defaultOptions: {
       noFormControl: true,

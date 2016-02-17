@@ -1,5 +1,5 @@
 import item from './item';
-import templateUrl from './meta.jade';
+import templateUrl from './meta.html';
 import controller from './meta-controller';
 
 export default {

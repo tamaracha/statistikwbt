@@ -1,0 +1,27 @@
+
+<h3 ng-bind="image.image.filename"></h3>
+<div markdown="image.mdfig"></div>
+<uib-accordion>
+  <uib-accordion-group heading="Bild einbinden" is-open="true">
+    <pre ng-bind="image.mdfig"></pre>
+    <p>Erscheint das Bild allein für sich in einem Absatz, erscheint der Text zwischen den eckigen Klammern als Bildunterschrift.</p>
+  </uib-accordion-group>
+  <uib-accordion-group heading="Bild editieren">
+    <form novalidate name="image.form" class="form-horizontal">
+      <div class="form-group">
+        <label for="imageInput" class="col-xs-2">Bild ersetzen</label>
+        <div class="col-xs-10">
+          <input id="imageInput" type="file" nv-file-select uploader="image.uploader" name="imageInput"><span ng-if="image.uploader.queue.length&gt;0" ng-bind="image.uploader.queue[image.uploader.queue.length-1].file.name" class="help-block"></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-offset-2 col-xs-10">
+          <div class="btn-group">
+            <button ng-if="image.uploader.queue.length&gt;0" ng-click="image.uploader.uploadItem(image.uploader.queue.length-1)" class="btn btn-primary">Bild updaten</button>
+            <button ng-click="image.remove()" class="btn btn-warning">Bild löschen</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </uib-accordion-group>
+</uib-accordion>

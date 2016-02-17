@@ -1,4 +1,4 @@
-import templateUrl from './remove-modal.jade';
+import templateUrl from './remove-modal.html';
 export default function(kind, scope){
   return {
     templateUrl,

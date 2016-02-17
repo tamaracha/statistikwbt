@@ -1,7 +1,0 @@
-mixin menu-item(state, text,icon)
-  li(data-ui-sref-active="active"): a(data-ui-sref=state)
-    if icon
-      span.fa(class="fa-"+icon)
-      |  #{text}
-    else
-      | #{text}

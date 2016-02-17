@@ -1,0 +1,11 @@
+
+<ul class="nav nav-tabs">
+  <li ng-class="{'active': 'both'}[view]">
+    <button type="button" ng-click="view='markdown'" ng-init="view='markdown'" class="btn btn-default">Markdown</button>
+  </li>
+  <li ng-class="{'active': 'both'}[view]">
+    <button type="button" ng-click="view='preview'" class="btn btn-default">Vorschau</button>
+  </li>
+</ul>
+<textarea ng-if="view === 'markdown'" ng-model="model[options.key]" class="form-control"></textarea>
+<div ng-if="view === 'preview'" markdown="model[options.key]" math-jax></div>

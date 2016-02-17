@@ -1,5 +1,0 @@
-div(markdown="unit.unit.description" math-jax)
-h4(ng-hide="unit.unit.requires.length===0") Voraussetzungen
-ul.list-unstyled(ng-hide="unit.unit.requires.length===0")
-  li(ng-repeat="r in unit.requires track by r._id")
-    a(ng-bind="r.title" ui-sref=".({unit: r._id})")

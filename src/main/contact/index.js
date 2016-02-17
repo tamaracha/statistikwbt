@@ -1,8 +1,8 @@
-import template from './contact.jade';
+import templateUrl from './contact.html';
 export default {
   name: 'contact',
   url: '/contact',
-  templateUrl: template,
+  templateUrl,
   controller: 'MetaController as contact',
   resolve: {
     meta: ['api', function(api){

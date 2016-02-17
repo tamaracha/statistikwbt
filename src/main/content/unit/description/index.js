@@ -1,7 +1,7 @@
-import template from './description.jade';
+import templateUrl from './description.html';
 
 export default {
   name: 'description',
   url: '',
-  templateUrl: template
+  templateUrl
 };

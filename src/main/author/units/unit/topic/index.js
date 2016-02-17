@@ -1,4 +1,4 @@
-import templateUrl from './topic.jade';
+import templateUrl from './topic.html';
 import controller from './topic-controller.js';
 export default {
   name: 'topic',

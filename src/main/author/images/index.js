@@ -1,10 +1,10 @@
 import image from './image';
-import template from './images.jade';
+import templateUrl from './images.html';
 import controller from './images-controller';
 export default {
   name: 'images',
   url: '/images',
-  templateUrl: template,
+  templateUrl,
   controller,
   controllerAs: 'images',
   resolve: {

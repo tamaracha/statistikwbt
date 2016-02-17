@@ -1,4 +1,4 @@
-import templateUrl from './home.jade';
+import templateUrl from './home.html';
 export default {
   name: 'home',
   url: '/home',

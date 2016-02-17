@@ -1,4 +1,4 @@
-import template from './unit.jade';
+import templateUrl from './unit.html';
 import controller from './unit-controller';
 import basics from './basics';
 import topic from './topic';
@@ -7,7 +7,7 @@ import tests from './tests';
 export default {
   name: 'unit',
   url: '/:unit',
-  templateUrl: template,
+  templateUrl,
   controller,
   controllerAs: 'unit',
   abstract: true,

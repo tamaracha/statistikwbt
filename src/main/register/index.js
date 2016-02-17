@@ -1,10 +1,10 @@
-import template from './register.jade';
+import templateUrl from './register.html';
 import controller from './register-controller.js';
 
 export default {
   name: 'register',
   url: '/register',
-  templateUrl: template,
+  templateUrl,
   controller,
   controllerAs: 'register'
 };

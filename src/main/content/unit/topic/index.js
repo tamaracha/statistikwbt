@@ -1,10 +1,10 @@
-import template from './topic.jade';
+import templateUrl from './topic.html';
 import controller from './topic-controller.js';
 
 export default {
   name: 'topic',
   url: '/:topic',
-  templateUrl: template,
+  templateUrl,
   controller,
   controllerAs: 'topic',
   resolve: {

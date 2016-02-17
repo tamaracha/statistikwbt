@@ -1,9 +1,9 @@
-import template from './image.jade';
+import templateUrl from './image.html';
 import controller from './image-controller';
 export default {
   name: 'image',
   url: '/:image',
-  templateUrl: template,
+  templateUrl,
   controller,
   controllerAs: 'image',
   resolve: {

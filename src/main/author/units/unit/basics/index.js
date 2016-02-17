@@ -1,4 +1,4 @@
-import templateUrl from './basics.jade';
+import templateUrl from './basics.html';
 
 export default {
   name: 'basics',

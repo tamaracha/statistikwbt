@@ -1,5 +1,0 @@
-ul.nav.nav-tabs
-  li(ng-class="{'active': 'both'}[view]"): button.btn.btn-default(type="button" ng-click="view='markdown'" ng-init="view='markdown'") Markdown
-  li(ng-class="{'active': 'both'}[view]"): button.btn.btn-default(type="button" ng-click="view='preview'") Vorschau
-textarea.form-control(ng-if="view === 'markdown'" ng-model="model[options.key]")
-div(ng-if="view === 'preview'" markdown="model[options.key]" math-jax)

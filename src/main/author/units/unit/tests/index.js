@@ -1,10 +1,10 @@
-import template from './tests.jade';
+import templateUrl from './tests.html';
 import controller from './tests-controller.js';
 
 export default {
   name: 'tests',
   url: '/tests',
-  templateUrl: template,
+  templateUrl,
   controller,
   controllerAs: 'tests',
   resolve: {

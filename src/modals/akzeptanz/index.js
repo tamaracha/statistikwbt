@@ -1,8 +1,8 @@
-import template from './akzeptanz.jade';
+import templateUrl from './akzeptanz.html';
 import controller from './akzeptanz-controller.js';
 
 export default {
-  templateUrl: template,
+  templateUrl,
   controller,
   controllerAs: 'akzeptanz',
   animation: false,

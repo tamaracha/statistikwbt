@@ -1,5 +1,5 @@
 import './subkapitel.css';
-import template from './unit.jade';
+import templateUrl from './unit.html';
 import controller from './unit-controller.js';
 import description from './description';
 import test from './test';
@@ -9,7 +9,7 @@ import topic from './topic';
 export default {
   name: 'unit',
   url: '/:unit',
-  templateUrl: template,
+  templateUrl,
   controller,
   controllerAs: 'unit',
   abstract: true,

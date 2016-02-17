@@ -1,0 +1,10 @@
+
+<div class="row">
+  <div class="col-xs-12">
+    <h2 ng-bind="main.user.data.profile.nickname||main.user.data[main.user.username]"></h2>
+    <ul class="nav nav-tabs">
+      <li ui-sref-active="active"><a ui-sref=".profile">Profil</a></li>
+    </ul>
+    <ui-view></ui-view>
+  </div>
+</div>

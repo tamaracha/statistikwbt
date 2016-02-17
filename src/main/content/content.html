@@ -1,0 +1,13 @@
+
+<nav role="navigation" class="row">
+  <div class="col-xs-12">
+    <ul class="nav nav-pills">
+      <li ng-repeat="unit in content.units track by unit._id" ui-sref-active="active"><a ui-sref=".unit.description({unit: unit._id})" ng-bind="unit.title" ng-class="{'text-success': main.user.complete(unit._id), 'text-primary': main.user.requiresComplete(unit.requires)&amp;&amp;!main.user.complete(unit._id), 'text-warning': !main.user.requiresComplete(unit.requires)&amp;&amp;!main.user.complete(unit._id)}"></a></li>
+    </ul>
+  </div>
+</nav>
+<section class="row">
+  <div ui-view class="col-xs-12">
+    <div markdown="content.meta.body"></div>
+  </div>
+</section>

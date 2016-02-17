@@ -1,0 +1,33 @@
+
+<h3>Testaufgaben</h3>
+<p ng-if="tests.tests.length===0">Noch keine Testaufgaben hinzugefügt</p>
+<form novalidate name="tests.testsForm" ng-if="tests.tests.length&gt;0" class="form-horizontal">
+  <div class="form-group">
+    <label for="selectTest" class="col-xs-2 control-label">Aufgabe</label>
+    <div class="col-xs-10">
+      <select id="selectTest" name="selectTest" ng-model="tests.selected" ng-options="v.text for v in tests.tests track by v._id" ng-change="tests.onChange()" class="form-control">
+        <option value="">Neue Aufgabe</option>
+      </select>
+    </div>
+  </div>
+  <div ng-if="tests.selected" class="form-group">
+    <div class="col-xs-offset-2 col-xs-10">
+      <input type="button" value="Löschen" ng-click="tests.remove()" class="btn btn-danger">
+    </div>
+  </div>
+</form>
+<form novalidate ng-if="tests.selected" class="form-horizontal">
+  <formly-form model="tests.selected" fields="tests.fields" form="tests.testForm"></formly-form>
+</form>
+<form novalidate name="tests.newTestForm" ng-submit="tests.create()" ng-if="!tests.selected" class="form-horizontal">
+  <formly-form model="tests.newTest" fields="tests.fields" form="tests.newTestForm">
+    <div class="form-group">
+      <div class="col-xs-2-offset col-xs-10">
+        <input type="submit" value="Erstellen" ng-class="{'btn-primary': tests.newTestForm.$valid,'btn-danger': tests.newTestForm.$invalid&&tests.newTestForm.$touched}" ng-disabled="tests.newTestForm.$invalid" class="btn">
+      </div>
+    </div>
+  </formly-form>
+</form>
+<uib-alert type="info" ng-if="tests.patches.length&gt;0 &amp;&amp; !tests.error" role="alert"><span class="fa fa-spinner fa-spin"></span><span>lade Änderungen hoch…</span></uib-alert>
+<uib-alert ng-if="tests.error &amp;&amp; tests.error.status === 404">Diese Aufgabe konnte nicht gefunden werden. Sie wurde möglicherweise von einem anderen Autor gelöscht.</uib-alert>
+<uib-alert ng-if="tests.error &amp;&amp; tests.error.status === 412" role="alert">Diese Aufgabe wurde zwischenzeitlich von einem anderen Autor geändert. Mittels Refresh erhältst du die aktuelle Version.</uib-alert>

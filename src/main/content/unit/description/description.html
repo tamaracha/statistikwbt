@@ -1,0 +1,6 @@
+
+<div markdown="unit.unit.description" math-jax></div>
+<h4 ng-hide="unit.unit.requires.length===0">Voraussetzungen</h4>
+<ul ng-hide="unit.unit.requires.length===0" class="list-unstyled">
+  <li ng-repeat="r in unit.requires track by r._id"><a ng-bind="r.title" ui-sref=".({unit: r._id})"></a></li>
+</ul>

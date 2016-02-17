@@ -1,0 +1,5 @@
+
+<label for="{{::id}}" ng-bind="to.required ? to.label+' *' : to.label" class="col-xs-2 control-label"></label>
+<div class="col-xs-10">
+  <formly-transclude></formly-transclude><span ng-messages="fc.$error" ng-if="showError" class="help-block"><span ng-repeat="(name, message) in options.validation.messages" role="alert" ng-message-exp="::name">{{::message(fc.$viewValue,fc.$modelValue,this)}}</span></span>
+</div>

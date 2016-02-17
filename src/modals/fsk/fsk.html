@@ -1,0 +1,245 @@
+
+<div class="modal-header">
+  <h3>Selbsteinschätzung deiner Statistikkenntnisse</h3>
+</div>
+<div class="modal-body">
+  <form name="sesskoForm" novalidate data-ng-if="fsk.user.data.fsk.length===0">
+    <div class="form-group">
+      <p><strong>Ich bin für Statistik …</strong></p>
+      <label class="radio-inline">
+        <input type="radio" name="sessko1" data-ng-value="1" data-ng-model="fsk.sessko[0]"> nicht begabt
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko1" data-ng-value='2' data-ng-model="fsk.sessko[0]"> 2
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko1" data-ng-value='3' data-ng-model="fsk.sessko[0]"> 3
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko1" data-ng-value='4' data-ng-model="fsk.sessko[0]"> 4
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko1" data-ng-value='5' data-ng-model="fsk.sessko[0]"> 5
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko1" data-ng-value="6" data-ng-model="fsk.sessko[0]"> sehr begabt
+      </label>
+    </div>
+    <div class="form-group">
+      <p><strong>Neues zu lernen in Statistik, fällt mir …</strong></p>
+      <label class="radio-inline">
+        <input type="radio" name="sessko2" data-ng-value="1" data-ng-model="fsk.sessko[1]"> schwer
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko2" data-ng-value='2' data-ng-model="fsk.sessko[1]"> 2
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko2" data-ng-value='3' data-ng-model="fsk.sessko[1]"> 3
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko2" data-ng-value='4' data-ng-model="fsk.sessko[1]"> 4
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko2" data-ng-value='5' data-ng-model="fsk.sessko[1]"> 5
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko2" data-ng-value="6" data-ng-model="fsk.sessko[1]"> leicht
+      </label>
+    </div>
+    <div class="form-group">
+      <p><strong>Ich bin in Statistik …</strong></p>
+      <label class="radio-inline">
+        <input type="radio" name="sessko3" data-ng-value="1" data-ng-model="fsk.sessko[2]"> nicht intelligent
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko3" data-ng-value='2' data-ng-model="fsk.sessko[2]"> 2
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko3" data-ng-value='3' data-ng-model="fsk.sessko[2]"> 3
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko3" data-ng-value='4' data-ng-model="fsk.sessko[2]"> 4
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko3" data-ng-value='5' data-ng-model="fsk.sessko[2]"> 5
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko3" data-ng-value="6" data-ng-model="fsk.sessko[2]"> sehr inntelligent
+      </label>
+    </div>
+    <div class="form-group">
+      <p><strong>Meine statistikbezogenen Fähigkeiten sind …</strong></p>
+      <label class="radio-inline">
+        <input type="radio" name="sessko4" data-ng-value="1" data-ng-model="fsk.sessko[3]"> niedrig
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko4" data-ng-value='2' data-ng-model="fsk.sessko[3]"> 2
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko4" data-ng-value='3' data-ng-model="fsk.sessko[3]"> 3
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko4" data-ng-value='4' data-ng-model="fsk.sessko[3]"> 4
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko4" data-ng-value='5' data-ng-model="fsk.sessko[3]"> 5
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko4" data-ng-value="6" data-ng-model="fsk.sessko[3]"> hoch
+      </label>
+    </div>
+    <div class="form-group">
+      <p><strong>Statistische Aufgaben fallen mir …</strong></p>
+      <label class="radio-inline">
+        <input type="radio" name="sessko5" data-ng-value="1" data-ng-model="fsk.sessko[4]"> schwer
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko5" data-ng-value='2' data-ng-model="fsk.sessko[4]"> 2
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko5" data-ng-value='3' data-ng-model="fsk.sessko[4]"> 3
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko5" data-ng-value='4' data-ng-model="fsk.sessko[4]"> 4
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko5" data-ng-value='5' data-ng-model="fsk.sessko[4]"> 5
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko5" data-ng-value="6" data-ng-model="fsk.sessko[4]"> leicht
+      </label>
+    </div>
+  </form>
+  <form novalidate name="sesskoForm2" data-ng-if="fsk.user.data.fsk.length&gt;0">
+    <div class="form-group">
+      <p><strong>Nach der Bearbeitung des WBTs halte ich meine Begabung für Statistik jetzt für …</strong></p>
+      <label class="radio-inline">
+        <input type="radio" name="sessko1" data-ng-value="1" data-ng-model="fsk.sessko[0]"> geringer als zuvor
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko1" data-ng-value='2' data-ng-model="fsk.sessko[0]"> 2
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko1" data-ng-value='3' data-ng-model="fsk.sessko[0]"> 3
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko1" data-ng-value='4' data-ng-model="fsk.sessko[0]"> 4
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko1" data-ng-value='5' data-ng-model="fsk.sessko[0]"> 5
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko1" data-ng-value="6" data-ng-model="fsk.sessko[0]"> höher als zuvor
+      </label>
+    </div>
+    <div class="form-group">
+      <p><strong>Nach der Bearbeitung des WBTs fällt mir das Lernen von neuen statistischen Inhalten jetzt …</strong></p>
+      <label class="radio-inline">
+        <input type="radio" name="sessko2" data-ng-value="1" data-ng-model="fsk.sessko[1]"> schwerer als zuvor
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko2" data-ng-value='2' data-ng-model="fsk.sessko[1]"> 2
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko2" data-ng-value='3' data-ng-model="fsk.sessko[1]"> 3
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko2" data-ng-value='4' data-ng-model="fsk.sessko[1]"> 4
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko2" data-ng-value='5' data-ng-model="fsk.sessko[1]"> 5
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko2" data-ng-value="6" data-ng-model="fsk.sessko[1]"> leichter als zuvor
+      </label>
+    </div>
+    <div class="form-group">
+      <p><strong>Nach der Bearbeitung des WBTs komme ich mit den Anforderungen in Statistik …</strong></p>
+      <label class="radio-inline">
+        <input type="radio" name="sessko3" data-ng-value="1" data-ng-model="fsk.sessko[2]"> schlechter zurecht als zuvor
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko3" data-ng-value='2' data-ng-model="fsk.sessko[2]"> 2
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko3" data-ng-value='3' data-ng-model="fsk.sessko[2]"> 3
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko3" data-ng-value='4' data-ng-model="fsk.sessko[2]"> 4
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko3" data-ng-value='5' data-ng-model="fsk.sessko[2]"> 5
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko3" data-ng-value="6" data-ng-model="fsk.sessko[2]"> besser zurecht als zuvor
+      </label>
+    </div>
+    <div class="form-group">
+      <p><strong>Nach der Bearbeitung des WBTs bin ich jetzt …</strong></p>
+      <label class="radio-inline">
+        <input type="radio" name="sessko4" data-ng-value="1" data-ng-model="fsk.sessko[3]"> schlechter in Statistik als zuvor
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko4" data-ng-value='2' data-ng-model="fsk.sessko[3]"> 2
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko4" data-ng-value='3' data-ng-model="fsk.sessko[3]"> 3
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko4" data-ng-value='4' data-ng-model="fsk.sessko[3]"> 4
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko4" data-ng-value='5' data-ng-model="fsk.sessko[3]"> 5
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko4" data-ng-value="6" data-ng-model="fsk.sessko[3]"> besser in Statistik als zuvor
+      </label>
+    </div>
+    <div class="form-group">
+      <p><strong>Nach der Bearbeitung des WBTs fallen mir jetzt die Aufgaben in Statistik …</strong></p>
+      <label class="radio-inline">
+        <input type="radio" name="sessko5" data-ng-value="1" data-ng-model="fsk.sessko[4]"> schwerer als zuvor
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko5" data-ng-value='2' data-ng-model="fsk.sessko[4]"> 2
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko5" data-ng-value='3' data-ng-model="fsk.sessko[4]"> 3
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko5" data-ng-value='4' data-ng-model="fsk.sessko[4]"> 4
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko5" data-ng-value='5' data-ng-model="fsk.sessko[4]"> 5
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko5" data-ng-value="6" data-ng-model="fsk.sessko[4]"> leichter als zuvor
+      </label>
+    </div>
+    <div class="form-group">
+      <p><strong>Nach der Bearbeitung des WBTs halte ich meine statistikbezogenen Fähigkeiten für …</strong></p>
+      <label class="radio-inline">
+        <input type="radio" name="sessko6" data-ng-value="1" data-ng-model="fsk.sessko[5]"> niedriger als zuvor
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko6" data-ng-value='2' data-ng-model="fsk.sessko[5]"> 2
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko6" data-ng-value='3' data-ng-model="fsk.sessko[5]"> 3
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko6" data-ng-value='4' data-ng-model="fsk.sessko[5]"> 4
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko6" data-ng-value='5' data-ng-model="fsk.sessko[5]"> 5
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="sessko6" data-ng-value="6" data-ng-model="fsk.sessko[5]"> höher als zuvor
+      </label>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <input type="button" data-ng-click="fsk.cancel()" value="Abbrechen" class="btn btn-default">
+  <input type="button" data-ng-click="fsk.ok()" value="Abschicken" class="btn btn-primary">
+</div>

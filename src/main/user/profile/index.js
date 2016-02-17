@@ -1,4 +1,4 @@
-import templateUrl from './profile.jade';
+import templateUrl from './profile.html';
 import controller from './profile-controller';
 
 export default {

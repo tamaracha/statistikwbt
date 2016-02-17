@@ -1,4 +1,4 @@
-import templateUrl from './content.jade';
+import templateUrl from './content.html';
 import controller from './content-controller.js';
 import unit from './unit';
 

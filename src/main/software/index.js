@@ -1,4 +1,4 @@
-import template from './software.jade';
+import templateUrl from './software.html';
 export default {
   name: 'software',
   url: '/software',

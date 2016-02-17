@@ -1,4 +1,4 @@
-import templateUrl from './impressum.jade';
+import templateUrl from './impressum.html';
 export default {
   name: 'impressum',
   url: '/impressum',

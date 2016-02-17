@@ -1,0 +1,10 @@
+
+<form novalidate name="new.form" ng-submit="new.save()" class="form-horizontal">
+  <formly-form model="new.unit" fields="units.fields" form="new.form">
+    <div class="form-group">
+      <div class="col-xs-2-offset col-xs-10">
+        <input type="submit" value="Anlegen" ng-class="{'btn-primary': new.form.$valid,'btn-danger': new.form.$invalid&&new.form.$touched}" ng-disabled="new.form.$invalid" class="btn">
+      </div>
+    </div>
+  </formly-form>
+</form>
