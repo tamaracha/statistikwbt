@@ -1,16 +1,29 @@
-
 <h4 ng-bind="to.label"></h4>
-<div ng-repeat="element in model[options.key] track by element._id" ng-init="fields = copyFields(to.fields)" class="repeatsection">
-  <formly-form fields="fields" model="element" bind-name="'formly_ng_repeat' + index + $parent.$index"></formly-form>
-  <div class="form-group">
-    <div class="col-xs-offset-2 col-xs-10">
-      <button ng-click="model[options.key].splice($index, 1)" class="btn btn-sm btn-danger">Löschen</button>
-    </div>
+<div>
+	<div>
+    <div ng-repeat="element in model[options.key]" ng-init="fields = copyFields(to.fields)">
+      <formly-form fields="fields"
+                   model="element"
+                   form="form">
+      </formly-form>
+      <div class="form-group">
+        <div class="col-xs-offset-2 col-xs-10">
+          <button type="button" class="btn btn-danger" ng-click="model[options.key].splice($index, 1)">
+            Löschen
+          </button>
+        </div>
+      </div>
+      <hr>
   </div>
-  <hr>
-</div>
-<div class="form-group">
-  <div class="col-xs-offset-2 col-xs-10">
-    <button type="button" ng-click="addNew()" ng-bind="to.btnText" class="btn btn-primary"></button>
+  <div class="form-group">
+    <label class="col-xs-2 control-label" for="newText">Neue Antwort</label>
+    <div class="col-xs-10">
+      <div class="input-group">
+        <input type="text" id="newText" class="form-control" ng-model="newText">
+        <div class="input-group-btn">
+        <button type="button" class="btn btn-primary" ng-click="addNew()" >{{to.btnText}}</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
