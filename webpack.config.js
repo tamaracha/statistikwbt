@@ -15,6 +15,11 @@ const config = {
   module: {
     preLoaders: [
       {
+        loader: 'eslint',
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components|api.js|angular-locale)/
+      },
+      {
         loader: 'source-map',
         include: [/angular-file-upload/]
       }
@@ -24,7 +29,7 @@ const config = {
     ],
     loaders: [
       {
-        loader: 'babel?presets[]=es2015!eslint',
+        loader: 'babel?presets[]=es2015',
         test: /\.js$/,
         exclude: /(node_modules|bower_components|api.js|angular-locale)/
       },
@@ -33,8 +38,8 @@ const config = {
         test: /\.css$/
       },
       {
-        loader: `ngtemplate?relativeTo=src/&prefix=dist/!template-html?engine=jade&doctype=html&basedir=${__dirname}/src`,
-        test: /\.jade$/,
+        loader: 'ngtemplate?relativeTo=src/&prefix=dist/!html?attrs=false',
+        test: /\.html$/,
         exclude: /(node_modules|bower_components)/
       },
       {

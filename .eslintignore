@@ -1,2 +1,5 @@
 **/node_modules/**
 **/bower_components/**
+**/*.jade
+src/api.js
+src/angular-locale_de-de.js
