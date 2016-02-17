@@ -1,72 +1,13 @@
-import _ from 'lodash';
-import removeModal from '../../remove-modal';
-export default class TestsCtrl{
-  constructor(tests, $state, $stateParams, $http, $uibModal){
-    this.$state = $state;
-    this.$stateParams = $stateParams;
+export default class TestController{
+  constructor(test, $http, jsonpatch, $scope){
     this.$http = $http;
-    this.$uibModal = $uibModal;
-    this.removeModal = removeModal('test');
-    this.tests = tests.data;
-    this.test = this.newDefaults;
-    this.fields = this.newFields;
-    this.init();
-  }
-  get newDefaults(){
-    return {
-      type: 'single',
-      choices: [],
-      unit: this.$stateParams.unit
-    };
-  }
-  create(){
-    return this.$http.post('api/tests',this.test)
-    .then(
-      (res) => {
-        this.tests.push(res.data);
-        this.test = this.newDefaults;
-        this.selected = res.data;
-        this.select();
-      },
-      (e) => {
-        this.error = e;
-      }
-    );
-  }
-  remove(){
-    return this.$uibModal.open(this.removeModal)
-    .result
-    .then(() => {
-      return this.$http.delete('api/tests/'+this.selected._id);
-    })
-    .then(
-      () => {
-        _.remove(this.tests,{_id: this.selected._id});
-        this.selected = null;
-        this.select();
-      },
-      (e) => {
-        this.error = e;
-      }
-    );
-  }
-  init(){
-    if(this.$state.params.test){
-      this.selected = _.find(this.tests,{_id: this.$state.params.test});
-    }
-    else{this.selected = null;}
-  }
-  select(){
-    if(!this.selected){
-      this.$state.go('main.author.units.unit.tests');
-    }
-    else{
-      this.$state.go('main.author.units.unit.tests.test', {test: this.selected._id});
-    }
-  }
-  get newFields(){
-    return [{
+    this.test = test.data;
+    this.lastModified = test.headers('last-modified');
+    this.error = null;
+    this.patches = [];
+    this.fields = [{
       type: 'horizontalMarkdownArea',
+      modelOptions: this.modelOptions,
       key: 'text',
       templateOptions: {
         label: 'Aufgabenstamm',
@@ -77,6 +18,7 @@ export default class TestsCtrl{
     {
       type: 'horizontalRadioInline',
       key: 'type',
+      modelOptions: this.modelOptions,
       templateOptions: {
         label: 'Aufgabenformat',
         options: [{
@@ -97,6 +39,7 @@ export default class TestsCtrl{
     {
       key: 'feedback_right',
       type: 'horizontalInput',
+      modelOptions: this.modelOptions,
       templateOptions: {
         label: 'Feedback (korrekt)',
         placeholder: 'Feedback für korrekte Beantwortung der Aufgabe'
@@ -106,6 +49,7 @@ export default class TestsCtrl{
     {
       key: 'feedback_wrong',
       type: 'horizontalInput',
+      modelOptions: this.modelOptions,
       templateOptions: {
         label: 'Feedback (inkorrekt)',
         placeholder: 'Feedback für inkorrekte Beantwortung der Aufgabe'
@@ -116,12 +60,13 @@ export default class TestsCtrl{
       type: 'repeatSection',
       key: 'choices',
       templateOptions: {
-        btnText: 'Antwortoption hinzufügen',
+        btnText: 'Antwort hinzufügen',
         label: 'Antwortoptionen',
         fields: [
           {
-            type: 'horizontalInput',
+            type: 'horizontalMarkdownArea',
             key: 'text',
+            modelOptions: this.modelOptions,
             templateOptions: {
               type: 'text',
               label: 'Antwort',
@@ -132,6 +77,7 @@ export default class TestsCtrl{
           {
             key: 'correct',
             type: 'horizontalCheckbox',
+            modelOptions: this.modelOptions,
             templateOptions: {
               label: 'Korrekt'
             }
@@ -139,6 +85,7 @@ export default class TestsCtrl{
           {
             key: 'feedback',
             type: 'horizontalInput',
+            modelOptions: this.modelOptions,
             templateOptions: {
               label: 'Elaboriertes Feedback',
               type: 'text',
@@ -148,6 +95,7 @@ export default class TestsCtrl{
           {
             key: 'feedback_right',
             type: 'horizontalInput',
+            modelOptions: this.modelOptions,
             templateOptions: {
               label: 'Elaboriertes Feedback (korrekt)',
               type: 'text',
@@ -157,6 +105,7 @@ export default class TestsCtrl{
           {
             key: 'feedback_wrong',
             type: 'horizontalInput',
+            modelOptions: this.modelOptions,
             templateOptions: {
               label: 'Elaboriertes Feedback (inkorrekt)',
               type: 'text',
@@ -166,8 +115,40 @@ export default class TestsCtrl{
         ]
       }
     }];
+    $scope.$watch('test.test', (val, oldVal) => {
+      if(!val || val === oldVal){return;}
+      this.patches = jsonpatch.compare(oldVal,val);
+      if(this.patches.length === 0){return;}
+      const config = {
+        method: 'PATCH',
+        url: 'api/tests/'+this.test._id,
+        data: this.patches,
+        headers: {'if-unmodified-since': this.lastModified}
+      };
+      return $http(config)
+      .then(
+        (res) => {
+          this.patches = [];
+          this.lastModified = res.headers('last-modified');
+          this.error = null;
+          this.form.$setPristine();
+        },
+        (e) => {
+          this.error = e;
+        }
+      );
+    }, true);
+  }
+  get modelOptions(){
+    return {
+      updateOn: 'default blur',
+      debounce: {
+        default: 500,
+        blur: 0
+      }
+    };
   }
   static get $inject(){
-    return ['tests', '$state', '$stateParams', '$http', '$uibModal'];
+    return ['test', '$http', 'jsonpatch', '$scope'];
   }
 }

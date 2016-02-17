@@ -1,3 +1,4 @@
+import test from './test';
 import templateUrl from './tests.html';
 import controller from './tests-controller.js';
 
@@ -21,5 +22,6 @@ export default {
       };
       return $http(config);
     }]
-  }
+  },
+  children: [test]
 };

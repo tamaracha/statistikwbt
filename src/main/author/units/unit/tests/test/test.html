@@ -1,0 +1,6 @@
+<form novalidate name="test.form" class="form-horizontal">
+  <formly-form model="test.test" fields="test.fields" form="test.form"></formly-form>
+</form>
+<uib-alert type="info" ng-if="test.patches.length>0 && !test.error" role="alert"><span class="fa fa-spinner fa-spin"></span><span>lade Änderungen hoch…</span></uib-alert>
+<uib-alert ng-if="test.error && test.error.status === 404">Diese Aufgabe konnte nicht gefunden werden. Sie wurde möglicherweise von einem anderen Autor gelöscht.</uib-alert>
+<uib-alert ng-if="test.error && test.error.status === 412" role="alert">Diese Aufgabe wurde zwischenzeitlich von einem anderen Autor geändert. Mittels Refresh erhältst du die aktuelle Version.</uib-alert>
