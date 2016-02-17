@@ -1,7 +1,7 @@
-import template from './login.jade';
+import templateUrl from './login.html';
 import controller from './login-controller.js';
 export default {
-  templateUrl: template,
+  templateUrl,
   controller,
   controllerAs: 'login'
 };

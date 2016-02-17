@@ -12,11 +12,11 @@ import formly from 'angular-formly';
 import formlyBootstrap from 'angular-formly-templates-bootstrap';
 import wbtText from 'wbt-text';
 import 'swagger?type=angular&className=API&esnext=true!../api/swagger.yml';
+import user from './user';
 import youtube from './youtube';
 import 'angular-permission';
 
 import {config, run} from './config.js';
-import * as user from './user';
 import modals from './modals';
 import test from './test-service';
 
@@ -36,6 +36,7 @@ export default angular.module('wbt',[
   formly,
   formlyBootstrap,
   wbtText,
+  user,
   'api',
   youtube,
   'permission'
@@ -47,9 +48,6 @@ export default angular.module('wbt',[
   api.setToken($localStorage.token);
   return api;
 }])
-.factory('userInterceptor',user.interceptor)
-.service('user',user.model)
-.directive('userCheck',user.validator)
 .service('modals',modals)
 .factory('test',test)
 .controller('MetaController', ['meta', function(meta){
