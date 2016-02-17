@@ -4,7 +4,6 @@ import {types, wrappers} from './formly';
 export function config($locationProvider,$compileProvider,$httpProvider,$urlRouterProvider,stateHelperProvider,formlyConfigProvider){
   $locationProvider.html5Mode(true);
   $compileProvider.debugInfoEnabled(false);
-  $httpProvider.interceptors.push('userInterceptor');
   $httpProvider.defaults.paramSerializer = '$httpParamSerializerJQLike';
   stateHelperProvider.state(main);
   $urlRouterProvider.otherwise('/home');
@@ -17,7 +16,6 @@ config.$inject = ['$locationProvider', '$compileProvider', '$httpProvider', '$ur
 export function run($rootScope,$state,$stateParams, user, PermissionStore, formlyValidationMessages){
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
-  $rootScope.$on('$stateChangeError',console.log.bind(console));
   $rootScope.$on('$stateChangeStart',function(event,toState,toParams,fromState,fromParams){
     $rootScope.prevState = fromState;
     $rootScope.prevParams = fromParams;
