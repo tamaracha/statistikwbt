@@ -1,18 +1,17 @@
-
 <header class="row">
-  <div class="col-sm-3">
+  <div class="col-sm-4">
     <h2><a ui-sref=".description" ng-bind="unit.unit.title"></a></h2>
   </div>
-  <div class="col-sm-9">
+  <div class="col-sm-8">
     <h2 ng-bind="unit.unit.subtitle"></h2>
   </div>
 </header>
 <div class="row">
-  <nav class="col-sm-3">
+  <nav class="col-sm-4">
     <ul class="nav nav-pills nav-stacked">
       <li ng-repeat="topic in unit.unit.topics track by topic._id" ui-sref-active="active"><a ui-sref=".topic({topic: topic._id})" ng-bind="topic.title"></a></li>
       <li ng-if="unit.unit.test.active" data-ui-sref-active="active"><a data-ui-sref="main.content.unit.test">Test</a></li>
     </ul>
   </nav>
-  <main ui-view class="col-sm-9 subkapitel"></main>
+  <main ui-view class="col-sm-8 subkapitel"></main>
 </div>
