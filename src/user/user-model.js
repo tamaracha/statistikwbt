@@ -1,5 +1,6 @@
 import $ from '$';
 import _ from 'lodash';
+import utf8 from 'utf8';
 import loginModal from './login';
 import changePasswordModal from './change-password';
 export default class user{
@@ -65,7 +66,9 @@ export default class user{
     if(!name || !pass){
       throw Error('missing credentials');
     }
-    const str = this.$window.btoa(`${name}:${pass}`);
+    const bytes = utf8.encode(`${name}:${pass}`);
+    const str = this.$window.btoa(bytes);
+    console.log(str);
     return `basic ${str}`;
   }
   authenticate(form,init){
