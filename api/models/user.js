@@ -9,6 +9,19 @@ const ObjectId=mongoose.Schema.Types.ObjectId;
 const DoneSchema = require('./done');
 
 const UserSchema = module.exports = new mongoose.Schema({
+  email: {
+    type: String,
+    maxlength: 50,
+    validate: validate.emailValidator,
+    unique: true,
+    sparse: true
+  },
+  kennung: {
+    type: String,
+    maxlength: 6,
+    unique: true,
+    sparse: true
+  },
   password: {
     type: String,
     select: false,
@@ -50,23 +63,12 @@ const UserSchema = module.exports = new mongoose.Schema({
     ref: 'views'
   }]
 }, {timestamps: true});
-if(username === 'email'){
-  UserSchema.path('email', {
-    type: String,
-    required: true,
-    maxlength: 50,
-    validate: validate.emailValidator,
-    unique: true
-  });
-}
-if(username === 'kennung'){
-  UserSchema.path('kennung',{
-    type: String,
-    required: true,
-    maxlength: 6,
-    unique: true
-  });
-}
+UserSchema.pre('validate', function(cb){
+  if(!this.email && !this.kennung){
+    return cb(new Error('Neither email nor kennung are supplied'));
+  }
+  return cb();
+})
 UserSchema.pre('save',function(cb){
   const user = this;
   if(!user.isModified('password')){return cb();}
