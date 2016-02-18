@@ -78,7 +78,8 @@ if(prod){
     'angular-formly-templates-bootstrap',
     'ngstorage',
     'angular-permission',
-    './src/angular-locale_de-de'
+    './src/angular-locale_de-de',
+    'utf8'
   ];
   config.plugins.push(
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.[hash].js'),
