@@ -1,6 +1,5 @@
 'use strict';
 const mongoose=require('mongoose');
-const username = require('config').get('username');
 const bluebird = require('bluebird');
 const bcrypt = require('bcrypt-nodejs');
 bluebird.promisifyAll(bcrypt);
@@ -68,7 +67,7 @@ UserSchema.pre('validate', function(cb){
     return cb(new Error('Neither email nor kennung are supplied'));
   }
   return cb();
-})
+});
 UserSchema.pre('save',function(cb){
   const user = this;
   if(!user.isModified('password')){return cb();}
