@@ -68,7 +68,6 @@ export default class user{
     }
     const bytes = utf8.encode(`${name}:${pass}`);
     const str = this.$window.btoa(bytes);
-    console.log(str);
     return `basic ${str}`;
   }
   authenticate(form,init){
