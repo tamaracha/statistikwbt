@@ -8,15 +8,12 @@ export default class TestCtrl{
     this.$window = $window;
     this.user = user;
     this.init(tests);
-    this.feedback = {
-      right: 'Korrekt',
-      wrong: 'Leider nicht korrekt'
-    };
   }
   init(tests){
     this.tests = tests.data.tests;
     if(this.shuffle.items){this.tests = _.shuffle(this.tests);}
     this.guess = tests.data.guess;
+    this.lastModified = tests.headers('last-modified');
     this.run = tests.data.run;
     this.count = this.guess.responses.length;
     this.item = this.test.item(this.tests, this.guess);
@@ -37,13 +34,15 @@ export default class TestCtrl{
       method: 'POST',
       url: `api/guesses/${this.guess._id}/responses`,
       data: response,
-      headers: {'if-unmodified-since': this.guess.updatedAt}
+      headers: {
+        'if-unmodified-since': this.lastModified
+      }
     };
     return this.$http(config)
     .then(
       (res) => {
         this.guess.responses.push(res.data);
-        this.guess.updatedAt = res.headers('last-modified');
+        this.lastModified = res.headers('last-modified');
         this.score.current += this.test.points(item, response.value);
         if(item.type === 'input'){
           this.output = _.find(item.choices,{text: response.value});
@@ -122,5 +121,13 @@ export default class TestCtrl{
   reload(){
     return this.$window.location.reload();
   }
+  get feedback(){
+    return {
+      right: 'Korrekt',
+      wrong: 'Leider nicht korrekt'
+    };
+  }
+  static get $inject(){
+    return ['test', '$http', 'tests', 'unit', '$window', 'user'];
+  }
 }
-TestCtrl.$inject = ['test', '$http', 'tests', 'unit', '$window', 'user'];

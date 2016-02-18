@@ -7,7 +7,8 @@ const $=module.exports={};
 $.test = function *test(){
   const tests = yield models.Test.find({
     unit: this.params.unit
-  }).lean().exec();
+  })
+  .lean().exec();
   this.assert(tests.length > 0, 404, 'no tests found for this unit');
   this.body = {tests};
   const guessQuery = {
@@ -23,6 +24,7 @@ $.test = function *test(){
   const run = yield models.Guess.count(guessQuery);
   this.body.guess = guess;
   this.body.run = run;
+  this.lastModified = guess.updatedAt;
 };
 
 $.akzeptanz = function *(){
