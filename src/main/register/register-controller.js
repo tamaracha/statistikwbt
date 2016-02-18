@@ -98,5 +98,7 @@ export default class RegisterCtrl{
       }
     );
   }
+  static get $inject(){
+    return ['user', '$state'];
+  }
 }
-RegisterCtrl.$inject = ['user', '$state'];
