@@ -19,6 +19,7 @@ $.create = function *create(){
   const guess = yield models.Guess.create(this.request.body);
   this.assert(guess,'guess not createt',404);
   this.body = guess;
+  this.status = 201;
 };
 
 $.show = function *show(){
@@ -44,5 +45,5 @@ $.destroy = function *destroy(){
   yield models.Guess.findByIdAndRemove(this.params.guess)
   .where('user', this.state.user._id)
   .lean().exec();
-  this.status=200;
+  this.status=204;
 };
