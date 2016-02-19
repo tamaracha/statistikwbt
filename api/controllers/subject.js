@@ -33,6 +33,6 @@ $.update = function *update(){
 };
 
 $.destroy = function *destroy(){
-  const subject = yield models.Subject.findByIdAndRemove(this.params.subject).lean().exec();
+  yield models.Subject.findByIdAndRemove(this.params.subject).lean().exec();
   this.status = 204;
 };

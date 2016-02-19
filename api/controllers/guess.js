@@ -37,7 +37,7 @@ $.new = function *(){
   this.body = guess;
   this.set('x-run', run);
   this.lastModified = guess.updatedAt;
-}
+};
 
 $.show = function *show(){
   const guess = yield models.Guess.findById(this.params.guess)
