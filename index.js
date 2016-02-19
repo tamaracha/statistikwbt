@@ -36,6 +36,12 @@ app
 .use(index.unless({path: [/api/,new RegExp(assets.root), /docs/, /swagger/]}))
 .use(api.routes())
 .use(api.allowedMethods())
+.on('error', function(err, ctx){
+  debug(err.message);
+  if(ctx){
+    ctx.body = err.message;
+  }
+})
 .listen(server.port,server.host,function(){
   debug(`listening on ${server.host}:${server.port}`);
 });
