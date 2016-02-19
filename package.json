@@ -106,6 +106,7 @@
     "kerberos": "0.0.18",
     "koa": "^1.1.2",
     "koa-body": "^1.4.0",
+    "koa-cache-control": "^1.0.0",
     "koa-conditional-get": "^1.0.3",
     "koa-etag": "^2.1.0",
     "koa-jwt": "^1.1.2",

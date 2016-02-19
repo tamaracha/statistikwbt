@@ -15,12 +15,16 @@ const indexHtml = dots.index({
 });
 const koa=require('koa');
 const conditional = require('koa-conditional-get');
+const cacheControl = require('koa-cache-control');
 const mongoose=require('mongoose');
 mongoose.Promise = require('bluebird');
 const indexEtag = etag(indexHtml);
 function *index(){
   this.body = indexHtml;
   this.etag = indexEtag;
+  this.cacheControl = {
+    maxAge: 3*24*60*60
+  };
 }
 index.unless = require('koa-unless');
 const api=require('./api');
@@ -28,6 +32,10 @@ const app=koa();
 require('koa-qs')(app);
 require('koa-onerror')(app);
 app
+.use(cacheControl({
+  public: true,
+  maxAge: 0
+}))
 .use(conditional());
 if(assets.serve){
   app.use(require('koa-mount')(assets.root, require('koa-static')(__dirname+'/dist')))
