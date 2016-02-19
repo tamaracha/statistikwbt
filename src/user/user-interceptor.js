@@ -1,10 +1,10 @@
-export default function userInterceptor($localStorage){
+export default function userInterceptor(user){
   function request(config){
     if(config.headers.Authorization){
       return config;
     }
-    if($localStorage.token){
-      config.headers.Authorization = 'bearer ' + $localStorage.token;
+    if(user.token){
+      config.headers.Authorization = 'bearer ' + user.token;
     }
     return config;
   }
