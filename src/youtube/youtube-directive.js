@@ -14,7 +14,7 @@ export default function youtubeDirective($window, youtube, api){
           autoplay: 0,
           html5: 1,
           modestbranding: 1,
-          showinfo: 1,
+          showinfo: 0,
           controls: 1
         },
         height: scope.height,
