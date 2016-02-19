@@ -5,5 +5,10 @@ module.exports = function *created(next){
     if(this.body && this.body.updatedAt && !this.header['last-modified']){
       this.lastModified = this.body.updatedAt;
     }
+    if(this.body && this.body.status === 'final' || this.state.status === 'final'){
+      this.cacheControl = {
+        maxAge: 60*60*24*30
+      };
+    }
   }
 };
