@@ -1,20 +1,20 @@
 import _ from 'lodash';
 export default class TestCtrl{
-  constructor(test, $http, tests, unit, $window, user){
+  constructor(test, $http, tests, guess, unit, $window, user){
     this.$http = $http;
     this.test = test;
     this.unit = unit.data;
     this.shuffle = test.shuffle(unit.data);
     this.$window = $window;
     this.user = user;
-    this.init(tests);
+    this.tests = tests.data;
+    this.guess = guess.data;
+    this.lastModified = guess.headers('last-modified');
+    this.run = guess.headers('x-run');
+    this.init();
   }
-  init(tests){
-    this.tests = tests.data.tests;
+  init(){
     if(this.shuffle.items){this.tests = _.shuffle(this.tests);}
-    this.guess = tests.data.guess;
-    this.lastModified = tests.headers('last-modified');
-    this.run = tests.data.run;
     this.count = this.guess.responses.length;
     this.item = this.test.item(this.tests, this.guess);
     if(this.shuffle.choices){
@@ -70,11 +70,13 @@ export default class TestCtrl{
     this.form.$submitted = false;
     this.form.$setPristine();
     if(this.count === this.tests.length){
-      return this.$http.get('api/units/'+this.unit._id+'/summaries/test')
+      return this.$http.get('api/guesses/newest', {params: {conditions: {unit: this.unit._id}, length: this.tests.length}})
       .then(
         (res) => {
-          this.init(res);
-          return res;
+          this.guess = res.data;
+          this.lastModified = res.headers('last-modified');
+          this.run = res.headers('x-run');
+          this.init();
         },
         (e) => {
           this.error = e;
@@ -128,6 +130,6 @@ export default class TestCtrl{
     };
   }
   static get $inject(){
-    return ['test', '$http', 'tests', 'unit', '$window', 'user'];
+    return ['test', '$http', 'tests', 'guess', 'unit', '$window', 'user'];
   }
 }
