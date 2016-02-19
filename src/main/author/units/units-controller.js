@@ -28,6 +28,24 @@ export default class UnitsController{
       modelOptions: this.modelOptions
     },
     {
+      key: 'status',
+      type: 'horizontalRadioInline',
+      modelOptions: this.modelOptions,
+      templateOptions: {
+        label: 'Status',
+        options: [
+          {
+            name: 'Entwurf',
+            value: 'draft'
+          },
+          {
+            name: 'Final',
+            value: 'final'
+          }
+        ]
+      }
+    },
+    {
       key: 'subtitle',
       type: 'horizontalInput',
       templateOptions: {

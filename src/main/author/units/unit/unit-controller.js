@@ -30,7 +30,7 @@ export default class UnitController{
     }
   }
   watcher(){
-    return _.pick(this.unit, ['_id', 'title', 'subtitle', 'description', 'requires', 'test']);
+    return _.pick(this.unit, ['_id', 'title', 'status', 'subtitle', 'description', 'requires', 'test']);
   }
   update(val, oldVal){
     this.patches = this.jsonpatch.compare(oldVal,val);

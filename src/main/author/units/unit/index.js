@@ -25,7 +25,7 @@ export default {
         method: 'GET',
         url: 'api/units/'+$stateParams.unit,
         params: {
-          projections: 'title subtitle description requires topics._id topics.title test'
+          projections: 'title status subtitle description requires topics._id topics.title test'
         }
       };
       return $http(config);

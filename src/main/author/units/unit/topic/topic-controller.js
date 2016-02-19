@@ -17,6 +17,24 @@ export default class TopicController{
       modelOptions: $scope.units.modelOptions
     },
     {
+      key: 'status',
+      type: 'horizontalRadioInline',
+      modelOptions: $scope.units.modelOptions,
+      templateOptions: {
+        label: 'Status',
+        options: [
+          {
+            name: 'Entwurf',
+            value: 'draft'
+          },
+          {
+            name: 'Final',
+            value: 'final'
+          }
+        ]
+      }
+    },
+    {
       key: 'subtitle',
       type: 'horizontalInput',
       templateOptions: {

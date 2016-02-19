@@ -1,13 +1,6 @@
 import _ from 'lodash';
 export default class ItemController{
   constructor(item, $scope, jsonpatch, $http){
-    const modelOptions = {
-      updateOn: 'default blur',
-      debounce: {
-        default: 500,
-        blur: 0
-      }
-    };
     this.item = item.data;
     //this.lastModified = item.headers('last-modified');
     this.patches = [];
@@ -16,7 +9,7 @@ export default class ItemController{
       {
         type: 'horizontalInput',
         key: 'title',
-        modelOptions,
+        modelOptions: this.modelOptions,
         templateOptions: {
           label: 'Titel',
           type: 'text',
@@ -24,9 +17,27 @@ export default class ItemController{
         }
       },
       {
+        key: 'status',
+        type: 'horizontalRadioInline',
+        modelOptions: this.modelOptions,
+        templateOptions: {
+          label: 'Status',
+          options: [
+            {
+              name: 'Entwurf',
+              value: 'draft'
+            },
+            {
+              name: 'Final',
+              value: 'final'
+            }
+          ]
+        }
+      },
+      {
         key: 'menu',
         type: 'horizontalInput',
-        modelOptions,
+        modelOptions: this.modelOptions,
         templateOptions: {
           label: 'Menüeintrag',
           type: 'text',
@@ -36,7 +47,7 @@ export default class ItemController{
       {
         key: 'icon',
         type: 'horizontalInput',
-        modelOptions,
+        modelOptions: this.modelOptions,
         templateOptions: {
           label: 'Menü-Icon'
         }
@@ -44,7 +55,7 @@ export default class ItemController{
       {
         key: 'active',
         type: 'horizontalCheckbox',
-        modelOptions,
+        modelOptions: this.modelOptions,
         templateOptions: {
           label: 'Im Menü anzeigen'
         }
@@ -53,7 +64,7 @@ export default class ItemController{
         key: 'body',
         type: 'horizontalMarkdownArea',
         hide: _.includes(['download','author'],this.item._id),
-        modelOptions,
+        modelOptions: this.modelOptions,
         templateOptions: {
           label: 'Inhalt'
         }
@@ -87,5 +98,14 @@ export default class ItemController{
   }
   static get $inject(){
     return ['item', '$scope', 'jsonpatch', '$http'];
+  }
+  get modelOptions(){
+    return {
+      updateOn: 'default blur',
+      debounce: {
+        default: 500,
+        blur: 0
+      }
+    };
   }
 }

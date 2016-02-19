@@ -16,6 +16,24 @@ export default class TestController{
       }
     },
     {
+      key: 'status',
+      type: 'horizontalRadioInline',
+      modelOptions: this.modelOptions,
+      templateOptions: {
+        label: 'Status',
+        options: [
+          {
+            name: 'Entwurf',
+            value: 'draft'
+          },
+          {
+            name: 'Final',
+            value: 'final'
+          }
+        ]
+      }
+    },
+    {
       type: 'horizontalRadioInline',
       key: 'type',
       modelOptions: this.modelOptions,
