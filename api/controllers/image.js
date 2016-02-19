@@ -1,5 +1,6 @@
 'use strict';
 const bluebird = require('bluebird');
+const every = require('lodash/every');
 const mongoose = require('mongoose');
 const Grid = require('gridfs');
 Grid.mongo = mongoose.mongo;
@@ -20,6 +21,7 @@ $.index = function *(){
     query['metadata.author'] = this.state.user._id;
   }
   const images = yield gfs.collection('images').find(query,{filename: true}).toArray();
+  this.state.status = every(images, {status: 'final'}) ? 'final' : 'draft';
   this.body = images;
 };
 
@@ -39,12 +41,14 @@ $.create = function *(){
       content_type: file.type,
       root: 'images',
       metadata: {
-        author: this.state.user._id
+        author: this.state.user._id,
+        status: this.request.body.fields.status
       }
     },file.path);
     this.assert(upload,404);
     this.body = upload;
   }
+  this.status = 201;
 };
 
 $.show = function *(){
@@ -64,6 +68,7 @@ $.show = function *(){
       _id: image._id,
       root: 'images'
     });
+    this.state.status = image.metadata.status || 'draft';
   }
 };
 
@@ -86,7 +91,8 @@ $.update = function *(){
       content_type: file.type,
       root: 'images',
       metadata: {
-        author: this.state.user._id
+        author: this.state.user._id,
+        status: this.request.body.fields.status || 'draft'
       }
     },file.path);
     this.assert(upload,404);
@@ -99,5 +105,5 @@ $.destroy = function *(){
     _id: this.params.image,
     root: 'images'
   });
-  this.status = 200;
+  this.status = 204;
 };

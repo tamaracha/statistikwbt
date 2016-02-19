@@ -11,7 +11,7 @@ const files = [
   'rating',
   'response',
   'subject',
-  'summary',
+  //'summary',
   'test',
   'token',
   'topic',

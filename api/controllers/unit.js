@@ -1,5 +1,6 @@
 'use strict';
 const models = require('../models');
+const every = require('lodash/every');
 //const debug = require('debug')('app:unit controller');
 const jsonpatch=require('fast-json-patch');
 const $=module.exports={};
@@ -11,6 +12,7 @@ $.index=function *(){
     this.query.options||null
   ).lean().exec();
   this.body=units;
+  this.state.status = every(units, {status: 'final'}) ? 'final' : 'draft';
 };
 
 $.create=function *(){
@@ -27,6 +29,7 @@ $.show=function *(){
     this.query.options||null
   )
   .select('updatedAt')
+  .select('status')
   .lean().exec();
   this.assert(unit,'unit not found',404);
   this.body=unit;

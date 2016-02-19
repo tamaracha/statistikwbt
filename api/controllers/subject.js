@@ -1,5 +1,6 @@
 'use strict';
 const models = require('../models');
+const every = require('lodash/every');
 const $ = module.exports = {};
 $.index = function *index(){
   this.assert(this.query.search && typeof this.query.search === 'string','no search string',400);
@@ -8,6 +9,7 @@ $.index = function *index(){
   }).lean().exec();
   this.assert(subjects,'no subjects',404);
   this.body = subjects;
+  this.state.status = every(subjects, {status: 'final'}) ? 'final' : 'draft';
 };
 
 $.create = function *create(){
@@ -32,5 +34,5 @@ $.update = function *update(){
 
 $.destroy = function *destroy(){
   const subject = yield models.Subject.findByIdAndRemove(this.params.subject).lean().exec();
-  this.body = subject;
+  this.status = 204;
 };

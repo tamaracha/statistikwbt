@@ -1,6 +1,7 @@
 'use strict';
 //const debug = require('debug')('app:test controller');
 const models = require('../models');
+const every = require('lodash/every');
 const jsonPatch = require('fast-json-patch');
 const $ = module.exports={};
 
@@ -11,6 +12,7 @@ $.index=function *index(){
     this.query.options||null
   ).lean().exec();
   this.body = tests;
+  this.state.status = every(tests, {status: 'final'}) ? 'final' : 'draft';
 };
 
 $.create=function *create(){

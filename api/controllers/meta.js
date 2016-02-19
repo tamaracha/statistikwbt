@@ -1,6 +1,7 @@
 'use strict';
 const models = require('../models');
 const jsonpatch=require('fast-json-patch');
+const every = require('lodash/every');
 const $ = module.exports = {};
 
 $.index = function *index(){
@@ -8,6 +9,7 @@ $.index = function *index(){
   .sort('position')
   .lean().exec();
   this.assert(meta,404);
+  this.state.status = every(meta, {status: 'final'}) ? 'final' : 'draft';
   this.body = meta;
 };
 
@@ -23,7 +25,7 @@ $.show = function *show(){
   const meta = yield models.Meta.findById(this.params.meta);
   this.assert(meta,404);
   this.body = meta;
-  if(meta.updatedAt){this.lastModified = meta.updatedAt;}
+  this.lastModified = meta.updatedAt;
 };
 
 $.update = function *update(){

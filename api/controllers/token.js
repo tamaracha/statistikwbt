@@ -8,4 +8,7 @@ module.exports.new=function *(){
     _id: this.state.user._id,
     role: this.state.user.role
   };
+  this.cacheControl = {
+    nocache: true
+  };
 };

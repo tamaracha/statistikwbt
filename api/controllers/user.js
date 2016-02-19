@@ -7,6 +7,9 @@ $.check=function *(){
   const users = yield models.User.count(this.query).exec();
   this.assert(users>0,'no users found',404);
   this.status=204;
+  this.cacheControl = {
+    maxAge: 5
+  };
 };
 
 $.create=function *(){
@@ -20,6 +23,9 @@ $.show=function *(){
   const user = yield models.User.findById(this.params.user).lean().exec();
   this.assert(user,'user not found',404);
   this.body=user;
+  this.cacheControl = {
+    private: true
+  };
 };
 
 $.update=function *(){
