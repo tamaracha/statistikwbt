@@ -1,7 +1,7 @@
 export default /*@ngInject*/class ChangePasswordController{
-  constructor(user, api, $uibModalInstance){
+  constructor(user, $http, $uibModalInstance){
     this.user = user;
-    this.api = api;
+    this.$http = $http;
     this.$uibModalInstance = $uibModalInstance;
     this.data = {};
     this.formOptions = {
@@ -49,10 +49,7 @@ export default /*@ngInject*/class ChangePasswordController{
     ];
   }
   change(){
-    return this.api.putUsersBy_idPassword({
-      _id: this.user._id,
-      data: this.data
-    })
+    return this.$http.put(`api/users/${this.user._id}/password`, this.data)
     .then(
       (data) => {
         return this.$uibModalInstance.close(data);
@@ -65,5 +62,8 @@ export default /*@ngInject*/class ChangePasswordController{
   }
   cancel(){
     this.$uibModalInstance.dismiss('cancel');
+  }
+  static get $inject(){
+    return ['user', '$http', '$uibModalInstance'];
   }
 }
