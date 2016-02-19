@@ -5,8 +5,8 @@ export default {
   templateUrl,
   controller: 'MetaController as contact',
   resolve: {
-    meta: ['api', function(api){
-      return api.getMetaBy_id({_id: 'contact'});
+    meta: ['$http', function($http){
+      return $http.get('api/meta/contact');
     }]
   }
 };

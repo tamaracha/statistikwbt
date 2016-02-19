@@ -51,7 +51,7 @@ export default angular.module('wbt',[
 .service('modals',modals)
 .factory('test',test)
 .controller('MetaController', ['meta', function(meta){
-  this.meta = meta;
+  this.meta = meta.data;
 }])
 .name;
 

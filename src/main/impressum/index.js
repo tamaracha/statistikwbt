@@ -5,8 +5,8 @@ export default {
   templateUrl,
   controller: 'MetaController as impressum',
   resolve: {
-    meta: ['api', function(api){
-      return api.getMetaBy_id({_id: 'impressum'});
+    meta: ['$http', function($http){
+      return $http.get('api/meta/impressum');
     }]
   }
 };
