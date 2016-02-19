@@ -70,16 +70,19 @@ topics.get('/:topic',roles.can('access content'),ctrl.topic.show);
 topics.patch('/:topic',roles.can('edit content'),body,ctrl.topic.update);
 topics.delete('/:topic',roles.can('edit content'),ctrl.topic.destroy);
 units.use('/:unit/topics',topics.routes());
+/*
 const summaries=new Router();
 summaries.get('/test',ctrl.summary.test);
 summaries.get('/akzeptanz',ctrl.summary.akzeptanz);
 units.use('/:unit/summaries',roles.can('access content'),summaries.routes());
+*/
 api.use('/units',jwt,units.routes());
 
 // guesses
 const guesses = new Router();
 guesses.get('/', ctrl.guess.index);
 guesses.post('/',body,ctrl.guess.create);
+guesses.get('/newest', ctrl.guess.new);
 guesses.get('/:guess', ctrl.guess.show);
 guesses.post('/:guess/responses',body,ctrl.response.create);
 api.use('/guesses',jwt,roles.can('access content'),guesses.routes());
