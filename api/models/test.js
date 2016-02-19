@@ -6,6 +6,11 @@ module.exports = new mongoose.Schema({
     type: String,
     required: true
   },
+  status: {
+    type: String,
+    default: 'draft',
+    enum: ['draft', 'final']
+  },
   type: {
     type: String,
     required: true,

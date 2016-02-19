@@ -1,7 +1,6 @@
 'use strict';
 const mongoose=require('mongoose');
 const ObjectId=mongoose.Schema.Types.ObjectId;
-const findIndex = require('lodash/findIndex');
 const TopicSchema = require('./topic');
 const UnitSchema = module.exports = new mongoose.Schema({
   position: Number,
@@ -9,6 +8,11 @@ const UnitSchema = module.exports = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
+  },
+  status: {
+    type: String,
+    default: 'draft',
+    enum: ['draft', 'final']
   },
   subtitle: String,
   description: {
@@ -45,26 +49,3 @@ const UnitSchema = module.exports = new mongoose.Schema({
     }]
   }
 }, {timestamps: true});
-UnitSchema.methods.move=function(arr,_id,dir){
-  let unit,a,b,tmp;
-  unit=this;
-  return new Promise(function(resolve,reject){
-    if(!unit[arr]){return reject('array not found');}
-    a = findIndex(unit[arr],{_id: mongoose.Types.ObjectId(_id)});
-    if(a===-1){return reject('item not found');}
-    switch(dir){
-    case 'up':
-      b=a-1;
-      break;
-    case 'down':
-      b=a+1;
-    }
-    if(b<=-1||b>=unit.topics.length){return resolve(unit);}
-    tmp=unit[arr][b];
-    unit[arr].set(b,unit[arr][a]);
-    unit[arr].set(a,tmp);
-    return unit.save(function(e){
-      return e ? reject(e) : resolve(unit);
-    });
-  });
-};
