@@ -66,7 +66,7 @@ units.delete('/:unit',roles.can('edit content'),ctrl.unit.destroy);
 const topics=new Router();
 topics.get('/',roles.can('access content'),ctrl.topic.index);
 topics.post('/',roles.can('edit content'),body,ctrl.topic.create);
-topics.get('/:topic',roles.can('access content'),ctrl.topic.show);
+topics.get('/:topic',roles.can('access content'), log, ctrl.topic.show);
 topics.patch('/:topic',roles.can('edit content'),body,ctrl.topic.update);
 topics.delete('/:topic',roles.can('edit content'),ctrl.topic.destroy);
 units.use('/:unit/topics',topics.routes());

@@ -5,15 +5,15 @@ module.exports = new mongoose.Schema({
   unit: {
     type: ObjectId,
     required: true,
-    ref: 'units'
+    ref: 'Unit'
   },
   topic: {
     type: ObjectId,
-    ref: 'unit.topic'
+    ref: 'Topic'
   },
   user: {
     type: ObjectId,
-    ref: 'user',
+    ref: 'User',
     required: true
   }
 });
