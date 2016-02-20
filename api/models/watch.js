@@ -16,7 +16,7 @@ module.exports = mongoose.Schema({
   },
   list: String,
   user: {
-    ref: 'users',
+    ref: 'User',
     type: mongoose.Schema.Types.ObjectId,
     required: true
   }
