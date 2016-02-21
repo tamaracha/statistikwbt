@@ -2,6 +2,18 @@
 const models = require('../models');
 const $ = module.exports = {};
 
+$.index = function *index(){
+  const watches = yield models.Watch.find()
+  .sort({
+    user: 1,
+    _id: 1
+  })
+  .select('-__v')
+  .populate('user', 'kennung email')
+  .exec();
+  this.body = watches;
+};
+
 $.create = function *create(){
   const body = this.request.body;
   body.user = this.state.user._id;

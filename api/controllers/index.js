@@ -17,6 +17,7 @@ const files = [
   'topic',
   'unit',
   'user',
+  'view',
   'watch'
 ];
 module.exports = transform(files,function(ctrl,f){

@@ -89,6 +89,8 @@ api.use('/guesses',jwt,roles.can('access content'),guesses.routes());
 
 api.post('/ratings',jwt,roles.can('access content'),body,ctrl.rating.create);
 api.post('/comments',jwt,roles.can('access content'),body,ctrl.comment.create);
+api.get('/views', ctrl.view.index);
+api.get('/watches', ctrl.watch.index)
 api.post('/watches',jwt,body,ctrl.watch.create);
 
 // images
