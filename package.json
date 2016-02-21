@@ -8,7 +8,7 @@
     "test_client": "karma start --single-run",
     "test_server": "mocha tests/server/",
     "test": "npm run test_client && npm run test_server",
-    "lint": "eslint api",
+    "lint": "eslint api bin",
     "prebuild": "rm -f dist/*",
     "build:js": "NODE_ENV=production webpack -p",
     "build:compress": "zopfli dist/*",
