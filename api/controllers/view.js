@@ -9,8 +9,6 @@ $.index = function *index(){
     _id: 1
   })
   .select('-__v')
-  .populate('unit', 'title')
-  .populate('user', 'kennung email')
   .exec();
   this.body = views;
 };

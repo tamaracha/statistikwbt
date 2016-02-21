@@ -9,7 +9,6 @@ $.index = function *index(){
     _id: 1
   })
   .select('-__v')
-  .populate('user', 'kennung email')
   .exec();
   this.body = watches;
 };
