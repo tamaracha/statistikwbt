@@ -16,91 +16,93 @@ export default class UnitsController{
         blur: 0
       }
     };
-    this.fields = [{
-      key: 'title',
-      type: 'horizontalInput',
-      templateOptions: {
-        type: 'text',
-        label: 'Titel',
-        placeholder: 'Titel des Kapitels',
-        required: true
+    this.fields = [
+      {
+        key: 'title',
+        type: 'horizontalInput',
+        templateOptions: {
+          type: 'text',
+          label: 'Titel',
+          placeholder: 'Titel des Kapitels',
+          required: true
+        },
+        modelOptions: this.modelOptions
       },
-      modelOptions: this.modelOptions
-    },
-    {
-      key: 'status',
-      type: 'horizontalRadioInline',
-      modelOptions: this.modelOptions,
-      templateOptions: {
-        label: 'Status',
-        options: [
-          {
-            name: 'Entwurf',
-            value: 'draft'
-          },
-          {
-            name: 'Final',
-            value: 'final'
-          }
-        ]
+      {
+        key: 'subtitle',
+        type: 'horizontalInput',
+        templateOptions: {
+          type: 'text',
+          label: 'Untertitel',
+          placeholder: 'Untertitel des Kapitels'
+        },
+        modelOptions: this.modelOptions
+      },
+      {
+        key: 'requires',
+        type: 'horizontalMultiCheckbox',
+        templateOptions: {
+          label: 'Voraussetzungen',
+          labelProp: 'title',
+          valueProp: '_id'
+        },
+        modelOptions: this.modelOptions
+      },
+      {
+        key: 'active',
+        type: 'horizontalCheckbox',
+        templateOptions: {
+          label: 'Test für dieses Kapitel aktivieren'
+        },
+        modelOptions: this.modelOptions
+      },
+      {
+        key: 'shuffle',
+        type: 'horizontalMultiCheckbox',
+        modelOptions: this.modelOptions,
+        templateOptions: {
+          label: 'Zufällige Reihenfolge',
+          options: [
+            {
+              name: 'Aufgaben',
+              value: 'items'
+            },
+            {
+              name: 'Antwortoptionen bei Wahlaufgaben',
+              value: 'choices'
+            }
+          ]
+        }
+      },
+      {
+        key: 'description',
+        type: 'horizontalMarkdownArea',
+        modelOptions: this.modelOptions,
+        templateOptions: {
+          label: 'Beschreibung',
+          required: true,
+          placeholder: 'hier Beschreibungstext eingeben'
+        }
+      },
+      {
+        key: 'status',
+        type: 'horizontalRadioInline',
+        modelOptions: this.modelOptions,
+        templateOptions: {
+          label: 'Status',
+          options: [
+            {
+              name: 'Entwurf',
+              value: 'draft'
+            },
+            {
+              name: 'Final',
+              value: 'final'
+            }
+          ]
+        }
       }
-    },
-    {
-      key: 'subtitle',
-      type: 'horizontalInput',
-      templateOptions: {
-        type: 'text',
-        label: 'Untertitel',
-        placeholder: 'Untertitel des Kapitels'
-      },
-      modelOptions: this.modelOptions
-    },
-    {
-      key: 'requires',
-      type: 'horizontalMultiCheckbox',
-      templateOptions: {
-        label: 'Voraussetzungen',
-        labelProp: 'title',
-        valueProp: '_id'
-      },
-      modelOptions: this.modelOptions
-    },
-    {
-      key: 'active',
-      type: 'horizontalCheckbox',
-      templateOptions: {
-        label: 'Test für dieses Kapitel aktivieren'
-      },
-      modelOptions: this.modelOptions
-    },
-    {
-      key: 'shuffle',
-      type: 'horizontalMultiCheckbox',
-      modelOptions: this.modelOptions,
-      templateOptions: {
-        label: 'Zufällige Reihenfolge',
-        options: [
-          {
-            name: 'Aufgaben',
-            value: 'items'
-          },
-          {
-            name: 'Antwortoptionen bei Wahlaufgaben',
-            value: 'choices'
-          }
-        ]
-      }
-    },
-    {
-      key: 'description',
-      type: 'horizontalMarkdownArea',
-      modelOptions: this.modelOptions,
-      templateOptions: {
-        label: 'Beschreibung',
-        required: true,
-        placeholder: 'hier Beschreibungstext eingeben'
-      }
-    }];
+    ];
     function watcher(){
       return $scope.units.selected ? _.reject($scope.units.units, {_id: $scope.units.selected._id}) : $scope.units.units;
     }
@@ -143,5 +145,7 @@ export default class UnitsController{
       }
     );
   }
+  static get $inject(){
+    return ['units', '$scope', '$state', '$uibModal', '$http'];
+  }
 }
-UnitsController.$inject = ['units', '$scope', '$state', '$uibModal', '$http'];
