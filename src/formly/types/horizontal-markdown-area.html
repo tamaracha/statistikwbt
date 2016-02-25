@@ -1,11 +1,12 @@
-
-<ul class="nav nav-tabs">
-  <li ng-class="{'active': 'both'}[view]">
-    <button type="button" ng-click="view='markdown'" ng-init="view='markdown'" class="btn btn-default">Markdown</button>
-  </li>
-  <li ng-class="{'active': 'both'}[view]">
-    <button type="button" ng-click="view='preview'" class="btn btn-default">Vorschau</button>
-  </li>
-</ul>
-<textarea ng-if="view === 'markdown'" ng-model="model[options.key]" class="form-control"></textarea>
-<div ng-if="view === 'preview'" markdown="model[options.key]" math-jax></div>
+<uib-tabset>
+<uib-tab active="true" heading="Markdown">
+<textarea ng-model="model[options.key]" class="form-control" style="height:100%"></textarea>
+</uib-tab>
+<uib-tab heading="Vorschau">
+<div markdown="model[options.key]" math-jax></div>
+</uib-tab>
+<uib-tab heading="Nebeneinander">
+<textarea ng-model="model[options.key]" class="form-control" style="height:100%;width:50%;display:inline-block"></textarea>
+<div markdown="model[options.key]" style="width:50%;display:inline-block" math-jax></div>
+</uib-tab>
+</uib-tabset>
