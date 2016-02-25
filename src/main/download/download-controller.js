@@ -78,5 +78,7 @@ export default class DownloadController{
   selectContents(val){
     this.data.contents = val ? ['body','examples','extras'] : [];
   }
+  static get $inject(){
+    return ['units'];
+  }
 }
-DownloadController.$inject = ['units'];
