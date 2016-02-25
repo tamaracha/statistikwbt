@@ -67,5 +67,7 @@ export default class LoginController{
   cancel(){
     this.$uibModalInstance.dismiss('cancel');
   }
+  static get $inject(){
+    return ['user', '$uibModalInstance'];
+  }
 }
-LoginController.$inject = ['user', '$uibModalInstance'];
