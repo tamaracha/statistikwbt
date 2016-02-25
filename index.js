@@ -6,7 +6,7 @@ const db=config.get('db');
 const assets=config.get('assets');
 const webpackAssets = require('./dist/assets.json');
 const etag = require('etag');
-const dots = require('dot').process({path: 'templates'});
+const dots = require('./api/services/dots');
 const indexHtml = dots.index({
   title: assets.title,
   base: assets.base,

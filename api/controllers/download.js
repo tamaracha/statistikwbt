@@ -15,6 +15,7 @@ mongoose.connection.once('open',function(){
   gfs = new Grid(mongoose.connection.db);
   bluebird.promisifyAll(gfs);
 });
+const dots = require('../services/dots');
 const $=module.exports={};
 function hash(val){
   return crypto.createHash('sha1')
@@ -64,7 +65,7 @@ $.getUnits=function *getUnits(next){
 };
 
 $.getMarkdown=function *getMarkdown(next){
-  const md = this.render.templates.download({units: this.state.units,contents: this.query.contents});
+  const md = dots.download({units: this.state.units,contents: this.query.contents});
   this.assert(md,'markdown not compiled');
   const mimeType = mime.lookup(this.query.format);
   this.response.type=mimeType;
