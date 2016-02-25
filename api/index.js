@@ -20,6 +20,7 @@ const jwt = require('koa-jwt')(jwtConfig);
 const log = require('./middleware/log');
 const roles = require('./middleware/roles');
 const auth = require('./middleware/auth');
+const queryToken = require('./middleware/query-token');
 
 api
 .use(lastModified, etag())
@@ -89,8 +90,8 @@ api.use('/guesses',jwt,roles.can('access content'),guesses.routes());
 
 api.post('/ratings',jwt,roles.can('access content'),body,ctrl.rating.create);
 api.post('/comments',jwt,roles.can('access content'),body,ctrl.comment.create);
-api.get('/views', jwt, roles.can('edit content'), ctrl.view.index);
-api.get('/watches', jwt, roles.can('edit content'), ctrl.watch.index);
+api.get('/views', queryToken, jwt, roles.can('edit content'), ctrl.view.index);
+api.get('/watches', queryToken, jwt, roles.can('edit content'), ctrl.watch.index);
 api.post('/watches',jwt,body,ctrl.watch.create);
 
 // images
@@ -103,7 +104,7 @@ images.delete('/:image',jwt,roles.can('edit content'),ctrl.image.destroy);
 api.use('/images',images.routes());
 
 api.get('/downloads',
-  ctrl.download.getToken,
+  queryToken,
   jwt,
   roles.can('access content'),
   ctrl.download.getUnits,

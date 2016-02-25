@@ -38,16 +38,6 @@ function getFilename(){
   });
 }
 
-$.getToken=function *getToken(next){
-  if(!this.query.token){
-    this.throw('no token found',401);
-  }
-  else{
-    this.request.headers.authorization='bearer '+this.query.token;
-    yield next;
-  }
-};
-
 $.getUnits=function *getUnits(next){
   if(typeof this.query.units === 'string'){
     this.query.units=[this.query.units];
