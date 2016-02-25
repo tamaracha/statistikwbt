@@ -23,10 +23,6 @@
     "type": "git",
     "url": "https://github.com/tamaracha/wbt-framework.git"
   },
-  "bin": {
-    "wbt-setup": "./bin/wbt-setup.js",
-    "update-db": "./bin/update-db.js"
-  },
   "apps": [
     {
       "script": "index.js",
