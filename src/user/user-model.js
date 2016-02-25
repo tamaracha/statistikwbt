@@ -139,5 +139,7 @@ export default class user{
   changePassword(){
     return this.$uibModal.open(changePasswordModal);
   }
+  static get $inject(){
+    return ['$http', '$localStorage', '$window', '$q', '$uibModal', 'api'];
+  }
 }
-user.$inject = ['$http', '$localStorage', '$window', '$q', '$uibModal', 'api'];
