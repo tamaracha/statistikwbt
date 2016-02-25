@@ -17,24 +17,6 @@ export default class ItemController{
         }
       },
       {
-        key: 'status',
-        type: 'horizontalRadioInline',
-        modelOptions: this.modelOptions,
-        templateOptions: {
-          label: 'Status',
-          options: [
-            {
-              name: 'Entwurf',
-              value: 'draft'
-            },
-            {
-              name: 'Final',
-              value: 'final'
-            }
-          ]
-        }
-      },
-      {
         key: 'menu',
         type: 'horizontalInput',
         modelOptions: this.modelOptions,
@@ -67,6 +49,24 @@ export default class ItemController{
         modelOptions: this.modelOptions,
         templateOptions: {
           label: 'Inhalt'
+        }
+      },
+      {
+        key: 'status',
+        type: 'horizontalRadioInline',
+        modelOptions: this.modelOptions,
+        templateOptions: {
+          label: 'Status',
+          options: [
+            {
+              name: 'Entwurf',
+              value: 'draft'
+            },
+            {
+              name: 'Final',
+              value: 'final'
+            }
+          ]
         }
       }
     ];
