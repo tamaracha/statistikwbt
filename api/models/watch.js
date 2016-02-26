@@ -1,6 +1,6 @@
 'use strict';
 const mongoose=require('mongoose');
-const WatchSchema = module.exports = mongoose.Schema({
+module.exports = mongoose.Schema({
   state: {
     type: String,
     required: true
@@ -21,8 +21,3 @@ const WatchSchema = module.exports = mongoose.Schema({
     required: true
   }
 });
-WatchSchema.virtual('createdAt')
-.get(function(){
-  return this._id.getTimestamp();
-});
-WatchSchema.set('toJSON', {virtuals: true, getters: true});
