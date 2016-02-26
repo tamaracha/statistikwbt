@@ -14,15 +14,15 @@ roles.use('access content',function *(){
     return false;
   }
   switch(this.state.user.role){
-  case 'user': return true;
-  case 'author': return true;
-  default: return false;
+    case 'user': return true;
+    case 'author': return true;
+    default: return false;
   }
 });
 roles.use('edit content',function *(){
   switch(this.state.user.role){
-  case 'author': return true;
-  default: return false;
+    case 'author': return true;
+    default: return false;
   }
 });
 roles.use('access user',function *(){
