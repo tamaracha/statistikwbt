@@ -6,6 +6,7 @@ const db=config.get('db');
 const assets=config.get('assets');
 const webpackAssets = require('./dist/assets.json');
 const etag = require('etag');
+const json = require('koa-json');
 const dots = require('./api/services/dots');
 const indexHtml = dots.index({
   title: assets.title,
@@ -36,9 +37,10 @@ app
   public: true,
   maxAge: 0
 }))
-.use(conditional());
+.use(conditional())
+.use(json({pretty: false, param: 'pretty'}));
 if(assets.serve){
-  app.use(require('koa-mount')(assets.root, require('koa-static')(__dirname+'/dist')))
+  app.use(require('koa-mount')(assets.root, require('koa-static')(__dirname+'/dist')));
 }
 app
 .use(index.unless({path: [/api/,new RegExp(assets.root), /docs/, /swagger/]}))
