@@ -1,4 +1,4 @@
-export default function youtubeDirective($window, youtube, api) {
+export default function youtubeDirective($window, youtube, $http) {
   function link(scope, element) {
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
@@ -68,9 +68,7 @@ export default function youtubeDirective($window, youtube, api) {
         message.type = 'video';
         message.video = scope.videoid;
       }
-      return api.postWatches({
-        message
-      });
+      return $http.post('api/watches', message);
     }
   }
   return {
@@ -86,4 +84,4 @@ export default function youtubeDirective($window, youtube, api) {
     link
   };
 }
-youtubeDirective.$inject = ['$window', 'youtube', 'api'];
+youtubeDirective.$inject = ['$window', 'youtube', '$http'];
