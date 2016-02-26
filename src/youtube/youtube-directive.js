@@ -1,5 +1,5 @@
-export default function youtubeDirective($window, youtube, api){
-  function link(scope, element){
+export default function youtubeDirective($window, youtube, api) {
+  function link(scope, element) {
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -8,7 +8,8 @@ export default function youtubeDirective($window, youtube, api){
     youtube.onReady(function() {
       player = setupPlayer(scope, element);
     });
-    function setupPlayer(scope,element){
+
+    function setupPlayer(scope, element) {
       const options = {
         playerVars: {
           autoplay: 0,
@@ -24,44 +25,52 @@ export default function youtubeDirective($window, youtube, api){
           onStateChange
         }
       };
-      if(scope.list && scope.listType){
+      if (scope.list && scope.listType) {
         options.playerVars.list = scope.list;
         options.playerVars.listType = scope.listType;
         delete options.videoId;
       }
-      if(scope.theme){options.theme = scope.theme;}
-      if(scope.color){options.color = scope.color;}
+      if (scope.theme) {
+        options.theme = scope.theme;
+      }
+      if (scope.color) {
+        options.color = scope.color;
+      }
       return new $window.YT.Player(element.children()[0], options);
     }
-    function onStateChange(event){
+
+    function onStateChange(event) {
       const message = {
         time: player.getCurrentTime()
       };
-      switch(event.data) {
-      case $window.YT.PlayerState.PLAYING:
-        message.state = 'PLAYING';
-        break;
-      case $window.YT.PlayerState.ENDED:
-        message.state = 'ENDED';
-        break;
-      case $window.YT.PlayerState.UNSTARTED:
-        message.state = 'NOT PLAYING';
-        break;
-      case $window.YT.PlayerState.PAUSED:
-        message.state = 'PAUSED';
-        break;
+      switch (event.data) {
+        case $window.YT.PlayerState.PLAYING:
+          message.state = 'PLAYING';
+          break;
+        case $window.YT.PlayerState.ENDED:
+          message.state = 'ENDED';
+          break;
+        case $window.YT.PlayerState.UNSTARTED:
+          message.state = 'NOT PLAYING';
+          break;
+        case $window.YT.PlayerState.PAUSED:
+          message.state = 'PAUSED';
+          break;
       }
-      if(!message.state){return;}
-      if(scope.list && scope.listType){
+      if (!message.state) {
+        return;
+      }
+      if (scope.list && scope.listType) {
         message.type = 'list';
         message.listType = scope.listType;
         message.list = scope.list;
-      }
-      else{
+      } else {
         message.type = 'video';
         message.video = scope.videoid;
       }
-      return api.postWatches({message});
+      return api.postWatches({
+        message
+      });
     }
   }
   return {
