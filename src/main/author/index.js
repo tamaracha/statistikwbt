@@ -3,6 +3,7 @@ import templateUrl from './author.html';
 import meta from './meta';
 import units from './units';
 import images from './images';
+import datasets from './datasets';
 
 export default {
   name: 'author',
@@ -16,6 +17,7 @@ export default {
   children: [
     meta,
     units,
-    images
+    images,
+    datasets
   ]
 };

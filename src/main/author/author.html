@@ -1,12 +1,11 @@
-
 <div class="row">
   <div class="col-xs-12">
-    <!--div(ncy-breadcrumb)-->
     <h2>Authorenmodus</h2>
     <ul ng-hide="main.user.data.role==='user'" class="nav nav-tabs">
       <li ui-sref-active="active"><a ui-sref=".meta">Meta</a></li>
       <li ui-sref-active="active"><a ui-sref=".units.new">Kapitel</a></li>
       <li ui-sref-active="active"><a ui-sref=".images">Bilder</a></li>
+      <li ui-sref-active="active"><a ui-sref=".datasets">Datensätze</a></li>
     </ul>
     <div ui-view>
       <p ng-if="!main.user.authenticated" class="text-danger">Willkommen beim Autorenmodus. Der Autorenmodus kann nur genutzt werden, wenn man angemeldet und Autor ist. Du bist gerade nicht angemeldet.</p>

@@ -1,0 +1,10 @@
+<h3>Datensätze</h3>
+<form class="form-horizontal" novalidate name="datasets.form" method="get" action="{{'api/'+datasets.data.collection}}">
+  <input type="hidden" name="token" ng-value="main.user.token">
+  <formly-form fields="datasets.fields" model="datasets.data" form="datasets.form"></formly-form>
+  <div class="form-group">
+    <div class="col-xs-offset-2 col-xs-10">
+      <input type="submit" value="Download">
+    </div>
+  </div>
+</form>
