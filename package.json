@@ -1,6 +1,6 @@
 {
   "name": "wbt-framework",
-  "version": "2.9.1",
+  "version": "2.9.2",
   "description": "Ein WBT-Framework",
   "main": "index.js",
   "scripts": {
